@@ -93,36 +93,6 @@ main {
     background-color: #F2E4C9;
 }
 
-article {
-    padding: 0 2em;
-}
-
-.article-header-text {
-    color: var(--color-article-headings);
-}
-
-.article__header {
-    font-size: 2.75rem;
-    margin-top: 1em;
-    margin-bottom: 0.25em;
-}
-
-.article__subheader {
-    color: var(--color-article-headings);
-    font-style: italic;
-    padding-bottom: 1.25em;
-    margin-bottom: 0.25em;
-}
-
-.article__section__header {
-    font-size: 1.8125rem;
-    margin-top: 1em;
-    margin-bottom: 0.5em;
-}
-
-.article__section__body {
-}
-
-.article__section__body__paragraph {
-
+article img {
+    width: 100%;
 }
