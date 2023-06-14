@@ -4,8 +4,12 @@ _a very loose list of todos that I keep for this project. These todos are releva
 
 ## Up Next
 
-- [ ] figure out how to generate html for an article from markdown of a file
-- [ ] figure out how to get images out of a google doc more trivially
-  - [ ] need to get both images and html at the same time
-- [ ] update styling (make it simpler and more plain)
-- [ ] create home page
+- [ ] RSS feed
+- [ ] unfurls
+- [ ] linking of sections in blog post on parsers
+
+Later todos
+
+- [ ] projects page? what is the relationship to the blog posts pages
+- [ ] some sort of contact form?
+- [ ] a nicer footer?
