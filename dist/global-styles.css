@@ -5,8 +5,6 @@
     --color-default-text: #400D01;
     --color-article-headings: #BF3C30;
     --color-anchors-default: #8C2626;
-
-    /* do text sizes here as well */
 }
 
 a {
@@ -15,82 +13,29 @@ a {
 }
 
 body {
-    background-color: var(--color-main-bg);
+    width: 100%;
 
-    font-family: Georgia, serif;
-    color: var(--color-default-text);
-
-    /**
-     Lets get rid of all of this default spacing
-     */
     padding: 0;
     margin: 0 auto;
 
+    max-width: 108ch;
 
-    /**
-     We'll use flexbox to vertically align everything on our page.
-     Setting it up this way is kind of overkill... but it ensures we won't ever
-     have our footer sprouting out of the right side of our main section or something
-     */
     display: flex;
     flex-direction: column;
     align-items: center;
-    min-height: 100vh;
-
-    max-width: 95ch;
 }
 
 header {
     width: 100%;
-    background-color: var(--color-header-bg);
-    color: var(--color-header-text);
-}
-
-.header__inner {
-    width: 100%;
-    margin: 0 auto;
-
-    display: flex;
-    justify-content: space-between;
-    flex-wrap: wrap;
-
-    padding: 1ch 0;
-}
-
-.header__inner__left {
-    margin: 0.5em 1em;
-}
-
-.site_title {
-    font-size: 4rem;
-}
-
-.site_title--link {
-    text-decoration: none;
-    color: inherit;
-}
-
-.header__inner__right {
-    margin: 0.5em 1em;
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-
-}
-
-.header_nav_link {
-    text-decoration: underline;
-
-    color: inherit;
-    padding: 0 1ch;
-    margin-top: auto;
-    font-size: 1.25rem;
 }
 
 main {
-    flex-grow: 1;
     width: 100%;
-    background-color: #F2E4C9;
+    flex-grow: 1;
+}
+
+footer {
+    width: 100%;
 }
 
 article img {
