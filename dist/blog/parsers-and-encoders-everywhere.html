@@ -41,53 +41,86 @@
           Originally Authored: June 2023 | Last Updated: June 2023 | Reading
           time: ~30 min | Author: Beau Carlborg
         </i>
-        <p>In this post, I'd like to discuss a few things:</p>
-        <ul>
-          <li>
-            <a href="#1-encountering-and-attempting-to-learn-parsers"
-              >Section 1</a
-            >: We'll go over my first encounter with parsers as a component in
-            compilers and I'll recount how difficult that learning parsers was
-            (and still is) for me.
-          </li>
-
-          <li>
-            <a href="#2-a-generalizing-definition-of-parsers">Section 2</a>:
-            We'll develop an idea that helped me see the applicability of
-            parsers in so many more contexts beyond compilers.
-          </li>
-
-          <li>
-            <a href="#3-parsers-and-encoders-in-the-real-world">Section 3</a>:
-            We'll walk through a few examples of how parsers show up in real
-            software.
-          </li>
-
-          <li>
-            <a href="#4-takeaways">Section 4</a>: We'll close things out with
-            some key takeaways.
-          </li>
-        </ul>
-
+        <p>
+          Article contents:
+          <br />
+          <a href="#1-encountering-and-attempting-to-learn-parsers">
+            1: Encountering and attempting to learn parsers
+          </a>
+          <br />
+          <a href="#2-coming-to-see-parsers-broad-applicability"
+            >2: Coming to see parser's broad applicability</a
+          >
+          <br />
+          <a href="#3-parsers-and-encoders-in-the-real-world"
+            >3: Parsers and encoders in the real world</a
+          >
+          <br />
+          <a href="#4-takeaways">4: Takeaways</a>
+        </p>
+        <hr />
+        <p>
+          In this article, I'd like to describe my experience learning about
+          parsers and I'd like to develop some of the realizations that I came
+          to as a result of spending so much time thinking about parsing.
+        </p>
+        <p>
+          I started learning about parsers while trying to learn about
+          compilers. There is some debate about the value of focusing deeply on
+          parsing in a compiler curriculum, but the topic captured my interest,
+          so I decided to spend some time really trying to understand it.
+        </p>
+        <p>
+          As it turns out, really understanding how parser work is a tricky
+          business. There is a lot of theory involved, and the resources
+          available to learn it are pretty terse. I spent quite some time trying
+          to deeply understand how parsers work and mostly didn't succeed.
+        </p>
+        <p>
+          But somewhere along the way, I had a realization about parsers that
+          led me to appreciate their wide ranging applicability in software.
+          Thinking about the need for parsing in these broad terms eventually
+          led me to a new way of thinking about programs. It led me to start
+          seeing that most programs need to communicate information using
+          strings or byte arrays, and in order to do that, most programs need to
+          have a parser or encoder at the edge of their functionality.
+        </p>
+        <p>
+          This article is technical in that I spend a lot of time talking about
+          programs, their interfaces, as well as parsing and encoding formats,
+          but it is not a reference or tutorial on parsing. This article is
+          mostly about how considering parsing deeply caused me to see software
+          in a new way.
+        </p>
+        <p>
+          Because of the nature of the topic, I spend a lot of time developing
+          some "simple" or "obvious" ideas about how software works or what
+          software does. These were lines of thoughts that were interesting for
+          me to explore.
+        </p>
+        <p>
+          It strikes me that a reader who has already had these realizations may
+          find this article boring, slow or even banal. But, my hope is that a
+          reader who hasn't yet had the chance to think deeply about some of
+          these topics will end up coming to some of the same interesting
+          realizations that I came to.
+        </p>
+        <p>
+          It's a long and casual read, so I'd imagine it may be best enjoyed
+          with some sort of drink. Let's begin.
+        </p>
         <h2 id="1-encountering-and-attempting-to-learn-parsers">
           1: Encountering and attempting to learn parsers
         </h2>
 
         <p>
-          I'd like to describe my experience encountering and learning parsers
-          for the first time. I encountered parsers as a topic worth studying
-          while learning about compilers. I'll give a brief overview of a
-          parser's role in a compiler, and then I'll describe my initial attempt
-          to understand parsers. My goals here are to (1) give a bit of context
-          on the role of a parser in a compiler for those who are not familiar,
-          and (2) highlight the challenges and difficulties I ran into when
-          trying to learn parsers.
+          I encountered parsers as a topic worth studying while learning about
+          compilers. I'll give a brief overview of a parser's role in a
+          compiler, and then I'll describe my initial attempt to understand
+          parsers. If you aren't very interested in this little narrative, you
+          can skip straight to section 2.
         </p>
-        <p>
-          If you aren't very interested in this little narrative, you can skip
-          straight to section 2!
-        </p>
-        <h3>Parsers: the compiler phase that caught my eye</h3>
+        <h3>Parsers: a phase in a compiler</h3>
 
         <p>
           Most compilers are organized as a series of phases. Those phases can
@@ -173,9 +206,8 @@
           meaningful. But the definitions don't reveal much beyond that. To me,
           these definitions almost lend parsers a mystic quality... Parsers find
           meaning in symbols. Parsers extract structure from the structureless.
-          Parsers are power. Parsers are the one truth. Parsers are all. Parsers
-          are the ring to rule them all. But, maybe I have been reading about
-          parsers for too long now.
+          Parsers extract meaning and truth from all. Parsers are the one ring
+          to rule them all.
         </p>
         <p>
           <img
@@ -184,10 +216,12 @@
           />
         </p>
         <p>
-          The broad definitions for parsers left me a bit unsatisfied. So I
-          decided to go explore the theory that underpins parsers. This line of
-          exploration turned out to be a deep rabbit hole that I would spend a
-          lot of time digging out of.
+          The broad definitions for parsers left me a bit unsatisfied, but they
+          did continue to pique my interest. I decided that if compiler
+          resources couldn't help me learn about parsers, and I couldn't easily
+          find a good definition, I should go explore the theory that underpins
+          parsers. This line of exploration turned out to be a deep rabbit hole
+          that I would spend a lot of time climbing out of.
         </p>
         <p>
           Parsers are, at their core, a way to process text. Because of this,
@@ -198,8 +232,9 @@
         </p>
         <p>
           These two fields provide the theoretical backdrop for learning about
-          parsers. I felt like this would be a good place to really learn what
-          parsers are all about. So I hit the books.
+          parsers. I felt like this theory would be a good place to really learn
+          what parsers are all about. So I decided to read books, articles, and
+          papers about parsers in the context of these fields.
         </p>
         <p>
           <img
@@ -208,41 +243,34 @@
           />
         </p>
         <p>
-          I started with formal language theory. I was reading books and papers
-          about grammar, syntax, and semantics. I was learning about how
-          different grammar constructions and varyingly complex languages they
-          produce. Before long, I was also trying to learn about automata
-          theory. I was reading about finite state machines, push down automata,
-          turing machines, and all of their deterministic and non deterministic
-          variants. I was learning about how certain subsets of language
-          grammars can be related directly to certain classes of automaton.
+          From formal language theory, I was trying to read about grammar,
+          syntax, and semantics, trying to learn how different grammar
+          constructions define certain classes of languages. From automaton
+          theory, I was trying to read about finite state machines, push down
+          automata, turing machines, and all of their deterministic and
+          non-deterministic variants. And then I was trying to read about all
+          the ways in which formal language theory is associated with automaton
+          theory. I was reading a lot, and I was learning a lot. But I still
+          wasn't really finding the understanding I wanted about parsing.
         </p>
         <p>
-          I was swimming in a lot of confusing ideas... and I wasn't grasping a
-          lot of it. To make things worse, what I had read about thus far was
-          just the theory! I hadn't even started learning about applied parsing
-          algorithms.
+          The theory forward approach of learning parsers wasn't panning out how
+          I hoped it would, so I tried to get back to applied parsing
+          algorithms. But opening that can of worms immediately leads you into
+          comparisons of grammar subsets like LL, LR, SALR, and LALR and other
+          means of defining parsers like PEGs. I learned enough to make some
+          grammars compatible with an LL parser or LR parser. I learned How to
+          write a PEF, and I even built a parser or two. But I still just wasn't
+          grasping what I wanted to.
         </p>
         <p>
-          So I decided I would try to learn all of that too! I was trying to
-          learn about a number of different grammar subsets like LL, LR, SALR,
-          and LALR. I was learning about alternative ways of statically defining
-          your parser behavior like Parser Expression Grammars (PEGs for short).
-          I was reading about other parsing approaches that stretch outside of
-          the traditional theory like pratt parsing and packrat parsing.
-        </p>
-        <p>
-          All of this is to say, I was deep deep down the parsing rabbit hole
-          for many many weeks. And you know what? I still don't really know if I
-          understand parsers. The more I learned, the more I felt like it would
-          be impossible to ever fully grok parsing. I tried my best to learn as
-          much as I could about parsing, and after all of this work I don't know
-          if I've succeeded in even learning 10% of what I need to know.
-        </p>
-        <p>
-          The info is tricky and the topic is mired in too many acronyms. After
-          a while, your brain slowly starts to melt into a big parser alphabet
-          soup.
+          All and all, I just wasn't finding the understanding that I wanted
+          from these resources. I certainly learned a lot, and parsers do make
+          more sense to me now than they did a few months ago, but I still
+          haven't had a moment where the mechanism behind a parser really clicks
+          into focus. It was no help that many of the parsing resources
+          available are pretty terse and that the topic matter is generally
+          mired in too many acronyms.
         </p>
         <p>
           <img
@@ -253,52 +281,40 @@
         <p>
           The reason I want to highlight this experience is that learning
           parsing is hard! It is a tricky subject and there is a lot of
-          information to unpack in order to even understand the acronyms people
-          are using. The way the information is presented in compiler resources
-          often left me feeling like parsers are something I should just "get"
-          after building one or two, but that really wasn't my experience.
+          information to unpack to even understand the acronyms people are
+          using. Even if you find a simple parsing algorithm to work with,
+          deeply understanding that algorithm can be hard. Learning enough to
+          make educated comparisons between that algorithm and others is even
+          harder.
         </p>
         <p>
-          Even if you find a simple parsing algorithm to work with for your
-          needs, deeply understanding that algorithm can be hard. Learning
-          enough to make educated comparisons between that algorithm and others
-          is even harder.
+          But even though I haven't yet deeply understood parsers, I did
+          eventually come to an understanding that helped me see how broadly
+          applicable parsers are.
         </p>
-        <p>
-          Thankfully though, I did have a satisfying realization about parsers
-          after a while. I still don't understand as much as I would like to,
-          but I came to an understanding of parsers that at least helped me see
-          how broadly applicable they are.
-        </p>
-        <h2 id="2-a-generalizing-definition-of-parsers">
-          2: A generalizing definition of parsers
+        <h2 id="2-coming-to-see-parsers-broad-applicability">
+          2: Coming to see parser's broad applicability
         </h2>
 
         <p>
-          I was lost digging around in theory books trying to understand
-          parsers, hopelessly far away from doing anything practical with them.
-          But at some point, I had a realization about parsers that brought me
-          out of the weeds and back to real use cases. This realization was a
-          simple, and clarifying definition of what a parser does.
+          At some point, in my process of learning about parsing theory, I came
+          to a realization that there is a simple, and clarifying definition for
+          parsers that highlights how they can be used rather than how they
+          work.
         </p>
         <p>
           Viewing parser in this new light helped me see that parsers are
           incredibly applicable beyond compilers. I started to see that parsing,
           on some level, was incorporated into most programs I use.
         </p>
-        <p>
-          Below, I provide the definition of parsing that helped me see parsers
-          everywhere. I introduce the definition, then spend the rest of this
-          section clarifying and contextualizing the definition.
-        </p>
         <h3>A clarifying definition of parsing</h3>
 
         <p>
           <strong
-            >Parsers (and their inverse partner in crime encoders) allow us to
-            efficiently encode and decode complex structured data like graphs,
-            trees, and dictionaries using flat data structures like strings and
-            arrays of bytes.</strong
+            >Parsers (and their inverse: encoders) allow us to efficiently
+            encode and decode complex structured data like graphs, trees, and
+            dictionaries using flat data structures like strings and arrays of
+            bytes.</strong
           >
         </p>
         <p>
@@ -320,7 +336,7 @@
           absorb it:
         </p>
         <p>
-          Parsers (and their inverse partner in crime encoders)<strong>
+          Parsers (and their inverse: encoders)<strong>
             allow us to efficiently encode and decode complex structured data
             like graphs, trees, and dictionaries</strong
           >
@@ -334,15 +350,12 @@
           datum.
         </p>
         <p>
-          Oftentimes, it is the central purpose of a program to update some core
-          internal structured data as a response to outside events from a user
-          or some other program. If we squint hard enough, we can view a browser
-          as a program that updates the DOM (a form of structured data) in
-          response to events from the user or servers. We can view a game as a
-          program that updates some structured data representing the game world
-          and all of its dynamics as a response to events from the user. We can
-          view most web servers as programs that update some database (more
-          structured data) as a result of handling api calls.
+          Every program, at some level, uses structured data. After all, it has
+          been said that
+          <a
+            href="https://en.wikipedia.org/wiki/Algorithms_%2B_Data_Structures_%3D_Programs"
+            >programs = data structures + algorithms</a
+          >.
         </p>
         <p>
           <img
@@ -351,13 +364,12 @@
           />
         </p>
         <p>
-          Many complex programs cannot simply work in isolation. Many programs
-          need to communicate with other programs on the same computer or over
-          the internet in order to get their job done. When programs are
-          communicating with each other, they often do so by sharing structured
-          data. The programs may share whole copies of their internal structure,
-          or they may send small structured requests and responses. But, there
-          is always some exchange of structured data.
+          But most of our programs simply cannot work in isolation. Many
+          programs need to communicate with other programs on the same computer
+          or over the internet in order to get their job done. The programs may
+          share whole copies of their internal structure, or they may send small
+          structured requests and responses. But, there is always some exchange
+          of structured data.
         </p>
         <p>
           For example, consider a web server sending new nodes for a browser to
@@ -379,8 +391,8 @@
         </p>
         <p>
           Programs have many interfaces available to communicate with each other
-          from file IO, to sockets or shared memory. It turns out that the most
-          common interfaces that programs use to communicate with each other
+          from file IO, to sockets or shared memory. It turns out that the many
+          of the common interfaces programs use to communicate with each other
           require that the data being sent is in the form of a string or byte
           array.
         </p>
@@ -389,9 +401,9 @@
           and encoder:
         </p>
         <p>
-          Parsers (and their inverse partner in crime encoders) allow us to
-          efficiently encode and decode complex structured data like graphs,
-          trees, and dictionaries
+          Parsers (and their inverse: encoders) allow us to efficiently encode
+          and decode complex structured data like graphs, trees, and
+          dictionaries
           <strong
             >using flat data structures like strings and arrays of
             bytes.</strong
@@ -403,34 +415,49 @@
           encoders are what will allow our programs to transform their
           structured data into those strings and arrays and back.
         </p>
-        <p>
-          Hopefully, at this point, parsers and encoders are starting to sound a
-          bit more applicable beyond compilers! But so far, we've only discussed
-          this in the abstract... Let's draw out some more specific examples of
-          how programs might communicate structured data with one another.
-        </p>
         <h3>Two programs communicating with strings</h3>
 
+        <p>
+          It may belabor the point a bit for some readers, but I want to linger
+          on the idea that most interfaces programs use strings and byte arrays
+          as their medium. In some ways it is obvious, but the thought had never
+          really occurred to me until I started considering parsers.
+        </p>
         <p>
           Programs almost always operate within the environment that an
           operating system provides. The operating system provides a number of
           interfaces that allow our program to communicate with other programs
-          and the outside world.
+          and the outside world, and many of these interfaces require that the
+          data being sent is in the form of a string or byte array.
         </p>
         <p>
-          Most of these interfaces require that the data being sent between to
-          programs is organized as a byte stream or a character stream. For
-          example interfaces like file IO and sockets require that the data
-          being sent between programs is organized as a stream or array of
-          bytes.
+          When you really internalize the fact that programs need to use strings
+          in order to communicate, the need for parsers and encoders becomes
+          very self evident. So I'd like to draw out some examples of these
+          interactions.
         </p>
         <p>
-          For example, imagine two programs A and B running on the same
-          computer, wanting to communicate some structured data to each other
-          using the operating system. With the interfaces that the OS provides,
-          it is likely that they will need to use a string or byte array as the
-          message they will transmit. To do so they will need to leverage an
-          encoder and parser to make the communication happen.
+          For those readers who feel like the observation that most interfaces
+          require data be a string or byte array is an obvious one, you can
+          safely skip this section. For those readers who stay, you will be
+          rewarded with some more nice diagrams and you will also be given a
+          copy of K&R's
+          <a
+            href="https://en.wikipedia.org/wiki/The_Unix_Programming_Environment"
+            >The Unix Programming Environment</a
+          >
+          to really drive the point home.
+        </p>
+        <p>Just kidding, those who stay will only get the pictures 🖼️</p>
+        <p>
+          Let's begin by considering two programs A and B running on the same
+          computer. These programs want to communicate some structured data to
+          each other using the operating system. With the interfaces that the OS
+          provides -- like sockets, files, and pipes -- the message our programs
+          transmit and receive will need to be strings or arrays of bytes.
+          Because of this, the programs will <strong>need</strong> to leverage
+          an encoder and parser in order to convert the structured data to and
+          from strings.
         </p>
         <p>
           <img
@@ -439,16 +466,14 @@
           />
         </p>
         <p>
-          But, often it is necessary for a program to communicate with programs
-          running on other machines. In this case, the operating system also
-          provides interfaces that enable the programs to communicate -- sockets
-          for example. Again though, these interfaces require that the data
-          being sent is in the format of an array of bytes or a string.
-        </p>
-        <p>
-          Consider programs A and B, communicating some structured data to each
-          other, but this time, over the internet using their respective os
-          interfaces.
+          Let's consider a similar, but slightly different example. Consider two
+          programs running on separate machines that want to communicate. The
+          operating system provides interfaces for programs to do this -- likely
+          some version of sockets -- and these interfaces also require that the
+          data being sent is in the format of a string or array of bytes.
+          <strong
+            >So, yet again, the programs will need encoders and parsers.</strong
+          >
         </p>
         <p>
           <img
@@ -457,16 +482,12 @@
           />
         </p>
         <p>
-          Oftentimes, the two programs that are communicating may not be running
-          at the same time. So it is necessary for the sending program to write
-          its message into a file so that the receiving program can open it at a
-          later time. The key observation is that files are just another format
-          for an array of bytes or a string. So in order to use files as means
-          of communication, we will again, need to use
-        </p>
-        <p>
-          Again, let's imagine Programs A and B. In this case, Program A will
-          write its data into a file that program B will read at a later point.
+          Now let's consider two programs that do not run at the same time, but
+          still, wish to communicate some information. The sending program will
+          need to write the information it wants to send in a file so that the
+          receiving program can open it at a later time. Files are simply long
+          arrays of bytes stored in a device that gives them persistence, so
+          again, parsers and encoders are necessary.
         </p>
         <p>
           <img
@@ -474,7 +495,19 @@
             alt="depiction of Program A using an encoder to send a data structure to program B through a file. Program B uses a parser to read that data"
           />
         </p>
-        <h3>A human communicating with a program using strings</h3>
+        <p>
+          Again, to a reader who has deeply internalized the unix interfaces,
+          these examples may all feel redundant. Particularly when we consider
+          that well designed programs using interfaces like sockets or files
+          could achieve each of the configurations above, and the sending and
+          receiving programs wouldn't even need to know -- that is, afterall,
+          the beauty of the unix philosophy.
+        </p>
+        <p>
+          But for those of us still walking our path to the 7th level of unix
+          enlightenment, these points feel useful to reiterate.
+        </p>
+        <h3>Humans and programs communicating with strings</h3>
 
         <p>
           All of the examples thus far have focused on situations in which
@@ -504,12 +537,12 @@
           />
         </p>
         <p>
-          There are also many situations in which the program is the sender and
-          a person is the receiver of some structured data. This may seem
-          strange at first, but if we think abstractly, this is exactly what
-          programs that write log files or provide a stack trace are doing.
-          Those programs are <strong>encoding</strong> some information about
-          the program's internal state as a string that a human can easily
+          We can also consider the inverse arrangement with a program
+          communicating with a person using strings. This also may seem strange
+          at first, but if we think abstractly, this is exactly what programs
+          which write log files or provide stack traces are doing. Those
+          programs are <strong>encoding</strong> some information about their
+          internal state as a string in a format that a person can easily
           <strong>parse</strong> and understand.
         </p>
         <p>
@@ -519,68 +552,88 @@
           />
         </p>
         <p>
-          Dear reader, as it turns out, you and I were the ones parsing and
-          encoding all along 💛
+          (Dear reader, as it turns out, you and I were the ones parsing and
+          encoding all along 💛)
         </p>
-        <h3>Strings and byte arrays are almost always the underlying medium</h3>
+        <h3>Seeing parsers and encoders everywhere</h3>
 
         <p>
-          The underlying reason that makes parsers and encoders applicable to
-          use is that all of these interfaces require the data being sent is
-          organized as a string or an array of bytes. This reality is rooted in
-          the fact that all of our computing hardware that can store or transmit
-          data, operates with a base primitive of byte arrays.
+          The key observation I want to highlight with all of these examples is
+          that, whenever your program is communicating with anything or anyone,
+          it is very likely that the program is using a string or array of bytes
+          as the medium of communication. And whenever your program is
+          communicating with string, there is likely a parser or encoder
+          somewhere.
         </p>
         <p>
-          <img
-            src="./../assets/blog/parsers-and-encoders-everywhere/images/image14.png"
-            alt="depiction of bytes of data in RAM, bytes of data being transmitted over the internet, and bytes of data persisted onto a magnetic tape"
-          />
+          That parser or encoder may just be a small bit of functionality at the
+          edge of your program's overall purpose. It may be a library you
+          imported, or it may be a handcrafted little string processor that you
+          didn't even realize was a parser or encoder to begin with. But it is
+          there!
+        </p>
+        <p>
+          When that really sinks in, it becomes hard to think about programs
+          that don't involve parsing or encoding. This for me, was a big
+          realization. Before learning about parsers, I wasn't sure if they were
+          even worth learning about. I assumed they were just a phase in a
+          compiler that may or may not be worth spending time on. But after
+          learning a bit about parsers, I'm seeing parsers in almost every
+          program I use? That is a big turn around.
         </p>
         <h2 id="3-parsers-and-encoders-in-the-real-world">
           3: Parsers and encoders in the real world
         </h2>
 
         <p>
-          We've talked a lot about how parsers and encoders are useful for
-          communicating between the two abstract programs, A and B. Now let's
-          ground the conversation in some examples of real technologies and
-          programs.
+          We've talked a lot about parsers and encoders in the context of two
+          abstract programs, A and B. I have made the bold claim that parsers
+          and encoders are everywhere, in all the software you use, right under
+          your nose! So now, I will back up that claim by looking at some real
+          world technologies and programs. We'll discuss the formats of strings
+          programs use to encode structured data, and we'll discuss the kinds of
+          structured data that programs encode.
         </p>
         <h3>Data serialization formats: JSON XML YAML, oh my</h3>
 
         <p>
           In the examples above, we looked at programs communicating with
-          strings across many mediums. However, I was a bit vague about the
-          contents of those strings. I didn't describe how to represent
-          structured data in a string. In practice, there are a number of
-          formats for writing structured data in strings or byte arrays. Many of
-          these formats will be familiar to most software developers.
+          strings using many interfaces. However, I was a bit vague about the
+          contents of those strings. I didn't describe how we represent
+          structured data in a string. So let's look at the string formats that
+          are used in practice to actually transmit structured data between
+          programs.
         </p>
         <p>
-          JSON, XML, and YAML are all examples of string formats that allow us
-          to encode data structures with strings. Broadly speaking, these
-          formats can all be called data serialization formats or data exchange
-          formats. There are also a number of data exchange formats that use
-          binary as their representation medium such as protobuf or FlatPack.
+          There are a number of formats for writing structured data in strings
+          or byte arrays. These formats will likely be familiar to most software
+          developers. JSON, XML, and YAML are all examples of string formats
+          that allow us to encode data structures with strings. Broadly
+          speaking, these formats can all be called data serialization formats
+          or data exchange formats. There are also a number of data exchange
+          formats that use binary as their representation medium such as
+          protobuf or FlatPack.
         </p>
         <p>
           These data serialization formats provide a well defined pattern to
           represent common data structures like dictionaries and nested arrays
-          using strings. Two programs can use one of these formats as a common
-          tongue to communicate structured data. So, a java program can encode
-          an ArrayList of Hashmaps into a JSON string and send that data to a
-          python program. By using an agreed upon data serialization format, the
-          two programs can be sure that the structure of the data they are
-          sharing will not be lost or misinterpreted.
+          in strings or binary. Two programs can effectively use one of these
+          formats as a common tongue when communicating structured data. So, a
+          java program can encode an ArrayList of Hashmaps into a JSON string
+          and send that data to a JS program which will extract it as an array
+          of objects. By using an agreed upon data serialization format, the two
+          programs can be sure that the structure of the data they are sharing
+          will not be lost or misinterpreted. This works even though a java
+          program and a javascript program represent lists and dictionaries in
+          completely different ways.
         </p>
         <p>
           Consider two programs A and B, on different machines, communicating a
-          simple dictionary or hashmap using JSON. These two programs could be
-          written in any programming language and could internally represent
-          that hashmap in any way that they please. But by using JSON, neither
-          program needs to concern itself too much with the other program's
-          inner workings.
+          simple dictionary using JSON. These two programs could be written in
+          any programming language and could internally represent that
+          dictionary in any way that they please. But by using JSON, neither
+          program needs to concern itself with the other program's internal
+          representation of the dictionary.
         </p>
         <p>
           <img
@@ -595,19 +648,21 @@
         </p>
         <p>
           Many of the different formats have slightly different ergonomics or
-          use slightly different nomenclature to describe their interfaces. For
-          example, when describing parsing and encoding, some formats use the
-          terms encoded and parsed. JSON is one such format. When using a JSON
-          library, you will commonly see JSON.parse, or JSON.encode. Others use
-          different verbs to describe this process though, with some formats,
-          you may see marshal and unmarshal rather than encode and parse. Other
-          times, you may serialize and deserialize. Despite the different names,
-          they all serve a similar purpose.
+          use unique nomenclature to describe their interfaces. For example,
+          when describing parsing and encoding, some formats use the terms
+          'encode' and 'parse'. JSON is one such format. When using a JSON
+          library, you will commonly see JSON.parse, or JSON.encode. Other
+          formats use different verbs to describe this process. With some
+          formats, you may see marshal and unmarshal rather than encode and
+          parse. Other times, you may see serialize and deserialize. Despite the
+          different words that each format uses to describe what it can do, they
+          are all doing the same thing.
         </p>
         <p>
           (During the rest of the article, I will start to use the terms
           serialize and deserialize interchangeably with encode and parse. I am
-          doing this mainly to add some variety to my word choice.)
+          doing this mainly to add some variety to my word choice. I am not
+          making any significant distinction between the two.)
         </p>
         <p>
           <img
@@ -626,27 +681,42 @@
           In terms of readability, JSON strikes a nice balance between being
           easily readable by humans and programs. So it is useful for data that
           is being exchanged between programs that may need to be edited or
-          viewed by a person as well. JSON is not without flaws though. There
-          are some peculiarities within the JSON specification that can come
-          around to bite an unassuming user. And, although I like the aesthetics
-          of JSON, many others do not agree!
+          viewed by a person as well. It also is a somewhat dense encoding,
+          meaning that most of the characters used in a JSON string are
+          significant data, fewer characters are used to capture its syntax.
+          JSON is not without flaws though. There are some peculiarities within
+          the JSON specification that can come around to bite an unassuming user
+          (see:
+          <a href="http://seriot.ch/projects/parsing_json.html"
+            >Parsing JSON is a minefield 💣</a
+          >). As someone who works a lot with javascript, I happen to
+          particularly like the aesthetics of JSON, but many others do not 🤷
         </p>
         <p>
-          Other formats like XML are highly flexible, and more easily allow
-          encoding of complex data structures. So a format like XML may be
-          useful for encoding data that is organized in a very bespoke way with
-          many domain specific names and relationships. But, XML is also very
-          verbose. Representing simple structures in XML can require a lot of
-          tags, and thus, a lot of extra data. It is perhaps because of this
-          verbosity that XML is no longer in common use.
+          Other formats can be more flexible, and may make the encoding of
+          complex data structures a bit simpler. XML might be one such format. A
+          format like XML may be useful for encoding data that is organized in a
+          very bespoke way with many domain specific names and relationships.
+          But, XML is also very verbose. Representing simple structures in XML
+          can require a lot of tags, and thus, a lot of extra data. This
+          verbosity is a part of the reason that XML is no longer a stylish
+          choice for a data serialization format, but there is more at work
+          leading to XMLs downfall (see:
+          <a href="https://wiki.c2.com/?XmlSucks">XML sucks</a>).
         </p>
         <p>
           Others like YAML and TOML prioritize being easily human readable.
           These data formats are incredibly useful for contexts in which the
           data is primarily being written by a human and passed to a program.
-          These formats are lightweight enough to feel natural writing, but can
-          be difficult to work with as the data being encoded becomes more and
-          more complex.
+          These formats are aesthetically lightweight enough to feel natural
+          writing, but can be difficult to work with as the data being encoded
+          becomes more and more complex. Most of this stems from the fact that
+          YAML is a much more complex encoding then you may at first realize
+          (see:
+          <a
+            href="https://ruudvanasseldonk.com/2023/01/11/the-yaml-document-from-hell"
+            >the YAML document from hell</a
+          >).
         </p>
         <p>
           <img
@@ -684,52 +754,66 @@
           hacker news comments lamenting each of these formats.
         </p>
         <p>
-          As a software engineer, these data interchange formats show up
+          Despite all of their warts, these data interchange formats show up
           everywhere. You see them in database rows, you see them as payloads in
           apis, you see them as formats for config files, and you see them as
-          ways to communicate between different programs. Parsers and encoders
-          are the secret sauce that makes all of this work.
+          ways to communicate between different programs. These formats are
+          really what make so many string and binary interfaces between programs
+          usable for complex tasks.
         </p>
         <h3>Parsing and encoding with application specific file formats</h3>
 
         <p>
+          Sometimes parsers and encoders are used to work with some application
+          specific format. Sometimes we choose not to use an established data
+          interchange format and instead roll our own format with a bespoke
+          parser and encoder..
+        </p>
+        <p>
           If you open up the file browser on your computer, you will see any
           number of different files. Many of the files will be executable
           programs (chrome, spotify, grep, etc)... but most likely, there will
-          also be a number of files with application specific extensions or some
-          specific file format.
+          also be a number of files with application specific extensions. I am
+          thinking specifically about file formats like:
+        </p>
+        <ul>
+          <li>.docx for Microsoft Word</li>
+
+          <li>.keynote for keynote presentations</li>
+
+          <li>.psd for photoshop projects</li>
+
+          <li>.blend files for projects in blender.</li>
+        </ul>
+        <p>
+          These are the kind of files that you know will only reliably open in a
+          single program. It might be possible to open your .keynote file in
+          powerpoint, but you are taking a bit of a risk. If you open the files
+          in a more generic program like a text editor, you will probably see a
+          number of arcane rune-like unicode symbols.
+        </p>
+        <p>So what's going on here?</p>
+        <p>
+          Well, these files are encodings of the specific structured data needed
+          to open some project in one of these applications. These file formats
+          allow a program to store the state necessary for the application to
+          close and reopen while keeping all of the project data exactly where
+          you left off. The file formats can be binary or textual representation
+          of that structured data. When these files are created, the program
+          encodes the project data into a specified format, and when you want to
+          open that file at a later time, that project file is parsed and
+          opened.
         </p>
         <p>
-          You may see files like .docx files for Microsoft Word and .keynote for
-          keynote presentations. You may have .psd files if you save a photoshop
-          project. You might have .blend files for a 3D project in blender.
-          These are files that can only be opened and created by the specific.
-        </p>
-        <p>
-          Many different programs have their own specific file formats. These
-          file formats allow a program to store the state necessary for the
-          application to close and reopen while keeping all of the project data
-          exactly where you left off.
-        </p>
-        <p>
-          These file formats are, conceptually, no different from the data
-          exchange formats that we specified above. These file formats can be a
-          binary or textual representation of the structured data needed to
-          display some sort of project or program state. When these files are
-          created, the program encodes the project data into a specified format,
-          and when you want to open that file at a later time, that project file
-          is parsed and opened.
-        </p>
-        <p>
-          For example, consider a photoshop project file (these files typically
-          use a .psd extension). When you save a psd file, the entire working
-          state of your photoshop project is saved. The root image, any layers
-          of effects or image filters you have added on top of the image. All of
-          this data can be thought of as one big data structure. When you want
-          to save all of that, Photoshop will take that data, encode it, and
-          write it out to the .psd binary file format. When you want to open
-          that file later, photoshop will parse that binary data and extract the
-          same program state that was saved earlier.
+          To consider something specific, let's think about a photoshop .psd
+          project file. When you save a psd file, the entire working state of
+          your photoshop project is saved. The root image, any layers of effects
+          or image filters you have added on top of the image. All of this data
+          can be thought of as one big data structure. When you want to save all
+          of that, Photoshop will take that data, encode it, and write it out to
+          the .psd binary file format. When you want to open that file later,
+          photoshop will parse that binary data and extract the same program
+          state that was saved earlier.
         </p>
         <p>
           <img
@@ -738,52 +822,54 @@
           />
         </p>
         <p>
+          For me, the interesting observation about these files is that they
+          are, conceptually, no different from the data exchange formats that we
+          specified above.
+        </p>
+        <p>
           The psd file format happens to be a binary file format, and so, much
           like protobuf or flatpack, the data is not trivially human readable.
           The binary format allows more data to be packed into the same file,
-          leading to a minimal disk footprint. Oftentimes, the specifics of the
-          file format is (maddeningly) made proprietary. This means that it is
-          not easy for a third party to write their own parser or encoder for
-          that file format. Many times, the format can be reverse engineered,
-          but that is an uphill battle, especially when updates are made to the
-          file format.
+          leading to a minimal disk footprint. But the file psd format is just
+          another format. If you know the specification of the format, you can
+          write your own program to parse the content of the file and extract
+          the information that is useful to use.
         </p>
         <p>
-          In contrast, some application specific file formats will use a human
-          readable data interchange format to store their data. For example,
-          Microsoft Word's current .docx file format stores a document state in
-          an XML based representation. I have seen note taking apps that use
-          markdown as a file format, for the project state, and I have seen
-          other programs that use JSON as the format for their project state.
+          In the case of a .psd file, the format is publicly specified (see:
+          <a
+            href="https://www.adobe.com/devnet-apps/photoshop/fileformatashtml/"
+            >Adobe Photoshop File Formats Specification</a
+          >). While the .psd format is a binary format, other application
+          specific file formats will use a textual representation of the data.
+          For example, Microsoft Word's current .docx file format uses a
+          combination of XML text based data and binary data (see:
+          <a href="https://docs.fileformat.com/word-processing/docx/"
+            >DOCX file format</a
+          >).
         </p>
         <p>
-          There are many different approaches that can be used for a file
-          format. Regardless of the specific format used for each of these file
-          types, the key takeaway is that most files on your computer have some
-          specified structure. The file's purpose is to store some structured
-          data for later use by a program in the form of text or a byte array.
-          In order for this all to work, parsers and encoders are needed. Those
-          files need to be parsed when they are opened, and data needs to be
-          encoded when those files are written.
+          Sometimes, the specifics of a file format is (maddeningly) made
+          proprietary. This means that it is not easy for a third party to write
+          their own parser or encoder for that file format. Many times, the
+          format can be reverse engineered, but that is an uphill battle,
+          especially when updates are made to the file format.
         </p>
         <h3>Parsers in compilers revisited</h3>
 
         <p>
-          Let’s turn back to the program that started us on this journey:
-          compilers. Now that we have a more well rounded concept of parsers, it
-          is interesting to consider their role in compilers again with a new
-          perspective.
+          Now that we have a more well rounded concept of parsers, it is
+          interesting to reconsider their role in compilers with a new
+          perspective. Compilers are what kicked off this whole parsing journey
+          after all.
         </p>
         <p>
           At a high level, the role of a compiler is to take a program's textual
           representation and turn that into an executable file that a computer
-          can run.
-        </p>
-        <p>
-          We already know that a parser is involved in the compiler, and that
-          the parser extracts structured data from flat text. So what exactly is
-          the structured data in our programs? The program text itself is a flat
-          string representation of ...something?
+          can run. We already know that a parser is involved in the compiler,
+          and that the parser extracts structured data from flat text. So what
+          exactly is the structured data in our programs? The program text
+          itself is a flat string representation of ...something?
         </p>
         <p>
           The simplest type of program may just be a textual representation of a
@@ -833,9 +919,11 @@
           This realization was somewhat surprising to me. When writing code, we
           often do not explicitly consider that we are manually encoding some
           structured data into a text file. It feels more intuitive than that.
-          It feels as if we are manifesting our will in the program text. I
-          would never be thinking precisely at the level of the syntax tree that
-          I am encoding in my program.
+          It feels as if we are manifesting our intention for the program in the
+          program text. I assume most software developers are not thinking
+          precisely about the syntax tree that their program encodes while they
+          are writing software, but it is still an interesting aspect to
+          consider.
         </p>
         <p>
           Instead, the process of "encoding" our intention for a program is a
@@ -849,29 +937,34 @@
         <p>
           The more time you spend considering parsers and encoders, the more you
           start to see them. It becomes hard to think of a single program that
-          doesn't do at least some level of parsing and encoding at the edges of
-          its functionality.
+          doesn't do at least some amount of parsing and encoding at the edges
+          of its functionality.
         </p>
         <p>
           For some programs, the parsing and encoding may be a small component
           of its overall purpose. And for other programs, the parsing and
           encoding may be the core of what the program does. But in nearly every
-          case, parsing and encoding is there.
+          case, parsing and encoding is happening somewhere.
         </p>
         <p>
-          This realization about parser's broad applicability was a big one for
-          me. Understanding parsers in this way helped me move past a deep
-          frustration with the theory behind parsing and instead start to
-          appreciate their utility. The realization is a useful reminder that
-          you do not need to understand the inner workings of every tool you use
-          in order to appreciate them.
+          This fact stems from the reality that most interfaces programs have
+          access to work with strings and binary arrays. Whenever you need to
+          use one of these interfaces to transmit structured data, some parsing
+          and encoding will be necessary.
         </p>
         <p>
-          <strong>Parsers are pretty radical. </strong>Don't be discouraged if
-          you don't understand every intimate detail about how they are
-          constructed. The theory and academics behind them is tough, but with a
-          bit of knowledge, it is easy to appreciate their importance in all
-          sorts of applications.
+          These realizations about parser's broad applicability and their
+          pervasiveness of strings as interfaces were big one's for me. That is
+          why I wanted to write this article. Understanding parsers in this way
+          not only helped me move past a deep frustration with the theory behind
+          parsing but it also caused me to see most of the software I regularly
+          use in a very different light.
+        </p>
+        <p>
+          I suppose the point of this article is that parsers are pretty neat.
+          Even if you don't understand every intimate detail about how they are
+          constructed, thinking about their purpose and utility leads you to
+          stumble into some big ideas about software in general.
         </p>
         <p>
           <img
