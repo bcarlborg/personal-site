@@ -6,8 +6,7 @@ _a very loose list of todos that I keep for this project. These todos are releva
 
 - [ ] RSS feed
 - [ ] unfurls
-- [ ] linking of sections in blog post on parsers
-- [ ] alt text in photos or descriptions below the images
+- [ ] size down pngs
 
 Later todos
 

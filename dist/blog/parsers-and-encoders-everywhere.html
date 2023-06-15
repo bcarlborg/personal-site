@@ -42,7 +42,7 @@
           <li>
             <a href="#1-encountering-and-attempting-to-learn-parsers"
               >Section 1</a
-            >: We'll go over my first encounter with parsers as a co mponent in
+            >: We'll go over my first encounter with parsers as a component in
             compilers and I'll recount how difficult that learning parsers was
             (and still is) for me.
           </li>
@@ -60,17 +60,11 @@
           </li>
 
           <li>
-            <a href="#4-is-all-of-this-encoding-and-parsing-necessary"
-              >Section 4</a
-            >: We'll take a step back and ask if parsers are really necessary
-            (spoiler: they are).
-          </li>
-
-          <li>
-            <a href="#5-takeaways">Section 5</a>: We'll close things out with
+            <a href="#4-takeaways">Section 4</a>: We'll close things out with
             some key takeaways.
           </li>
         </ul>
+
         <h2 id="1-encountering-and-attempting-to-learn-parsers">
           1: Encountering and attempting to learn parsers
         </h2>
@@ -336,16 +330,15 @@
           datum.
         </p>
         <p>
-          Some form of structured data is usually at the root of a program's
-          behavior. Oftentimes, it is the core purpose of a program to update
-          some internal structured data as a response to outside events from a
-          user or some other program. If we squint hard enough, we can view a
-          browser as a program that updates the DOM (a form of structured data)
-          in response to events from the user or servers. We can view a game as
-          a program that updates some structured data representing the game
-          world and all of its dynamics as a response to events from the user.
-          We can view most web servers as programs that update some database
-          (more structured data) as a result of handling api calls.
+          Oftentimes, it is the central purpose of a program to update some core
+          internal structured data as a response to outside events from a user
+          or some other program. If we squint hard enough, we can view a browser
+          as a program that updates the DOM (a form of structured data) in
+          response to events from the user or servers. We can view a game as a
+          program that updates some structured data representing the game world
+          and all of its dynamics as a response to events from the user. We can
+          view most web servers as programs that update some database (more
+          structured data) as a result of handling api calls.
         </p>
         <p>
           <img
@@ -412,34 +405,28 @@
           this in the abstract... Let's draw out some more specific examples of
           how programs might communicate structured data with one another.
         </p>
-        <h3>Examples of programs communicating using strings and arrays</h3>
-
-        <h4>
-          Two programs communicating on the same machine using the operating
-          system
-        </h4>
+        <h3>Two programs communicating with strings</h3>
 
         <p>
-          Programs almost always operate within the isolated environment that an
-          operating system provides. The operating system provides an
-          environment that allows each program on the computer to believe that
-          it has all of the computer's resources to itself.
+          Programs almost always operate within the environment that an
+          operating system provides. The operating system provides a number of
+          interfaces that allow our program to communicate with other programs
+          and the outside world.
         </p>
         <p>
-          Because of this isolation that the OS provides, two programs on the
-          same computer that want to communicate with each other need to use the
-          communication interfaces that the operating system provides. Most of
-          these interfaces require that the data being sent between to programs
-          is organized as a byte stream or a character stream. For example
-          interfaces like file IO and sockets require that the data being sent
-          between programs is organized as a stream or array of bytes or chars.
+          Most of these interfaces require that the data being sent between to
+          programs is organized as a byte stream or a character stream. For
+          example interfaces like file IO and sockets require that the data
+          being sent between programs is organized as a stream or array of
+          bytes.
         </p>
         <p>
-          So if we imagine program A and program B on the same computer both
-          running, wanting to communicate some structured data to each other
-          using the operating system. It is likely that they will need to use a
-          string or byte array. To do so they will need to leverage an encoder
-          and parser to make the communication happen.
+          For example, imagine two programs A and B running on the same
+          computer, wanting to communicate some structured data to each other
+          using the operating system. With the interfaces that the OS provides,
+          it is likely that they will need to use a string or byte array as the
+          message they will transmit. To do so they will need to leverage an
+          encoder and parser to make the communication happen.
         </p>
         <p>
           <img
@@ -447,30 +434,17 @@
             alt="depiction of Program A using an encoder to send a data structure to program B through an operating system interface. Program B uses a parser to read that data"
           />
         </p>
-        <h4>
-          Two programs on different machines communicating using the internet
-        </h4>
-
         <p>
-          There are many cases in which two programs running on separate
-          machines need to communicate some shared state to each other. These
-          two programs could be two services in some micro-service architecture.
-          They could be a client and server communicating data according to some
-          protocol. They could be two copies of the same program running on
-          different machines communicating with each other. Regardless of what
-          the programs are doing, they will most likely communicate using an
-          operating system interface that gives them access to the internet
-          (like sockets).
+          But, often it is necessary for a program to communicate with programs
+          running on other machines. In this case, the operating system also
+          provides interfaces that enable the programs to communicate -- sockets
+          for example. Again though, these interfaces require that the data
+          being sent is in the format of an array of bytes or a string.
         </p>
         <p>
-          There are a number of protocols that programs can use to communicate
-          over the internet, but ultimately, each of those protocols boils down
-          to a method for sending a stream of bytes. So this is yet another
-          example of needing to send structured data using flat data!
-        </p>
-        <p>
-          Again, consider programs A and B, communicating some structured data
-          to each other, but this time, over the internet.
+          Consider programs A and B, communicating some structured data to each
+          other, but this time, over the internet using their respective os
+          interfaces.
         </p>
         <p>
           <img
@@ -478,20 +452,16 @@
             alt="depiction of Program A using an encoder to send a data structure to program B through the internet. Program B uses a parser to read that data"
           />
         </p>
-        <h4>
-          Two programs communicating over a period of time using persistent
-          files
-        </h4>
-
         <p>
           Oftentimes, the two programs that are communicating may not be running
           at the same time. So it is necessary for the sending program to write
           its message into a file so that the receiving program can open it at a
           later time. The key observation is that files are just another format
-          for an array of bytes or a string.
+          for an array of bytes or a string. So in order to use files as means
+          of communication, we will again, need to use
         </p>
         <p>
-          Again let's imagine Programs A and B. In this case, Program A will
+          Again, let's imagine Programs A and B. In this case, Program A will
           write its data into a file that program B will read at a later point.
         </p>
         <p>
@@ -500,7 +470,7 @@
             alt="depiction of Program A using an encoder to send a data structure to program B through a file. Program B uses a parser to read that data"
           />
         </p>
-        <h4>A human communicating with a program using strings</h4>
+        <h3>A human communicating with a program using strings</h3>
 
         <p>
           All of the examples thus far have focused on situations in which
@@ -545,10 +515,10 @@
           />
         </p>
         <p>
-          Maybe this parsing and encoding business isn't so tricky. Dear reader,
-          it turns out, that you and I were parsers and encoders all along 💛
+          Dear reader, as it turns out, you and I were the ones parsing and
+          encoding all along 💛
         </p>
-        <h3>Strings and byte arrays are the most common interface</h3>
+        <h3>Strings and byte arrays are almost always the underlying medium</h3>
 
         <p>
           The underlying reason that makes parsers and encoders applicable to
@@ -587,8 +557,8 @@
           JSON, XML, and YAML are all examples of string formats that allow us
           to encode data structures with strings. Broadly speaking, these
           formats can all be called data serialization formats or data exchange
-          formats. There are also a number of other slightly less common formats
-          such as Protocol Buffers, FlatPack or GRPC.
+          formats. There are also a number of data exchange formats that use
+          binary as their representation medium such as protobuf or FlatPack.
         </p>
         <p>
           These data serialization formats provide a well defined pattern to
@@ -623,7 +593,7 @@
           Many of the different formats have slightly different ergonomics or
           use slightly different nomenclature to describe their interfaces. For
           example, when describing parsing and encoding, some formats use the
-          terms encoded and parsed. JSON is one such program. When using a JSON
+          terms encoded and parsed. JSON is one such format. When using a JSON
           library, you will commonly see JSON.parse, or JSON.encode. Others use
           different verbs to describe this process though, with some formats,
           you may see marshal and unmarshal rather than encode and parse. Other
@@ -663,7 +633,8 @@
           useful for encoding data that is organized in a very bespoke way with
           many domain specific names and relationships. But, XML is also very
           verbose. Representing simple structures in XML can require a lot of
-          tags, and thus, a lot of extra data.
+          tags, and thus, a lot of extra data. It is perhaps because of this
+          verbosity that XML is no longer in common use.
         </p>
         <p>
           Others like YAML and TOML prioritize being easily human readable.
@@ -738,8 +709,8 @@
         </p>
         <p>
           These file formats are, conceptually, no different from the data
-          exchange formats that we specified above. These file formats are
-          (usually) a binary representation of the structured data needed to
+          exchange formats that we specified above. These file formats can be a
+          binary or textual representation of the structured data needed to
           display some sort of project or program state. When these files are
           created, the program encodes the project data into a specified format,
           and when you want to open that file at a later time, that project file
@@ -869,7 +840,7 @@
           burdening ourselves with the intricate details of how the abstract
           syntax tree for this program will look.
         </p>
-        <h3>Parsers and encoders really are everywhere</h3>
+        <h2 id="4-takeaways">4: Takeaways</h2>
 
         <p>
           The more time you spend considering parsers and encoders, the more you
@@ -887,255 +858,10 @@
           This realization about parser's broad applicability was a big one for
           me. Understanding parsers in this way helped me move past a deep
           frustration with the theory behind parsing and instead start to
-          appreciate their utility. The realization as a useful reminder that
+          appreciate their utility. The realization is a useful reminder that
           you do not need to understand the inner workings of every tool you use
-          in order to appreciate and use the tool.
+          in order to appreciate them.
         </p>
-        <h2 id="4-is-all-of-this-encoding-and-parsing-necessary">
-          4: Is all of this encoding and parsing necessary?
-        </h2>
-
-        <p>
-          If you've been reading along, we've established that parsers and
-          encoders are everywhere, and that strings and byte arrays are a medium
-          of communication everywhere.
-        </p>
-        <p>
-          But when you start thinking too hard about all of these strings, and
-          all of the parsing and encoding our programs are doing, you may start
-          to wonder why we are even doing this to begin with. Isn't it expensive
-          to do all of this work? Surely, there must be some better way?
-        </p>
-        <p>
-          I certainly had these thoughts, and the idea that I kept coming back
-          to was this:
-          <strong
-            >Isn't program memory already a flat array of bytes? Why not just
-            send that array of bytes rather than using a new string or some
-            other array of bytes?</strong
-          >
-        </p>
-        <h3>Why not just send a memory dump?</h3>
-
-        <p>
-          Whatever data the sending program has must already be represented in
-          memory. So if it wants to share that structured data, why not just
-          transmit the relevant part of memory directly to the receiver. Then
-          the receiver could just load that data directly into memory. Boom,
-          parsers and encoders made obsolete! Easy! Everybody wins!
-        </p>
-        <p>Not so fast there cowboy.</p>
-        <p>
-          There are a number of reasons why that may not be a good idea. Many of
-          which boil down to the fact that programs all have very different ways
-          of organizing data in memory. Because of this, it is very possible
-          that the receiver loading the data will construct a malformed or
-          corrupted version of the transmitted data.
-        </p>
-        <p>
-          There are many reasons why two programs may have different memory
-          layouts:
-        </p>
-        <ul>
-          <li>
-            Different machines use memory regions that start and end in
-            different places, so the addresses from the sending machine may not
-            coincide with the addresses on the receiving machine. This is
-            especially true if either of the programs is running in an embedded
-            system.
-          </li>
-
-          <li>
-            Even if your operating system abstracts the hardware's memory layout
-            from you... that OS still may choose to layout the memory address
-            space presented to programs in a different way.
-          </li>
-
-          <li>
-            Two programs written in different languages will represent the same
-            abstract data structure like an array of the letters in the alphabet
-            may have completely different ways of storing that data structure in
-            memory. One program may use a dynamically heap allocated doubly
-            linked list to store that array, while another may use a statically
-            allocated fixed sized array.
-          </li>
-        </ul>
-        <p>
-          So, if our programs are sending core memory dumps of the structured
-          data they want to communicate, any one of these environmental
-          differences between the programs will result in the receiver
-          constructing a corrupted picture of what was originally sent.
-        </p>
-        <p>
-          <img
-            src="./../assets/blog/parsers-and-encoders-everywhere/images/image21.png"
-            alt="depiction of structured data being sent from Program A to Program B using a memory dump as the intermediate representation"
-          />
-        </p>
-        <p>
-          If there is some difference in how the receiver structures its memory
-          compared to the sender, then we are in for trouble. In the best case,
-          the receiver attempts to read the data, and it is obviously garbage
-          nonsense that causes the program to error out. In the worst case, the
-          receiver constructs a malformed version of the data that looks
-          correct, but the data is actually malformed. In this case, the
-          receiver will happily go along using the incorrect data (gasp!).
-        </p>
-        <p>
-          If we really wanted to, it would not be impossible to make a system
-          work using a memory dump as communication between two programs. If you
-          control all the environmental variables between the sender and
-          receiver, then you can make it work.
-        </p>
-        <p>
-          A fun aside: I am not 100% sure if this is true... and I can't find a
-          reference for this. But I have a vague memory of reading somewhere
-          that one of the early binary .doc file format versions for Word on DOS
-          was in fact just a core dump of Word's memory. So, when Word was
-          opened again with that file, the entire program state could simply be
-          initialized from that one file. Again, I'd like to note, this may be
-          totally false, I only have a vague memory of reading this.
-        </p>
-        <h3>What about the shared memory?</h3>
-
-        <p>
-          Ok, so maybe using memory dumps as a tool to avoid parsing is not the
-          best idea... but what about using the operating system's shared memory
-          interface?
-        </p>
-        <p>
-          Most operating systems provide some way of sharing memory between
-          processes. Without getting too deep into the weeds, it is enough to
-          say that two processes can effectively share pages of memory. If one
-          process writes to that section of memory, then the other process will
-          see that same updated data in its section of memory.
-        </p>
-        <p>
-          This is starting to seem like a way out of using parsers and encoders
-          to share structured data between two programs.
-        </p>
-        <p>
-          If two programs are sharing memory, there is technically no need to
-          encode structured data into some serial format in order to share it
-          with a recipient program. However, the programs do still need a way to
-          agree about the structure of the data. The programs need a shared or
-          common understanding of what the layout of the data will be in this
-          shared region of memory. So, it is still likely that as a program is
-          writing to that shared section of memory, it is abiding by a
-          structured system for writing data so that the reading program knows
-          where to find what it needs.
-        </p>
-        <p>
-          So, if we are using a shared memory interface between two programs, we
-          will not need and explicit encoding phase where we encode the entire
-          structure we want to send. Instead, it is likely that everytime we
-          write to this region of memory, we need to write according to some
-          contract between the sender and receiver that specifies the layout for
-          that region. It is almost as if we are "encoding" our structured data
-          every single time we write to this region and "parsing" that data
-          every time we read.
-        </p>
-        <p>
-          (Am I stretching to frame shared memory as another form of parsing and
-          encoding? Maybe!)
-        </p>
-        <p>
-          The biggest advantage of using shared memory as a means of
-          communication is that there is no need to duplicate our data in order
-          to send it. In a normal parsing encoding scheme, to send structured
-          data somewhere, we effectively need to have 2 copies of the data. One
-          copy in its original format, and another in the encoded string or byte
-          array format. Shared memory, let's avoid having two copies of our
-          data, and instead, simply make our original copy public to some other
-          process.
-        </p>
-        <h3>So, are encoding and parsing necessary or not?</h3>
-
-        <p>
-          For the most part, parsing and encoding is necessary. If we are going
-          to be communicating between two programs then we probably need to use
-          some sort of encoding and parsing scheme. Shared memory does give us
-          some affordance for avoiding using buffers for our encoding and
-          parsing. However, shared memory still requires that the communicating
-          programs establish some sort of contract that specifies how the data
-          in the shared memory region will be represented and laid out.
-        </p>
-        <p>
-          But ultimately, the vast majority of interfaces between programs
-          operate with strings and arrays of bytes, and whenever you are using
-          one of those interfaces, you are going to need parsers and encoders.
-          So I think it is still fair to say that parsers (and encoders) are
-          everywhere
-        </p>
-        <h2 id="5-takeaways">5: Takeaways</h2>
-
-        <p>So what can we take away from all of this:</p>
-        <ul>
-          <li>
-            To truly learn parsers, you need to go deep into a number of terse
-            and stuffy academic topics. Diving deep into the theory behind
-            parsers is surprisingly tough.
-          </li>
-
-          <li>
-            Despite the difficult theory behind parsers, they are broadly
-            applicable in all sorts of programs.
-            <ul>
-              <li>
-                One way to come to this realization is to observe that parsers
-                and encoders are the technology that enables sharing structured
-                data between two programs.
-              </li>
-
-              <li>
-                It is easy to lose sight of parsers' broader applicability when
-                going too deep into the weeds on the nitty gritty details of
-                parsing.
-              </li>
-            </ul>
-          </li>
-
-          <li>
-            You are using programs that rely on parsers and encoders all the
-            time:
-            <ul>
-              <li>
-                Any time you are using JSON, XML, YAML, protobuf, etc. you are
-                using a program that is relying on parsing and encoding
-                structured data.
-              </li>
-
-              <li>
-                Most programs need some way to persist structured formatted
-                data. Whether it be application specific file formats or
-                configuration files. No matter how you shake it, a parser will
-                be involved.
-              </li>
-
-              <li>
-                You don't need to know every detail about parsing theory in
-                order to appreciate their vast utility.
-              </li>
-            </ul>
-          </li>
-
-          <li>
-            You (mostly) can't get around parsing and encoding
-            <ul>
-              <li>
-                Most interfaces require that the data being sent is a string or
-                array of bytes
-              </li>
-
-              <li>
-                Shared memory is one exception to that rule. But even then, you
-                still need to agree on a format for the data being shared
-                between programs.
-              </li>
-            </ul>
-          </li>
-        </ul>
-        <p>The most important takeaway of all:</p>
         <p>
           <strong>Parsers are pretty radical. </strong>Don't be discouraged if
           you don't understand every intimate detail about how they are

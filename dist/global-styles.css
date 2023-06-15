@@ -13,9 +13,7 @@ a {
 }
 
 body {
-    width: 100%;
-
-    padding: 0;
+    padding: 3ch;
     margin: 0 auto;
 
     max-width: 108ch;
