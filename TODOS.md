@@ -5,8 +5,8 @@ _a very loose list of todos that I keep for this project. These todos are releva
 ## Up Next
 
 - [ ] RSS feed
-- [ ] unfurls
 - [ ] size down pngs
+- [ ] image titles and widths
 
 Later todos
 
