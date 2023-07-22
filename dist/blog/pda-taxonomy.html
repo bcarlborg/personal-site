@@ -5,27 +5,23 @@
       rel="icon"
       type="image/png"
       sizes="32x32"
-      href="/assets/favicon-woo-guy-32-32.png"
-    />
+      href="/assets/favicon-woo-guy-32-32.png" />
     <link
       rel="icon"
       type="image/png"
       sizes="96x96"
-      href="/assets/favicon-woo-guy-96-96.png"
-    />
+      href="/assets/favicon-woo-guy-96-96.png" />
     <link
       rel="icon"
       type="image/png"
       sizes="180x180"
-      href="/assets/favicon-woo-guy-180-180.png"
-    />
+      href="/assets/favicon-woo-guy-180-180.png" />
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="og:title" content="Parsers (and Encoders) Everywhere" />
     <meta
       name="og:description"
-      content="The personal website of Beau Carlborg"
-    />
+      content="The personal website of Beau Carlborg" />
     <title>Taxonomy of Push Down Automata</title>
   </head>
 
@@ -51,15 +47,17 @@
         <p>
           Article contents:
           <br />
-          <a href="section-1"> 1: PDAs: a very particular kind of automaton</a>
+          <a href="section-1">1: Push Down Automata</a>
           <br />
-          <a href="section-2">2: Building up PDA variants</a>
+          <a href="section-2">2: Components of a PDA Definition</a>
           <br />
-          <a href="section-3">4: Overview of PDA variants</a>
+          <a href="section-3">3: PDA Variant: The Base PDA</a>
           <br />
-          <a href="section-4">4: Proving two PDA variants are equivalent</a>
+          <a href="section-4">
+            4: PDA Variants: Multi & Optional Char Popping PDAs
+          </a>
           <br />
-          <a href="section-5">5: PDA variant equivalence examples</a>
+          <a href="section-5">5: Empty Stack Acceptance PDAs</a>
           <br />
           <a href="section-6">6: Closing thoughts and additional remarks</a>
         </p>
@@ -70,16 +68,20 @@
           Symbols used in this document
           <ul>
             <li>
-              <math><mi>δ</mi></math> = lower case delta
+              <math><mi>δ</mi></math>
+              = lower case delta
             </li>
             <li>
-              <math><mi>ɛ</mi></math> = lower case epsilon
+              <math><mi>ɛ</mi></math>
+              = lower case epsilon
             </li>
             <li>
-              <math><mi>Σ</mi></math> = upper case sigma
+              <math><mi>Σ</mi></math>
+              = upper case sigma
             </li>
             <li>
-              <math><mi>Γ</mi></math> = upper case gamma
+              <math><mi>Γ</mi></math>
+              = upper case gamma
             </li>
           </ul>
         </div>
@@ -88,60 +90,73 @@
 
         <ul>
           <li>
-            <math><mi>A x B</mi></math> = the set containing all possible pairs
-            with one element from A and one from B -- known as the cartesian
-            product of A and B
+            <math><mi>A x B</mi></math>
+            = the set containing all possible pairs with one element from A and
+            one from B -- known as the cartesian product of A and B
           </li>
           <li>
-            <math><mi>P(A)</mi></math> = the set containing all subsets of A --
-            known as the power set of A
+            <math><mi>P(A)</mi></math>
+            = the set containing all subsets of A -- known as the power set of A
           </li>
         </ul>
 
         <hr />
 
         <div>
-          <h2 id="section_1">1: PDAs: a very particular kind of automaton</h2>
-          <p>
-            There is a certain trickiness to push down automata. Most books
-            about the theory of computation, compilers, or theoretical computer
-            science cover them in some depth, but I've always had a hard time
-            following.
-          </p>
+          <h2 id="section_1">1: Push Down Automata</h2>
 
           <p>
-            Compared to finite automata and turing machines, push down automata
-            (PDAs) have always seemed a bit quirky to me. The other common
-            automata have definitions that seem well rounded and intuitive,
-            while PDAs always seems to have odd little quirks.
-          </p>
-
-          <p>
-            With time, I realized that PDA's quirky and puzzling nature stems
-            from the fact that most books and resources with coverage of PDAs
-            use use slightly different definitions for this particular type of
+            Push down automata (PDAs for short) are a specific model of
             automata.
           </p>
 
           <p>
-            Most of these differences are small enough. A difference in the
-            number of characters each step can pop, a difference in the the way
-            that strings are accepted. These differences are easy to miss. When
-            skimming a new book on the subject, you might not even notice, but
-            they are there.
+            Automata are abstract theoretical machines that are useful model fof
+            computation. In general, these automata consume some input sequence
+            of symbols and either accept or deny that sequence of symbols. While
+            the automata consumes consumes characters from its input tape, it
+            may update some internal state or store some data.
           </p>
 
           <p>
-            Until you begin going into resources on the topic with a certain
-            defensiveness, looking for the differences. You will find your self
-            confused.
+            There are many different variants of automata, each with their own
+            bells and whistles. Some may have particular kinds of memory, and
+            other may have the ability to move forwards or backwards on the
+            input string. Each of these different automata variants is useful
+            for modeling some type of computation problem we might be interested
+            in solving.
           </p>
 
           <p>
-            I felt like all of these little differences (can I find a new word
-            for difference?) were holding me back from building and intuition
-            about PDAs. So I decided to sit down, wrangle in all the variants,
-            and create my own taxonomy of PDAs.
+            Push down automata are one such variant. They are a particular kind
+            of automata with a finite state machine and an infinitely large
+            stack memory. They are a useful model of computation for describing
+            a number of important programming tasks like parsing programming
+            languages.
+          </p>
+
+          <p>
+            PDAs are covered in most books on computer science theory and
+            compilers because of this applicability. While PDAs are covered
+            extensively, in a number of books. the treatments can be confusing
+            because each book uses a slightly different PDA definition.
+          </p>
+
+          <p>
+            Each of these definitions yields a slightly different form of PDA.
+            In one sense these slight differences are inconsequential because
+            the variants can be shown to be equivalent in computational power,
+            but the variations can be tricky for someone new to the subject, and
+            may trip up a reader who is expecting more consistent
+            cross-reference definitions.
+          </p>
+
+          <p>
+            So, in this post, I will discuss the different PDA variants that you
+            might come across while researching the topic. I will begin by
+            introducing a lightweight framework for the sort of information any
+            PDA definition must include. Then I will go over some PDA variants
+            in the context of that definition.
           </p>
         </div>
 
@@ -149,13 +164,81 @@
           <h2 id="section_2">2: Introducing PDA variants</h2>
 
           <p>
-            I believe that the best way to introduce the different PDA variants
-            is to first define a base PDA variant. Then, we can construct our
-            other PDA variants by making slight modifications to that base
-            construction.
+            It is worth re-emphasizing that PDAs are only a theoretical model of
+            computation, as such, it is entirely up to us to define what they
+            are and how they work using tools from mathematics. In papers and
+            books that cover push down automata, you will com across many
+            slightly different approaches for defining them. Those different
+            definitions yield PDAs that are all slightly different. Some may be
+            able to make moves or transitions that others cannot. Others may
+            need information in their definitions that is irrelevant in a
+            different variants formulation. But, the variants described are only
+            slightly different manifestations of the same core abstract concept
+            of a push down automata.
           </p>
 
-          <h3>PDA variant 1: the base PDA</h3>
+          <p>
+            Let's take sometime to reflect on what this core push down automata
+            is and then we can extract a sort of framework that describes the
+            types of things we need in our PDA definition.
+          </p>
+
+          <p>
+            A PDA is an abstract machine that reads symbols from an input tape.
+            Every time this machine reads a symbol, it may update an internal
+            Finite Control state, or write and read symbols to and from an
+            internal stack. After the string is read, the automata may accept
+            the input string if certain conditions are met.
+          </p>
+
+          <p>
+            This is again, the core abstract idea that all push down automata
+            definitions are based off of. In order to make a formal mathematical
+            definition from this description, there are 4 types of information
+            we need to extract and make concrete.
+          </p>
+
+          <ol>
+            <li>
+              <strong>Character sets:</strong>
+              Our input tape and our stack are both collection of symbols, we
+              must specify all of the characters that our automata is equipped
+              to process. There are an infinite number of symbols that could
+              hypothetically be fed to an automata, but our PDA must specify the
+              finite collection of symbols it is capable of reading from inout
+              and pushing and popping from its stack. Usually this is done by
+              including two finite sets in our definition. One set of input
+              symbols and one set of stack symbols.
+            </li>
+            <li>
+              <strong>Programming:</strong>
+              As our automata executes, it will read input characters, it will
+              update finite state, and it will push and pop symbols on our
+              stack. All of this "programming" of the automata's behavior needs
+              to be described somewhere somehow. Usually, this "programming" is
+              encoded into a transition function. The transition function
+              specifies what our automata will do at each step. Its inputs are
+              the current state, some information about the current stack, and
+              some information about the current input. The transition function
+              maps that current configuration to a new configuration for the
+              automata. The "program execution" of the automata is a matter of
+              following the transition function from one configuration to
+              another.
+            </li>
+            <li>
+              <strong>Initial Configuration:</strong>
+              Often times, we need to specify some information about the
+              automata's configuration before it begins running. This starting
+              configuration is necessary to ensure that our automata is prepped
+              to run. Usually this involves specifying a starting state and some
+              starting data for the PDA's stack.
+            </li>
+            <li><strong>Accepting Conditions:</strong></li>
+          </ol>
+        </div>
+
+        <div>
+          <h2 id="section_3">PDA variant 1: the base PDA</h2>
           <p>
             I define a base PDA such that its definition is a minimal extension
             of a finite automata. After all, a push down automata is really
@@ -164,8 +247,41 @@
             that stack to determine its next move.
           </p>
 
+          <p>A finite automata is defined using 5 components (a 5-tuple).</p>
+
           <p>
-            TODO: maybe add in finite automata definition here for comparison
+            <math display="inline">
+              <mtext>(Q, Σ, δ,&#xA0;</mtext>
+              <msub>
+                <mi>q</mi>
+                <mn>0</mn>
+              </msub>
+              <mi>,&#xA0;</mi>
+              <msub>
+                <mi>Q</mi>
+                <mn>F</mn>
+              </msub>
+              <mi>)</mi>
+            </math>
+          </p>
+
+          <p>
+            In the definition above, Q is the set of all states used in the
+            automaton's finite control. Σ is the set of all symbols in the input
+            alphabet. δ is the transition function that specifies how the
+            automata reacts to the current input symbol or current automaton
+            control state.
+            <math>
+              <msub>
+                <mi>q</mi>
+                <mn>0</mn>
+              </msub>
+            </math>
+            is the initial state that the automata starts in, and
+            <math>
+              <mi>F</mi>
+            </math>
+            is the set of final states that cause the automata to accept.
           </p>
 
           <p>
@@ -184,8 +300,9 @@
           </p>
 
           <p>
-            We will use the character <math><mi>Γ</mi></math> to refer to this
-            set of stack symbols in our definition.
+            We will use the character
+            <math><mi>Γ</mi></math>
+            to refer to this set of stack symbols in our definition.
           </p>
 
           <p>
@@ -196,30 +313,32 @@
             like a symbol from the input is, and a stack symbol in the output
             will be written to the stack at the end of a transition. In order to
             do this, we will need to update the type of our function
-            <math><mi>δ</mi></math> .
+            <math><mi>δ</mi></math>
+            .
           </p>
 
           <p>
             Our finite automata transition function had the following type (TODO
             insert). Our push down automata transition function will be
             specified as
-            <math><mi>δ: Q x Σ x Γ → P(Q x Γ*)</mi></math> (TODO include
-            epsilons)
+            <math><mi>δ: Q x Σ x Γ → P(Q x Γ*)</mi></math>
+            (TODO include epsilons)
           </p>
 
           <p>
             This new transition function can be read as,
-            <math><mi>δ</mi></math> is a function that takes, a state, an input
-            symbol, and a stack symbol as input, and outputs many pairs of a
-            state and a string stack symbols.
+            <math><mi>δ</mi></math>
+            is a function that takes, a state, an input symbol, and a stack
+            symbol as input, and outputs many pairs of a state and a string
+            stack symbols.
           </p>
 
           <p>
             Another way of interpreting the transition function
-            <math><mi>δ</mi></math> is that it specifies how on every single
-            move, a character from input and from the stack are read, and
-            depending on those values, a string is pushed onto the top of the
-            stack.
+            <math><mi>δ</mi></math>
+            is that it specifies how on every single move, a character from
+            input and from the stack are read, and depending on those values, a
+            string is pushed onto the top of the stack.
           </p>
 
           <p>
@@ -248,35 +367,61 @@
             If our program had an empty stack to begin with, then, by
             definition, there would be no viable first transition to get things
             going. We can get around think kink by introducing another field to
-            our definition: a stack start symbol (todo choose character). By
-            specifying a default first character, we can ensure that we have a
-            toe hold into running our first transition.
+            our definition: a stack start symbol. We will represent this
+            character as
+            <math>
+              <msub>
+                <mi>Z</mi>
+                <mn>0</mn>
+              </msub>
+            </math>
+            . By specifying a default first character, we can ensure that we
+            have a toe hold into running our first transition.
           </p>
-
-          [TODO PICK UP HERE -- tie it all together into a definition] [TODO,
-          update the headers]
 
           <p>
-            TODO: can we get fewer line breaks in here somehow? maybe by bolding
-            a few characters or something
+            now that we have introduced (concepts) we can tie this all together
+            into a definition.
           </p>
 
-          <h3>PDA variant 2: the null character popping PDA</h3>
-          <h3>PDA variant 3: the multi character popping PDA</h3>
-          <h3>PDA variant 4: the empty stack accepting PDA</h3>
-          [TODO, make a new section for the matrix of the push down automata
-          variants]
-        </div>
-        <div>
-          <h2 id="section_3">3: Proving two PDA variants are equivalent</h2>
+          <p>
+            <math display="inline">
+              <mtext>(Q, Σ, Γ, δ,&#xA0;</mtext>
+              <msub>
+                <mi>q</mi>
+                <mn>0</mn>
+              </msub>
+              <mi>,&#xA0;</mi>
+              <msub>
+                <mi>Z</mi>
+                <mn>0</mn>
+              </msub>
+              <mi>,&#xA0;</mi>
+              <msub>
+                <mi>Q</mi>
+                <mn>F</mn>
+              </msub>
+              <mi>)</mi>
+            </math>
+          </p>
         </div>
 
         <div>
-          <h2 id="section_4">4: Automata variant equivalent examples</h2>
+          <h2 id="section_4">
+            4: PDA Variants: Multi & Optional Char Popping PDAs
+          </h2>
+
+          <p>description of Multi & Optional char popping PDAS</p>
         </div>
 
         <div>
-          <h2 id="section_5">5: Closing thoughts and additional remarks</h2>
+          <h2 id="section_5">5: Empty Stack Acceptance PDAs</h2>
+
+          <p>description of Multi & Optional char popping PDAS</p>
+        </div>
+
+        <div>
+          <h2 id="section_6">6: Closing thoughts and additional remarks</h2>
         </div>
       </article>
     </main>
