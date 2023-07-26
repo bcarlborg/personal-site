@@ -67,48 +67,57 @@
         </p>
 
         <div>
-          <h2 id="section_1">1: Push Down Automata</h2>
-
+          <h2 id="section_1">1: Push Down Automata and their Variants</h2>
           <p>
             Push down automata (PDAs for short) are a specific model of
             automata.
           </p>
 
           <p>
-            Automata are abstract theoretical machines that are useful as models
-            of computation. In general, these automata process an input string
-            then either accept or deny that string. While the automata is
-            processing the string, every time a character is consumed, the
-            automata may update some internal state or store some data. The
-            automata then can reference this internal state and data when
-            processing the characters that follow.
+            Automata are abstract models of computers. They are theoretical
+            machines, defined using mathematical concepts, which allow us to
+            model computation. An automata can model a program in a manner
+            similar to how calculus and physics can model the movement of a ball
+            tossed through the air. In the same way that studying physics with
+            calculus can help us understand the physical world, studying
+            automata can help us understand our programs and software.
           </p>
 
           <p>
-            There are many different variants of automata, each with their own
-            bells and whistles. Some may have particular kinds of memory, and
-            others may have the ability to process the characters from the input
-            stream in any order they choose. Each of these different automata
-            variants is useful for modeling some type of computation problem we
-            might be interested in solving.
+            Automata can take many forms, but often in the context of computer
+            science we discuss string recognizing automata. These can be
+            imagined as machines that process a sequence of characters. Once all
+            of the characters are processed, the automata either accepts or
+            denies the string. This simple form of machine proves to be a
+            surprisingly useful abstraction for most software.
           </p>
 
           <p>
-            PDAs are one such variant. They are an automaton with a finite state
-            machine and an infinitely large stack memory. They are a useful
-            model of computation for describing a number of important
-            programming tasks like parsing programming languages. PDAs are
-            covered in most books on computer science theory and compilers
-            because of this applicability.
+            There are many different forms of string recognizing automata, each
+            with varying capabilities and power. Often, teh key distinction
+            between different forms of automata is the memory that the automata
+            can utilize. The simplest automata like finite state machines may
+            have only one memory cell whose value is determined by following a
+            graph structure of states based on the input characters read by the
+            automata. Other more powerful automata like turing machines have an
+            infinitely large memory that can be filled with any number of
+            predefined symbols. Each of these forms of automata is capable of
+            modeling some class of computational problems.
           </p>
 
           <p>
-            When working with any formal theoretical or mathematical object,
-            creating a concrete definition for the object is often the hardest
-            part. All proofs and deductions about the topic will follow from
-            that initial definition. So, in this post, will discuss some of the
-            different defininitions used for push down automata.
+            Push down automata are a form of automata that sits somewhere in the
+            middle of the total hierarchy of automata forms. A PDA has one
+            memory cell controlled with a finite state control graph (like the
+            finite automata) as well as an infinite memory store structured as a
+            stack., where elements can only be read from or written to the top
+            of the stack. Their infinite memory gives them more power than the
+            simpler automata like a finite automata, but the restricted form of
+            the stack memory makes them less capable than an automata like a
+            turing machine.
           </p>
+
+          <p>Push Down automata may seem...</p>
         </div>
 
         <div>
