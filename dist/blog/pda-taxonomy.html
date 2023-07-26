@@ -47,19 +47,17 @@
         <p>
           Article contents:
           <br />
-          <a href="section-1">1: Push Down Automata</a>
+          <a href="section-1">1: Push Down Automata and their Variants</a>
           <br />
           <a href="section-2">2: Components of a PDA Definition</a>
           <br />
-          <a href="section-3">3: PDA Variant: The Base PDA</a>
+          <a href="section-3">3: Single Character Popping PDAs</a>
           <br />
-          <a href="section-4">
-            4: PDA Variants: Multi & Optional Char Popping PDAs
-          </a>
+          <a href="section-4">4: Multi-Character Popping PDAs</a>
           <br />
-          <a href="section-5">5: Empty Stack Acceptance PDAs</a>
+          <a href="section-5">5: Empty Stack Accepting PDAs</a>
           <br />
-          <a href="section-6">6: Closing thoughts and additional remarks</a>
+          <a href="section-6">6: Closing Thoughts and Additional Remarks</a>
           <br />
           <a href="section_7">
             Appendix: Symbols and Notation used in this Document
@@ -117,92 +115,218 @@
             turing machine.
           </p>
 
-          <p>Push Down automata may seem...</p>
-        </div>
-
-        <div>
-          <h2 id="section_2">2: Introducing PDA variants</h2>
-
           <p>
-            It is worth re-emphasizing that PDAs are only a theoretical model of
-            computation, as such, it is entirely up to us to define what they
-            are and how they work using tools from mathematics. In papers and
-            books that cover push down automata, you will come across many
-            slightly different definitions for PDAas yielding slight different
-            PDA variants. The variants described are only slightly different
-            manifestations of the same core abstract concept of a push down
+            Push Down automata, with their odd restricted stack memory, may seem
+            to be the [word: odd] middle child of the theoretical computation
+            landscape, but they are of surprising practical importance. Push
+            down automata prove to be excellent models for many computational
+            problems fo great importance. PDA's model programs that straddle the
+            line dividing easy and hard computational problems. A program that
+            can be modeled by a PDA can often be solved quite efficiently, but a
+            problem to difficult to be solved with a push down automata may be
+            difficult to solve in a reasonable time frame. Many computational
+            problems of practical importance like parsing a programming language
+            or a depth first search of a tree can be modeled with a push down
             automata.
           </p>
 
           <p>
-            Let's take sometime to reflect on what this core push down automata
-            is and then we can extract a sort of framework that outlines teh
-            information we need to include in a PDA definition.
+            PDAs are often given at least a chapter's worth of focus in books
+            covering theoretical computer science. A typical coverage of PDAs
+            will introduce a definition of a nondeterministic push down
+            automata, give a few example PDAs, provide a proof of equivalence
+            with context free grammars, and maybe introduce deterministic push
+            down automata.
           </p>
 
           <p>
-            A PDA is an abstract machine that reads symbols from an input tape.
-            Every time this machine reads a symbol, it may update an internal
-            Finite Control state, or write and read symbols to and from an
-            internal stack. After the string is read, the automata may accept
-            the input string if certain conditions are met. In order to make a
-            formal mathematical definition from this description, there are 4
-            types of information we need to extract and make concrete.
+            I have struggled with the coverage of push down automata in a number
+            of resources because I failed to fully grasp the initial definition
+            that the content build on. I have two theories about why these
+            definitions were difficult to wrap my head around.
+          </p>
+
+          <p>
+            Firstly, there are a handful of different PDA definition in use
+            across different books on the subject. While all of these
+            definitions are quite similar adn define variants that are
+            computationally equivalent, the variety can be disorienting. The
+            definitions all yield slightly different push down automata variants
+            with their own subtleties. It took me longer than I would like to
+            admit, to realize that these different variants were in use. It took
+            me even longer to internalize teh difference in the definitions and
+            feel comfortable switching between them.
+          </p>
+
+          <p>
+            Secondly, I feel that push down automata are simply peculiar. PDAs
+            have neither the austere simplicity of a finite state machine, nor
+            the all encompassing flexibility of a turing machine. Instead, they
+            are an automata with a somewhat awkward stack memory structure whose
+            restrictions can be tricky to capture using a mathematical
+            definition. Defining PDAs often involves additions to our
+            definitions like stack based symbols that just seem awkward.
+          </p>
+
+          <p>
+            It is because of my trouble with these definitions that I wanted to
+            write this post. Overtime, I was able to develop my own mental model
+            for organizing and thinking about these definitions that helped me
+            build a conceptual foundation for PDAs and begin to understand the
+            more interesting results about this automata.
+          </p>
+        </div>
+
+        <div>
+          <h2 id="section_2">2: Components of a PDA Definition</h2>
+
+          <p>
+            It is worth re-emphasizing that PDAs are only a theoretical model of
+            computation, as such, it is entirely up to us to define what they
+            are and how they work using tools from mathematics. The most common
+            definitions of push down automata primarily use sets of symbols and
+            functions over those sets as the building blocks of a PDA
+            definition.
+          </p>
+
+          <p>
+            A typical automata definition may look something like this:
+            <math display="inline">
+              <mtext>(Q, Σ, Γ, δ,&#xA0;</mtext>
+              <msub>
+                <mi>q</mi>
+                <mn>0</mn>
+              </msub>
+              <mi>,&#xA0;</mi>
+              <msub>
+                <mi>Z</mi>
+                <mn>0</mn>
+              </msub>
+              <mi>,&#xA0;</mi>
+              <msub>
+                <mi>Q</mi>
+                <mn>F</mn>
+              </msub>
+              <mi>)</mi>
+            </math>
+            . This definition is a collection of 7 symbols that each represent
+            some set, function, or symbol. Taken together, the symbols are a
+            7-tuple that specifies a particular push down automata.
+          </p>
+
+          <p>
+            At first encounter, it may not even seem possible that a series of
+            symbols representing sets and functions can define an abstract
+            computer. It is not a particularly intuitive representation.
+          </p>
+
+          <p>
+            To understand a definition like this, I think that it is productive
+            to think about the types of information that must be included in an
+            automata representation. To think about the broad types of
+            information that need to be formalized, then figure out how the
+            symbols fit into those categories.
+          </p>
+
+          <p>
+            Our automata is akin to a program on a computer in more than just an
+            abstract sense. I find that using a similar mental model for
+            specifying programs is useful for specifying and automata.
+          </p>
+
+          <p>
+            When we consider a program, we need to know about the program's:
+          </p>
+
+          <ul>
+            <li>
+              <strong>character set:</strong>
+              What symbols are used to represent the program and how are they
+              encoded. Is the program a sequence of unicode characters? or a
+              binary blob composed of 16 bit machine code instructions.
+            </li>
+
+            <li>
+              <strong>static data or initial configuration:</strong>
+              Programs are not just code, the programs include static data that
+              the program references. Information like the default values for
+              variables and constants all need to be specified in the program
+              data itself.
+            </li>
+
+            <li>
+              <strong>program code:</strong>
+              The actual instruction that the program executes. These
+              instructions define the program's behavior and control flow.
+            </li>
+
+            <li>
+              <strong>accepting / terminating conditions:</strong>
+              When is the program done, and how do we interpret its results,
+              does the program write a certain value to the stdout, does it set
+              some register to indicate it was successful? We need a way to
+              interpret the output of our program and determine wether it was
+              successful or unsuccessful.
+            </li>
+          </ul>
+
+          <p>
+            We can app;y this same mental model of a program's content to the
+            definition of a push down automata. The information in our PDA
+            definition or specification needs to explain:
           </p>
 
           <ol>
             <li>
               <strong>Character sets:</strong>
-              Our input tape and our stack are both collection of symbols, we
-              must specify all of the characters that our automata is equipped
-              to process. There are an infinite number of symbols that could
-              hypothetically be fed to an automata, but our PDA must specify the
-              finite collection of symbols it is capable of reading from inout
-              and pushing and popping from its stack. Usually this is done by
-              including two finite sets in our definition. One set of input
-              symbols and one set of stack symbols.
+              As mentioned before, a PDA processes an input string, and writes
+              and reads data from an internal stack. Our input tape and our
+              stack are both collection of symbols, we must specify all of the
+              characters that our automata is equipped to process.
             </li>
+
             <li>
               <strong>Programming:</strong>
               As our automata executes, it will read input characters, it will
               update finite state, and it will push and pop symbols on our
-              stack. Usually, this "programming" is encoded into a transition
-              function. The transition function specifies what our automata will
-              do at each step. Its inputs are the current state, some
-              information about the current stack, and some information about
-              the current input. The transition function maps that current
-              configuration to a new configuration for the automata. The
-              "program execution" of the automata is a matter of following the
-              transition function from one configuration to another.
+              stack. This behavior can be encoded using a function that
+              describes how the automata updates its internal state as new
+              characters are processed.
             </li>
+
             <li>
               <strong>Initial Configuration:</strong>
-              Often times, we need to specify some information about the
-              automata's configuration before it begins running. This starting
-              configuration is necessary to ensure that our automata is prepped
-              to run. Usually this involves specifying a starting state and some
-              starting data for the PDA's stack.
+              Just like a program, our PDA also may have some initial
+              configuration or default values. PDA's specify an initial control
+              state and may have some initial data on their stack in order to
+              kick off their execution properly.
             </li>
+
             <li>
               <strong>Accepting Conditions:</strong>
-              Finally, we need to specficy the conditions with indicate our PDA
+              Finally, we need to specify the conditions with indicate our PDA
               has accepted a string. These conditions will be based on some
-              aspect of the push down automata's internal configuration, wether
-              that be it's finite state control or its stack, or its position in
-              reading the input string.
+              aspect of the push down automata's internal data (finite control
+              and the stack).
             </li>
           </ol>
 
           <p>
-            We can now use this framework to introduce a handful of PDA
-            variants. We will show how each variant fits into this little
-            framework and use the framework to highligh differences in the
-            variants.
+            Every symbol in our definition helps helps to specify one of the
+            above aspects of our program. Understanding the formal definitions
+            of push down automata is a matter of internalizing how each symbol
+            and its value informs one of the above qualities in our definition.
+          </p>
+
+          <p>
+            To make things more concrete, we will explain a few common PDA
+            definition variants and show how each fits into this little
+            framework.
           </p>
         </div>
 
         <div>
-          <h2 id="section_3">PDA variant 1: the base PDA</h2>
+          <h2 id="section_3">3: Single Character Popping PDAs</h2>
 
           <p>
             The first PDA variant we will introduce is one which has a very
@@ -385,9 +509,7 @@
         </div>
 
         <div>
-          <h2 id="section_4">
-            4: PDA Variants: Multi & Optional Char Popping PDAs
-          </h2>
+          <h2 id="section_4">4: Multi-Character Popping PDAs</h2>
 
           <p>
             Another common form of PDA definition is one in which the PDA has
@@ -515,7 +637,7 @@
         </div>
 
         <div>
-          <h2 id="section_5">5: Empty Stack Acceptance PDAs</h2>
+          <h2 id="section_5">5: Empty Stack Accepting PDAs</h2>
           <p>
             The final PDA variant we will consider is one that is often
             introduced in the latter half of text book chapters on PDAs. Unlike
@@ -576,7 +698,7 @@
         </div>
 
         <div>
-          <h2 id="section_6">6: Closing thoughts and additional remarks</h2>
+          <h2 id="section_6">6: Closing Thoughts and Additional Remarks</h2>
         </div>
 
         <p><strong>Why choose one definition over the other?</strong></p>
@@ -613,6 +735,21 @@
           Most textbooks that cover push down automata give specific examples of
           this process and how it can work.
         </p>
+
+        <p>
+          <strong>
+            Which books have you been referencing to learn about PDAs:
+          </strong>
+        </p>
+        <p>
+          Many... but these are a few i like with a note about their style and
+          quality:
+        </p>
+        <ol>
+          <li>book 1: notes about style</li>
+          <li>book 2: notes about style</li>
+          <li>book 2: notes about style</li>
+        </ol>
 
         <div>
           <h2 id="section_7">
