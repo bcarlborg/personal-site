@@ -18,11 +18,11 @@
       href="/assets/favicon-woo-guy-180-180.png" />
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="og:title" content="Parsers (and Encoders) Everywhere" />
+    <meta name="og:title" content="Push Down Automata Variants" />
     <meta
       name="og:description"
       content="The personal website of Beau Carlborg" />
-    <title>Taxonomy of Push Down Automata</title>
+    <title>Push Down Automata Variants</title>
   </head>
 
   <body>
@@ -31,18 +31,10 @@
     </header>
     <main>
       <article>
-        <h1>⚠️Work in progress⚠️</h1>
-        <p>
-          I am currently in the process of writing this article. What you see
-          here is merely a draft. If you stumbled across this article somehow,
-          no worries, I have nothing to hide here. But know that what you see
-          here is incomplete and is subject to frequent and dramatic changes in
-          a way that a published article would not be.
-        </p>
-        <h1>Taxonomy of Push Down Automata</h1>
+        <h1>Push Down Automata Variants</h1>
         <i>
           Originally Authored: July 2023 | Last Updated: July 2023 | Reading
-          time: ~30 min | Author: Beau Carlborg
+          time: ~20 min | Author: Beau Carlborg
         </i>
         <p>
           Article contents:
@@ -55,7 +47,7 @@
           <br />
           <a href="section-4">4: Multi-Character Popping PDAs</a>
           <br />
-          <a href="section-5">5: Empty Stack Accepting PDAs</a>
+          <a href="section-5">5: Stack State Accepting PDAs</a>
           <br />
           <a href="section-6">6: Closing Thoughts and Additional Remarks</a>
           <br />
@@ -72,31 +64,31 @@
           </p>
 
           <p>
-            Automata are abstract models of computers. They are theoretical
-            machines, defined using mathematical concepts in the sam way that
-            calculus can help us model a ball's path through the air, automata
-            can help us model programs. Studying automata can help us
-            conceptualize the programs and algorithms we work with on a regular
-            basis.
+            Automata are abstract models of computers; they are theoretical
+            machines defined using mathematical concepts. Automata can help us
+            model programs and software in the same way that calculus can help
+            us model a ball's path through the air. Studying automata can help
+            us conceptualize the programs and algorithms we work with on a
+            regular basis.
           </p>
 
           <p>
-            Automata can take many forms, but in computer science we often
-            discuss string recognizing automata. A specific automaton can be
-            imagined as a machine that processes a sequence of characters. Once
-            all of the characters are processed, the automaton either accepts or
-            denies the string. This simple form of machine proves to be a
-            surprisingly useful abstraction for most software.
+            Automata can take many forms, but we often discuss
+            string-recognizing automata. A specific automaton can be imagined as
+            a machine that processes a sequence of characters. Once all of the
+            characters are processed, the automaton either accepts or denies the
+            string. This simple form of machine proves to be a surprisingly
+            useful abstraction for most software.
           </p>
 
           <p>
-            There are many different forms of string recognizing automata, each
+            There are many different forms of string-recognizing automata, each
             with varying capabilities and power. Often, the key distinction
             between different forms of automata is the memory that the automata
-            can utilize. The simplest automata like finite state machines may
+            can utilize. The simplest automata, like finite state machines, may
             have only one memory cell whose value is determined by following a
             graph structure of states based on the input characters read by the
-            automata. Other more powerful automata like turing machines have an
+            automata. Other more powerful automata like Turing machines have an
             infinitely large memory that can be filled with any number of
             predefined symbols. Push down automata are one type of automata that
             sits somewhere in the middle of the total hierarchy of automata.
@@ -107,63 +99,63 @@
             graph as well as an infinite memory store structured as a stack.,
             where elements can only be read from or written to the top of the
             stack. Their infinite memory gives them more power than the simpler
-            automata like a finite automata, but the restricted form of the
-            stack memory makes them less capable than an automata like a turing
+            automata like finite automata, but the restricted form of the stack
+            memory makes them less capable than an automata like a Turing
             machine.
           </p>
 
           <p>
-            PDAs are appropriate models fora surprising number of practical
-            computational task. PDA's model programs that straddle the line
+            PDAs are appropriate models for a surprising number of practical
+            computational tasks. PDA's can model programs straddling the line
             dividing easy and hard problems. A program that can be modeled by a
-            PDA can often be solved quite efficiently, but a problem to
+            PDA can often be solved quite efficiently, but a problem too
             difficult to be solved with a push down automata may be difficult to
             solve in a reasonable time frame. Many computational problems of
-            practical importance like parsing a programming language or a depth
-            first search of a tree can be modeled with a push down automata.
+            practical importance, like parsing a programming language or a depth
+            first search of a tree, can be modeled with a push down automata.
           </p>
 
           <p>
             PDAs are often given at least a chapter's worth of focus in books
             covering theoretical computer science. A typical coverage of PDAs
-            will introduce a definition of a nondeterministic push down
-            automata, give a few example PDAs, provide a proof of equivalence
-            with context free grammars, and maybe introduce deterministic push
-            down automata.
+            will introduce a definition of nondeterministic push down automata,
+            give a few example PDAs, provide a proof of equivalence with
+            context-free grammars, and maybe introduce deterministic push down
+            automata.
           </p>
 
           <p>
             I have struggled with the coverage of push down automata in a number
             of resources because I failed to fully grasp the initial definition
-            that the content build on. I have two theories about why these
+            that the content builds on. I have two theories about why these
             definitions were difficult to wrap my head around.
           </p>
 
           <p>
-            Firstly, there are a handful of different PDA definition in use
+            Firstly, there are a handful of different PDA definitions in use
             across different books on the subject. While all of these
-            definitions are quite similar adn define variants that are
+            definitions are quite similar and define variants that are
             computationally equivalent, the variety can be disorienting. The
             definitions all yield slightly different push down automata variants
             with their own subtleties. It took me longer than I would like to
-            admit, to realize that these different variants were in use. It took
+            admit to realize that these different variants were in use. It took
             me even longer to internalize teh difference in the definitions and
             feel comfortable switching between them.
           </p>
 
           <p>
             Secondly, I feel that push down automata are simply peculiar. PDAs
-            have neither the austere simplicity of a finite state machine, nor
-            the all encompassing flexibility of a turing machine. Instead, they
-            are an automata with a somewhat awkward stack memory structure whose
-            restrictions can be tricky to capture using a mathematical
-            definition. Defining PDAs often involves additions to our
-            definitions like stack based symbols that just seem awkward.
+            have neither the austere simplicity of a finite state machine nor
+            the all encompassing flexibility of a Turing machine. Instead, they
+            are an automata with an awkward stack memory structure that is
+            tricky to define using a mathematical definition. Defining PDAs
+            often involves additions to our definitions like starting stack
+            symbols that just feel awkward.
           </p>
 
           <p>
             It is because of my trouble with these definitions that I wanted to
-            write this post. Overtime, I was able to develop my own mental model
+            write this post. Over time I was able to develop my own mental model
             for organizing and thinking about these definitions that helped me
             build a conceptual foundation for PDAs and begin to understand the
             more interesting results about this automata.
@@ -631,35 +623,77 @@
         </div>
 
         <div>
-          <h2 id="section_5">5: Empty Stack Accepting PDAs</h2>
+          <h2 id="section_5">5: Stack State Accepting PDAs</h2>
           <p>
-            The final PDA variant we will consider is one that is often
-            introduced in the latter half of text book chapters on PDAs. Unlike
-            the previous variants we have considered, which all make
-            modifications on the transition function itself, this variant makes
-            a modification to the acceptance conditions used by the PDA. Instead
-            of using a set of final states in the finite control unit, this PDA
-            accepts a string when the input is fully read, and the PDA's stack
-            is empty.
+            The final PDA variant I will introduce is one that uses an alternate
+            acceptance mechanism. Our base PDA and multi-character popping PDA
+            both accept strings using predetermined accepting states (We've been
+            using the symbol
+            <math display="inline">
+              <msub>
+                <mi>Q</mi>
+                <mn>F</mn>
+              </msub>
+            </math>
+            to represent these). This acceptance method is the same as one that
+            would be used by a finite automata to accept a string.
           </p>
 
           <p>
-            To apply this change to our definition, we only need to specify that
-            an empty stack is an accepting condition. This is simple enough to
-            express in an english sentence, but can be tricky to write out
-            formally. Most books on the subject choose to simply specify the
-            acceptance condition in a sentence.
+            But, just like we can modify the programming of a PDA to create a
+            new variant, we can also modify the acceptance conditions of our
+            PDA. We can create a new PDA that accepts wien the stack is in a
+            particular configuration. WE can specify a string that needs to be
+            on the stack when the input string has been fully read. If that
+            string is on the stack, then we will accept.
           </p>
 
           <p>
-            We could make either of the PDA's we've defined so far an empty
-            stack acceptance PDA by simply removing the final states from their
-            definition and specifying that they accept with empty stacks.
+            <strong>Acceptance Conditions:</strong>
+            We will specify the string that must be on the stack to accept using
+            the symbol
+            <math display="inline">
+              <msub>
+                <mi>S</mi>
+                <mn>F</mn>
+              </msub>
+            </math>
+            where every symbol in
+            <math display="inline">
+              <msub>
+                <mi>S</mi>
+                <mn>F</mn>
+              </msub>
+            </math>
+            is a member of the stack character set
+            <math display="inline">
+              <mi>Γ</mi>
+            </math>
+            .
           </p>
 
           <p>
-            So a single character popping PDA with empty stack acceptance would
-            be defined with the 6-tuple:
+            We can apply this acceptance modification to both of the PDAs we
+            have defined thus far by replacing the final state symbol
+            <math display="inline">
+              <mi>F</mi>
+            </math>
+            with our new stack acceptance string symbol
+            <math display="inline">
+              <msub>
+                <mi>S</mi>
+                <mn>F</mn>
+              </msub>
+            </math>
+            .
+          </p>
+
+          <p>
+            For the single popping PDA, a stack state acceptance variant would
+            be defined with the following 7-tuple:
+          </p>
+
+          <p>
             <math display="inline">
               <mtext>(Q, Σ, Γ, δ,&#xA0;</mtext>
               <msub>
@@ -671,23 +705,49 @@
                 <mi>Z</mi>
                 <mn>0</mn>
               </msub>
+              <mi>,&#xA0;</mi>
+              <msub>
+                <mi>S</mi>
+                <mn>F</mn>
+              </msub>
               <mi>)</mi>
             </math>
-            with a note specifying that it accepts when the stack is emptied.
           </p>
 
           <p>
-            And a multi character popping PDA with empty stack acceptance would
-            be defined with the 5-tuple:
+            For the multi-character popping PDA, a stack state acceptance
+            variant would be defined with the following 7-tuple:
+          </p>
+
+          <p>
             <math display="inline">
               <mtext>(Q, Σ, Γ, δ,&#xA0;</mtext>
               <msub>
                 <mi>q</mi>
                 <mn>0</mn>
               </msub>
+              <mi>,&#xA0;</mi>
+              <msub>
+                <mi>S</mi>
+                <mn>F</mn>
+              </msub>
               <mi>)</mi>
             </math>
-            with a note specifying that it accepts when the stack is emptied.
+          </p>
+
+          <p>
+            It is worth noting that many textbooks and resources which cover
+            PDAs present an empty state acceptance PDA. This is merely a subcase
+            of the stack state acceptance PDA in which the accepting PDA string
+            is just the empty string. Definitions for this specific PDA variant
+            will omit
+            <math display="inline">
+              <msub>
+                <mi>S</mi>
+                <mn>F</mn>
+              </msub>
+            </math>
+            all together.
           </p>
         </div>
 
@@ -698,9 +758,10 @@
         <p><strong>Why choose one definition over the other?</strong></p>
 
         <p>
-          Ultimately it comes down to your goals. Some variants are better for
-          representing certain proofs, others are easier to program. It is not
-          that different from choosing one programming language over the other.
+          Ultimately it comes down to your goals for using the PDA. Some
+          variants are better for representing certain proofs, others are easier
+          to write programs for. Choosing one variant over another is not that
+          different from choosing one programming language over the other.
           Usually, each language can achieve the same end results, but it comes
           down to how well suited that language is for the task.
         </p>
@@ -708,12 +769,20 @@
         <p><strong>Are these variants truly interchangeable?</strong></p>
 
         <p>
-          Computationally, yes, these are interchangeable, in that each of the
-          PDA variants can accept every language that another PDA variant would.
-          In terms of complexity, the situation is a bit more complicated. Some
-          of the machines can represent the an automata for the same language
-          with different complexity properties. The multi popping PDA in
-          particular is slightly better at hiding complexity than the others.
+          Computationally, yes, these are interchangeable. This means that each
+          each of the PDA variants presented here can accept every language that
+          another PDA variant would. In terms of complexity, the situation is a
+          bit more complicated. Some of the machines can represent the an
+          automata for the same language with different complexity properties.
+        </p>
+
+        <p>
+          The different complexity properties of each PDA are particularly
+          obvious with the multi-character popping PDA. It is clear that the
+          single character popping PDA can achieve the same results by simply
+          popping the letters of multi character string one by one. But doing so
+          requires more steps and more states than the multi character PDA would
+          use.
         </p>
 
         <p><strong>How could we prove they are equivalent?</strong></p>
@@ -722,12 +791,21 @@
           The process of proving that two automata variants are equivalent comes
           down to showing that any language that can be accepted by an automata
           in the style of variant A can also be accepted by an automata in the
-          style of variant B and vice versa.
+          style of variant B and vice versa. Most textbooks that cover push down
+          automata give specific examples of this process and how it can work.
         </p>
 
         <p>
-          Most textbooks that cover push down automata give specific examples of
-          this process and how it can work.
+          Generally, the proof is done by showing that for any PDA of variant 1,
+          we can construct a PDA in variant 2 that accepts the same language;
+          then doing the same thing in reverse, showing that we can construct a
+          PDA in variant 1 based on the PDA in variant 2.
+        </p>
+
+        <p>
+          Oftentimes, creating the constructed PDAs in a new variant is the easy
+          part, but proving that the two PDAs actually accept the same language
+          is the hard part.
         </p>
 
         <p>
@@ -735,14 +813,30 @@
             Which books have you been referencing to learn about PDAs:
           </strong>
         </p>
-        <p>
-          Many... but these are a few i like with a note about their style and
-          quality:
-        </p>
+
+        <p>Many... but these are a few I like</p>
         <ol>
-          <li>book 1: notes about style</li>
-          <li>book 2: notes about style</li>
-          <li>book 2: notes about style</li>
+          <li>
+            Introduction to the Theory of Computation by Michael Sipser: This is
+            the canonical undergrad book on the theory of computation and
+            automata. The book's writing style is approachable, and the pacing
+            is very reasonable. The book's coverage of push down automata
+            specifically is not as complete as some other books in this list,
+            but this is a fantastic starting point if this topic matter is new
+            to you.
+          </li>
+          <li>
+            Introduction to Automata Theory, Languages, and Computation by John
+            Hopcroft: This is my go to reference for information on automata and
+            computer science theory. I would say the book assumes slightly more
+            mathematical maturity than the Sipser book, but not by much. I find
+            that the proofs specifically in this book are laid out in a
+            particularly lucid way.
+          </li>
+          <li>
+            The Theory of Parsing, Translation, and Compiling by Alfred Aho and
+            Jeffrey D. Ullman
+          </li>
         </ol>
 
         <div>
