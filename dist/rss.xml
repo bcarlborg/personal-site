@@ -1,0 +1,22 @@
+ml
+Copy code
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0">
+  <channel>
+    <title>Beau's Blog</title>
+    <link>https://www.beau-carlborg.com/blog</link>
+    <description>The personal website of Beau Carlborg</description>
+
+    <item>
+      <title>Parsers and Encoders Everywhere</title>
+      <link>https://www.beau-carlborg.com/blog/parsers-and-encoders-everywhere.html</link>
+      <pubDate>Mon, 26 Jun 2023 12:00:00 PST</pubDate>
+    </item>
+
+    <item>
+      <title>Pushdown Automata Variants</title>
+      <link>https://www.beau-carlborg.com/blog/pushdown-automata-variants.html</link>
+      <pubDate>Sun, 30 Jul 2023 12:00:00 PST</pubDate>
+    </item>
+  </channel>
+</rss>
