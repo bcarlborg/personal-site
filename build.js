@@ -29,7 +29,7 @@ const articleSkeletonHtml = `
           </p>
           <div id ="article-contents">
             Article Contents:
-            </br>
+            <br />
           </div> 
         </article>
       </main>
@@ -37,7 +37,27 @@ const articleSkeletonHtml = `
   </html>
 `;
 const articleSkeletonDom = parse(articleSkeletonHtml);
+articleSkeletonDom.querySelector('article').appendChild(articleContentDom);
 
-articleSkeletonDom.querySelector('#article-contents').appendChild(articleContentDom);
+const articleDom = articleSkeletonDom;
 
-console.log(articleSkeletonDom.toString());
+const articleSubHeaders = articleDom.querySelectorAll('h2');
+const isArticleWithSubHeaders = articleSubHeaders.length > 0;
+
+if (isArticleWithSubHeaders) {
+  articleSubHeaders.forEach((subHeader, index) => {
+    const tableOfContentsItem = parse(`
+      <a href="${subHeader.getAttribute('id')}"}>
+        ${subHeader.textContent}
+      </a>
+    `);
+    articleDom.querySelector('#article-contents').appendChild(tableOfContentsItem);
+
+    const isLastItem = index === articleSubHeaders.length - 1;
+    if (!isLastItem) {
+      articleDom.querySelector('#article-contents').appendChild(parse('<br />'));
+    }
+  });
+}
+
+console.log(articleDom.toString());
