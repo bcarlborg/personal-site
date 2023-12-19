@@ -13,3 +13,7 @@ TODOs
   - [ ] create a source directory and a dist directory. Have marked create the dist directory from the source directory
   - [ ] create the rss page from metadata in the source directory
   - [ ] write documentation about the build system
+  - [ ] get article processing from markdown working correctly
+    - [ ] create a json metadata file that has all the info about the post
+    - [ ] parse the h2 headings and put those into the content
+    - [ ] move id names into constants

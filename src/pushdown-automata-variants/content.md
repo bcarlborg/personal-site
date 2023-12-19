@@ -1,0 +1,623 @@
+# Pushdown Automata Variants
+
+## 1: Pushdown Automata and their Variants
+Pushdown automata (PDAs for short) are a specific model of automata.
+
+Automata are abstract models of computers; they are theoretical
+machines defined using mathematical concepts. Automata can help us
+model programs and software in the same way that calculus can help
+us model a ball's path through the air. Studying automata can help
+us conceptualize the programs and algorithms we work with on a
+regular basis.
+
+Automata can take many forms, but we often discuss
+string-recognizing automata. A specific automaton can be imagined as
+a machine that processes a sequence of characters. Once all of the
+characters are processed, the automaton either accepts or denies the
+string. This simple form of machine proves to be a surprisingly
+useful abstraction for most software.
+
+There are many different forms of string-recognizing automata, each
+with varying capabilities and power. Often, the key distinction
+between different forms of automata is the memory that the automata
+can utilize. The simplest automata, like finite state machines, may
+have only one memory cell whose value is determined by following a
+graph structure of states based on the input characters read by the
+automata. Other more powerful automata like Turing machines have an
+infinitely large memory that can be filled with any number of
+predefined symbols. Pushdown automata are one type of automata that
+sits somewhere in the middle of the total hierarchy of automata.
+
+A PDA has one memory cell controlled with a finite state control
+graph as well as an infinite memory store structured as a stack.,
+where elements can only be read from or written to the top of the
+stack. Their infinite memory gives them more power than the simpler
+automata like finite automata, but the restricted form of the stack
+memory makes them less capable than an automata like a Turing
+machine.
+
+PDAs are appropriate models for a surprising number of practical
+computational tasks. PDA's can model programs straddling the line
+dividing easy and hard problems. A program that can be modeled by a
+PDA can often be solved quite efficiently, but a problem too
+difficult to be solved with a pushdown automata may be difficult to
+solve in a reasonable time frame. Many computational problems of
+practical importance, like parsing a programming language or a depth
+first search of a tree, can be modeled with a pushdown automata.
+
+PDAs are often given at least a chapter's worth of focus in books
+covering theoretical computer science. A typical coverage of PDAs
+will introduce a definition of nondeterministic pushdown automata,
+give a few example PDAs, provide a proof of equivalence with
+context-free grammars, and maybe introduce deterministic pushdown
+automata.
+
+I have struggled with the coverage of pushdown automata in a number
+of resources because I failed to fully grasp the initial definition
+that the content builds on. I have two theories about why these
+definitions were difficult to wrap my head around.
+
+Firstly, there are a handful of different PDA definitions in use
+across different books on the subject. While all of these
+definitions are quite similar and define variants that are
+computationally equivalent, the variety can be disorienting. The
+definitions all yield slightly different pushdown automata variants
+with their own subtleties. It took me longer than I would like to
+admit to realize that these different variants were in use. It took
+me even longer to internalize the difference in the definitions and
+feel comfortable switching between them.
+
+Secondly, I feel that pushdown automata are simply peculiar. PDAs
+have neither the austere simplicity of a finite state machine nor
+the all encompassing flexibility of a Turing machine. Instead, they
+are an automata with an awkward stack memory structure that is
+tricky to define using a mathematical definition. Defining PDAs
+often involves additions to our definitions like starting stack
+symbols that just feel awkward.
+
+It is because of my trouble with these definitions that I wanted to
+write this post. Over time I was able to develop my own mental model
+for organizing and thinking about these definitions that helped me
+build a conceptual foundation for PDAs and begin to understand the
+more interesting results about this automata.
+
+
+## 2: Components of a PDA Definition
+
+It is worth re-emphasizing that PDAs are only a theoretical model of
+computation. As such, it is entirely up to us to define what they
+are and how they work using tools from mathematics. The most common
+definitions of pushdown automata use sets of symbols and functions
+over those sets as the building blocks of a PDA definition.
+
+A typical automata definition may look something like this:
+<math display="inline">
+  <mtext>(Q, Σ, Γ, δ,&#xA0;</mtext>
+  <msub>
+    <mi>q</mi>
+    <mn>0</mn>
+  </msub>
+  <mi>,&#xA0;</mi>
+  <msub>
+    <mi>Z</mi>
+    <mn>0</mn>
+  </msub>
+  <mi>,&#xA0;</mi>
+  <msub>
+    <mi>Q</mi>
+    <mn>F</mn>
+  </msub>
+  <mi>)</mi>
+</math>
+. This definition is a collection of 7 symbols (a 7-tuple) where
+each symbol represent some set, function.
+
+At first encounter, it may not even seem possible that a series of
+symbols representing sets and functions can define an abstract
+computer. It is not a particularly intuitive representation.
+
+To understand a definition like this, I find it productive to think
+about the broad types of information that need to be formalized,
+then figure out how the symbols fit into those categories.
+
+Our automata is akin to a program on a computer in more than just an
+abstract sense. I find that using a similar mental model for
+specifying programs is useful for specifying an automata.
+
+When we consider a program, we need to know about the program's:
+- <strong>Program Character Sets:</strong>
+  What symbols are used to represent the program, and how are they
+  encoded. Is the program a sequence of unicode characters? Or a
+  binary blob composed of 16-bit machine code instructions.
+- <strong>Program Static Data or Initial Configurations:</strong>
+  Programs are not just code. They include static data with
+  information like the default values for variables and constants
+  all need to be specified in the program data itself.
+- <strong>Program Code:</strong>
+  The actual instruction that the program executes. These
+  instructions define the program's behavior and control flow.
+- <strong>Program Accepting or Terminating Conditions:</strong>
+  When is the program done, and how do we interpret its results,
+  does the program write a certain value to the stdout, does it set
+  some register to indicate it was successful? We need a way to
+  interpret the output of our program and determine wether it was
+  successful or unsuccessful.
+
+We can apply this same mental model of a program's content to the
+definition of a pushdown automata. The information in our PDA
+definition or specification needs to explain:
+1. <strong>Automata Character Sets:</strong>
+  As mentioned before, a PDA processes an input string and writes
+  and reads data from an internal stack. Our input tape and our
+  stack are both collections of symbols and we must specify all of
+  the characters that our automata is equipped to process.
+2. <strong>Automata Programming:</strong>
+  As our automata executes, it will read input characters, it will
+  update its state, and it will push and pop symbols on our stack.
+  This behavior can be encoded using a function that describes how
+  the automata updates its internal state as new characters are
+  processed.
+3. <strong>Automata Initial Configuration:</strong>
+  Just like a program, our PDA also may have some initial
+  configuration or default values. PDAs specify an initial control
+  state and may have some initial data on their stack in order to
+  kick off their execution properly.
+4. <strong>Automata Accepting Conditions:</strong>
+  Finally, we need to specify the conditions that indicate our PDA
+  has accepted a string. These conditions will be based on some
+  aspect of the pushdown automata's internal data (finite control
+  and the stack).
+
+Every symbol in our definition helps to specify one of the above
+aspects of our program. Understanding the formal definitions of
+pushdown automata is a matter of internalizing how each symbol and
+its value informs one of the above qualities in our definition.
+
+To make things more concrete, we will explain a few common PDA
+definition variants and show how each fits into this little
+framework.
+      
+## 3: Single Character Popping PDAs
+
+The first PDA variant we will discuss is one that pops a single
+character off the stack on every transition. This is a common PDA
+variant introduced in CS theory and is often the base that other PDA
+variants are based on. We will build up a definition for this PDA
+using the framework above.
+
+We first begin with the simplest category, character sets. We need
+to introduce two sets of symbols this PDA can process. One set for
+the input string and another for the stack.
+
+<strong>Character sets:</strong>
+Our PDA uses two character sets,
+<math display="inline">
+  <mtext>Σ</mtext>
+</math>
+and
+<math display="inline">
+  <mtext>Γ</mtext>
+</math>
+. These refer to the set of input symbols the automata is capable of
+working with.
+<math display="inline">
+  <mtext>Σ</mtext>
+</math>
+is the set of symbols the automata can read in the input strings,
+and
+<math display="inline">
+  <mtext>Γ</mtext>
+</math>
+is the set of symbols that the automata can read and write from its
+stack.
+
+Now that we have established the symbols this PDA will use, we can
+formalize the single popping behavior of this pushdown automata.
+This quality will be captured by the programming in our framework
+above. As with any PDA's programming, we need to define a finite set
+of control states for the automata and a transition function that
+outlines how the automaton moves from one state to another as a
+result of the current input and stack character. The states will be
+a simple set, and the transition function will read an input
+character, read a finite control state, and pop a character off of
+the top of the stack, then output possible next states and new data
+to add to the stack.
+
+<strong>Programming:</strong>
+Our set of finite states will be represented by the symbol
+<math display="inline">
+  <mtext>Q</mtext>
+</math>
+, and our transition function will be represented by the symbol
+<math display="inline">
+  <mtext>δ</mtext>
+</math>
+.
+<math display="inline">
+  <mtext>Q</mtext>
+</math>
+is a Simple set of symbols, and
+<math display="inline">
+  <mtext>δ</mtext>
+</math>
+is a transition function of the form
+<math><mi>δ: Q x { Σ ∪ ɛ } x Γ → P(Q x Γ*)</mi></math>
+. This can be read as saying the transition function
+<math display="inline">
+  <mtext>δ</mtext>
+</math>
+takes three inputs: a required current state, an optional current
+input character, and a required symbol at the top of the stack. The
+function's output is a set of state and stack symbol string pairs.
+
+There is a peculiar aspect to this transition function worth
+highlighting. On every transition, we must pop one character from
+the stack, but we may push zero or many characters back on. To me,
+this seemed an unsightly asymmetry at first; however, it is
+necessary in order to grow and reduce the stack. When we wish to
+reduce the stack size, we may pop a character and push an empty
+string. When we wish to grow the stack, we may pop a character, then
+push a string with that same character and additional new stack
+characters appended on.
+
+With the programming and character sets established, we can now
+consider the PDA's initial configuration. In order to support single
+character popping on every transition, we must add a starting stack
+character to our initial configuration. Every transition our PDA
+makes requires there already be one character to pop, and so, in
+order for our first transition to function, we must already have one
+character on the stack.
+
+<strong>Initial Configuration:</strong>
+Our initial configuration must include two values. Like any finite
+state machine, we must include a starting state
+<math display="inline">
+<msub>
+  <mi>q</mi>
+  <mn>0</mn>
+</msub>
+</math>
+where
+<math display="inline">
+<msub>
+  <mi>q</mi>
+  <mn>0</mn>
+</msub>
+<mtext>∊ Q</mtext>
+</math>
+. As mentioned above, for this particular pushdown automata variant,
+we also must include a starting stack symbol
+<math display="inline">
+<msub>
+  <mi>Z</mi>
+  <mn>0</mn>
+</msub>
+</math>
+where
+<math display="inline">
+<msub>
+  <mi>Z</mi>
+  <mn>0</mn>
+</msub>
+<mtext>∊ Γ</mtext>
+</math>
+</p>
+
+Finally, we must specify the acceptance conditions for this PDA.
+Much like finite automata, this PDA uses a set of accepting states,
+which are a subset of the states introduced in the programming of
+this automata.
+
+<strong>Accepting Conditions:</strong>
+finally, we must specify the acceptance conditions for this PDA.
+Much like finite automata, this PDA uses a set of accepting state
+conditions
+<math display="inline">
+  <mtext>F</mtext>
+</math>
+where
+<math display="inline">
+  <mtext>F ⊆ Q</mtext>
+</math>
+. If the PDA is one of these states when the full input has been
+read, then the PDA accepts the current string.
+
+We can put all of these values together into a 7 component tuple .
+Any base PDA that we define will need to specify values for these 7
+properties.
+
+<math display="inline">
+<mtext>(Q, Σ, Γ, δ,&#xA0;</mtext>
+<msub>
+  <mi>q</mi>
+  <mn>0</mn>
+</msub>
+<mi>,&#xA0;</mi>
+<msub>
+  <mi>Z</mi>
+  <mn>0</mn>
+</msub>
+<mi>,&#xA0;</mi>
+<msub>
+  <mi>Q</mi>
+  <mn>F</mn>
+</msub>
+<mi>)</mi>
+</math>
+
+By thinking about this automata definition using a mental framework
+in which automata are like programs and must specify character sets,
+initial configurations, programming, and acceptance conditions, it
+becomes much easier to break down a definition like this. Instead of
+seeing an arbitrary list of symbols, we can see that each symbol
+helps build out a core aspect of our automata's behavior.
+          
+## 4: Multi-Character Popping PDAs
+
+Another common form of PDA definition is one in which the PDA has
+the ability to pop zero or many characters on each transition step.
+This is a natural extension from the base PDA and can make the
+programming of the PDA much simpler. This variant's definition is
+nearly identical to the base single character popping PDA's but with
+two slight modifications, one in its the programming and another in
+its initial configuration.
+
+With regard to programming, this PDA will use the same set of finite
+control states but will need a slightly updated transition function
+to support popping multiple characters. This is a relatively easy
+update and merely requires updating the typing of our transition
+function. We simply need to accept
+<math display="inline">
+  <mi>Γ*</mi>
+</math>
+as an input rather than
+<math display="inline">
+  <mi>Γ</mi>
+</math>
+.
+
+<strong>Programming:</strong>
+Our PDA will have a set of states,
+<math display="inline">
+  <mtext>Q</mtext>
+</math>
+, for its finite state control. The transition function for this PDA
+will be represented by the symbol
+<math display="inline">
+  <mtext>δ</mtext>
+</math>
+which is a function with the form
+<math><mi>δ: Q x { Σ ∪ ɛ } x Γ* → P(Q x Γ*)</mi></math>
+. This can be read as saying the transition function
+<math display="inline">
+  <mtext>δ</mtext>
+</math>
+takes three inputs: a required current state, an optional current
+input character, and a string of zero or many stack symbols from the
+top of the stack. The function's output is a set of state and stack
+symbol string pairs.
+
+The other difference in the multi-popping PDA's definition is in the
+initial configuration this PDA needs. In the base PDA we needed to
+add a start symbol to our stack so that our transition function
+could make a valid first move. But with this PDA, that is no longer
+necessary. We can have transitions that pop no characters from our
+stack, and so starting with an empty stack is ok. With this, our new
+initial configuration is simplified:
+
+<strong>Initial Configuration:</strong>
+This PDA variant will require a starting finite control state
+represented by the symbol
+<math display="inline">
+  <msub>
+    <mi>q</mi>
+    <mn>0</mn>
+  </msub>
+</math>
+where
+<math display="inline">
+  <msub>
+    <mi>q</mi>
+    <mn>0</mn>
+  </msub>
+  <mtext>∊ Q</mtext>
+</math>
+. This PDA variant will not require a starting stack symbol as our
+first PDA variant did.
+
+We can put this updated programming and initial state together with
+the unchanged character sets and accepting conditions from the
+previous automata definition and form the following definition:
+
+Our multi-character popping PDA is defined by the following 6-tuple
+<math display="inline">
+  <mtext>(Q, Σ, Γ, δ,&#xA0;</mtext>
+  <msub>
+    <mi>q</mi>
+    <mn>0</mn>
+  </msub>
+  <mi>,&#xA0;</mi>
+  <msub>
+    <mi>Q</mi>
+    <mn>F</mn>
+  </msub>
+  <mi>)</mi>
+</math>
+
+The differences between this and the base PDA definition are small
+-- a slight change to our transition function and the removal of a
+state symbol -- but by using a mental model where PDAs are built
+from character sets, initial state, programming, and accepting
+states, the significance of the differences are more easily
+understood.
+
+## 5: Stack State Accepting PDAs
+
+The final PDA variant I will introduce is one that uses an alternate
+acceptance mechanism. Our base PDA and multi-character popping PDA
+both accept strings using predetermined accepting states (We've been
+using the symbol
+<math display="inline">
+  <msub>
+    <mi>Q</mi>
+    <mn>F</mn>
+  </msub>
+</math>
+to represent these). This acceptance method is the same as one that
+would be used by a finite automaton to accept a string.
+
+But, just like we can modify the programming of a PDA to create a
+new variant, we can also modify the acceptance conditions of our
+PDA. We can create a new PDA that accepts when the stack is in a
+particular configuration. We can specify a string that needs to be
+on the stack when the input string has been fully read. If that
+string is on the stack, then we will accept it.
+
+<strong>Acceptance Conditions:</strong>
+We will specify the string that must be on the stack to accept using
+the symbol
+<math display="inline">
+  <msub>
+    <mi>S</mi>
+    <mn>F</mn>
+  </msub>
+</math>
+where every symbol in
+<math display="inline">
+  <msub>
+    <mi>S</mi>
+    <mn>F</mn>
+  </msub>
+</math>
+is a member of the stack character set
+<math display="inline">
+  <mi>Γ</mi>
+</math>
+.
+
+We can apply this acceptance modification to both of the PDAs we
+have defined thus far by replacing the final state symbol
+<math display="inline">
+  <mi>F</mi>
+</math>
+with our new stack acceptance string symbol
+<math display="inline">
+  <msub>
+    <mi>S</mi>
+    <mn>F</mn>
+  </msub>
+</math>
+.
+
+For the single popping PDA, a stack state acceptance variant would
+be defined with the following 7-tuple:
+
+<math display="inline">
+  <mtext>(Q, Σ, Γ, δ,&#xA0;</mtext>
+  <msub>
+    <mi>q</mi>
+    <mn>0</mn>
+  </msub>
+  <mi>,&#xA0;</mi>
+  <msub>
+    <mi>Z</mi>
+    <mn>0</mn>
+  </msub>
+  <mi>,&#xA0;</mi>
+  <msub>
+    <mi>S</mi>
+    <mn>F</mn>
+  </msub>
+  <mi>)</mi>
+</math>
+
+For the multi-character popping PDA, a stack state acceptance
+variant would be defined with the following 7-tuple:
+
+<math display="inline">
+  <mtext>(Q, Σ, Γ, δ,&#xA0;</mtext>
+  <msub>
+    <mi>q</mi>
+    <mn>0</mn>
+  </msub>
+  <mi>,&#xA0;</mi>
+  <msub>
+    <mi>S</mi>
+    <mn>F</mn>
+  </msub>
+  <mi>)</mi>
+</math>
+
+It is worth noting that many textbooks and resources which cover
+PDAs present an empty state acceptance PDA. This is merely a sub
+case of the stack state acceptance PDA in which the accepting PDA
+string is just the empty string. Definitions for this specific PDA
+variant will omit
+<math display="inline">
+  <msub>
+    <mi>S</mi>
+    <mn>F</mn>
+  </msub>
+</math>
+altogether.
+
+## 6: Closing Thoughts and Additional Remarks
+
+<strong>Why choose one definition over the other?</strong>
+
+Ultimately it comes down to your goals for using the PDA. Some
+variants are better for representing certain proofs while others are
+easier to write programs for. Choosing one variant over another is not
+that different from choosing one programming language over the other.
+Usually, each language can achieve the same end results, but it comes
+down to how well-suited that language is for the task.
+
+<strong>Are these variants truly interchangeable?</strong>
+
+Computationally, yes, these are interchangeable. This means that each
+of the PDA variants presented here can accept every language that
+another PDA variant would. In terms of complexity, the situation is a
+bit more complicated. Some of the machines can represent an automata
+for the same language with different complexity properties.
+
+The different complexity properties of each PDA are particularly
+obvious with the multi-character popping PDA. It is clear that the
+single character popping PDA can achieve the same results by simply
+popping the letters of multi-character string one by one. But doing so
+requires more steps and more states than the multi-character PDA would
+use.
+
+<strong>How could we prove they are equivalent?</strong>
+
+The process of proving that two automata variants are equivalent comes
+down to showing that any language that can be accepted by an automaton
+in the style of variant A can also be accepted by an automaton in the
+style of variant B and vice versa. Most textbooks that cover pushdown
+automata give specific examples of this process and how it can work.
+
+Generally, the proof is done by showing that for any PDA of variant 1,
+we can construct a PDA in variant 2 that accepts the same language;
+then doing the same thing in reverse, showing that we can construct a
+PDA in variant 1 based on the PDA in variant 2.
+
+Oftentimes, creating the constructed PDAs in a new variant is the easy
+part, but proving that the two PDAs actually accept the same language
+is the hard part.
+
+<strong>Which books have you been referencing to learn about PDAs:</strong>
+
+There have been many, but these are a few I like:
+1. Introduction to the Theory of Computation by Michael Sipser: This is
+the canonical undergrad book on the theory of computation and
+automata. The book's writing style is approachable, and the pacing
+is very reasonable. The book's coverage of pushdown automata
+specifically is not as complete as some other books in this list,
+but this is a fantastic starting point if this topic matter is new
+to you.
+2. Introduction to Automata Theory, Languages, and Computation by John
+Hopcroft: This is my go to reference for information on automata and
+computer science theory. I would say the book assumes slightly more
+mathematical maturity than the Sipser book, but not by much. I find
+that the proofs specifically in this book are laid out in a
+particularly lucid way.
+3. The Theory of Parsing, Translation, and Compiling by Alfred Aho and

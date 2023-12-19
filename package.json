@@ -11,6 +11,8 @@
   "author": "",
   "license": "ISC",
   "devDependencies": {
-    "marked": "^11.1.0"
+    "marked": "^11.1.0",
+    "marked-gfm-heading-id": "^3.1.2",
+    "node-html-parser": "^6.1.11"
   }
 }
