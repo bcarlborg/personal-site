@@ -14,6 +14,9 @@ TODOs
   - [ ] create the rss page from metadata in the source directory
   - [ ] write documentation about the build system
   - [ ] get article processing from markdown working correctly
-    - [ ] create a json metadata file that has all the info about the post
-    - [ ] parse the h2 headings and put those into the content
+    - [x] create a json metadata file that has all the info about the post
+    - [x] parse the h2 headings and put those into the content
+    - [ ] move all <head> content into the generator
     - [ ] move id names into constants
+    - [ ] generalize the code to work on a directory of articles
+    - [ ] support images and other assets in the directory

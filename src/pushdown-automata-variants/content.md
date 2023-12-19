@@ -1,5 +1,3 @@
-# Pushdown Automata Variants
-
 ## 1: Pushdown Automata and their Variants
 Pushdown automata (PDAs for short) are a specific model of automata.
 
