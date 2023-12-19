@@ -1,8 +1,9 @@
 # TODOs
-
 _a very loose list of TODOs that I keep for this project. These TODOs are relevant for code behind the site, not the content of the site itself_
 
 TODOs
+- [ ] add a readme
+- [ ] investigate if this project should be "type": "module" or not in the package.json
 - [ ] some sort of contact form?
 - [ ] a nicer footer? (including rss link?)
 - [ ] Section for links to content other than my own (quotes, songs, other articles etc)
