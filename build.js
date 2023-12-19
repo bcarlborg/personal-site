@@ -36,7 +36,29 @@ try {
 
 const articleSkeletonHtml = `
   <html>
-    <head></head>
+    <head>
+      <link rel="stylesheet" type="text/css" href="/global-styles.css" />
+      <link
+        rel="icon"
+        type="image/png"
+        sizes="32x32"
+        href="/assets/favicon-woo-guy-32-32.png"
+      />
+      <link
+        rel="icon"
+        type="image/png"
+        sizes="96x96"
+        href="/assets/favicon-woo-guy-96-96.png"
+      />
+      <link
+        rel="icon"
+        type="image/png"
+        sizes="180x180"
+        href="/assets/favicon-woo-guy-180-180.png"
+      />
+      <meta charset="utf-8" />
+      <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    </head>
     <body>
       <header>
       </header>
@@ -68,7 +90,14 @@ articleSkeletonDom.querySelector('article').appendChild(articleContentDom);
 const articleDom = articleSkeletonDom;
 
 //
-// Add metadata
+// Add meta data to <head>
+//
+articleDom.querySelector('head').appendChild(parse(`<meta name="og:title" content="${articleMetaData.title}"/>`));
+articleDom.querySelector('head').appendChild(parse(`<meta name="og:description" content="${articleMetaData.description}"/>`));
+articleDom.querySelector('head').appendChild(parse(`<title>${articleMetaData.title}</title>`));
+
+//
+// Add metadata to article content
 //
 
 articleDom.querySelector("#article-title").textContent = articleMetaData.title;
