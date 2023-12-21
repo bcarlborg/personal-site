@@ -6,9 +6,10 @@ Pimary TODOs
 - [ ] script to build posts
   - [ ] add a help message to the script
   - [ ] support images and other assets in the directory
-    - [ ] change the interface of the script to have input dir and output dir
-    - [ ] figure out how to copy all images from the source directory to the output directory
-    - [ ] figure out how to normalize all image paths from the input to the output
+    - [ ] **START HERE** change the interface of the script to have input dir and output dir
+    - [ ] for a given post, identify the images in the dom of that post, then copy those images from the
+          the input directory to the output directory
+    - [ ] normalize the image paths in the output blog post dom.
           I think for this part what I want is to just use the file names in the post markdown, but then
           traverse the dom of the post and change each of the image names to the image path that we will use
           in the final output
