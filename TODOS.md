@@ -8,6 +8,7 @@ TODOs
 - [ ] a nicer footer? (including rss link?)
 - [ ] Section for links to content other than my own (quotes, songs, other articles etc)
 - [ ] move vscode config to git ignore
+- [ ] update developer doc with information about how to run a linter on this project
 - [ ] build system for my sanity
   - [x] create a json metadata file that has all the info about the post
   - [x] parse the h2 headings and put those into the content
