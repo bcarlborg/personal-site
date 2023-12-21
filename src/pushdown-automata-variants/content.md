@@ -619,3 +619,4 @@ mathematical maturity than the Sipser book, but not by much. I find
 that the proofs specifically in this book are laid out in a
 particularly lucid way.
 3. The Theory of Parsing, Translation, and Compiling by Alfred Aho and
+Jeffrey D. Ullman
