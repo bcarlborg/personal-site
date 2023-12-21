@@ -22,3 +22,4 @@ small todos
 - [ ] add a linter for this project (prettier?) Ideally something that also fomats markdown
 - [ ] figure out how to use node instead of ptyhon3 for the local server
 - [ ] figure out a bettter system for using branches and squash commits etc for the work on this repo
+- [ ] move the build scripts into npm scripts
