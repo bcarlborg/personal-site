@@ -161,8 +161,6 @@ if (isArticleWithSubHeaders) {
 // Output our html to the specified location
 ////////////////////////////////////////////////////////////////
 
-// console.log(articleDom.toString());
-
 const prettyHtmlPostContent = prettify(articleDom.toString());
 
 try {
