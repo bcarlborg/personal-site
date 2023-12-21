@@ -1,9 +1,9 @@
-#!/usr/bin/env node
 import fs from 'fs'
 import { resolve } from 'path';
 import { marked } from 'marked';
 import { gfmHeadingId } from "marked-gfm-heading-id";
 import { parse } from 'node-html-parser';
+import prettify from 'html-prettify';
 import commandLineArgs from 'command-line-args';
 
 //
@@ -163,8 +163,10 @@ if (isArticleWithSubHeaders) {
 
 // console.log(articleDom.toString());
 
+const prettyHtmlPostContent = prettify(articleDom.toString());
+
 try {
-  fs.writeFileSync(outputHtmlFilePath, articleDom.toString());
+  fs.writeFileSync(outputHtmlFilePath, prettyHtmlPostContent);
 } catch (err) {
   console.error(err);
 }
