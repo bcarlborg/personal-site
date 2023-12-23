@@ -3,7 +3,7 @@ import { resolve } from 'path';
 import { marked } from 'marked';
 import { gfmHeadingId } from "marked-gfm-heading-id";
 import { parse } from 'node-html-parser';
-import prettify from 'html-prettify';
+import beautify from 'js-beautify';
 import commandLineArgs from 'command-line-args';
 
 //
@@ -16,15 +16,7 @@ marked.use(gfmHeadingId({}));
 // Parse Command Line arguments
 ////////////////////////////////////////////////////////////////
 
-const postMarkdownContentFromPath = (path) => {
-  return fs.readFileSync('./src/pushdown-automata-variants/content.md', 'utf8');
-}
-
-const fileMetadataFromPath = (path) => {
-  return fs.readFileSync('./src/pushdown-automata-variants/metadata.json', 'utf-8');
-}
-
-const outputDirectoryFromPath = (path) => {
+const directoryFromPath = (path) => {
   const stats = fs.statSync(path);
   if (stats.isDirectory()) {
     return resolve(path);
@@ -32,16 +24,40 @@ const outputDirectoryFromPath = (path) => {
   throw new Error('output-directory is not a directory');
 }
 
+// Define the options that can be passed to this script
 const commandLineOptions = [
-  { name: 'post-content-markdown', type: (path) => postMarkdownContentFromPath(path) },
-  { name: 'post-metadata-json', type: (path) => fileMetadataFromPath(path)},
-  { name: 'output-directory', type: (path) => outputDirectoryFromPath(path)},
+  { name: 'input-directory', type: (path) => directoryFromPath(path)},
+  { name: 'output-directory', type: (path) => directoryFromPath(path)},
 ];
-
 const args = commandLineArgs(commandLineOptions);
 
-const contentMarkdown = args['post-content-markdown'];
-const articleMetadata = JSON.parse(args['post-metadata-json']);
+////////////////////////////////////////////////////////////////
+// Extract file paths for content from argument directory paths
+////////////////////////////////////////////////////////////////
+
+//
+// get the post content markdown and post metadata object from the input directory
+//
+
+const inputDirectoryPath = args['input-directory'];
+
+const metaDataFilePath = resolve(inputDirectoryPath, 'metadata.json');
+const contentMarkdownFilePath = resolve(inputDirectoryPath, 'content.md');
+
+if (!fs.statSync(metaDataFilePath).isFile()) {
+  throw new Error('path to metadata in src dir is not a file');
+}
+
+if (!fs.statSync(contentMarkdownFilePath).isFile()) {
+  throw new Error('path to content in src dir is not a file');
+}
+
+const articleMetadata = JSON.parse(fs.readFileSync(metaDataFilePath, 'utf8'));
+const contentMarkdown = fs.readFileSync(contentMarkdownFilePath, 'utf8');
+
+//
+// Construct the path for our outputed html file from the input-directory argument
+//
 const outputHtmlFilePath = resolve(args['output-directory'], articleMetadata['post-filename']);
 
 ////////////////////////////////////////////////////////////////
@@ -161,7 +177,18 @@ if (isArticleWithSubHeaders) {
 // Output our html to the specified location
 ////////////////////////////////////////////////////////////////
 
-const prettyHtmlPostContent = prettify(articleDom.toString());
+// const prettyHtmlPostContent = prettify(articleDom.toString());
+const prettyHtmlPostContent = beautify.html(
+  articleDom.toString(), 
+  {
+    // head and body should be indented within <html />
+    indent_inner_html: true,
+    // no tags should have an extra line between the opening
+    // tag and their children
+    extra_liners: [],
+  }
+);
+// const prettyHtmlPostContent = articleDom.toString();
 
 try {
   fs.writeFileSync(outputHtmlFilePath, prettyHtmlPostContent);
