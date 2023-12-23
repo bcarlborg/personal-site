@@ -26,10 +26,40 @@ const directoryFromPath = (path) => {
 
 // Define the options that can be passed to this script
 const commandLineOptions = [
-  { name: 'input-directory', type: (path) => directoryFromPath(path)},
-  { name: 'output-directory', type: (path) => directoryFromPath(path)},
+  { name: 'input-directory', alias: 'i', type: (path) => directoryFromPath(path)},
+  { name: 'output-directory', alias: 'o', type: (path) => directoryFromPath(path)},
+  { name: 'help', alias: 'h', type: Boolean },
 ];
 const args = commandLineArgs(commandLineOptions);
+
+////////////////////////////////////////////////////////////////
+// Maybe print help text and exit
+////////////////////////////////////////////////////////////////
+const helpMessage = `
+This script will construct an html blog post in the specified directory
+using a blog post written in markdown and additional metadata about the
+post written in JSON
+
+Usage: 
+node build_post.js
+      --input-directory <directory_path>
+      --output-directory <directory_path>
+
+
+Options:
+--input-directory         path to a directory containing at least the following two files
+-i                        content.md -- the markdown of the blog post content
+--output-directory        path to a directory where the final html for the post will be
+-o                        placed
+`;
+
+if (args['help']) {
+  console.log(helpMessage);
+
+  // after printing the help text, we can exit
+  process.exit(0);
+}
+
 
 ////////////////////////////////////////////////////////////////
 // Extract file paths for content from argument directory paths

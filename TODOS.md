@@ -4,17 +4,14 @@ _a very loose list of TODOs that I keep for this project. These TODOs are releva
 Pimary TODOs
 - [ ] contact form
 - [ ] script to build posts
-  - [ ] add a help message to the script
   - [ ] support images and other assets in the directory
-    - [ ] **START HERE** change the interface of the script to have input dir and output dir
     - [ ] for a given post, identify the images in the dom of that post, then copy those images from the
           the input directory to the output directory
     - [ ] normalize the image paths in the output blog post dom.
           I think for this part what I want is to just use the file names in the post markdown, but then
           traverse the dom of the post and change each of the image names to the image path that we will use
           in the final output
-- [ ] script to update rss
-- [ ] script
+    - [ ] update interface to dynamically pass an assets folder
 - [ ] write documentation about the article processing code
 
 small todos
