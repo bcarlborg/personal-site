@@ -7,15 +7,46 @@ This project has a few dependencies for building the sites html from the markdow
 - `npm`: this project uses npm for package managment
 - `python3`: python3 is used to serve the website locally during development
 
-## Deploying the site
-Cloudflare is configured to publish the dist directory every time new content is pushed to that directory in this repository.
-So... to udpate the site, simply push new or updated content to the `/dist` directory on the main branch of this repo.
-
-## Building the site
-TODO -- still in the process of implementing a lightweight build system. I will write more here once the approach is solidified.
-
 ## Serving the site locally
 There is a simple npm script defined in `package.json` that will the http server module from python3 to deploy the site locally.
 Simply run `npm run serve-local` to serve the site at [http://0.0.0.0:8080/](http://0.0.0.0:8080/).
 ```
 
+## Writing a blog post
+To write a blog post, follow these steps:
+- you will need to create a new directory in `/src/blog` for the post you want to create. The name of this directory is irrelevant, but ideally it should be named related to the post
+- Within that directory, you will need two files at a minimum
+  - `contend.md` -- a markdown file containing the content of your post.
+    - note: within your post, do not add an `h1` tag to give your post a title. The title will
+    be added to the final post html based on the fields in `metadata.json`.
+    - if there are any images that you wish to add to your post, those those be added into the same directory
+    as `content.md`.
+  - `metadata.json` -- a json file containing information about the post. See the example below.
+```
+{
+  "title": "Pushdown Automata Variants",
+  "post-filename": "pushdown-automata-variants.html",
+  "assets-file-directory-name": "pushdown-automata-variants",
+  "description": "The personal website of Beau Carlborg",
+  "date-originally-authored": "July 2023",
+  "date-last-updated": "July 2023",
+  "reading-time": "~20 min",
+  "author": "Beau Carlborg"
+}
+```
+
+## Building the site
+Once you have written your blog post in the `/src` directory, you can build the final post html using `/build_scripts/build_post.js`. This is a node script that will take the input post directory as input and output html and assets for the post. For example, suppose you had created a post directory `src/blog/my-cool-post`. You could run the following command to build the post.
+
+```
+node /build_scripts/build_post.js \
+  -i /src/blog/my-cool-post
+  -o /dist/blog
+  -a /dist/assets
+```
+
+if you wish to build all the posts in the `dist/blog` directory and output the html for those posts to `/dist/blog` and `/dist/assets` respectively, you can simply run `/build_scripts/build_all_posts`. This is the simplest way to rebuild the site.
+
+## Deploying the site
+Cloudflare is configured to publish the dist directory every time new content is pushed to that directory in this repository.
+So... to udpate the site, simply push new or updated content to the `/dist` directory on the main branch of this repo.
