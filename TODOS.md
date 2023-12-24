@@ -3,9 +3,10 @@ _a very loose list of TODOs that I keep for this project. These TODOs are releva
 
 Pimary TODOs
 - [ ] contact form
-- [ ] write post for big and little endian
 - [ ] switch from rss to an email?
-- [ ] support codeblocks
+- [ ] rendering engine improvements
+  - [ ] support codeblocks
+  - [ ] nicer block quotes
 
 small todos
 - [ ] investigate if this project should be "type": "module" or not in the package.json
