@@ -200,7 +200,7 @@ const isArticleWithSubHeaders = articleSubHeaders.length > 0;
 if (isArticleWithSubHeaders) {
   articleSubHeaders.forEach((subHeader, index) => {
     const tableOfContentsItem = parse(`
-      <a href="${subHeader.getAttribute('id')}"}>
+      <a href="#${subHeader.getAttribute('id')}"}>
         ${subHeader.textContent}
       </a>
     `);
