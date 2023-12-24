@@ -27,7 +27,8 @@ const directoryFromPath = (path) => {
 // Define the options that can be passed to this script
 const commandLineOptions = [
   { name: 'input-directory', alias: 'i', type: (path) => directoryFromPath(path)},
-  { name: 'output-directory', alias: 'o', type: (path) => directoryFromPath(path)},
+  { name: 'output-html-directory', alias: 'o', type: (path) => directoryFromPath(path)},
+  { name: 'output-asset-directory', alias: 'a', type: (path) => directoryFromPath(path)},
   { name: 'help', alias: 'h', type: Boolean },
 ];
 const args = commandLineArgs(commandLineOptions);
@@ -43,14 +44,17 @@ post written in JSON
 Usage: 
 node build_post.js
       --input-directory <directory_path>
-      --output-directory <directory_path>
+      --output-html-directory <directory_path>
+      --output-asset-directory <directory_path>
 
 
 Options:
---input-directory         path to a directory containing at least the following two files
--i                        content.md -- the markdown of the blog post content
---output-directory        path to a directory where the final html for the post will be
--o                        placed
+--input-directory           path to a directory containing at least the following two files
+-i
+--output-html-directory     path to a directory where the final html for the post will be
+-o                          placed
+--output-asset-directory    path to a directory where the final assets for the post will be
+-a                          placed
 `;
 
 if (args['help']) {
@@ -88,7 +92,17 @@ const contentMarkdown = fs.readFileSync(contentMarkdownFilePath, 'utf8');
 //
 // Construct the path for our outputed html file from the input-directory argument
 //
-const outputHtmlFilePath = resolve(args['output-directory'], articleMetadata['post-filename']);
+const outputHtmlFilePath = resolve(args['output-html-directory'], articleMetadata['post-filename']);
+
+//
+// get our asset directory path
+//
+
+const postOutputAssetDirectoryPath = resolve(args['output-asset-directory'], articleMetadata['assets-file-directory-name']);
+
+if (!fs.existsSync(postOutputAssetDirectoryPath)) {
+  fs.mkdirSync(postOutputAssetDirectoryPath);
+}
 
 ////////////////////////////////////////////////////////////////
 // Create a DOM for out output html file
@@ -202,6 +216,45 @@ if (isArticleWithSubHeaders) {
     }
   });
 }
+
+////////////////////////////////////////////////////////////////
+// Identify any images in our html and copy them to our assets
+// file
+////////////////////////////////////////////////////////////////
+
+
+articleDom.querySelectorAll('img').forEach((imageNode) => {
+  const inputImageSrcPath = imageNode.getAttribute('src');
+
+  //
+  // check that imageNode refers to an actual file in the input directory
+  //
+
+  const inputDirectoryImagePath = resolve(inputDirectoryPath, inputImageSrcPath);
+
+  const inputImageStats = fs.statSync(inputDirectoryImagePath);
+  if (!inputImageStats.isFile()) {
+    throw new Error(`Image in html not found in directory ${inputImageSrcPath}`);
+    process.exit(1);
+  };
+
+  //
+  // copy the input file to the output asset directory
+  //
+
+  const outputAssetsDirectoryImagePath = resolve(postOutputAssetDirectoryPath, inputImageSrcPath);
+
+  fs.copyFile(inputDirectoryImagePath, outputAssetsDirectoryImagePath, (err) => {
+    if (err) throw err;
+    process.exit(1);
+  });
+
+  // update the node in our dom
+
+  const outputImageNodeSrcPath = outputAssetsDirectoryImagePath.split('dist').slice(-1);
+  
+  imageNode.setAttribute('src', outputImageNodeSrcPath);
+});
 
 ////////////////////////////////////////////////////////////////
 // Output our html to the specified location

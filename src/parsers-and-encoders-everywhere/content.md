@@ -49,11 +49,7 @@ for processing the text of your program, while the backend is
 responsible for optimizing your program and outputting instructions
 for the target machine.
 
-<img
-  src="/assets/blog/parsers-and-encoders-everywhere/images/image1.png"
-  alt="compiler phases with distinction highlighting frontend and backend phases"
-  title=""
-/>
+![compiler phases with distinction highlighting frontend and backend phases](image1.png)
 
 Within the compiler frontend, two phases are responsible for
 extracting structure from the input program's text: the lexer and
@@ -65,11 +61,7 @@ input characters together into a series of tokens. The lexer passes
 these tokens to the parser, which builds an abstract syntax tree
 representing the program's structure.
 
-<img
-  src="/assets/blog/parsers-and-encoders-everywhere/images/image2.png"
-  alt="input string being transformed by lexer into token stream, that token stream is then transformed by a parser into a tree"
-  title=""
-/>
+![input string being transformed by lexer into token stream, that token stream is then transformed by a parser into a tree](image2.png)
 
 At the risk of sounding dramatic, I believe that the parser’s task is,
 in its own way, miraculous. The parser extracts a multi-dimensional
@@ -114,11 +106,7 @@ to rule them all.
 Needless to say, I was going to need resources that went into more
 depth.
 
-<img
-  src="/assets/blog/parsers-and-encoders-everywhere/images/image3.png"
-  alt="parser transforming random stream of tokens and input symbols from a number of non english character sets into the phrases 'meaning? structure? semantics? truth? liberation? who knows?'"
-  title=""
-/>
+![parser transforming random stream of tokens and input symbols from a number of non english character sets into the phrases 'meaning? structure? semantics? truth? liberation? who knows?'](image3.png)
 
 Seeking a deeper intuition for parsing, I decided to explore the
 theory that underpins parsers. (This line of exploration turned out to
@@ -136,10 +124,7 @@ felt this theory would be a good place to learn what parsers are all
 about. So I read books, articles, and papers about parsers in this
 theoretical context.
 
-<img
-  src="/assets/blog/parsers-and-encoders-everywhere/images/image4.png"
-  alt="cartoon depiction of a number of books related to parsing theory. Books include 'On Certain Properties of Grammars' by Noam Chompsky, 'On Computable Numbers' by Alan Turing, 'Formal Languages and their Relation to Automaton' by Jeffrey Ulman and John Hopcroft, and 'Syntax in Universal Translation' byt Itiroo Sakai"
-/>
+![cartoon depiction of a number of books related to parsing theory. Books include 'On Certain Properties of Grammars' by Noam Chompsky, 'On Computable Numbers' by Alan Turing, 'Formal Languages and their Relation to Automaton' by Jeffrey Ulman and John Hopcroft, and 'Syntax in Universal Translation' byt Itiroo Sakai](image4.png)
 
 From formal language theory, I was reading about grammar, syntax, and
 semantics, trying to learn how different grammar constructions define
@@ -162,11 +147,7 @@ not grasping the underlying concepts. Perhaps this was a result of the
 alphabet soup of parsing acronyms, or maybe I had just been reading
 about parsers for too long.
 
-<img
-  src="/assets/blog/parsers-and-encoders-everywhere/images/image5.png"
-  alt="a bowl of soup, but the soup has the following acronyms floating in it: CFG, LR(K), CYK, PDA, SALR, PDA, LALR, LL(K), PEG, BNF "
-  title=""
-/>
+![a bowl of soup, but the soup has the following acronyms floating in it: CFG, LR(K), CYK, PDA, SALR, PDA, LALR, LL(K), PEG, BNF](image5.png)
 
 None of the resources I worked through gave me the clear understanding
 I was looking for. I haven't had that “ah-ha” moment where the
@@ -205,11 +186,7 @@ parsing, on some level, was incorporated into most programs I use.
   bytes.**
 >
 
-<img
-  src="/assets/blog/parsers-and-encoders-everywhere/images/image6.png"
-  alt="depiction of multiple data data structure like a nested list, a dictionary, a tree and a graph being encoded to and parsed from strings"
-  title=""
-/>
+![depiction of multiple data data structure like a nested list, a dictionary, a tree and a graph being encoded to and parsed from strings](image6.png)
 
 This definition is only a slight rephrasing of other common
 definitions for parsers. Still, something about this particular
@@ -235,11 +212,7 @@ been said that
 >. In many ways, all software creates, modifies, or exports structured
 data based on program inputs and external events.
 
-<img
-  src="/assets/blog/parsers-and-encoders-everywhere/images/image7.png"
-  alt="Image depicting a tree being updated in response to multiple user events"
-  title=""
-/>
+![Image depicting a tree being updated in response to multiple user events](image7.png)
 
 Now let’s turn to the second part of the definition:
 
@@ -291,11 +264,7 @@ receive will need to be strings or arrays of bytes. Because of this,
 the **programs will need to leverage an encoder and parser in order to
 convert the structured data to and from strings.**
 
-<img
-  src="/assets/blog/parsers-and-encoders-everywhere/images/image8.png"
-  alt="depiction of Program A using an encoder to send a data structure to program B through an operating system interface. Program B uses a parser to read that data"
-  title=""
-/>
+![depiction of Program A using an encoder to send a data structure to program B through an operating system interface. Program B uses a parser to read that data](image8.png)
 
 Let's consider a similar example: two programs running on separate
 machines that want to communicate. The operating system provides
@@ -304,11 +273,8 @@ interfaces for programs to do this -- likely some version of sockets
 the format of a string or array of bytes. **So, yet again, the programs
 will need encoders and parsers.**
 
-<img
-  src="/assets/blog/parsers-and-encoders-everywhere/images/image9.png"
-  alt="depiction of Program A using an encoder to send a data structure to program B through the internet. Program B uses a parser to read that data"
-  title=""
-/>
+
+![depiction of Program A using an encoder to send a data structure to program B through the internet. Program B uses a parser to read that data](image9.png)
 
 Now let's consider two programs that wish to communicate some
 information but are not running simultaneously. The sending program
@@ -317,10 +283,8 @@ receiving program can open it later. Files are simply long arrays of
 bytes stored in a device that gives them persistence, so again,
 parsers and encoders are necessary.
 
-<img
-  src="/assets/blog/parsers-and-encoders-everywhere/images/image10.png"
-  alt="depiction of Program A using an encoder to send a data structure to program B through a file. Program B uses a parser to read that data"
-/>
+
+![depiction of Program A using an encoder to send a data structure to program B through a file. Program B uses a parser to read that data](image10.png)
 
 In most situations where two programs must communicate, we will see
 parsers and encoders at the edges of our programs' functionality.
@@ -347,10 +311,7 @@ concept about what you want the program to do and
 will take that string and **parse**  it in order to decide
 what to do!
 
-<img
-  src="/assets/blog/parsers-and-encoders-everywhere/images/image11.png"
-  alt="depiction of a human manually encoding information into a file that a program then extracts using a parser"
-/>
+![depiction of a human manually encoding information into a file that a program then extracts using a parser](image11.png)
 
 We can also consider the inverse arrangement with a program
 communicating with a person using strings. This may seem strange at
@@ -360,10 +321,7 @@ log files or provide stack traces are doing. Those programs
 a string in a format that a person can quickly
 **parse** and understand.
 
-<img
-  src="/assets/blog/parsers-and-encoders-everywhere/images/image12.png"
-  alt="depiction of a program encoding information into a file that a human then manually parses"
-/>
+![depiction of a program encoding information into a file that a human then manually parses](image12.png)
 
 (Dear reader, as it turns out, you and I were the ones parsing and
 encoding all along 💛)
@@ -435,10 +393,7 @@ in any way they please. But by using JSON, neither program needs to
 concern itself with the other program's internal representation of the
 dictionary.
 
-<img
-  src="/assets/blog/parsers-and-encoders-everywhere/images/image13.png"
-  alt="depiction of program A using JSON.encode to transmit data to program B"
-/>
+![depiction of program A using JSON.encode to transmit data to program B](image13.png)
 
 As mentioned above, JSON is not the only option for a data
 serialization format. There are many others, each with its own pros
@@ -456,10 +411,7 @@ serialize and deserialize interchangeably with encode and parse. I am
 doing this to add some variety to my word choice. I am not making any
 significant distinction between the two.)
 
-<img
-  src="/assets/blog/parsers-and-encoders-everywhere/images/image14.png"
-  alt="depiction of using the words encode, serialize and marshal interchangeably and also showing parse, deserialize, and unmarshal used interchangeably"
-/>
+![depiction of using the words encode, serialize and marshal interchangeably and also showing parse, deserialize, and unmarshal used interchangeably](image14.png)
 
 Beyond the surface-level difference in jargon, there are more
 substantial differences worth discussing between the different
@@ -500,10 +452,7 @@ complex encoding than you may at first realize (see:
   >the YAML document from hell</a
 >).
 
-<img
-  src="/assets/blog/parsers-and-encoders-everywhere/images/image15.png"
-  alt="depiction of the same type of data structure represented in XML, JSON, and YAML"
-/>
+![depiction of the same type of data structure represented in XML, JSON, and YAML](image15.png)
 
 Other formats like protobufs and flatpack serialize data structures
 directly into a binary format. This makes it nearly impossible for a
@@ -520,10 +469,7 @@ essential. It is not uncommon to see these formats used in
 interactions between high throughput micro-services or processes
 running on the same machine that communicate heavily.
 
-<img
-  src="/assets/blog/parsers-and-encoders-everywhere/images/image16.png"
-  alt="depiction of the same type of data structure represented in XML, JSON, and YAML"
-/>
+![depiction of the same type of data structure represented in XML, JSON, and YAML](image16.png)
 
 Opinions can get heated about the pros and cons of each of these
 formats. Searching "Everything wrong with $data_serialization_format"
@@ -577,10 +523,7 @@ images, the layers, and the effects that compose the project. When we
 write that data out to a .psd file, we will use a .psd specific
 encoder, and when we read that data back, we will use a .psd parser.
 
-<img
-  src="/assets/blog/parsers-and-encoders-everywhere/images/image17.png"
-  alt="depiction of the same type of data structure represented in XML, JSON, and YAML"
-/>
+![depiction of the same type of data structure represented in XML, JSON, and YAML](image17.png)
 
 Now let’s consider another example.
 
