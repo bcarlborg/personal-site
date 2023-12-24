@@ -4,6 +4,8 @@ _a very loose list of TODOs that I keep for this project. These TODOs are releva
 Pimary TODOs
 - [ ] contact form
 - [ ] write documentation about the article processing code
+- [ ] write post for big and little endian
+- [ ] switch from rss to an email?
 
 small todos
 - [ ] investigate if this project should be "type": "module" or not in the package.json
