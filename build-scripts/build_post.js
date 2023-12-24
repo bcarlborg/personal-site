@@ -100,10 +100,6 @@ const outputHtmlFilePath = resolve(args['output-html-directory'], articleMetadat
 
 const postOutputAssetDirectoryPath = resolve(args['output-asset-directory'], articleMetadata['assets-file-directory-name']);
 
-if (!fs.existsSync(postOutputAssetDirectoryPath)) {
-  fs.mkdirSync(postOutputAssetDirectoryPath);
-}
-
 ////////////////////////////////////////////////////////////////
 // Create a DOM for out output html file
 ////////////////////////////////////////////////////////////////
@@ -222,8 +218,13 @@ if (isArticleWithSubHeaders) {
 // file
 ////////////////////////////////////////////////////////////////
 
+const imageNodes = articleDom.querySelectorAll('img');
 
-articleDom.querySelectorAll('img').forEach((imageNode) => {
+if (imageNodes.length > 0 && !fs.existsSync(postOutputAssetDirectoryPath)) {
+  fs.mkdirSync(postOutputAssetDirectoryPath);
+}
+
+imageNodes.forEach((imageNode) => {
   const inputImageSrcPath = imageNode.getAttribute('src');
 
   //
