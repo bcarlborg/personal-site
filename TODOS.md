@@ -3,8 +3,6 @@ _a very loose list of TODOs that I keep for this project. These TODOs are releva
 
 Pimary TODOs
 - [ ] contact form
-- [ ] script to build posts
-  - [ ] update the table of contents links to work correctly
 - [ ] write documentation about the article processing code
 
 small todos
