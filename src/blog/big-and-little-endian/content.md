@@ -1,8 +1,8 @@
-These are two different approaches to byte (or bit) ordering. Byte (or bit) ordering specifies how you represent multi-byte numbers within a sequence of discrete bytes (or bits). This is a simple concept that I always get twisted up in my head.
+Big Endian and Little Endian are phrases used to describe two approaches for laying out data in an ordered list of bytes. Despite using these terms over and over for years, I still manage to get these confused in my head. I can never remember which is which.
 
 My primary goal for this post is self-serving -- I hope that by writing this, I will finally solidify this concept and avoid all future confusion.
 
-## Ordered Byte (or bit) Sequences
+## Ordered Byte (or Bit) Sequences
 Most often, with computers, the base hardware you are dealing with is an **ordered sequence of bits or bytes**. If you are dealing with memory or storage, you have access to a list of memory addresses that each can hold a byte. When dealing with memory, the order of the bytes corresponds with the memory addresses of each byte of memory. If you are dealing with a network interface, you will have some stream of bytes or bits where the order of the bytes is determined by either the order in which the data arrives or by some explicit count associated with each byte.
 
 ## Multi-Byte Data
@@ -11,7 +11,7 @@ Suppose we have a 32-bit number, and we wish to store that number in memory. The
 ![An image showing encoding a 32 bit number using bit and little endian ordering](image1.png)
 
 
-## Wtf does endian mean anyways
+## Wtf Does Endian Mean Anyways
 I think the root of my confusion around these two names is the word "endian". What end does it refer to? and what does it mean for an endian to be big or little? 🥸
 
 Where do these terms come from anyway? The [wikipedia article](https://en.wikipedia.org/wiki/Endianness) for endianness tells us:
@@ -29,7 +29,7 @@ I can acknowledge that this is funny, but I wonder how much time and energy has 
 
 ![An image showing to endian eggs oriented in the big and little endian fassion](image2.png)
 
-## How I will keep these straight
+## How I Will Keep These Straight
 To avoid confusing myself and others, I will try to avoid using the words "big and little endian” and instead use "least and most significand byte first" to describe byte ordering for any data I need to represent.
 
 After writing this, I can confidently say that I am a bit less confused about these two terms. Hopefully you are too 🤗
