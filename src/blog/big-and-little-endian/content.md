@@ -1,6 +1,6 @@
-Big Endian and Little Endian are phrases used to describe two approaches for laying out data in an ordered list of bytes. Despite using these terms over and over for years, I still manage to get these confused.
+Big Endian and Little Endian are phrases used to describe two approaches for laying out data in an ordered list of bytes. You may not come accross these terms working at a high level of abstration like web development, but if you do any work with a low level language (like C, Rust or Nim), attempt implementing a network protocol or interfacing directly with computer hardware then you might have come across these terms. Despite the fact that I have looked up the meaning of these terms over and over for years, I still manage to get these two confused.
 
-My primary goal for this post is self-serving -- I hope that by writing this, I will finally solidify this concept and avoid all future confusion.
+So, my primary goal for this post is self-serving -- I hope that by writing this, I will finally be able to remember which byte ordering big endian refers to and which little endian refers to.
 
 ## Ordered Byte (or Bit) Sequences
 Most often, with computers, the base hardware you are dealing with is an **ordered sequence of bits or bytes**. If you are dealing with memory or storage, you have access to a list of memory addresses that each can hold a byte and the order of the bytes corresponds with the memory addresses. If you are dealing with a network interface, you will have some stream of bytes or bits where the order of the bytes is determined by either the order in which the data arrives or by some explicit count associated with each byte.
@@ -11,27 +11,20 @@ Suppose we have a 32-bit number, and we wish to store that number in memory. The
 ![An image showing encoding a 32 bit number using bit and little endian ordering](image1.png)
 
 
-## Wtf Does Endian Mean Anyways
-I think the root of my confusion around these two names is the word "endian". What end does it refer to? and what does it mean for an endian to be big or little? 🥸
+## What does Endian Mean Anyway
+I think the root of my confusion around these two names is the word "endian". What end does it refer to? Does "endian" refer to teh start or end of the data or the data destination. The definition of "endian" in this context has a somewhat surprising origin.
 
-Where do these terms come from anyway? The [wikipedia article](https://en.wikipedia.org/wiki/Endianness) for endianness tells us:
+The [wikipedia article](https://en.wikipedia.org/wiki/Endianness) for endianness tells us:
 
-> Endianness is primarily expressed as big-endian (BE) or little-endian (LE), terms introduced by Danny Cohen into computer science for data ordering in an Internet Experiment Note published in 1980. The adjective endian has its origin in the writings of 18th century Anglo-Irish writer Jonathan Swift. In the 1726 novel Gulliver's Travels, he portrays the conflict between sects of Lilliputians divided into those breaking the shell of a boiled egg from the big end or from the little end.
+> Endianness is primarily expressed as big-endian (BE) or little-endian (LE), terms introduced by Danny Cohen into computer science for data ordering in an Internet Experiment Note published in 1980.
 
-Futher reading on a prof-core asthetic [website](https://www.ling.upenn.edu/courses/Spring_2003/ling538/Lecnotes/ADfn1.htm) from UPenn tells us
+Futher reading from a UPenn [website](https://www.ling.upenn.edu/courses/Spring_2003/ling538/Lecnotes/ADfn1.htm) tells us:
 
-> The terms \[...\] were introduced by Danny Cohen in 1980 in Internet Engineering Note 137, a memorandum entitled "On Holy Wars and a Plea for Peace", subsequently published in print form in IEEE Computer 14(10).48-57 (1981). He borrowed them from Jonathan Swift, who in Gulliver's Travels (1726) used them to describe the opposing positions of two factions in the nation of Lilliput. The Big-Endians, who broke their boiled eggs at the big end, rebelled against the king, who demanded that his subjects break their eggs at the little end.
-
-Engineering note 137 can be read [here](https://web.archive.org/web/20220414034332/http://www.networksorcery.com/enp/ien/ien137.txt).
-
-I can acknowledge that this is funny, but I wonder how much time and energy has been wasted disentangling these two names 🌝.
-
+> Danny Cohen \[...\] borrowed \[the terms\] from Jonathan Swift, who in Gulliver's Travels (1726) used them to describe the opposing positions of two factions in the nation of Lilliput. The Big-Endians, who broke their boiled eggs at the big end, rebelled against the king, who demanded that his subjects break their eggs at the little end.
 
 ![An image showing to endian eggs oriented in the big and little endian fassion](image2.png)
 
+I can acknowledge that the origin of these terms is funny, but I wonder how much time and energy has been wasted disentangling these two names.
+
 ## How I Will Keep These Straight
-To avoid confusing myself and others, I will try to stop using the "big and little-endian" naming 🔪 and instead use "least and most significand byte first" to describe byte ordering for any data I need to represent 💫.
-
-I strongly believe that that by avoiding the "endian" naming I can eliminate all of my confusion around the topic.
-
-After writing this, I think that I am a bit less confused about these two terms. Hopefully you are too 🤗.
+Moving forward, I will try to avoid using the "big and little-endian" naming and instead use "least and most significand byte first" to describe byte ordering for any data I need to represent. My hope is that this these terms will keep the concepts clearer in my mind and writing moving forward.
