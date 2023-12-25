@@ -43,6 +43,7 @@ article img {
 article #article-contents {
     padding: 1em;
     background-color: #eee;
+    margin-bottom: 2em;
 }
 
 article #article-contents a {

@@ -35,17 +35,14 @@ To write a blog post, follow these steps:
 }
 ```
 
-## Building the site
-Once you have written your blog post in the `/src` directory, you can build the final post html using `/build_scripts/build_post.js`. This is a node script that will take the input post directory as input and output html and assets for the post. For example, suppose you had created a post directory `src/blog/my-cool-post`. You could run the following command to build the post.
+## Building the blog posts
+Once you have written your blog post in the `/src` directory, you can build the final post html using `/build_scripts/build_all_posts`. This is a script that will build every post in `/src/bog` and output the fina html and assets into `/src`.
 
-```
-node /build_scripts/build_post.js \
-  -i /src/blog/my-cool-post
-  -o /dist/blog
-  -a /dist/assets
-```
+## Building the home page
+The home page can be reconstructed to include links to all posts in `/src/blog` at any time by running `/buid_scripts/build_index`
 
-if you wish to build all the posts in the `dist/blog` directory and output the html for those posts to `/dist/blog` and `/dist/assets` respectively, you can simply run `/build_scripts/build_all_posts`. This is the simplest way to rebuild the site.
+## Building the entire site
+To rebuild the entire site (blog posts and the home page), run `/buid_scripts/build_entire_site`.
 
 ## Deploying the site
 Cloudflare is configured to publish the dist directory every time new content is pushed to that directory in this repository.
