@@ -13,8 +13,5 @@ eval "${ABSOLUTE_SCRIPT_DIR}/build_all_posts"
 SRC_BLOG_DIR="${ABSOLUTE_SCRIPT_DIR}/../src/blog"
 DST_DIR="${ABSOLUTE_SCRIPT_DIR}/../dist"
 
-echo $SRC_BLOG_DIR
-echo $DST_DIR
-
 # build the site index
 eval "node ${ABSOLUTE_SCRIPT_DIR}/build_index.js -b ${SRC_BLOG_DIR} -o ${DST_DIR}"

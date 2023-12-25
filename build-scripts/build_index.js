@@ -154,10 +154,14 @@ orderedBlogPostsMetaData.forEach(blogPostMetaData => {
     args['output-html-directory'], 'blog', blogPostMetaData['post-filename']
   );
 
+  const relativeBlogPostPath = blogPostPath.split('dist').slice(-1);
+
+  console.log('bcarlborg', relativeBlogPostPath);
+
   const listItemHtml = `
     <li>
       ${blogPostMetaData['date-originally-authored']} -
-      <a href="${blogPostPath}">
+      <a href="${relativeBlogPostPath}">
         ${blogPostMetaData['title']}
       </a>
       - ${blogPostMetaData['reading-time']} minute read

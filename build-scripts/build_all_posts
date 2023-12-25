@@ -13,18 +13,6 @@ BUILD_POST_SCRIPT="${ABSOLUTE_SCRIPT_DIR}/build_post.js"
 # also use that to get the absolute path of our src blogs
 SRC_DIR="${ABSOLUTE_SCRIPT_DIR}/../src/blog"
 
-# build_post() {
-#   echo "building ${1}"
-#   node "${BUILD_POST_SCRIPT}" \
-#     -i blogPostDir \
-#     -o dist/blog \
-#     -a dist/assets/blog
-# }
-
-# export -f build_post
-
-# find ../src -type d -exec bash -c 'build_post "$0"' {} \;
-
 for BLOG_POST_DIR in "$SRC_DIR"/*; do
   echo "building ${BLOG_POST_DIR}"
   node "${BUILD_POST_SCRIPT}" \
