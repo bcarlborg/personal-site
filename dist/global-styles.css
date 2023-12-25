@@ -48,3 +48,10 @@ article #article-contents {
 article #article-contents a {
     margin-left: 1em;
 }
+
+article blockquote {
+    color: gray;
+    border-left: 3px solid #ccc;
+    margin: .75em 0;
+    padding: 0.1em 1em;
+}
