@@ -1,12 +1,12 @@
-Big Endian and Little Endian are phrases used to describe two approaches for laying out data in an ordered list of bytes. Despite using these terms over and over for years, I still manage to get these confused in my head. I can never remember which is which.
+Big Endian and Little Endian are phrases used to describe two approaches for laying out data in an ordered list of bytes. Despite using these terms over and over for years, I still manage to get these confused.
 
 My primary goal for this post is self-serving -- I hope that by writing this, I will finally solidify this concept and avoid all future confusion.
 
 ## Ordered Byte (or Bit) Sequences
-Most often, with computers, the base hardware you are dealing with is an **ordered sequence of bits or bytes**. If you are dealing with memory or storage, you have access to a list of memory addresses that each can hold a byte. When dealing with memory, the order of the bytes corresponds with the memory addresses of each byte of memory. If you are dealing with a network interface, you will have some stream of bytes or bits where the order of the bytes is determined by either the order in which the data arrives or by some explicit count associated with each byte.
+Most often, with computers, the base hardware you are dealing with is an **ordered sequence of bits or bytes**. If you are dealing with memory or storage, you have access to a list of memory addresses that each can hold a byte and the order of the bytes corresponds with the memory addresses. If you are dealing with a network interface, you will have some stream of bytes or bits where the order of the bytes is determined by either the order in which the data arrives or by some explicit count associated with each byte.
 
 ## Multi-Byte Data
-Suppose we have a 32-bit number, and we wish to store that number in memory. There are two ways we could put this number into memory. We could put the most significant byte of our data into our first-byte location or the least significant byte into the first location. Big and little-endian are names to describe these two approaches to laying out your data. Big-endian means you put the most significant byte of your data first in your sequence of bytes, and little-endian means you put your least significant bytes first.
+Suppose we have a 32-bit number, and we wish to store that number in memory. There are two ways we could put this number into memory. We could (1) put the most significant byte of our data into our first-byte location or (2) put the least significant byte into the first byte location. Big and little-endian are names to describe these two approaches to laying out your data. Big-endian means you put the most significant byte of your data first in your sequence of bytes, and little-endian means you put your least significant bytes first.
 
 ![An image showing encoding a 32 bit number using bit and little endian ordering](image1.png)
 
@@ -30,6 +30,8 @@ I can acknowledge that this is funny, but I wonder how much time and energy has 
 ![An image showing to endian eggs oriented in the big and little endian fassion](image2.png)
 
 ## How I Will Keep These Straight
-To avoid confusing myself and others, I will try to avoid using the words "big and little endian” and instead use "least and most significand byte first" to describe byte ordering for any data I need to represent.
+To avoid confusing myself and others, I will try to stop using the "big and little-endian" naming 🔪 and instead use "least and most significand byte first" to describe byte ordering for any data I need to represent 💫.
 
-After writing this, I can confidently say that I am a bit less confused about these two terms. Hopefully you are too 🤗
+I strongly believe that that by avoiding the "endian" naming I can eliminate all of my confusion around the topic.
+
+After writing this, I think that I am a bit less confused about these two terms. Hopefully you are too 🤗.
