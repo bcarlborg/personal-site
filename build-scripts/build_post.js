@@ -55,6 +55,8 @@ Options:
 -o                          placed
 --output-asset-directory    path to a directory where the final assets for the post will be
 -a                          placed
+--help                      print this help message
+-h
 `;
 
 if (args['help']) {
@@ -111,49 +113,51 @@ const postOutputAssetDirectoryPath = resolve(args['output-asset-directory'], art
 //
 
 const articleSkeletonHtml = `
-  <html>
-    <head>
-      <link rel="stylesheet" type="text/css" href="/global-styles.css" />
-      <link
-        rel="icon"
-        type="image/png"
-        sizes="32x32"
-        href="/assets/favicon-woo-guy-32-32.png"
-      />
-      <link
-        rel="icon"
-        type="image/png"
-        sizes="96x96"
-        href="/assets/favicon-woo-guy-96-96.png"
-      />
-      <link
-        rel="icon"
-        type="image/png"
-        sizes="180x180"
-        href="/assets/favicon-woo-guy-180-180.png"
-      />
-      <meta charset="utf-8" />
-      <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    </head>
-    <body>
-      <header>
-        <a href="/index.html">⏎ back home</a>
-      </header>
-      <main>
-        <article>
-          <h1 id="article-title"></h1>
-          <p>
-            <i id="article-metadata"></i>
-          </p>
-          <div id ="article-contents">
-            Article Contents:
-            <br />
-          </div> 
-        </article>
-      </main>
-    </body>
-  </html>
+<!DOCTYPE html>
+<html>
+  <head>
+    <link rel="stylesheet" type="text/css" href="/global-styles.css" />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="32x32"
+      href="/assets/favicon-woo-guy-32-32.png"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="96x96"
+      href="/assets/favicon-woo-guy-96-96.png"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="180x180"
+      href="/assets/favicon-woo-guy-180-180.png"
+    />
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  </head>
+  <body>
+    <header>
+      <a href="/index.html">⏎ back home</a>
+    </header>
+    <main>
+      <article>
+        <h1 id="article-title"></h1>
+        <p>
+          <i id="article-metadata"></i>
+        </p>
+        <div id ="article-contents">
+          Article Contents:
+          <br />
+        </div> 
+      </article>
+    </main>
+  </body>
+</html>
 `;
+
 const articleSkeletonDom = parse(articleSkeletonHtml);
 
 //
@@ -261,7 +265,6 @@ imageNodes.forEach((imageNode) => {
 // Output our html to the specified location
 ////////////////////////////////////////////////////////////////
 
-// const prettyHtmlPostContent = prettify(articleDom.toString());
 const prettyHtmlPostContent = beautify.html(
   articleDom.toString(), 
   {
@@ -272,7 +275,6 @@ const prettyHtmlPostContent = beautify.html(
     extra_liners: [],
   }
 );
-// const prettyHtmlPostContent = articleDom.toString();
 
 try {
   fs.writeFileSync(outputHtmlFilePath, prettyHtmlPostContent);

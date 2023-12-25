@@ -3,8 +3,9 @@
   "post-filename": "parsers-and-encoders-everywhere.html",
   "assets-file-directory-name": "parsers-and-encoders-everywhere",
   "description": "The personal website of Beau Carlborg",
-  "date-originally-authored": "June 2023",
-  "date-last-updated": "June 2023",
+  "date-originally-authored": "2023 June",
+  "post-order": 1,
+  "date-last-updated": "2023 June",
   "reading-time": "~30 min",
   "author": "Beau Carlborg"
 }

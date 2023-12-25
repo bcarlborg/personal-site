@@ -3,8 +3,9 @@
   "post-filename": "pushdown-automata-variants.html",
   "assets-file-directory-name": "pushdown-automata-variants",
   "description": "The personal website of Beau Carlborg",
-  "date-originally-authored": "July 2023",
-  "date-last-updated": "July 2023",
+  "date-originally-authored": "2023 July",
+  "post-order": 2,
+  "date-last-updated": "2023 July",
   "reading-time": "~20 min",
   "author": "Beau Carlborg"
 }
