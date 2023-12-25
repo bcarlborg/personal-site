@@ -20,3 +20,4 @@ small todos
 - [ ] move all post building configuration into the metadata files
       - move the dst directories into the metadata files
       - move the dist asset directories into the metadata files
+- [ ] clean up css variables
