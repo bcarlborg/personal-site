@@ -156,8 +156,6 @@ orderedBlogPostsMetaData.forEach(blogPostMetaData => {
 
   const relativeBlogPostPath = blogPostPath.split('dist').slice(-1);
 
-  console.log('bcarlborg', relativeBlogPostPath);
-
   const listItemHtml = `
     <li>
       ${blogPostMetaData['date-originally-authored']} -

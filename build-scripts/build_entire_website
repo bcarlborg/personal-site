@@ -14,4 +14,6 @@ SRC_BLOG_DIR="${ABSOLUTE_SCRIPT_DIR}/../src/blog"
 DST_DIR="${ABSOLUTE_SCRIPT_DIR}/../dist"
 
 # build the site index
+
+echo "building index.html"
 eval "node ${ABSOLUTE_SCRIPT_DIR}/build_index.js -b ${SRC_BLOG_DIR} -o ${DST_DIR}"

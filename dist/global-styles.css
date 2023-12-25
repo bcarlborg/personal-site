@@ -39,3 +39,12 @@ footer {
 article img {
     width: 100%;
 }
+
+article #article-contents {
+    padding: 1em;
+    background-color: #dadada;
+}
+
+article #article-contents a {
+    margin-left: 1em;
+}

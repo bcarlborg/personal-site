@@ -5,6 +5,7 @@ Pimary TODOs
 - [ ] contact form
 - [ ] switch from rss to an email?
 - [ ] rendering engine improvements
+  - [ ] add a background to the table of contents
   - [ ] support codeblocks
   - [ ] nicer block quotes
 - [ ] extend documentation for the build index and build all posts scripts

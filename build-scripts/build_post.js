@@ -149,7 +149,7 @@ const articleSkeletonHtml = `
           <i id="article-metadata"></i>
         </p>
         <div id ="article-contents">
-          Article Contents:
+          <strong>Article Contents:</strong>
           <br />
         </div> 
       </article>
