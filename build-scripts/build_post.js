@@ -145,10 +145,10 @@ const articleSkeletonHtml = `
     <main>
       <article>
         <h1 id="article-title"></h1>
-        <p>
-          <i id="article-metadata"></i>
-        </p>
         <div id ="article-contents">
+          <i id="article-metadata"></i>
+          <br />
+          <br />
           <strong>Article Contents:</strong>
           <br />
         </div> 
