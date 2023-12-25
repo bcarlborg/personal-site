@@ -1,3 +1,4 @@
+<!DOCTYPE html>
 <html>
     <head>
         <link rel="stylesheet" type="text/css" href="/global-styles.css">
@@ -18,7 +19,7 @@
             <article>
                 <h1 id="article-title">Big and Little Endian</h1>
                 <p>
-                    <i id="article-metadata">Originally Authored: December 2023 | Last Updated: December 2023 | Reading time: ~5 min | Author: Beau Carlborg</i>
+                    <i id="article-metadata">Originally Authored: 2023 December | Last Updated: 2023 December | Reading time: ~5 min | Author: Beau Carlborg</i>
                 </p>
                 <div id="article-contents">
                     Article Contents:
@@ -40,12 +41,12 @@
                         How I Will Keep These Straight
                     </a>
                 </div>
-                <p>Big Endian and Little Endian are phrases used to describe two approaches for laying out data in an ordered list of bytes. Despite using these terms over and over for years, I still manage to get these confused in my head. I can never remember which is which.</p>
+                <p>Big Endian and Little Endian are phrases used to describe two approaches for laying out data in an ordered list of bytes. Despite using these terms over and over for years, I still manage to get these confused.</p>
                 <p>My primary goal for this post is self-serving -- I hope that by writing this, I will finally solidify this concept and avoid all future confusion.</p>
                 <h2 id="ordered-byte-or-bit-sequences">Ordered Byte (or Bit) Sequences</h2>
-                <p>Most often, with computers, the base hardware you are dealing with is an <strong>ordered sequence of bits or bytes</strong>. If you are dealing with memory or storage, you have access to a list of memory addresses that each can hold a byte. When dealing with memory, the order of the bytes corresponds with the memory addresses of each byte of memory. If you are dealing with a network interface, you will have some stream of bytes or bits where the order of the bytes is determined by either the order in which the data arrives or by some explicit count associated with each byte.</p>
+                <p>Most often, with computers, the base hardware you are dealing with is an <strong>ordered sequence of bits or bytes</strong>. If you are dealing with memory or storage, you have access to a list of memory addresses that each can hold a byte and the order of the bytes corresponds with the memory addresses. If you are dealing with a network interface, you will have some stream of bytes or bits where the order of the bytes is determined by either the order in which the data arrives or by some explicit count associated with each byte.</p>
                 <h2 id="multi-byte-data">Multi-Byte Data</h2>
-                <p>Suppose we have a 32-bit number, and we wish to store that number in memory. There are two ways we could put this number into memory. We could put the most significant byte of our data into our first-byte location or the least significant byte into the first location. Big and little-endian are names to describe these two approaches to laying out your data. Big-endian means you put the most significant byte of your data first in your sequence of bytes, and little-endian means you put your least significant bytes first.</p>
+                <p>Suppose we have a 32-bit number, and we wish to store that number in memory. There are two ways we could put this number into memory. We could (1) put the most significant byte of our data into our first-byte location or (2) put the least significant byte into the first byte location. Big and little-endian are names to describe these two approaches to laying out your data. Big-endian means you put the most significant byte of your data first in your sequence of bytes, and little-endian means you put your least significant bytes first.</p>
                 <p><img src="/assets/blog/big-and-little-endian/image1.png" alt="An image showing encoding a 32 bit number using bit and little endian ordering"></p>
                 <h2 id="wtf-does-endian-mean-anyways">Wtf Does Endian Mean Anyways</h2>
                 <p>I think the root of my confusion around these two names is the word &quot;endian&quot;. What end does it refer to? and what does it mean for an endian to be big or little? 🥸</p>
@@ -61,8 +62,9 @@
                 <p>I can acknowledge that this is funny, but I wonder how much time and energy has been wasted disentangling these two names 🌝.</p>
                 <p><img src="/assets/blog/big-and-little-endian/image2.png" alt="An image showing to endian eggs oriented in the big and little endian fassion"></p>
                 <h2 id="how-i-will-keep-these-straight">How I Will Keep These Straight</h2>
-                <p>To avoid confusing myself and others, I will try to avoid using the words &quot;big and little endian” and instead use &quot;least and most significand byte first&quot; to describe byte ordering for any data I need to represent.</p>
-                <p>After writing this, I can confidently say that I am a bit less confused about these two terms. Hopefully you are too 🤗</p>
+                <p>To avoid confusing myself and others, I will try to stop using the &quot;big and little-endian&quot; naming 🔪 and instead use &quot;least and most significand byte first&quot; to describe byte ordering for any data I need to represent 💫.</p>
+                <p>I strongly believe that that by avoiding the &quot;endian&quot; naming I can eliminate all of my confusion around the topic.</p>
+                <p>After writing this, I think that I am a bit less confused about these two terms. Hopefully you are too 🤗.</p>
             </article>
         </main>
     </body>
