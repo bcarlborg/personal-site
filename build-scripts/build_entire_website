@@ -1,0 +1,20 @@
+#! /bin/bash
+
+# Get the absolute path to this script directory
+SCRIPT_DIR=$(dirname "${BASH_SOURCE[0]}")
+ABSOLUTE_SCRIPT_DIR=$(realpath "$SCRIPT_DIR")
+
+echo "${ABSOLUTE_SCRIPT_DIR}/build_all_posts"
+
+# build all the posts
+eval "${ABSOLUTE_SCRIPT_DIR}/build_all_posts"
+
+# Get the blog source dir and the index output dir
+SRC_BLOG_DIR="${ABSOLUTE_SCRIPT_DIR}/../src/blog"
+DST_DIR="${ABSOLUTE_SCRIPT_DIR}/../dist"
+
+echo $SRC_BLOG_DIR
+echo $DST_DIR
+
+# build the site index
+eval "node ${ABSOLUTE_SCRIPT_DIR}/build_index.js -b ${SRC_BLOG_DIR} -o ${DST_DIR}"
