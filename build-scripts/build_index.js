@@ -100,7 +100,7 @@ const indexSkeletonHtml = `
 
       <ul>
         <li>🌳 I live in Oakland California.</li>
-        <li>🐙 I am full stack developer at Slack.</li>
+        <li>🐙 I am a full stack developer at Slack.</li>
         <li>
           🌊 I enjoy learning about all levels of the tech stack, from assembly
           up to web technologies.
