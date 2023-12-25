@@ -7,6 +7,7 @@ Pimary TODOs
 - [ ] rendering engine improvements
   - [ ] support codeblocks
   - [ ] nicer block quotes
+- [ ] extend documentation for the build index and build all posts scripts
 
 small todos
 - [ ] investigate if this project should be "type": "module" or not in the package.json
@@ -15,3 +16,6 @@ small todos
 - [ ] figure out how to use node instead of ptyhon3 for the local server
 - [ ] figure out a bettter system for using branches and squash commits etc for the work on this repo
 - [ ] move the build scripts into npm scripts
+- [ ] move all post building configuration into the metadata files
+      - move the dst directories into the metadata files
+      - move the dist asset directories into the metadata files
