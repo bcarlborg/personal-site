@@ -5,7 +5,7 @@ Going into the new year (2024), I'd like to try something new. This year, I am g
 ## Technical Writing Goals
 One of my goals for 2023 was to setup this very site and start writing posts on this site. I am proud to say that I actually did it, but there is a lot that I want to improve and change about my writing process.
 
-In 2023, I chose to write posts about big challenging concepts that I was wresting with. A result of this was that my posts were very long, somewhat obtuse and very difficult to write. While I did enjoy writing these, this year, I want to take a different aproach and focus on writing shorter posts more frequently.
+In 2023, I chose to write posts about big challenging concepts that I was wresting with. This writing approach forced me to solidify difficult concepts I was learning as a I articulated in each post. Unfortunately though, this approach required that I spend a very long time struggling with each piece, ultimately leading to very long and somewhat obtuse writing. 
 
 So, my goal for the year is to write 20 technical pieces (~ 1 post every 2.5 weeks).
 
