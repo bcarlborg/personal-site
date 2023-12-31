@@ -159,7 +159,6 @@ orderedBlogPostsMetaData.forEach(blogPostMetaData => {
       <a href="${relativeBlogPostPath}">
         ${blogPostMetaData['title']}
       </a>
-      - ${blogPostMetaData['reading-time']} minute read
     </li>
   `
 
