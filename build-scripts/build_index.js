@@ -139,7 +139,7 @@ const blogPostsMetadata = blogPostDirectoryPaths.map((blogPostDirectoryPath) => 
 });
 
 const orderedBlogPostsMetaData = blogPostsMetadata.sort(
-  (a, b) => (a['post-order'] - b['post-order'])
+  (a, b) => (b['post-order'] - a['post-order'])
 );
 
 ////////////////////////////////////////////////////////////////
