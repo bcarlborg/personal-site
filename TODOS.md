@@ -3,7 +3,7 @@ _a very loose list of TODOs that I keep for this project. These TODOs are releva
 
 Pimary TODOs
 - [ ] contact form
-- [ ] switch from rss to an email?
+- [ ] either remove or update rss
 - [ ] rendering engine improvements
   - [ ] add a background to the table of contents
   - [ ] support codeblocks
