@@ -111,9 +111,6 @@ const indexSkeletonHtml = `
       <br />
 
       <h2>Writing</h2>
-
-      <p>You can see some of my writing below:</p>
-
       <ul id="blog-posts-list">
       </ul>
     </main>

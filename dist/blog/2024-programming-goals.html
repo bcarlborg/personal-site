@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <link rel="stylesheet" type="text/css" href="/global-styles.css">
+        <link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon-woo-guy-32-32.png">
+        <link rel="icon" type="image/png" sizes="96x96" href="/assets/favicon-woo-guy-96-96.png">
+        <link rel="icon" type="image/png" sizes="180x180" href="/assets/favicon-woo-guy-180-180.png">
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="og:title" content="2024-programming-goals">
+        <meta name="og:description" content="Beau Carlborg's Website">
+        <title>2024-programming-goals</title>
+    </head>
+    <body>
+        <header>
+            <a href="/index.html">⏎ back home</a>
+        </header>
+        <main>
+            <article>
+                <h1 id="article-title">2024-programming-goals</h1>
+                <div id="article-contents">
+                    <i id="article-metadata">Originally Authored: 2023 December | Last Updated: 2023 December | Reading time: ~5 min | Author: Beau Carlborg</i>
+                    <br>
+                    <br>
+                    <strong>Article Contents:</strong>
+                    <br>
+
+                    <a href="#technical-writing-goals" }>
+                        Technical Writing Goals
+                    </a>
+                    <br>
+                    <a href="#programming-goals" }>
+                        Programming Goals
+                    </a>
+                </div>
+                <p>For the past few years, I&#39;ve tried to set some loose intention or goal for what I learn about programming in the year. But the goals had all been quite flimsy -- not very specific and difficult to measure. For example, in 2021, my goal was to &quot;learn more about operating systems&quot;. A noble goal, but not specific enough to be useful. While I did &quot;learn about operating systems&quot; in that year... did I learn as much as I wanted to? what specific information did I learn? Are there any specific projects or achievments I can point to? Hard to say.</p>
+                <p>Going into the new year (2024), I&#39;d like to try something new. This year, I am going to write out my goals and outline what I would like to learn and what I would like to accomplish. I hope that I can create a roadmap for my goals that I can measure my progress against.</p>
+                <h2 id="technical-writing-goals">Technical Writing Goals</h2>
+                <p>One of my goals for 2023 was to setup this very site and start writing posts on this site. I am proud to say that I actually did it, but there is a lot that I want to improve and change about my writing process.</p>
+                <p>In 2023, I chose to write posts about big challenging concepts that I was wresting with. A result of this was that my posts were very long, somewhat obtuse and very difficult to write. While I did enjoy writing these, this year, I want to take a different aproach and focus on writing shorter posts more frequently.</p>
+                <p>So, my goal for the year is to write 20 technical pieces (~ 1 post every 2.5 weeks).</p>
+                <p>My hope is that by forcing myself to write so many more posts, I will learn a process and develop skills that make technical writing easier and more natural.</p>
+                <h2 id="programming-goals">Programming Goals</h2>
+                <p>In highschool, I had an English teacher who began class everyday by telling us: &quot;It is through the specific that we understand the universal.&quot; This year, I am going to pay heed that wisdom and focus my extra-curriculur programming energy on one specific type of file: an <strong>ELF file</strong>.</p>
+                <p>Depending on your background &quot;ELF file&quot; might sound obscure, silly, or just outright made up, but I assure you, they are the cornerstone of almost every program that is built and executed on a linux computer. Almost every executable binary programs on a linux computer (<code>grep</code>, <code>bash</code>, <code>java</code>, <code>gcc</code>, <code>gdb</code>, etc.) is an ELF file. The C standard library is a collection of ELF files. Any of the object or executable files that are created by your compiler on linux are ELF files. They are everywhere.</p>
+                <p>ELF stands for <strong>E</strong>xecutable, <strong>L</strong>inkable, <strong>F</strong>ormat. Whenever you compile a program down to a binary executable that your compuer will run, that binary is encoded as an ELF file. When you compile high level programming language files into object files that are later linked together, those are also object files. Any sort of shared library that is used by multiple programs on your computer is an ELF file. ELF files are primarily used on Linux, but other operating systems like MacOS and Windows have similar file formats (Mach-O and PE respectively). Even though these are distinct from ELF, my understanding is that there is significant overlap in the design and functionality of these various file formats.</p>
+                <p>At this point in time, that is about the extent of my knowledge about these files, but by the end of 2024, I want to:</p>
+                <ul>
+                    <li>have an in-depth understanding of how the the programs I create are represented as object and executable ELF files</li>
+                    <li>be able to confidently explain the differnce between the various types of files that can be encoded as ELF files (executables, object files, shared libraries, etc)</li>
+                    <li>understand process that linker uses to combine multiple Object elf files together into one executbale file</li>
+                    <li>understand the process that the operating system uses to call dynamically linked library (like the C standard library) during program execution</li>
+                </ul>
+                <p>In past years, I have approached learning new concepts by finding books to read and courses to follow, but this year, I want to take a more project oriented approach to my learnig. I&#39;ve come up with 4 projects that I believe will help me learn what I am looking to:</p>
+                <h3 id="project-1-build-a-significant-program-in-x86-64-assembly-language">Project 1: Build a Significant Program in x86-64 Assembly Language.</h3>
+                <p>Assembly programs are one level of abstraction above ELF files. An assembler takes an input program written in assembly language and outputs an ELF file. Assembly programs are the last human readable file format in the typical compilation process before ELF files and most of the content in an assembly program has a 1:1 correspondence with the content in an ELF file. I believe that understanding the ins and outs of assembly programs will help me understand the primitives of programs need to be encoded into ELF files.</p>
+                <p>I would like the program I create to be &quot;significant&quot;. While it is hard to describe precisely what that means, I think I will know it when I see it. The program should be hundreds to thousands of lines of code and the end program should perform some interesting functionality. Currently, I am imagining that this program will be some text based program that can run in the terminal. While I haven&#39;t decided on the specific project yet, I am envisioning either a very simple text editor program or a text based video game.</p>
+                <p>While it is not directly related to ELF files, I am also hoping that this project will give me exposure to some of the other core operating system interfaces like system calls.</p>
+                <h3 id="project-2-build-an-elf-file-viewer">Project 2: Build an Elf File Viewer</h3>
+                <p>Once I have spent some time working at the level of abstaction above ELF files, I would like to dive into the internal representation of programs in ELF files by creating a program to &quot;view&quot; the contents of elf files. This program will take any ELF file as input and dump a human readable representation of the data in the file. The program will behave much like <code>objdump</code>.</p>
+                <p>My hope is that this project will force me to dive into the ELF file spec and learn all of the nitty gritty details about the file layout. I am hoping that by end of the project, I will be intimately familiar with the binary representation of ELF files.</p>
+                <h3 id="project-3-build-an-assembler">Project 3: Build an Assembler</h3>
+                <p>After building a significant program in assembly language, and building a program that dissects the internal representation of an ELF file, I would like to connect the concepts together and build an assembler. The assembler will take assembly files as input and output an ELF file. My hope is that this project will force me to completely round out my understanding of the abstractions that the assembler provides and help me understand all of the ways in which assembly can be transformed into an ELF file.</p>
+                <p>For this project, I would like to recreate the core functionaity that is provided by <code>gas</code> (the GNU assembler). Obviously I will not recreate the entire functionality of the GNU assembler, but I hope that I can identify the core aspects of the program&#39;s behavior and recreate those.</p>
+                <h3 id="project-4-build-a-linker">Project 4: Build a Linker</h3>
+                <p>Finally, I would like to build linker that can combine object files into one executable. In a normal compilation process, each source file is compiled into its own object file, then those object files are all passed onto the linker which combines those object files into one single exectable.</p>
+                <p>While I understand the linker&#39;s job at a high level, the specifics of the linkers job are largely mysterious to me. For this project, I would like to recreate the core functionality of the <code>ld</code> command which is used to link ELF object files together on most Linux machines.</p>
+            </article>
+        </main>
+    </body>
+</html>
