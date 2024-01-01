@@ -2,6 +2,7 @@
 _a very loose list of TODOs that I keep for this project. These TODOs are relevant for code behind the site, not the content of the site itself_
 
 Pimary TODOs
+- [ ] add link buttons next to headers on the posts
 - [ ] have the build script create the `dist`, `dist/blog`, `dist/assets/blog` directories if not present
 - [ ] contact form
 - [ ] either remove or update rss

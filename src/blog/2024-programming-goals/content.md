@@ -1,20 +1,16 @@
-For the past few years, I've set a loose intention or goal for the programming related concepts I want to learn in the new year.
-
-Going into the 2024 I am continuing that tradition, but this year I am making my goals more concrete by writing out this post outlining what I would like to learn and how I plan to learn it. I am viewing this post as a roadmap for my goals that I can measure my progress against.
-
-So, without further adieu, here are my programming related goals for 2024.
+For the past few years, I've set a loose intention or goal for the programming related concepts I want to learn in the new year. In previous years, I mostly didn't put these goals down on paper and never put these goals out in the public. For 2024, I am making my goals more concrete by writing out a post outlining what I would like to learn and how I plan to learn it. 
 
 ## Technical Writing Goals
 One of my goals for 2023 was to setup this very site and publish a few blog posts. I am proud to say that I actually did it, but there is a lot that I want to improve and change about my writing process.
 
-In 2023, I wrote posts about big and challenging concepts I was learning. This writing approach forced me to solidify difficult concepts I was learning as a I articulated them in each post. Unfortunately though, this approach required significant amount of time and energy to create each piece. Writing about concepts at the edge of my understanding, while rewarding, was ultimately too much effort to be sustainable. So, this year, I intend to try a slightly different approach.
+In 2023, I wrote posts about big and challenging concepts I was learning. With this approach to writing, each post required significant amount of time and energy. Writing about concepts at the edge of my understanding, while rewarding, was ultimately too much effort to be sustainable. So, this year, I am setting a goal for techncial writing that will emphasize a different approach.
 
-My goal for the year is to write 20 short to medium length technical posts. This comes out to about 1 post every 2.5 weeks.
+My goal for the year is to write 20 short to medium length technical posts. This comes out to writing one post every 2.5 weeks.
 
 My hope is that by setting a goal to consistently write and publush short pieces at a faster cadence, I will build skills and habits that reduce the overall effort needed to write a technical piece.
 
 ## Programming Goals
-In 2024, programming related goal is to learn all the intricacies of a single file type: the **ELF file**.
+In 2024, my programming related goal is to dive deep into intricacies and uses of a single file type: the **ELF file**.
 
 Depending on your background "ELF file" might sound obscure, silly, or just outright made up. Surprisngly though, this file type is the cornerstone of almost every program that is built and executed on a computer running Linux. 
 
