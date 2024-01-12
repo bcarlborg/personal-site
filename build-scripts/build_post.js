@@ -2,6 +2,7 @@ import fs from 'fs'
 import { resolve } from 'path';
 import { marked } from 'marked';
 import { gfmHeadingId } from "marked-gfm-heading-id";
+import markedCodePreview from 'marked-code-preview'
 import { parse } from 'node-html-parser';
 import beautify from 'js-beautify';
 import commandLineArgs from 'command-line-args';
@@ -11,6 +12,11 @@ import commandLineArgs from 'command-line-args';
 // to our marked instance 
 //
 marked.use(gfmHeadingId({}));
+
+//
+// add code previews to our markdown renderer
+//
+marked.use(markedCodePreview);
 
 ////////////////////////////////////////////////////////////////
 // Parse Command Line arguments

@@ -49,3 +49,15 @@ article #article-contents {
 article #article-contents a {
     margin-left: 1em;
 }
+
+article pre code {
+    display: block;
+    background: none;
+    white-space: pre;
+    background-color: #F7F8FA;
+    -webkit-overflow-scrolling: touch;
+    overflow-x: scroll;
+    max-width: 100%;
+    min-width: 100px;
+    padding: 2em;
+}
