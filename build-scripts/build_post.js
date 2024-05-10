@@ -153,10 +153,6 @@ const articleSkeletonHtml = `
         <h1 id="article-title"></h1>
         <div id ="article-contents">
           <i id="article-metadata"></i>
-          <br />
-          <br />
-          <strong>Article Contents:</strong>
-          <br />
         </div> 
       </article>
     </main>
@@ -208,6 +204,14 @@ const articleSubHeaders = articleDom.querySelectorAll('h2');
 const isArticleWithSubHeaders = articleSubHeaders.length > 0;
 
 if (isArticleWithSubHeaders) {
+  const articleContentsTitle = parse(`
+        <br>
+        <br />
+        <strong>Article Contents:</strong>
+        <br />
+  `);
+  articleDom.querySelector('#article-contents').appendChild(articleContentsTitle);
+
   articleSubHeaders.forEach((subHeader, index) => {
     const tableOfContentsItem = parse(`
       <a href="#${subHeader.getAttribute('id')}"}>
