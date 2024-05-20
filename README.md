@@ -1,5 +1,5 @@
 # My Personal Website
-This is the github repository containing the content and build tools for my personal website -- [www.beau-carlborg.com](www.beau-carlborg.com).
+This is the github repository containing the content and build tools for my personal website -- [www.beau-carlborg.com](https://www.beau-carlborg.com).
 
 ## Structure of this repository
 The code that is served at my domain is contained in the `dist/` directory. The directory is automatically picked up and served by cloudflare.
