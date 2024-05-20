@@ -1,7 +1,7 @@
 {
-  "title": "Building a Snake-like Game in RISC-V Assembly",
-  "post-filename": "building-snake-in-risc-v-assembly.html",
-  "assets-file-directory-name": "building-snake-in-risc-v-assembly",
+  "title": "A Snake-like Game in RISC-V Assembly",
+  "post-filename": "a-snake-like-game-in-risc-v-assembly.html",
+  "assets-file-directory-name": "a-snake-like-game-in-risc-v-assembly",
   "description": "Beau Carlborg's Website",
   "date-originally-authored": "2024 May",
   "post-order": 4,

@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <link rel="stylesheet" type="text/css" href="/global-styles.css">
+        <link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon-woo-guy-32-32.png">
+        <link rel="icon" type="image/png" sizes="96x96" href="/assets/favicon-woo-guy-96-96.png">
+        <link rel="icon" type="image/png" sizes="180x180" href="/assets/favicon-woo-guy-180-180.png">
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="og:title" content="A Snake-like Game in RISC-V Assembly">
+        <meta name="og:description" content="Beau Carlborg's Website">
+        <title>A Snake-like Game in RISC-V Assembly</title>
+    </head>
+    <body>
+        <header>
+            <a href="/index.html">⏎ back home</a>
+        </header>
+        <main>
+            <article>
+                <h1 id="article-title">A Snake-like Game in RISC-V Assembly</h1>
+                <div id="article-contents">
+                    <i id="article-metadata">Originally Authored: 2024 May | Last Updated: 2024 May | Reading time: ~5 min | Author: Beau Carlborg</i>
+                </div>
+                <p><em>This is only a short blurb about the project. I wrote more about the specifics of the implementation on the project&#39;s github <a href="https://github.com/bcarlborg/snake-game-in-riscv-assembly">👉here👈</a></em></p>
+                <p>I built a version of the classic snake game in RISC-V assembly! The program runs on qemu&#39;s emulated RISC-V <a href="https://www.qemu.org/docs/master/system/riscv/virt.html">virt computer platform</a>. The program is written at an embedded level. This means that there is no operating system running to support the program. The game software is responsible for knowing the system&#39;s memory map, communicating directly with devices, managing interrupts, and more!</p>
+                <p>(Some people might reasonably take issue with this definition of &quot;embedded&quot; considering that the virt platform is a system that can only be run in an emulated environment... but these are just the terms we are going to roll with.)</p>
+                <p>I was interested in this project because I wanted to learn more about how software interfaces directly with the computer system it runs on. This project was a great way to dip my toes into this lower-level of software development. I will definitely be taking on similar side projects in the future, this one was a lot of fun!</p>
+                <p><img src="/assets/blog/a-snake-like-game-in-risc-v-assembly/snake-final-demo.gif" alt="snake like game demo"></p>
+            </article>
+        </main>
+    </body>
+</html>
