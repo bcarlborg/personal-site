@@ -100,13 +100,13 @@ const indexSkeletonHtml = `
 
       <ul>
         <li>🌳 I live in Oakland, California.</li>
-        <li>🐙 Previously, I was a full stack developer at Slack.</li>
-        <li>🌱 Currently, I am a full stack developer at Notion.</li>
+        <li>🐙 Previously, I was a full-stack developer at Slack.</li>
+        <li>🌱 Currently, I am a full-stack developer at Notion.</li>
         <li>
-          🌊 I enjoy learning about all levels of the tech stack, from assembly
+          🌊 I enjoy learning about all levels of the tech-stack, from assembly
           up to web technologies.
         </li>
-        <li>️🏔️ I spend my spare time in the outdoors.</li>
+        <li>️🏔️ I like to spend my spare time in the outdoors.</li>
       </ul>
 
       <br />

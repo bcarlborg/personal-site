@@ -16,5 +16,9 @@
       <title>Big and Little Endian</title>
       <link>https://www.beau-carlborg.com/blog/big-and-little-endian.html</link>
     </item>
+    <item>
+      <title>A Snake-like Game in RISC-V Assembly</title>
+      <link>https://www.beau-carlborg.com/blog/a-snake-like-game-in-risc-v-assembly.html</link>
+    </item>
   </channel>
 </rss>
