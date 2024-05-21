@@ -6,7 +6,7 @@
   "type": "module",
   "scripts": {
     "serve-local": "python3 -m http.server -d ./dist 8080",
-    "build-all": "./build-scripts/build_all_posts"
+    "build-site": "./build-scripts/build_all_posts"
   },
   "keywords": [],
   "author": "",

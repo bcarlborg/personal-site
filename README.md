@@ -1,10 +1,9 @@
 # My Personal Website
-This is the github repository containing the content and build tools for my personal website -- [www.beau-carlborg.com](https://www.beau-carlborg.com).
+This is the github repository containing the content and build tools for my personal website at [beau-carlborg.com](https://www.beau-carlborg.com).
 
-## Structure of this repository
-The code that is served at my domain is contained in the `dist/` directory. The directory is automatically picked up and served by cloudflare.
+## Structure of this Repository
+The content for my personal website is kept in the [src/](./src/) directory. This content is mostly written in markdown.
 
-Most of the content on that website is in blog posts. The content for those posts is in the `src/` directory of this
-respository written in markdown. To construct the final HTML that is served on the website, I run scripts contained in the `build_scripts/` directory.
+The HTML, CSS and assets that are served on my domain are kept in the [dist/](./dist/) directory.
 
-More specific information about the repository and the associated scripts can be found in the [DEVELOPER.md](DEVELOPER.md) file.
+The build scripts in [build-scripts/](./build-scripts/) create the content in the [dist/](./dist/) directory from the content in the `src/` directory.

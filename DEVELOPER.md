@@ -31,7 +31,8 @@ To write a blog post, follow these steps:
   "date-originally-authored": "July 2023",
   "date-last-updated": "July 2023",
   "reading-time": "~20 min",
-  "author": "Beau Carlborg"
+  "author": "Beau Carlborg",
+  "type": "writing"
 }
 ```
 
