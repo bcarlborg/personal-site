@@ -3,9 +3,10 @@
   "post-filename": "a-snake-like-game-in-risc-v-assembly.html",
   "assets-file-directory-name": "a-snake-like-game-in-risc-v-assembly",
   "description": "Beau Carlborg's Website",
-  "date-originally-authored": "2024 May",
+  "date-originally-authored": "05 / 2024",
   "post-order": 4,
-  "date-last-updated": "2024 May",
+  "date-last-updated": "05 / 2024",
   "reading-time": "~5 min",
-  "author": "Beau Carlborg"
+  "author": "Beau Carlborg",
+  "type": "project"
 }

@@ -111,7 +111,7 @@ const indexSkeletonHtml = `
 
       <br />
 
-      <h2>Writing</h2>
+      <h2>️Writing ✏️ & Projects 👾</h2>
       <ul id="blog-posts-list">
       </ul>
     </main>
@@ -152,11 +152,14 @@ orderedBlogPostsMetaData.forEach(blogPostMetaData => {
     args['output-html-directory'], 'blog', blogPostMetaData['post-filename']
   );
 
+  const titlePrefix = blogPostMetaData['type'] === 'writing' ? '✏️ ' : '👾 '
+
   const relativeBlogPostPath = blogPostPath.split('dist').slice(-1);
 
   const listItemHtml = `
     <li>
       ${blogPostMetaData['date-originally-authored']} -
+      ${titlePrefix}
       <a href="${relativeBlogPostPath}">
         ${blogPostMetaData['title']}
       </a>
