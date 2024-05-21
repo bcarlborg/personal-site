@@ -192,10 +192,9 @@ articleDom.querySelector('head').appendChild(parse(`<title>${articleMetadata.tit
 
 articleDom.querySelector("#article-title").textContent = articleMetadata.title;
 articleDom.querySelector("#article-metadata").textContent =
-  `Originally Authored: ${articleMetadata["date-originally-authored"]}`
+  `Published: ${articleMetadata["date-originally-authored"]}`
   + ` | Last Updated: ${articleMetadata["date-last-updated"]}`
   + ` | Reading time: ${articleMetadata["reading-time"]}`
-  + ` | Author: ${articleMetadata.author}`
 
 //
 // Create a table of contents from our subheaders
