@@ -22,7 +22,9 @@ To write a blog post, follow these steps:
     - if there are any images that you wish to add to your post, those those be added into the same directory
     as `content.md`.
   - `metadata.json` -- a json file containing information about the post. See the example below.
-```
+
+
+```JSON
 {
   "title": "Pushdown Automata Variants",
   "post-filename": "pushdown-automata-variants.html",
