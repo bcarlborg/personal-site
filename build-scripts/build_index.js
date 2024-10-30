@@ -123,7 +123,7 @@ const indexSkeletonHtml = `
       <p>Send me an email (<a href="mailto:bcarlborg@gmail.com?subject=Hi%20Beau">bcarlborg@gmail.com</a>).</p>
 
       <h2>️Writing & Projects</h2>
-      Follow these posts by adding this site's rss <a href="rss.xml">url</a> to your favorite RSS reader.
+      <p>Follow these posts by adding this site's rss <a href="rss.xml">url</a> to your favorite RSS reader.</p>
       <ul id="blog-posts-list">
       </ul>
     </main>
