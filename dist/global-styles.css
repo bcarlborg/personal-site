@@ -38,17 +38,33 @@ footer {
   width: 100%;
 }
 
+#index-title-container {
+  background: #d2c4ff;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+#index-title-text {
+  margin: 0;
+}
+
+#index-title-image {
+  height: 50px;
+}
+
 article img {
   width: 100%;
 }
 
 article #article-title {
-  background-color: navajowhite;
+  background: #d2c4ff;
+  padding: 5px;
 }
 
 article #article-contents {
   padding: 1em;
-  background-color: blanchedalmond;
+  background-color: pink;
   margin-bottom: 2em;
 }
 
