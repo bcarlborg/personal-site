@@ -109,21 +109,20 @@ const indexSkeletonHtml = `
 
     <main>
       <h2>About me</h2>
-
       <ul>
         <li>🌳 I live in Oakland, California.</li>
-        <li>🌱 Currently, I am a full-stack developer at Notion.</li>
-        <li>🐙 Previously, I was a full-stack developer at Slack.</li>
+        <li>🕴 Currently, I am a full-stack developer at Notion.</li>
         <li>
-          🌊 I enjoy learning about all levels of the tech-stack, from assembly
+          🌎 I enjoy learning about all levels of the tech-stack, from assembly
           up to web technologies.
         </li>
         <li>️🏔️ I like to spend my spare time in the outdoors.</li>
       </ul>
 
-      <br />
+      <h2>Contact Me</h2>
+      <p>Send me an email (<a href="mailto:bcarlborg@gmail.com?subject=Hi%20Beau">bcarlborg@gmail.com</a>).</p>
 
-      <h2>️✏️ Writing & Projects 👾</h2>
+      <h2>️Writing & Projects</h2>
       <ul id="blog-posts-list">
       </ul>
     </main>
@@ -171,7 +170,6 @@ orderedBlogPostsMetaData.forEach((blogPostMetaData) => {
 
   const listItemHtml = `
     <li>
-      ${blogPostMetaData["date-originally-authored"]} -
       ${titlePrefix}
       <a href="${relativeBlogPostPath}">
         ${blogPostMetaData["title"]}

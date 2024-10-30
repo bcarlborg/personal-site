@@ -220,10 +220,9 @@ articleDom
 //
 
 articleDom.querySelector("#article-title").textContent = articleMetadata.title;
-articleDom.querySelector("#article-metadata").textContent =
-  `Published: ${articleMetadata["date-originally-authored"]}` +
-  ` | Last Updated: ${articleMetadata["date-last-updated"]}` +
-  ` | Reading time: ${articleMetadata["reading-time"]}`;
+articleDom.querySelector(
+  "#article-metadata"
+).textContent = `Published: ${articleMetadata["date-originally-authored"]}`;
 
 //
 // Create a table of contents from our subheaders

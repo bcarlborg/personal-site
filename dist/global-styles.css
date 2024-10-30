@@ -12,6 +12,10 @@ a {
   text-decoration: underline;
 }
 
+ul {
+  padding-left: 20px;
+}
+
 body {
   padding: 3ch;
   margin: 0 auto;
