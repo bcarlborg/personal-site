@@ -1,63 +1,69 @@
 :root {
-    --color-main-bg: #F2F1E9;
-    --color-header-bg: #F2B56B;
-    --color-header-text: #591919;
-    --color-default-text: #400D01;
-    --color-article-headings: #BF3C30;
-    --color-anchors-default: #8C2626;
+  --color-main-bg: #f2f1e9;
+  --color-header-bg: #f2b56b;
+  --color-header-text: #591919;
+  --color-default-text: #400d01;
+  --color-article-headings: #bf3c30;
+  --color-anchors-default: #8c2626;
 }
 
 a {
-    color: var(--color-anchors-default);
-    text-decoration: underline;
+  color: var(--color-anchors-default);
+  text-decoration: underline;
 }
 
 body {
-    padding: 3ch;
-    margin: 0 auto;
+  padding: 3ch;
+  margin: 0 auto;
 
-    max-width: 108ch;
+  max-width: 108ch;
 
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  background: mistyrose;
 }
 
 header {
-    width: 100%;
+  width: 100%;
 }
 
 main {
-    width: 100%;
-    flex-grow: 1;
+  width: 100%;
+  flex-grow: 1;
 }
 
 footer {
-    width: 100%;
+  width: 100%;
 }
 
 article img {
-    width: 100%;
+  width: 100%;
+}
+
+article #article-title {
+  background-color: navajowhite;
 }
 
 article #article-contents {
-    padding: 1em;
-    background-color: #eee;
-    margin-bottom: 2em;
+  padding: 1em;
+  background-color: blanchedalmond;
+  margin-bottom: 2em;
 }
 
 article #article-contents a {
-    margin-left: 1em;
+  margin-left: 1em;
 }
 
 article pre code {
-    display: block;
-    background: none;
-    white-space: pre;
-    background-color: #F7F8FA;
-    -webkit-overflow-scrolling: touch;
-    overflow-x: scroll;
-    max-width: 100%;
-    min-width: 100px;
-    padding: 2em;
+  display: block;
+  background: none;
+  white-space: pre;
+  background-color: #f7f8fa;
+  -webkit-overflow-scrolling: touch;
+  overflow-x: scroll;
+  max-width: 100%;
+  min-width: 100px;
+  padding: 2em;
 }

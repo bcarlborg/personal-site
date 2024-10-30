@@ -1,15 +1,15 @@
-import fs from 'fs'
-import { resolve } from 'path';
-import { marked } from 'marked';
+import fs from "fs";
+import { resolve } from "path";
+import { marked } from "marked";
 import { gfmHeadingId } from "marked-gfm-heading-id";
-import markedCodePreview from 'marked-code-preview'
-import { parse } from 'node-html-parser';
-import beautify from 'js-beautify';
-import commandLineArgs from 'command-line-args';
+import markedCodePreview from "marked-code-preview";
+import { parse } from "node-html-parser";
+import beautify from "js-beautify";
+import commandLineArgs from "command-line-args";
 
 //
 // add the github flavored markdown heading id extension
-// to our marked instance 
+// to our marked instance
 //
 marked.use(gfmHeadingId({}));
 
@@ -27,15 +27,27 @@ const directoryFromPath = (path) => {
   if (stats.isDirectory()) {
     return resolve(path);
   }
-  throw new Error('output-directory is not a directory');
-}
+  throw new Error("output-directory is not a directory");
+};
 
 // Define the options that can be passed to this script
 const commandLineOptions = [
-  { name: 'input-directory', alias: 'i', type: (path) => directoryFromPath(path)},
-  { name: 'output-html-directory', alias: 'o', type: (path) => directoryFromPath(path)},
-  { name: 'output-asset-directory', alias: 'a', type: (path) => directoryFromPath(path)},
-  { name: 'help', alias: 'h', type: Boolean },
+  {
+    name: "input-directory",
+    alias: "i",
+    type: (path) => directoryFromPath(path),
+  },
+  {
+    name: "output-html-directory",
+    alias: "o",
+    type: (path) => directoryFromPath(path),
+  },
+  {
+    name: "output-asset-directory",
+    alias: "a",
+    type: (path) => directoryFromPath(path),
+  },
+  { name: "help", alias: "h", type: Boolean },
 ];
 const args = commandLineArgs(commandLineOptions);
 
@@ -65,13 +77,12 @@ Options:
 -h
 `;
 
-if (args['help']) {
+if (args["help"]) {
   console.log(helpMessage);
 
   // after printing the help text, we can exit
   process.exit(0);
 }
-
 
 ////////////////////////////////////////////////////////////////
 // Extract file paths for content from argument directory paths
@@ -81,32 +92,38 @@ if (args['help']) {
 // get the post content markdown and post metadata object from the input directory
 //
 
-const inputDirectoryPath = args['input-directory'];
+const inputDirectoryPath = args["input-directory"];
 
-const metaDataFilePath = resolve(inputDirectoryPath, 'metadata.json');
-const contentMarkdownFilePath = resolve(inputDirectoryPath, 'content.md');
+const metaDataFilePath = resolve(inputDirectoryPath, "metadata.json");
+const contentMarkdownFilePath = resolve(inputDirectoryPath, "content.md");
 
 if (!fs.statSync(metaDataFilePath).isFile()) {
-  throw new Error('path to metadata in src dir is not a file');
+  throw new Error("path to metadata in src dir is not a file");
 }
 
 if (!fs.statSync(contentMarkdownFilePath).isFile()) {
-  throw new Error('path to content in src dir is not a file');
+  throw new Error("path to content in src dir is not a file");
 }
 
-const articleMetadata = JSON.parse(fs.readFileSync(metaDataFilePath, 'utf8'));
-const contentMarkdown = fs.readFileSync(contentMarkdownFilePath, 'utf8');
+const articleMetadata = JSON.parse(fs.readFileSync(metaDataFilePath, "utf8"));
+const contentMarkdown = fs.readFileSync(contentMarkdownFilePath, "utf8");
 
 //
 // Construct the path for our outputed html file from the input-directory argument
 //
-const outputHtmlFilePath = resolve(args['output-html-directory'], articleMetadata['post-filename']);
+const outputHtmlFilePath = resolve(
+  args["output-html-directory"],
+  articleMetadata["post-filename"]
+);
 
 //
 // get our asset directory path
 //
 
-const postOutputAssetDirectoryPath = resolve(args['output-asset-directory'], articleMetadata['assets-file-directory-name']);
+const postOutputAssetDirectoryPath = resolve(
+  args["output-asset-directory"],
+  articleMetadata["assets-file-directory-name"]
+);
 
 ////////////////////////////////////////////////////////////////
 // Create a DOM for out output html file
@@ -172,9 +189,8 @@ const articleContentHtml = marked.parse(contentMarkdown);
 // build a dom from our articles parsed html
 const articleContentDom = parse(articleContentHtml);
 
-
 // insert article content dom into our skeleton dom
-articleSkeletonDom.querySelector('article').appendChild(articleContentDom);
+articleSkeletonDom.querySelector("article").appendChild(articleContentDom);
 const articleDom = articleSkeletonDom;
 
 //
@@ -182,9 +198,21 @@ const articleDom = articleSkeletonDom;
 // the post metadata
 //
 
-articleDom.querySelector('head').appendChild(parse(`<meta name="og:title" content="${articleMetadata.title}"/>`));
-articleDom.querySelector('head').appendChild(parse(`<meta name="og:description" content="${articleMetadata.description}"/>`));
-articleDom.querySelector('head').appendChild(parse(`<title>${articleMetadata.title}</title>`));
+articleDom
+  .querySelector("head")
+  .appendChild(
+    parse(`<meta name="og:title" content="${articleMetadata.title}"/>`)
+  );
+articleDom
+  .querySelector("head")
+  .appendChild(
+    parse(
+      `<meta name="og:description" content="${articleMetadata.description}"/>`
+    )
+  );
+articleDom
+  .querySelector("head")
+  .appendChild(parse(`<title>${articleMetadata.title}</title>`));
 
 //
 // Add metadata information article content
@@ -192,14 +220,14 @@ articleDom.querySelector('head').appendChild(parse(`<title>${articleMetadata.tit
 
 articleDom.querySelector("#article-title").textContent = articleMetadata.title;
 articleDom.querySelector("#article-metadata").textContent =
-  `Published: ${articleMetadata["date-originally-authored"]}`
-  + ` | Last Updated: ${articleMetadata["date-last-updated"]}`
-  + ` | Reading time: ${articleMetadata["reading-time"]}`
+  `Published: ${articleMetadata["date-originally-authored"]}` +
+  ` | Last Updated: ${articleMetadata["date-last-updated"]}` +
+  ` | Reading time: ${articleMetadata["reading-time"]}`;
 
 //
 // Create a table of contents from our subheaders
 //
-const articleSubHeaders = articleDom.querySelectorAll('h2');
+const articleSubHeaders = articleDom.querySelectorAll("h2");
 const isArticleWithSubHeaders = articleSubHeaders.length > 0;
 
 if (isArticleWithSubHeaders) {
@@ -209,19 +237,25 @@ if (isArticleWithSubHeaders) {
         <strong>Article Contents:</strong>
         <br />
   `);
-  articleDom.querySelector('#article-contents').appendChild(articleContentsTitle);
+  articleDom
+    .querySelector("#article-contents")
+    .appendChild(articleContentsTitle);
 
   articleSubHeaders.forEach((subHeader, index) => {
     const tableOfContentsItem = parse(`
-      <a href="#${subHeader.getAttribute('id')}"}>
+      <a href="#${subHeader.getAttribute("id")}"}>
         ${subHeader.textContent}
       </a>
     `);
-    articleDom.querySelector('#article-contents').appendChild(tableOfContentsItem);
+    articleDom
+      .querySelector("#article-contents")
+      .appendChild(tableOfContentsItem);
 
     const isLastItem = index === articleSubHeaders.length - 1;
     if (!isLastItem) {
-      articleDom.querySelector('#article-contents').appendChild(parse('<br />'));
+      articleDom
+        .querySelector("#article-contents")
+        .appendChild(parse("<br />"));
     }
   });
 }
@@ -231,59 +265,72 @@ if (isArticleWithSubHeaders) {
 // file
 ////////////////////////////////////////////////////////////////
 
-const imageNodes = articleDom.querySelectorAll('img');
+const imageNodes = articleDom.querySelectorAll("img");
 
 if (imageNodes.length > 0 && !fs.existsSync(postOutputAssetDirectoryPath)) {
   fs.mkdirSync(postOutputAssetDirectoryPath);
 }
 
 imageNodes.forEach((imageNode) => {
-  const inputImageSrcPath = imageNode.getAttribute('src');
+  const inputImageSrcPath = imageNode.getAttribute("src");
 
   //
   // check that imageNode refers to an actual file in the input directory
   //
 
-  const inputDirectoryImagePath = resolve(inputDirectoryPath, inputImageSrcPath);
+  const inputDirectoryImagePath = resolve(
+    inputDirectoryPath,
+    inputImageSrcPath
+  );
 
   const inputImageStats = fs.statSync(inputDirectoryImagePath);
   if (!inputImageStats.isFile()) {
-    throw new Error(`Image in html not found in directory ${inputImageSrcPath}`);
+    throw new Error(
+      `Image in html not found in directory ${inputImageSrcPath}`
+    );
     process.exit(1);
-  };
+  }
 
   //
   // copy the input file to the output asset directory
   //
 
-  const outputAssetsDirectoryImagePath = resolve(postOutputAssetDirectoryPath, inputImageSrcPath);
+  const outputAssetsDirectoryImagePath = resolve(
+    postOutputAssetDirectoryPath,
+    inputImageSrcPath
+  );
 
-  fs.copyFile(inputDirectoryImagePath, outputAssetsDirectoryImagePath, (err) => {
-    if (err) throw err;
-    process.exit(1);
-  });
+  fs.copyFile(
+    inputDirectoryImagePath,
+    outputAssetsDirectoryImagePath,
+    (err) => {
+      if (err) throw err;
+      process.exit(1);
+    }
+  );
 
   // update the node in our dom
 
-  const outputImageNodeSrcPath = outputAssetsDirectoryImagePath.split('dist').slice(-1);
-  
-  imageNode.setAttribute('src', outputImageNodeSrcPath);
+  const outputImageNodeSrcPath = outputAssetsDirectoryImagePath
+    .split("dist")
+    .slice(-1);
+
+  imageNode.setAttribute("src", outputImageNodeSrcPath);
+
+  // add a containing div the image
 });
 
 ////////////////////////////////////////////////////////////////
 // Output our html to the specified location
 ////////////////////////////////////////////////////////////////
 
-const prettyHtmlPostContent = beautify.html(
-  articleDom.toString(), 
-  {
-    // head and body should be indented within <html />
-    indent_inner_html: true,
-    // no tags should have an extra line between the opening
-    // tag and their children
-    extra_liners: [],
-  }
-);
+const prettyHtmlPostContent = beautify.html(articleDom.toString(), {
+  // head and body should be indented within <html />
+  indent_inner_html: true,
+  // no tags should have an extra line between the opening
+  // tag and their children
+  extra_liners: [],
+});
 
 try {
   fs.writeFileSync(outputHtmlFilePath, prettyHtmlPostContent);

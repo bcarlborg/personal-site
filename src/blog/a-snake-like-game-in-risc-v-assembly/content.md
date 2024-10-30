@@ -1,6 +1,7 @@
 _The code for this project can be found [👉here👈](https://github.com/bcarlborg/snake-game-in-riscv-assembly)._
 
 ## The project
+
 I built a version of the classic snake game in RISC-V assembly! This is a project I have been chipping away at since the beginning of the year, and now that it is wrapped up, I am super excited to share it 🤗
 
 This is a very bare bones implementation of snake. The game begins as soon as the program starts, and the program halts when your snake dies. The snake changes direction when the W A S D keys are pressed and the snake dies when it collides with itself or with a wall. Food appears at random locations across the map and your score increases each time the snake snake "consumes" food.
@@ -12,6 +13,7 @@ The project runs on Qemu's emulated RISC-V [virt computer platform](https://www.
 ![snake like game demo](snake-final-demo.gif)
 
 ## Why do this project?
+
 There were two reasons I was interested in starting this project.
 
 Firstly, I wanted to become more familiar with a modern assembly language. Before this project, the only assembly language I had worked with in earnest was a much older 8-bit assembly language for the 6502 CPU (see that project [here](https://github.com/bcarlborg/6502-programming)). While I learned from working with that language, I felt that I could benefit from seeing what assembly languages being designed today look and feel like.
@@ -23,6 +25,7 @@ The second reason that I was interested in this project is that I wanted to get 
 Running my program on the emulated RISC-V virt platform in Qemu was the perfect way to get some initial exposure to programming directly for a computer system. The virt platform is a computer platform that is meant to be emulated -- there are no real physical RISC-V virt computer systems. Without going into too much detail about what the virt computer system is, it is enough to say that the virt computer is architected in the same way as a physical computer system, but the devices on the virt system are 'made-up' devices that are designed to be emulated. These 'made-up' have interfaces that are inspired by physical devices, but are made simpler so that they can be more easily run in a simulated environment.
 
 ## Some learnings
+
 This project was a great way to dip my toes into this lower level of software development and I learned a lot while developing it. I'll list some of the learnings that have stuck with me most from the project:
 
 _Starting with a "blank canvas" was very difficult._
@@ -65,7 +68,7 @@ When it comes down to it, devices are not so different from "magic global variab
 
 Similarly, interrupts are not so different than event handlers in higher level languages. You effectively tell the system that when an interrupt occurs, program execution should jump to a specific function and start executing there. Once that function returns, your program will resume where it left off.
 
-Of course these descriptions of devices and interrupts are slight over-simplifications... but not by much! 
+Of course these descriptions of devices and interrupts are slight over-simplifications... but not by much!
 
 _Assembly is not the lowest level of abstraction and your cpu is not what it looks like._
 
@@ -76,7 +79,8 @@ However, as a learned more about assembly language, I found that the CPU is also
 I still don't know what I don't know about CPUs... But I do now know that the CPU as it presents itself to assembly programs is yet another abstraction, what the actual hardware is doing below is much more complicated.
 
 ## In conclusion
-This was a fantastic project! I spent many months getting everything working, but ultimately I learned a lot. Getting this program working game me that special kind of confidence that you only feel when you learn how to write software at a new, lower level of abstraction.
+
+This was a fantastic project! I spent many months getting everything working, but ultimately I learned a lot. Getting this program working gave me that special kind of confidence that you only feel when you learn how to write software at a new, lower level of abstraction.
 
 Learning how to write software at this level feels a lot like leveling your character up in a video game... you unlock some new skill that allows you to explore all sorts of new dynamics and locations in the game.
 

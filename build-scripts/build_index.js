@@ -1,9 +1,9 @@
-import fs from 'fs'
-import { resolve } from 'path';
-import { marked } from 'marked';
-import { parse } from 'node-html-parser';
-import beautify from 'js-beautify';
-import commandLineArgs from 'command-line-args';
+import fs from "fs";
+import { resolve } from "path";
+import { marked } from "marked";
+import { parse } from "node-html-parser";
+import beautify from "js-beautify";
+import commandLineArgs from "command-line-args";
 
 ////////////////////////////////////////////////////////////////
 // Parse Command Line arguments
@@ -14,15 +14,23 @@ const directoryFromPath = (path) => {
   if (stats.isDirectory()) {
     return resolve(path);
   }
-  throw new Error('output-directory is not a directory');
-}
+  throw new Error("output-directory is not a directory");
+};
 
 // Define the options that can be passed to this script
 const commandLineOptions = [
-  { name: 'blog-posts-source', alias: 'b', type: (path) => directoryFromPath(path)},
-  { name: 'output-html-directory', alias: 'o', type: (path) => directoryFromPath(path)},
+  {
+    name: "blog-posts-source",
+    alias: "b",
+    type: (path) => directoryFromPath(path),
+  },
+  {
+    name: "output-html-directory",
+    alias: "o",
+    type: (path) => directoryFromPath(path),
+  },
   // { name: 'output-asset-directory', alias: 'a', type: (path) => directoryFromPath(path)},
-  { name: 'help', alias: 'h', type: Boolean },
+  { name: "help", alias: "h", type: Boolean },
 ];
 
 const args = commandLineArgs(commandLineOptions);
@@ -50,7 +58,7 @@ Options:
 -h
 `;
 
-if (args['help']) {
+if (args["help"]) {
   console.log(helpMessage);
 
   // after printing the help text, we can exit
@@ -100,8 +108,8 @@ const indexSkeletonHtml = `
 
       <ul>
         <li>🌳 I live in Oakland, California.</li>
-        <li>🐙 Previously, I was a full-stack developer at Slack.</li>
         <li>🌱 Currently, I am a full-stack developer at Notion.</li>
+        <li>🐙 Previously, I was a full-stack developer at Slack.</li>
         <li>
           🌊 I enjoy learning about all levels of the tech-stack, from assembly
           up to web technologies.
@@ -111,7 +119,7 @@ const indexSkeletonHtml = `
 
       <br />
 
-      <h2>️Writing ✏️ & Projects 👾</h2>
+      <h2>️✏️ Writing & Projects 👾</h2>
       <ul id="blog-posts-list">
       </ul>
     </main>
@@ -126,65 +134,65 @@ const indexSkeletonDom = parse(indexSkeletonHtml);
 // Get the metadata for each blog post
 ////////////////////////////////////////////////////////////////
 
-const blogPostDirectoryPaths = fs.readdirSync(
-  args['blog-posts-source'], { withFileTypes: true }
-).filter(
-  dirent => dirent.isDirectory()
-).map(
-  dirent => resolve(dirent.path, dirent.name)
+const blogPostDirectoryPaths = fs
+  .readdirSync(args["blog-posts-source"], { withFileTypes: true })
+  .filter((dirent) => dirent.isDirectory())
+  .map((dirent) => resolve(dirent.path, dirent.name));
+
+const blogPostsMetadata = blogPostDirectoryPaths.map(
+  (blogPostDirectoryPath) => {
+    const metadataFilePath = resolve(blogPostDirectoryPath, "metadata.json");
+    return JSON.parse(fs.readFileSync(metadataFilePath, "utf8"));
+  }
 );
 
-const blogPostsMetadata = blogPostDirectoryPaths.map((blogPostDirectoryPath) => {
-  const metadataFilePath = resolve(blogPostDirectoryPath, 'metadata.json');
-  return JSON.parse(fs.readFileSync(metadataFilePath, 'utf8'));
-});
-
 const orderedBlogPostsMetaData = blogPostsMetadata.sort(
-  (a, b) => (b['post-order'] - a['post-order'])
+  (a, b) => b["post-order"] - a["post-order"]
 );
 
 ////////////////////////////////////////////////////////////////
 // Add a list item to our index DOM for each blog post
 ////////////////////////////////////////////////////////////////
 
-orderedBlogPostsMetaData.forEach(blogPostMetaData => {
+orderedBlogPostsMetaData.forEach((blogPostMetaData) => {
   const blogPostPath = resolve(
-    args['output-html-directory'], 'blog', blogPostMetaData['post-filename']
+    args["output-html-directory"],
+    "blog",
+    blogPostMetaData["post-filename"]
   );
 
-  const titlePrefix = blogPostMetaData['type'] === 'writing' ? '✏️ ' : '👾 '
+  const titlePrefix = blogPostMetaData["type"] === "writing" ? "✏️ " : "👾 ";
 
-  const relativeBlogPostPath = blogPostPath.split('dist').slice(-1);
+  const relativeBlogPostPath = blogPostPath.split("dist").slice(-1);
 
   const listItemHtml = `
     <li>
-      ${blogPostMetaData['date-originally-authored']} -
+      ${blogPostMetaData["date-originally-authored"]} -
       ${titlePrefix}
       <a href="${relativeBlogPostPath}">
-        ${blogPostMetaData['title']}
+        ${blogPostMetaData["title"]}
       </a>
     </li>
-  `
+  `;
 
-  indexSkeletonDom.querySelector("#blog-posts-list").appendChild(parse(listItemHtml));
+  indexSkeletonDom
+    .querySelector("#blog-posts-list")
+    .appendChild(parse(listItemHtml));
 });
 
 ////////////////////////////////////////////////////////////////
 // Output our html to the specified location
 ////////////////////////////////////////////////////////////////
 
-const prettyHtmlIndexContent = beautify.html(
-  indexSkeletonDom.toString(), 
-  {
-    // head and body should be indented within <html />
-    indent_inner_html: true,
-    // no tags should have an extra line between the opening
-    // tag and their children
-    extra_liners: [],
-  }
-);
+const prettyHtmlIndexContent = beautify.html(indexSkeletonDom.toString(), {
+  // head and body should be indented within <html />
+  indent_inner_html: true,
+  // no tags should have an extra line between the opening
+  // tag and their children
+  extra_liners: [],
+});
 
-const outputIndexPath = resolve(args['output-html-directory'], 'index.html');
+const outputIndexPath = resolve(args["output-html-directory"], "index.html");
 
 try {
   fs.writeFileSync(outputIndexPath, prettyHtmlIndexContent);
