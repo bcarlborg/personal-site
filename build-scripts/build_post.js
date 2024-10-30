@@ -144,20 +144,21 @@ const articleSkeletonHtml = `
       rel="icon"
       type="image/png"
       sizes="32x32"
-      href="/assets/favicon-woo-guy-32-32.png"
+      href="/assets/favicon-32-32.png"
     />
     <link
       rel="icon"
       type="image/png"
       sizes="96x96"
-      href="/assets/favicon-woo-guy-96-96.png"
+      href="/assets/favicon-96-96.png"
     />
     <link
       rel="icon"
       type="image/png"
       sizes="180x180"
-      href="/assets/favicon-woo-guy-180-180.png"
+      href="/assets/favicon-180-180.png"
     />
+    <link rel="apple-touch-icon" href="/assets/favicon-180-180.png">
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   </head>
