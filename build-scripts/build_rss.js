@@ -90,22 +90,25 @@ const orderedBlogPostsMetaData = blogPostsMetadata.sort(
 ////////////////////////////////////////////////////////////////
 
 const rssPrefix = `<?xml version="1.0" encoding="UTF-8"?>
-<rss version="2.0">
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Beau's Blog</title>
     <link>https://www.beau-carlborg.com/blog</link>
     <description>The personal website of Beau Carlborg</description>
+    <atom:link href="https://beau-carlborg.com/rss.xml" rel="self" type="application/rss+xml" />
 `;
 
-const rssPostfix = `\t</channel>
+const rssPostfix = `  </channel>
 </rss>
 `;
 
 let rssPosts = "";
 orderedBlogPostsMetaData.forEach((blogPostMetaData) => {
-  rssPosts += `\t\t<item>
+  const postUrl = `https://www.beau-carlborg.com/blog/${blogPostMetaData["post-filename"]}`;
+  rssPosts += `    <item>
       <title>${blogPostMetaData["title"]}</title>
-      <link>https://www.beau-carlborg.com/blog/${blogPostMetaData["post-filename"]}</link>
+      <link>${postUrl}</link>
+      <guid isPermaLink="true">${postUrl}</guid>
     </item>
  `;
 });
