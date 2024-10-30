@@ -16,7 +16,7 @@ SRC_DIR="${ABSOLUTE_SCRIPT_DIR}/../src/blog"
 for BLOG_POST_DIR in "$SRC_DIR"/*; do
   echo "building ${BLOG_POST_DIR}"
   node "${BUILD_POST_SCRIPT}" \
-    -i $BLOG_POST_DIR \
+    -i "${BLOG_POST_DIR}" \
     -o dist/blog \
     -a dist/assets/blog
 done

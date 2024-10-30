@@ -51,7 +51,7 @@ node build_index.js
 
 Options:
 --blog-posts-source         path to a directory containing all the directories for each 
--b                          blog bpost
+-b                          blog post
 --output-html-directory     path to a directory where the final html for the site's index
 -o                          will be placed
 --help                      print this help message
@@ -123,6 +123,7 @@ const indexSkeletonHtml = `
       <p>Send me an email (<a href="mailto:bcarlborg@gmail.com?subject=Hi%20Beau">bcarlborg@gmail.com</a>).</p>
 
       <h2>️Writing & Projects</h2>
+      Follow these posts by adding this site's rss <a href="rss.xml">url</a> to your favorite RSS reader.
       <ul id="blog-posts-list">
       </ul>
     </main>

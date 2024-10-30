@@ -17,3 +17,8 @@ DST_DIR="${ABSOLUTE_SCRIPT_DIR}/../dist"
 
 echo "building index.html"
 eval "node ${ABSOLUTE_SCRIPT_DIR}/build_index.js -b ${SRC_BLOG_DIR} -o ${DST_DIR}"
+
+# build the rss
+
+echo "building rss.xml"
+eval "node ${ABSOLUTE_SCRIPT_DIR}/build_rss.js -b ${SRC_BLOG_DIR} -o ${DST_DIR}"
