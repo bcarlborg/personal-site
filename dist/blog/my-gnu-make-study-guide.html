@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <link rel="stylesheet" type="text/css" href="/global-styles.css">
+        <link rel="stylesheet" type="text/css" href="/global-styles.css?v=617ea0075d32304316f74bfe75493525eb47094180fbe1b4169a3977e2e5b1ce">
         <link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon-32-32.png">
         <link rel="icon" type="image/png" sizes="96x96" href="/assets/favicon-96-96.png">
         <link rel="icon" type="image/png" sizes="180x180" href="/assets/favicon-180-180.png">
@@ -744,12 +744,8 @@ log.txt: FORCE
                 <pre><code>include some_makefile.mk some_other_makefile.mk
 </code></pre>
                 <ul>
-                    <li>
-                        <p>This can be useful if your project has shared variables that every makefile should use, or if your makefile includes a lot of boiler plate.</p>
-                    </li>
-                    <li>
-                        <p>Recursively calling makefiles</p>
-                        <ul>
+                    <li>This can be useful if your project has shared variables that every makefile should use, or if your makefile includes a lot of boiler plate.</li>
+                    <li>Recursively calling makefiles<ul>
                             <li>You can invoke make in a recipe in your current makefile by calling $(MAKE).</li>
                             <li>Invoking this command is the same as calling make on the command line:</li>
                         </ul>

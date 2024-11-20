@@ -18,5 +18,6 @@ for BLOG_POST_DIR in "$SRC_DIR"/*; do
   node "${BUILD_POST_SCRIPT}" \
     -i "${BLOG_POST_DIR}" \
     -o dist/blog \
-    -a dist/assets/blog
+    -a dist/assets/blog \
+    -s dist/global-styles.css
 done

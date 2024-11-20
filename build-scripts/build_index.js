@@ -4,6 +4,7 @@ import { marked } from "marked";
 import { parse } from "node-html-parser";
 import beautify from "js-beautify";
 import commandLineArgs from "command-line-args";
+import { hashFile } from "./helpers/fileHelpers.js";
 
 ////////////////////////////////////////////////////////////////
 // Parse Command Line arguments
@@ -28,6 +29,11 @@ const commandLineOptions = [
     name: "output-html-directory",
     alias: "o",
     type: (path) => directoryFromPath(path),
+  },
+  {
+    name: "stylesheet-path",
+    alias: "s",
+    type: (path) => path,
   },
   // { name: 'output-asset-directory', alias: 'a', type: (path) => directoryFromPath(path)},
   { name: "help", alias: "h", type: Boolean },
@@ -54,6 +60,8 @@ Options:
 -b                          blog post
 --output-html-directory     path to a directory where the final html for the site's index
 -o                          will be placed
+--stylesheet-path           path to the stylesheet for the page
+-s                          placed
 --help                      print this help message
 -h
 `;
@@ -69,11 +77,14 @@ if (args["help"]) {
 // Create the base html for our website
 ////////////////////////////////////////////////////////////////
 
+const cssPath = resolve(args["stylesheet-path"]);
+const stylesHash = hashFile(cssPath);
+
 const indexSkeletonHtml = `
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <link rel="stylesheet" type="text/css" href="/global-styles.css" />
+    <link rel="stylesheet" type="text/css" href="/global-styles.css?v=${stylesHash}" />
     <link
       rel="icon"
       type="image/png"
@@ -123,8 +134,8 @@ const indexSkeletonHtml = `
       <p>Send me an email (<a href="mailto:bcarlborg@gmail.com?subject=Hi%20Beau">bcarlborg@gmail.com</a>).</p>
 
       <h2>️Writing & Projects</h2>
-      <p>Follow these posts by adding this site's rss <a href="rss.xml">url</a> to your favorite RSS reader.</p>
       <ul id="blog-posts-list">
+        <li>🤖 <a href="rss.xml">RSS Feed</a></li>
       </ul>
     </main>
     <footer></footer>

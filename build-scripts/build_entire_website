@@ -16,7 +16,7 @@ DST_DIR="${ABSOLUTE_SCRIPT_DIR}/../dist"
 # build the site index
 
 echo "building index.html"
-eval "node ${ABSOLUTE_SCRIPT_DIR}/build_index.js -b ${SRC_BLOG_DIR} -o ${DST_DIR}"
+eval "node ${ABSOLUTE_SCRIPT_DIR}/build_index.js -b ${SRC_BLOG_DIR} -o ${DST_DIR} -s ${DST_DIR}/global-styles.css"
 
 # build the rss
 

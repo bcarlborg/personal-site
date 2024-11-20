@@ -6,7 +6,7 @@ import markedCodePreview from "marked-code-preview";
 import { parse } from "node-html-parser";
 import beautify from "js-beautify";
 import commandLineArgs from "command-line-args";
-
+import { hashFile } from "./helpers/fileHelpers.js";
 //
 // add the github flavored markdown heading id extension
 // to our marked instance
@@ -47,6 +47,11 @@ const commandLineOptions = [
     alias: "a",
     type: (path) => directoryFromPath(path),
   },
+  {
+    name: "stylesheet-path",
+    alias: "s",
+    type: (path) => path,
+  },
   { name: "help", alias: "h", type: Boolean },
 ];
 const args = commandLineArgs(commandLineOptions);
@@ -73,6 +78,8 @@ Options:
 -o                          placed
 --output-asset-directory    path to a directory where the final assets for the post will be
 -a                          placed
+--stylesheet-path           path to the stylesheet for the page
+-s                          placed
 --help                      print this help message
 -h
 `;
@@ -135,11 +142,17 @@ const postOutputAssetDirectoryPath = resolve(
 // and we will add the meta information to the head of the document
 //
 
+// Generate a version number for the stylesheet.
+// This will force the browser to reload the stylesheet when it gets the
+// updated index.html
+const cssPath = resolve(args["stylesheet-path"]);
+const stylesHash = hashFile(cssPath);
+
 const articleSkeletonHtml = `
 <!DOCTYPE html>
 <html>
   <head>
-    <link rel="stylesheet" type="text/css" href="/global-styles.css" />
+    <link rel="stylesheet" type="text/css" href="/global-styles.css?v=${stylesHash}" />
     <link
       rel="icon"
       type="image/png"
