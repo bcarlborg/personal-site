@@ -135,7 +135,6 @@ const indexSkeletonHtml = `
 
       <h2>️Writing & Projects</h2>
       <ul id="blog-posts-list">
-        <li>🤖 <a href="rss.xml">RSS Feed</a></li>
       </ul>
     </main>
     <footer></footer>
@@ -193,6 +192,13 @@ orderedBlogPostsMetaData.forEach((blogPostMetaData) => {
     .querySelector("#blog-posts-list")
     .appendChild(parse(listItemHtml));
 });
+
+const rssFeedListItemHtml =
+  '<li>🤖 <a href="rss.xml">RSS Feed</a> -- <em>Add this url to a feed reader to get updates when I write new posts.</em></li>';
+
+indexSkeletonDom
+  .querySelector("#blog-posts-list")
+  .appendChild(parse(rssFeedListItemHtml));
 
 ////////////////////////////////////////////////////////////////
 // Output our html to the specified location
