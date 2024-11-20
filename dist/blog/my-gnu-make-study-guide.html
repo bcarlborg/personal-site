@@ -29,7 +29,7 @@
 
                     <div class="h2-toc-item">
                         <a href="#make-as-a-build-system" }>
-                            Make as a build system
+                            Make as a Build System
                         </a>
                     </div>
 
@@ -41,13 +41,13 @@
 
                     <div class="h3-toc-item">
                         <a href="#️build-systems-use-a-dependency-graph-to-build-your-project" }>
-                            🕰️ Build Systems use a Dependency Graph to Build your Project
+                            🕰️ Build Systems Use a Dependency Graph to Build Your Project
                         </a>
                     </div>
 
                     <div class="h3-toc-item">
                         <a href="#️make-creates-its-internal-dependency-graph-by-reading-the-rules-in-a-makefile" }>
-                            🧑‍⚖️ Make creates its internal dependency graph by reading the rules in a Makefile.
+                            🧑‍⚖️ Make Creates Its Internal Dependency Graph by Reading the Rules in a Makefile
                         </a>
                     </div>
 
@@ -59,7 +59,7 @@
 
                     <div class="h3-toc-item">
                         <a href="#simple-rules" }>
-                            📜 Simple rules:
+                            📜 Simple Rules:
                         </a>
                     </div>
 
@@ -83,7 +83,7 @@
 
                     <div class="h3-toc-item">
                         <a href="#common-functions" }>
-                            💹 Common functions
+                            💹 Common Functions
                         </a>
                     </div>
 
@@ -95,19 +95,19 @@
 
                     <div class="h3-toc-item">
                         <a href="#phony-targets" }>
-                            🤡 phony targets:
+                            🤡 Phony Targets:
                         </a>
                     </div>
 
                     <div class="h3-toc-item">
                         <a href="#wildcard-rules" }>
-                            🎨 Wildcard rules:
+                            🎨 Wildcard Rules:
                         </a>
                     </div>
 
                     <div class="h3-toc-item">
                         <a href="#️pattern-rules" }>
-                            🏵️ Pattern rules:
+                            🏵️ Pattern Rules:
                         </a>
                     </div>
 
@@ -119,7 +119,13 @@
 
                     <div class="h3-toc-item">
                         <a href="#multiple-targets-per-rule" }>
-                            👬 Multiple targets per rule:
+                            👬 Multiple Targets per Rule:
+                        </a>
+                    </div>
+
+                    <div class="h3-toc-item">
+                        <a href="#order-only-prerequisites" }>
+                            🦏 Order-only Prerequisites:
                         </a>
                     </div>
 
@@ -131,76 +137,75 @@
 
                     <div class="h3-toc-item">
                         <a href="#make-syntax-for-recipes" }>
-                            👨‍🍳 make syntax for recipes
+                            👨‍🍳 Make Syntax for Recipes
                         </a>
                     </div>
 
                     <div class="h3-toc-item">
                         <a href="#️different-types-of-variable-assignment" }>
-                            🧟‍♂️ Different types of variable assignment
+                            🧟‍♂️ Different Types of Variable Assignment
                         </a>
                     </div>
 
                     <div class="h2-toc-item">
-                        <a href="#other-bips-and-bops" }>
-                            Other Bips and Bops
+                        <a href="#other-bits-and-bobs" }>
+                            Other Bits and Bobs
                         </a>
                     </div>
 
                     <div class="h3-toc-item">
-                        <a href="#make-executes-each-recipe-line-in-its-own-sub-shell" }>
-                            🛶 Make executes each recipe line in its own sub shell
+                        <a href="#make-executes-each-recipe-line-in-its-own-subshell" }>
+                            🛶 Make Executes Each Recipe Line in Its Own Subshell
                         </a>
                     </div>
 
                     <div class="h3-toc-item">
                         <a href="#️creating-a-prerequisite-that-is-always-out-of-date" }>
-                            🏚️ Creating a prerequisite that is always out of date
+                            🏚️ Creating a Prerequisite That Is Always Out of Date
                         </a>
                     </div>
 
                     <div class="h3-toc-item">
                         <a href="#using-multiple-makefiles" }>
-                            👩‍👩‍👧‍👦 using multiple makefiles
+                            👩‍👩‍👧‍👦 Using Multiple Makefiles
                         </a>
                     </div>
                 </div>
-                <p>I have a love hate relationship with make.</p>
-                <p>On one hand, It is one of my favorite tools. I can confidently rely on it because I know the vast majority of distros are likely to have it, meaning, wherever I am working, it will probably be accessible to me. When it is setup well, the interface for invoking make is just simple.</p>
-                <p>On the other hand, writing makefiles has been tripping me up since day one. At first, the language and syntax of makefiles seems simple and austere, but the more you learn, the more you realize how many dark nooks and sharp edges are in the details. Every time I come back to writing makefiles, I feel like I have to relearn all sorts of oddities to get comfortable again.</p>
-                <p>I created this “study guide” in an attempt to really solidify my understanding of the core knowledge you need to write makefiles. My hope is that through the process of writing these notes, I will have familiarized myself enough with the tool to avoid being so flustered the next time I come back to using the tool.</p>
-                <p>I hope others get some value out of this post... But I mainly created this to help myself solidify some concepts — that is why I am calling this post a study guide.</p>
-                <p><em>For someone interested in learning make well, I would recommend (the surprisingly well written) make documentation!</em></p>
-                <h2 id="make-as-a-build-system">Make as a build system</h2>
+                <p>I have a love-hate relationship with <code>make</code>.</p>
+                <p>On one hand, it is one of my favorite tools. I can confidently rely on it because I know the vast majority of distros are likely to have it, meaning wherever I am working, it will probably be accessible to me. When it is set up well, the interface for invoking <code>make</code> is just simple.</p>
+                <p>On the other hand, writing <code>makefiles</code> has been tripping me up since day one. At first, the language and syntax of <code>makefiles</code> seem simple and austere, but the more you learn, the more you realize how many dark nooks and sharp edges are in the details. Every time I come back to writing <code>makefiles</code>, I feel like I have to relearn all sorts of oddities to get comfortable again.</p>
+                <p>I created this “study guide” in an attempt to really solidify my understanding of the core knowledge you need to write <code>makefiles</code>. My hope is that through the process of writing these notes, I will have familiarized myself enough with the tool to avoid being so flustered the next time I come back to using it.</p>
+                <p>I hope others get some value out of this post... But I mainly created this to help myself solidify some concepts—that is why I am calling this post a study guide.</p>
+                <p><em>For someone interested in learning make well, I would recommend the (surprisingly well-written) make documentation!</em></p>
+                <h2 id="make-as-a-build-system">Make as a Build System</h2>
                 <h3 id="make-is-a-build-automation-system-aka-build-system">🏭 <strong>Make is a <em>build automation system</em> (AKA <em>build system</em>).</strong></h3>
                 <ul>
-                    <li>A build system is program or set of programs that automates your <em>build process</em>.</li>
-                    <li>Your build process it the sequence of all <em>build tasks</em> required to generate the correct output artifacts from your input source files.</li>
-                    <li>A build task is the smallest unit of work in your build process, these tasks can not be broken down into smaller tasks. Build tasks may call one or many <em>build tools.</em></li>
+                    <li>A build system is a program or set of programs that automates your <em>build process</em>.</li>
+                    <li>Your build process is the sequence of all <em>build tasks</em> required to generate the correct output artifacts from your input source files.</li>
+                    <li>A build task is the smallest unit of work in your build process; these tasks cannot be broken down into smaller tasks. Build tasks may call one or many <em>build tools</em>.</li>
                     <li>Build tools are programs that accept source files as input and generate output files or initiate some side effect based on your input source files.</li>
                     <li>A build is a single execution of your build process.</li>
-                    <li>references:<ul>
-                            <li><a href="https://arxiv.org/abs/1203.2704">A Model and Framework for Reliable Build Systems</a>: Provides a thorough model that allows us to define what a build system is an how one works. The terms and definitions I use to describe build systems and their component parts come from this paper.</li>
+                    <li>References:<ul>
+                            <li><a href="https://arxiv.org/abs/1203.2704">A Model and Framework for Reliable Build Systems</a>: Provides a thorough model that allows us to define what a build system is and how one works. The terms and definitions I use to describe build systems and their component parts come from this paper.</li>
                         </ul>
                     </li>
                 </ul>
-                <h3 id="️build-systems-use-a-dependency-graph-to-build-your-project">🕰️ Build Systems use a Dependency Graph to Build your Project</h3>
+                <h3 id="️build-systems-use-a-dependency-graph-to-build-your-project">🕰️ Build Systems Use a Dependency Graph to Build Your Project</h3>
                 <ul>
                     <li>Build systems are able to plan and execute a build of your project faster than a naive script by using information about the structure of your project.</li>
-                    <li>Build systems use an internal model of your project’s build dependency graph.<ul>
-                            <li>The build dependency graph is a directed acyclic graph (D.A.G.) that specifies which inputs each build artifacts or side effect depends on.</li>
+                    <li>Build systems use an internal model of your project&#39;s build dependency graph.<ul>
+                            <li>The build dependency graph is a directed acyclic graph (D.A.G.) that specifies which inputs each build artifact or side effect depends on.</li>
                         </ul>
                     </li>
-                    <li>Build systems have different mechanisms for deriving your project’s build dependency graph.<ul>
-                            <li>Some build systems (like make) require the programmer to elaborate and specify the project’s build dependency graph.</li>
-                            <li>Other’s automatically derive the build dependency graph of your project based on the contents of your source files.</li>
+                    <li>Build systems have different mechanisms for deriving your project&#39;s build dependency graph.<ul>
+                            <li>Some build systems (like make) require the programmer to elaborate and specify the project&#39;s build dependency graph.</li>
+                            <li>Others automatically derive the build dependency graph of your project based on the contents of your source files.</li>
                         </ul>
                     </li>
-                    <li>Build systems use this dependency graph to implement two features that can make your builds run faster. <em>Incremental Builds</em> and <em>Parallel Builds.</em>
-                        <ul>
-                            <li>In an incremental build, results from from previous builds are used in the current build.<ul>
+                    <li>Build systems use this dependency graph to implement two features that can make your builds run faster: <em>Incremental Builds</em> and <em>Parallel Builds</em>.<ul>
+                            <li>In an incremental build, results from previous builds are used in the current build.<ul>
                                     <li>Effectively, intermediate build results are cached for use in future builds.</li>
-                                    <li>The build system you use is responsible for figuring out which cached build artifacts are stale and need to be reconstructed for the current build</li>
+                                    <li>The build system you use is responsible for figuring out which cached build artifacts are stale and need to be reconstructed for the current build.</li>
                                     <li>Make is an incremental build system by default.</li>
                                 </ul>
                             </li>
@@ -213,16 +218,16 @@
                         </ul>
                     </li>
                     <li>References:<ul>
-                            <li><a href="https://arxiv.org/abs/1203.2704">A Model and Framework for Reliable Build Systems</a>: provides a specific model of how build system use dependency graphs and how build systems evaluate wether or not nodes in that graph are out of date.</li>
-                            <li><a href="https://arxiv.org/abs/2202.05328">Forward build Systems, Formally</a>: Describes a build system that can derive a project’s build dependency graph from the source the project.</li>
+                            <li><a href="https://arxiv.org/abs/1203.2704">A Model and Framework for Reliable Build Systems</a>: Provides a specific model of how build systems use dependency graphs and how build systems evaluate whether or not nodes in that graph are out of date.</li>
+                            <li><a href="https://arxiv.org/abs/2202.05328">Forward Build Systems, Formally</a>: Describes a build system that can derive a project&#39;s build dependency graph from the source of the project.</li>
                         </ul>
                     </li>
                 </ul>
-                <h3 id="️make-creates-its-internal-dependency-graph-by-reading-the-rules-in-a-makefile">🧑‍⚖️ Make creates its internal dependency graph by reading the <em>rules</em> in a Makefile.</h3>
+                <h3 id="️make-creates-its-internal-dependency-graph-by-reading-the-rules-in-a-makefile">🧑‍⚖️ Make Creates Its Internal Dependency Graph by Reading the <em>Rules</em> in a Makefile</h3>
                 <ul>
-                    <li>The Makefile encodes each dependency in their build system with a rule.</li>
-                    <li>Makefiles are an example of declarative code, they specify all of the dependencies in your project and how to build each dependency rather than specifying how to execute the build step by step (like you would in an imperative language )</li>
-                    <li>Each rule has a targets (the outputs), zero or many prerequisites (the dependencies), and a recipe (the code for the build task). The basic syntax of a rule is as follows:</li>
+                    <li>The <code>Makefile</code> encodes each dependency in the build system with a rule.</li>
+                    <li><code>Makefiles</code> are an example of declarative code; they specify all of the dependencies in your project and how to build each dependency rather than specifying how to execute the build step by step (like you would in an imperative language).</li>
+                    <li>Each rule has a target (the output), zero or many prerequisites (the dependencies), and a recipe (the code for the build task). The basic syntax of a rule is as follows:</li>
                 </ul>
                 <pre><code>target: prerequisite1 prerequisite2 ...
   recipe-line-1
@@ -231,18 +236,15 @@
 </code></pre>
                 <ul>
                     <li>Simple rules describe a single node in the build dependency graph. More general rules can be written to describe many different parts of the dependency graph.</li>
-                    <li>Makefiles also support a number of other programming constructs like variables, functions, pattern matching and shell globbing, but it is useful to remember that these constructs only exist to help you write better rules.</li>
-                    <li>To run make, you specify the target (or targets) you would like make to build, and make will consult the rules in your makefile to determine which recipes to run.<ul>
-                            <li>Link to section on how make plans and executes a build.</li>
-                        </ul>
-                    </li>
-                    <li>references:<ul>
-                            <li>Make documentation — <a href="https://www.gnu.org/software/make/manual/make.html#Introduction">Chapter 2: An introduction to makefiles</a></li>
+                    <li><code>Makefiles</code> also support a number of other programming constructs like variables, functions, pattern matching, and shell globbing, but it is useful to remember that these constructs only exist to help you write better rules.</li>
+                    <li>To run make, you specify the target (or targets) you would like make to build, and make will consult the rules in your <code>Makefile</code> to determine which recipes to run.</li>
+                    <li>References:<ul>
+                            <li>Make documentation — <a href="https://www.gnu.org/software/make/manual/make.html#Introduction">Chapter 2: An Introduction to Makefiles</a></li>
                         </ul>
                     </li>
                 </ul>
                 <h2 id="simple-make-syntax">Simple Make Syntax</h2>
-                <h3 id="simple-rules">📜 Simple rules:</h3>
+                <h3 id="simple-rules">📜 Simple Rules:</h3>
                 <ul>
                     <li>A simple rule specifies a file to build as its target and has one or many files as prerequisites.</li>
                 </ul>
@@ -262,7 +264,7 @@
                             <li>If the target is a file in the file system, then those shell script lines should create the target file using the prerequisite files.</li>
                         </ul>
                     </li>
-                    <li>An example of a few simple rules that compile c files and link the outputs to make an executable.</li>
+                    <li>An example of a few simple rules that compile C files and link the outputs to make an executable.</li>
                 </ul>
                 <pre><code>main: main.o helper.o
   ld -o main main.o helper.o
@@ -274,7 +276,7 @@ helper.o: helper.c
   gcc -c -o helper.o helper.c
 </code></pre>
                 <ul>
-                    <li>Example running make against file</li>
+                    <li>Example running <code>make</code> against file</li>
                 </ul>
                 <pre><code># Print out the directory contents before running make
 &gt; tree ./
@@ -308,53 +310,57 @@ make: `main&#39; is up to date.
 └── main.o
 </code></pre>
                 <ul>
-                    <li>references:<ul>
-                            <li>Make documentation — <a href="https://www.gnu.org/software/make/manual/make.html#Introduction">Chapter 2: An introduction to makefiles</a></li>
+                    <li>References:<ul>
+                            <li>Make documentation — <a href="https://www.gnu.org/software/make/manual/make.html#Introduction">Chapter 2: An Introduction to Makefiles</a></li>
                         </ul>
                     </li>
                 </ul>
                 <h3 id="️simple-variable-assignment">✏️ Simple Variable Assignment:</h3>
                 <ul>
-                    <li>Make supports variables as a way to make writing rules cleaner, allowing for re-used strings between rules.</li>
-                    <li>The basic syntax for variable assignment is as follows</li>
+                    <li>Make supports variables as a way to make writing rules cleaner, allowing for reused strings between rules.</li>
+                    <li>The basic syntax for variable assignment is as follows.</li>
                 </ul>
                 <pre><code>variable_name=variable_value
 
-# whitespace before and after &#39;=&#39; is ignored, so this is equivalent
+# Whitespace before and after &#39;=&#39; is ignored, so this is equivalent
 variable_name = variable_value
 
-# as is this
+# As is this
 variable_name        =        variable_value
 </code></pre>
                 <ul>
-                    <li>Variable names can be any sequence of characters not containing the following characters ‘:’, ‘#’, ‘=’ or whitespace.<ul>
-                            <li>However, variable names with upper and lower case letters, numbers, and underscores are recommended</li>
+                    <li>Variable names can be any sequence of characters not containing the following characters: <code>:</code>, <code>#</code>, <code>=</code>, or whitespace.<ul>
+                            <li>However, variable names with upper and lower case letters, numbers, and underscores are recommended.</li>
                         </ul>
                     </li>
                     <li>All variables in make have values that are strings. There are no other datatypes for variables.<ul>
                             <li>The beginning of the string value starts after the <code>=</code> character and any whitespace that follows it.</li>
-                            <li>For clarity,</li>
                         </ul>
                     </li>
-                    <li>Some variable assignment examples</li>
+                    <li>Some variable assignment examples:</li>
                 </ul>
-                <pre><code># name gets the string value &quot;beau carlborg&quot;
+                <pre><code># `name` gets the string value &quot;beau carlborg&quot;
 name = beau carlborg
 
-# location gets the value &quot;oakland&quot; (leading whitespace is is ignored)
+# `location` gets the value &quot;oakland&quot; (leading whitespace is ignored)
 location =            oakland
 
-# occupation gets the string value &quot;software    engineer&quot; (internal whitespace preserved)
+# `occupation` gets the string value &quot;software    engineer&quot; (internal whitespace preserved)
+occupation = software    engineer
 
-location = software    engineer
-
-# age gets string value &quot;42&quot; (notice it is a string not a number)
+# `age` gets string value &quot;42&quot; (notice it is a string, not a number)
 age = 42
 
 # Common practice is to not use spaces around the `=` in an assignment
-CC=GCC
+CC=gcc
 </code></pre>
-                <p><strong>📖 Basic variable reference:</strong></p>
+                <ul>
+                    <li>References:<ul>
+                            <li>Make documentation — <a href="https://www.gnu.org/software/make/manual/make.html#Basics">Chapter 6.1: Basics of Variable Definitions</a></li>
+                        </ul>
+                    </li>
+                </ul>
+                <p><strong>📖 Basic Variable Reference:</strong></p>
                 <ul>
                     <li>The syntax for referencing a variable is as follows:</li>
                 </ul>
@@ -367,16 +373,16 @@ ${variable_name}
 $v
 </code></pre>
                 <ul>
-                    <li>⚠️ The single character variable reference is a common source of bugs for those new to writing make files</li>
+                    <li>⚠️ The single character variable reference is a common source of bugs for those new to writing <code>makefiles</code>.</li>
                 </ul>
-                <pre><code># This may look like a valid variable reference for the variable foo
+                <pre><code># This may look like a valid variable reference for the variable `foo`
 $foo
 
-# But, in fact, make treads this reference as if it were
+# But, in fact, make treats this reference as if it were
 $(f)oo
 </code></pre>
                 <ul>
-                    <li>Variable names can be referenced in targets, prerequisites or recipes</li>
+                    <li>Variable names can be referenced in targets, prerequisites, or recipes.</li>
                 </ul>
                 <pre><code>TARGET_NAME=main
 PREREQUISITE_NAMES=main.o helper.h helper.o
@@ -386,69 +392,74 @@ $(TARGET_NAME): $(PREREQUISITE_NAMES)
   $(LINKER) -o $(TARGET_NAME) $(PREREQUISITE_NAMES)
 </code></pre>
                 <ul>
-                    <li>There are ways to</li>
-                    <li>references:<ul>
+                    <li>References:<ul>
                             <li>Make documentation — <a href="https://www.gnu.org/software/make/manual/make.html#Using-Variables">Chapter 6: How to Use Variables</a></li>
                         </ul>
                     </li>
                 </ul>
                 <h3 id="basic-automatic-variables">🤖 Basic Automatic Variables:</h3>
                 <ul>
-                    <li>All of our rules have been static so far, meaning the the target file and all of the prerequisite files are explicitly listed<ul>
-                            <li>Later on, we will introduce syntax that allows for rules where the targets and prerequisites to be determined when make is run.</li>
+                    <li>All of our rules have been static so far, meaning that the target file and all of the prerequisite files are explicitly listed.<ul>
+                            <li>Later on, we will introduce syntax that allows for rules where the targets and prerequisites are determined when <code>make</code> is run.</li>
                             <li>For those kinds of rules, we need a mechanism to reference the target and prerequisite names that make derived for us in our recipes.</li>
                             <li>Make provides automatic variables to help with this.</li>
                         </ul>
                     </li>
-                    <li>Within every recipe, make assigns the following <em>Automatic Variables</em> for you based on the targets and prerequisites in your rule. These variable references will likely have different values in every rule’s recipe.<ul>
-                            <li><code>$@</code>: the name of the target file that caused the rule to be run</li>
-                            <li><code>$^</code>: the name of prerequisites (separated by a space — even if they were separated by other whitespace in the rule declaration)</li>
-                            <li><code>$&lt;</code>: the name of the first prerequisite</li>
-                            <li><strong><code>$?</code></strong>: the name of all prerequisites that are newer than the target</li>
-                            <li>(and more! but these are the basics and the ones you see most commonly)</li>
+                    <li>Within every recipe, make assigns the following <em>Automatic Variables</em> for you based on the targets and prerequisites in your rule. These variable references will likely have different values in every rule&#39;s recipe.<ul>
+                            <li><code>$@</code>: the name of the target file that caused the rule to be run.</li>
+                            <li><code>$^</code>: the names of all prerequisites (separated by a space—even if they were separated by other whitespace in the rule declaration).</li>
+                            <li><code>$&lt;</code>: the name of the first prerequisite.</li>
+                            <li><code>$?</code>: the names of all prerequisites that are newer than the target.</li>
+                            <li>(and more! but these are the basics and the ones you see most commonly.)</li>
                         </ul>
                     </li>
-                    <li>Examples</li>
+                    <li>Examples:</li>
                 </ul>
                 <pre><code>main: main.o helper.o
-  ld -o $@ @^
+  ld -o $@ $^
 
 main.o: main.c helper.h
   gcc -c -o $@ $&lt;
 
 helper.o: helper.c
-  gcc -c -o $@ @^
+  gcc -c -o $@ $^
 </code></pre>
+                <ul>
+                    <li>References:<ul>
+                            <li>Make documentation — <a href="https://www.gnu.org/software/make/manual/make.html#Automatic-Variables">Chapter 10.5: Automatic Variables</a></li>
+                        </ul>
+                    </li>
+                </ul>
                 <h3 id="basic-function-invocation">🎰 Basic Function Invocation</h3>
                 <ul>
-                    <li>Make provides a set of functions that can modify text values. Functions can be invoked anywhere that that a variable can be referenced</li>
-                    <li>The basic function invocation syntax is as follows</li>
+                    <li>Make provides a set of functions that can modify text values. Functions can be invoked anywhere that a variable can be referenced.</li>
+                    <li>The basic function invocation syntax is as follows:</li>
                 </ul>
                 <pre><code>$(function_name argument1,argument2,argument3)
 
 ${function_name argument1,argument2,argument3}
 </code></pre>
                 <ul>
-                    <li>In a function call, the function name and the arguments are separated by one or many whitespace characters and the function arguments are separated by commas<ul>
-                            <li>⚠️ this syntax makes passing (1) leading whitespace in your first argument (2) a comma in any of your arguments (3) an unmatched parenthesis in your arguments rather difficult.</li>
-                            <li>The make documentation gives to basic solutions, to this problem, but they are far from pretty.</li>
+                    <li>In a function call, the function name and the arguments are separated by one or many whitespace characters and the function arguments are separated by commas.<ul>
+                            <li>⚠️ This syntax makes passing (1) leading whitespace in your first argument (2) a comma in any of your arguments (3) an unmatched parenthesis in your arguments rather difficult.</li>
+                            <li>The make documentation gives two basic solutions to this problem, but they are far from pretty.</li>
+                        </ul>
+                    </li>
+                    <li>References:<ul>
+                            <li>Make documentation — <a href="https://www.gnu.org/software/make/manual/make.html#Call-Function">Chapter 8.1: Function Call Syntax</a></li>
                         </ul>
                     </li>
                 </ul>
-                <h3 id="common-functions">💹 Common functions</h3>
+                <h3 id="common-functions">💹 Common Functions</h3>
                 <ul>
-                    <li>
-                        <p>Some of the more common and generally illustrative basic functions</p>
-                    </li>
-                    <li>
-                        <p><code>$(wildcard pattern)</code>: The wildcard function will match a pattern against your current working directory, and expand into a list of the files that match the wildcard pattern.</p>
-                        <ul>
-                            <li>Pattern will use *, ? and […] characters for matching — just like the bourne shell</li>
-                            <li>⚠️ Wildcard is matched against your working directory! Not the makefile’s directory. Most of the time, you are invoking make from the directory that the Makefile is in, but if not, you may not get the results you expect.</li>
+                    <li>Some of the more common and generally illustrative basic functions</li>
+                    <li><code>$(wildcard pattern)</code>: The <code>wildcard</code> function will match a pattern against your current working directory, and expand into a list of the files that match the wildcard pattern.<ul>
+                            <li>Pattern will use <code>*</code>, <code>?</code>, and <code>[...]</code> characters for matching—just like the Bourne shell.</li>
+                            <li>⚠️ <code>Wildcard</code> is matched against your working directory! Not the <code>Makefile</code>&#39;s directory. Most of the time, you are invoking <code>make</code> from the directory that the <code>Makefile</code> is in, but if not, you may not get the results you expect.</li>
                         </ul>
                     </li>
                 </ul>
-                <pre><code># If you current directory has these files
+                <pre><code># If your current directory has these files
 # ./
 # ├── Makefile
 # ├── test1.txt
@@ -456,132 +467,157 @@ ${function_name argument1,argument2,argument3}
 # ├── test3.txt
 # └── testA.txt
 
-# Var1 would get value &quot;test1.txt test2.txt test3.txt testA.txt&quot;
-VAR1=$(wildcard *.text)
+# `VAR1` would get value &quot;test1.txt test2.txt test3.txt testA.txt&quot;
+VAR1=$(wildcard *.txt)
 
-# Var2 would get value &quot;test1.txt test3.txt&quot;
-VAR2=$(wildcard test[13].text)
+# `VAR2` would get value &quot;test1.txt test3.txt&quot;
+VAR2=$(wildcard test[13].txt)
 
-# Var2 would get value &quot;test1.txt test2.txt test3.txt testA.txt&quot;
-VAR2=$(wildcard test?.text)
+# `VAR3` would get value &quot;test1.txt test2.txt test3.txt testA.txt&quot;
+VAR3=$(wildcard test?.txt)
 </code></pre>
                 <ul>
-                    <li><code>$(shell shellscript_command)</code>:</li>
-                    <li>The shell command will perform command expansion of a shell command in the makefile, meaning the function will evaluate to the text that executing the shell command sends to std out</li>
+                    <li><code>$(shell shellscript_command)</code>: The <code>shell</code> function will perform command expansion of a shell command in the <code>Makefile</code>, meaning the function will evaluate to the text that executing the shell command sends to stdout.</li>
                 </ul>
-                <pre><code># contents will equal the data in the file foo
+                <pre><code># `contents` will equal the data in the file `foo`
 contents=$(shell cat foo)
 </code></pre>
                 <ul>
-                    <li><code>$(subst *from*,*to*,*text*)</code> - replaces every occurrence of the text in argument <code>from</code> with the text in argument <code>to</code> in the text in argument <code>text</code></li>
+                    <li><code>$(subst from,to,text)</code>: Replaces every occurrence of the text in argument <code>from</code> with the text in argument <code>to</code> in the text in argument <code>text</code>.</li>
                 </ul>
-                <pre><code># VAR1 would get value &quot;hola world&quot;
+                <pre><code># `VAR1` would get value &quot;hola world&quot;
 VAR1=$(subst hello,hola,hello world)
 
-# VAR2 would get value &quot;CompA.tsx CompB.tsx CompC.tsx&quot;
+# `VAR2` would get value &quot;CompA.tsx CompB.tsx CompC.tsx&quot;
 VAR2=$(subst .jsx,.tsx,CompA.jsx CompB.jsx CompC.jsx)
 </code></pre>
                 <ul>
-                    <li><code>$(patsubst pattern,replacement,text)</code> - patsubst is very similar to subst, but it allows for including a <code>%</code> wildcard character in the pattern argument that can be used in replacement argument.</li>
+                    <li><code>$(patsubst pattern,replacement,text)</code>: <code>patsubst</code> is very similar to <code>subst</code>, but it allows for including a <code>%</code> wildcard character in the <code>pattern</code> argument that can be used in the <code>replacement</code> argument.</li>
                 </ul>
-                <pre><code># VAR1 would get value &quot;new_test1.txt new_test2.txt test3.pdf&quot;
+                <pre><code># `VAR1` would get value &quot;new_test1.txt new_test2.txt test3.pdf&quot;
 VAR1=$(patsubst %.txt,new_%.txt,test1.txt test2.txt test3.pdf)
 </code></pre>
                 <ul>
-                    <li><code>$(dir names…)</code> - get the dir of multiple paths</li>
+                    <li><code>$(dir names…)</code>: Get the directory part of multiple paths.</li>
                 </ul>
-                <pre><code># VAR1 would get value &quot;foo/ foo/bar/ ./&quot;
+                <pre><code># `VAR1` would get value &quot;foo/ foo/bar/ ./&quot;
 VAR1=$(dir foo/ foo/bar/baz.txt ./blamo)
 </code></pre>
                 <ul>
-                    <li><code>$(notdir names…)</code> - get the filename part of multiple paths</li>
+                    <li><code>$(notdir names…)</code>: Get the filename part of multiple paths.</li>
                 </ul>
-                <pre><code># VAR1 would get value &quot;text baz.txt blamo&quot;
-VAR1=$(dir foo/text foo/bar/baz.txt blamo)
+                <pre><code># `VAR1` would get value &quot;text baz.txt blamo&quot;
+VAR1=$(notdir foo/text foo/bar/baz.txt blamo)
 </code></pre>
+                <ul>
+                    <li>References:<ul>
+                            <li>Make documentation:<ul>
+                                    <li><a href="https://www.gnu.org/software/make/manual/make.html#Text-Functions">8.3 Functions for String Substitution and Analysis</a></li>
+                                    <li><a href="https://www.gnu.org/software/make/manual/make.html#Wildcard-Function">8.4 The <code>wildcard</code> Function</a></li>
+                                    <li><a href="https://www.gnu.org/software/make/manual/make.html#Filename-Functions">8.5 Functions for File Names</a></li>
+                                    <li><a href="https://www.gnu.org/software/make/manual/make.html#Shell-Function">8.7 The <code>shell</code> Function</a></li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
                 <h2 id="syntax-for-more-general-rules">Syntax for More General Rules</h2>
-                <h3 id="phony-targets">🤡 phony targets:</h3>
+                <h3 id="phony-targets">🤡 Phony Targets:</h3>
                 <ul>
                     <li>So far, in each of our rules, our target has been a file that the recipe of the rule creates. Sometimes it is useful to create a rule whose target does not correspond to any file.</li>
                     <li>When a target does not correspond to a file, we call it a phony target.</li>
-                    <li>These can be useful in a number of situations<ul>
-                            <li>They allow you to run build tasks whose utility is that there recipe performs some useful side effect.</li>
-                            <li>They allow you to create a rule which runs many other rules</li>
+                    <li>These can be useful in a number of situations:<ul>
+                            <li>They allow you to run build tasks whose utility is that their recipe performs some useful side effect.</li>
+                            <li>They allow you to create a rule which runs many other rules.</li>
                         </ul>
                     </li>
-                    <li>Some examples of common phony targets</li>
+                    <li>Some examples of common phony targets:</li>
                 </ul>
-                <pre><code># all is a common phony target that typically has all of the major
+                <pre><code># `all` is a common phony target that typically has all of the major
 # artifacts of a project as its dependencies
 all: executable test-bench documentation
 
-# clean is a common phony target whose recipe will remove all
+# `clean` is a common phony target whose recipe will remove all
 # intermediate files created by other build rules
 clean:
   rm -rf ./bin/*
 
 # In previous projects that involved uploading binaries to external
-# devices like fpga&#39;s or eeproms, I&#39;ve used an upload phony target.
+# devices like FPGAs or EEPROMs, I&#39;ve used an `upload` phony target.
 upload: executable
   loadFileToExternalDevice --device=fpga executable
 </code></pre>
                 <ul>
-                    <li>
-                        <p>⚠️ If a file is created in the same directory as the make file with a name of a phony target, it is possible for your phony targets to stop executing (because a file with that target name exists and is up to date).</p>
-                        <ul>
+                    <li>⚠️ If a file is created in the same directory as the <code>Makefile</code> with a name of a phony target, it is possible for your phony targets to stop executing (because a file with that target name exists and is up to date).<ul>
                             <li>Make provides a directive that can be used to explicitly mark a target as phony, telling make not to consult the file system for a file with that name.</li>
                         </ul>
                     </li>
                 </ul>
-                <pre><code>.PHONY clean
+                <pre><code>.PHONY: clean
 clean:
   rm -rf ./bin/*
 </code></pre>
-                <h3 id="wildcard-rules">🎨 Wildcard rules:</h3>
+                <ul>
+                    <li>References:<ul>
+                            <li>Make documentation — <a href="https://www.gnu.org/software/make/manual/make.html#Phony-Targets">4.6 Phony Targets</a></li>
+                        </ul>
+                    </li>
+                </ul>
+                <h3 id="wildcard-rules">🎨 Wildcard Rules:</h3>
                 <ul>
                     <li>Often times, you want to create a rule that applies to every target or prerequisite matching some pattern in a directory.</li>
                     <li>You can do this in make using wildcard characters in the target or prerequisite section of a rule.</li>
                 </ul>
-                <pre><code># using a wildcard rule to make a list of prerequisites that includes
+                <pre><code># Using a wildcard rule to make a list of prerequisites that includes
 # each chapter text file in the current directory
 book.txt: chapter*.txt
   cat $^ &gt; $@
 </code></pre>
-                <h3 id="️pattern-rules">🏵️ Pattern rules:</h3>
+                <ul>
+                    <li>References:<ul>
+                            <li>Make documentation — <a href="https://www.gnu.org/software/make/manual/make.html#Wildcards">4.4 Using Wildcard Characters in File Names</a></li>
+                        </ul>
+                    </li>
+                </ul>
+                <h3 id="️pattern-rules">🏵️ Pattern Rules:</h3>
                 <ul>
                     <li>Similar to wildcard rules, pattern rules allow you to write rules that are more general than basic rules.</li>
-                    <li>Pattern rules allow you to create a rule that for any target matching a particular pattern. That pattern can also be referenced in the prerequisite list of the rule.<ul>
-                            <li>This connection between target and prerequisite using the pattern match is a powerful way to create dependencies that are named based on the target itself</li>
+                    <li>Pattern rules allow you to create a rule for any target matching a particular pattern. That pattern can also be referenced in the prerequisite list of the rule.<ul>
+                            <li>This connection between target and prerequisite using the pattern match is a powerful way to create dependencies that are named based on the target itself.</li>
                         </ul>
                     </li>
                     <li>Like with wildcard rules, automatic variables are essential so that you can reference the specific target and prerequisites for which the rule is being executed in the recipe.</li>
                 </ul>
                 <pre><code># This pattern rule tells make that the dependency for any file ending
-# in .o is a file with the same base name ending in .c
+# in `.o` is a file with the same base name ending in `.c`
 %.o: %.c
-  gcc -c -o $@ @^
+  gcc -c -o $@ $^
 </code></pre>
+                <ul>
+                    <li>References:<ul>
+                            <li>Make documentation — <a href="https://www.gnu.org/software/make/manual/make.html#Pattern-Rules">10.5 Pattern Rules</a></li>
+                        </ul>
+                    </li>
+                </ul>
                 <h3 id="-built-in-rules">🫥 Built-in Rules:</h3>
                 <ul>
-                    <li>By default, make also references a number of built-in rules beyond those you define in your Makefile when you invoke it.</li>
+                    <li>By default, make also references a number of built-in rules beyond those you define in your <code>Makefile</code> when you invoke it.</li>
                     <li>There are two built-in rules that you may still come across or shoot yourself in the foot with.</li>
-                    <li>A rule for compiling .o files from .c files. According to the make documentation, “<em>n</em>.o is made automatically from <em>n</em>.c with a recipe of the form <code>$(CC) $(CPPFLAGS) $(CFLAGS) -c</code>.”</li>
-                    <li>A rule for compiling executables from their corresponding .o files. According to the make documentation: “<em>n</em> is made automatically from <em>n</em>.o by running the C compiler to link the program. The precise recipe used is <code>$(CC) $(LDFLAGS) *n*.o $(LOADLIBES) $(LDLIBS)</code>.”</li>
-                    <li>These default rules can be disabled by passing either the -r or --no-builtin-rules flag when make is invoked.</li>
+                    <li>A rule for compiling <code>.o</code> files from <code>.c</code> files. According to the make documentation, &quot;<em>n</em>.o is made automatically from <em>n</em>.c with a recipe of the form <code>$(CC) $(CPPFLAGS) $(CFLAGS) -c</code>&quot;.</li>
+                    <li>A rule for compiling executables from their corresponding <code>.o</code> files. According to the make documentation: &quot;<em>n</em> is made automatically from <em>n</em>.o by running the C compiler to link the program. The precise recipe used is <code>$(CC) $(LDFLAGS) _n_.o $(LOADLIBES) $(LDLIBS)</code>&quot;.</li>
+                    <li>These default rules can be disabled by passing either the <code>-r</code> or <code>--no-builtin-rules</code> flag when <code>make</code> is invoked.</li>
+                    <li>References:<ul>
+                            <li>Make documentation — <a href="https://www.gnu.org/software/make/manual/make.html#Catalogue-of-Rules">10.2 Catalogue of Implicit Rules</a></li>
+                        </ul>
+                    </li>
                 </ul>
-                <h3 id="multiple-targets-per-rule">👬 Multiple targets per rule:</h3>
+                <h3 id="multiple-targets-per-rule">👬 Multiple Targets per Rule:</h3>
                 <ul>
-                    <li>
-                        <p>In all of the rules up to this point, we have only had one target per rule. Make also has affordances for specifying multiple targets for a single rule.</p>
-                    </li>
-                    <li>
-                        <p>There are two different variants of multiple target rules</p>
-                    </li>
-                    <li>
-                        <p>Independent multi target rules are equivalent to writing the same rule once for each target.</p>
-                        <ul>
-                            <li>These are simply a nice syntax affordance for condensing multiple rules that have the same dependencies and recipe</li>
-                            <li>When the recipe is run <code>$@</code> will be set to one of the the targets</li>
+                    <li>In all of the rules up to this point, we have only had one target per rule. Make also has affordances for specifying multiple targets for a single rule.</li>
+                    <li>There are two different variants of multiple target rules.</li>
+                    <li>Independent multi-target rules are equivalent to writing the same rule once for each target.<ul>
+                            <li>These are simply a nice syntax affordance for condensing multiple rules that have the same dependencies and recipe.</li>
+                            <li>When the recipe is run, <code>$@</code> will be set to one of the targets.</li>
                         </ul>
                     </li>
                 </ul>
@@ -599,28 +635,26 @@ output3: prereq1 prereq2
   compile -o $@ $^
 </code></pre>
                 <ul>
-                    <li>
-                        <p>Rules with multiple targets can also be grouped target rules</p>
-                        <ul>
-                            <li>the <code>$:</code> separator between targets and prerequisites indicates that the targets should be treated as grouped targets.</li>
+                    <li>Rules with multiple targets can also be grouped target rules.<ul>
+                            <li>The <code>&amp;:</code> separator between targets and prerequisites indicates that the targets should be treated as grouped targets.</li>
                             <li>These rules are useful when you have one rule that updates multiple targets at the same time.</li>
-                            <li>If any one of the group targets are out of date, then the rule will be run again.</li>
-                            <li>$@ will be set to the name of the particular target that triggered the rule to execute.</li>
+                            <li>If any one of the group targets is out of date, then the rule will be run again.</li>
+                            <li><code>$@</code> will be set to the name of the particular target that triggered the rule to execute.</li>
                         </ul>
                     </li>
                 </ul>
                 <pre><code>foo bar biz &amp;: baz boz
-        echo $^ &gt; foo
-        echo $^ &gt; bar
-        echo $^ &gt; biz
+  echo $^ &gt; foo
+  echo $^ &gt; bar
+  echo $^ &gt; biz
 </code></pre>
-                <p>🦏 Order-only prerequisites:</p>
+                <h3 id="order-only-prerequisites">🦏 Order-only Prerequisites:</h3>
                 <ul>
                     <li>The default interpretation of prerequisites in rules is that make should run the recipe whenever any one of the prerequisites has an update timestamp that is newer than that of the target.</li>
-                    <li>Order-only prerequisites allow you to specify prerequisites for a target that should only cause an execution of the recipe if the order only prerequisite doesn’t exist. Once the order only prerequisite exists, any subsequent updates to it will not cause make to execute the rule again</li>
-                    <li>Order only prerequisites are separated from normal prerequisites with a | character</li>
+                    <li>Order-only prerequisites allow you to specify prerequisites for a target that should only cause an execution of the recipe if the order-only prerequisite doesn&#39;t exist. Once the order-only prerequisite exists, any subsequent updates to it will not cause make to execute the rule again.</li>
+                    <li>Order-only prerequisites are separated from normal prerequisites with a <code>|</code> character.</li>
                 </ul>
-                <pre><code># the bin/ directory is an order only prerequisite here. As long as it
+                <pre><code># The `bin/` directory is an order-only prerequisite here. As long as it
 # exists, no updates to it will cause the rule to re-run
 executable: main.o | bin/
   ld -o executable main.o
@@ -631,43 +665,62 @@ main.o: main.c
 bin/:
   mkdir bin
 </code></pre>
-                <h2 id="other-useful-syntax">Other Useful Syntax</h2>
-                <h3 id="make-syntax-for-recipes">👨‍🍳 make syntax for recipes</h3>
                 <ul>
-                    <li>make executes each line of code in the recipe in its own sub shell. However, it does do some processing on the recipe lines first.</li>
+                    <li>References:<ul>
+                            <li>Make documentation — <a href="https://www.gnu.org/software/make/manual/make.html#Order_002dOnly">4.3.2.2 Order-only Prerequisites</a></li>
+                        </ul>
+                    </li>
+                </ul>
+                <h2 id="other-useful-syntax">Other Useful Syntax</h2>
+                <h3 id="make-syntax-for-recipes">👨‍🍳 Make Syntax for Recipes</h3>
+                <ul>
+                    <li>Make executes each line of code in the recipe in its own subshell. However, it does do some processing on the recipe lines first.</li>
                     <li>Breaking up recipe lines<ul>
-                            <li>Lines in a recipe can get long, if you want to break the line up with a newline in the makefile, but still have it executed by make as one shell line, a \ character can be placed at the end of the line.</li>
+                            <li>Lines in a recipe can get long; if you want to break the line up with a newline in the <code>Makefile</code>, but still have it executed by make as one shell line, a <code>\</code> character can be placed at the end of the line.</li>
                         </ul>
                     </li>
                     <li>Suppressing recipe echoing<ul>
-                            <li>By default when make executes a recipe, it echoes every line of shell it executes to the terminal. This behavior is called recipe echoing.</li>
-                            <li>If a line in a recipe begins with the @ character, then recipe echoing of that line will be suppressed.</li>
+                            <li>By default, when make executes a recipe, it echoes every line of shell it executes to the terminal. This behavior is called recipe echoing.</li>
+                            <li>If a line in a recipe begins with the <code>@</code> character, then recipe echoing of that line will be suppressed.</li>
                         </ul>
                     </li>
                 </ul>
                 <pre><code># In this example, when the rule is run, the echo command will be
 # executed, causing &quot;building the book!&quot; to be echoed, but make will
-# not print &quot;echo &quot;building the book!&quot; to stdout
+# not print `echo &quot;building the book!&quot;` to stdout
 book.txt: chapter*.txt
   @echo &quot;building the book!&quot;
   cat $^ &gt; $@
 </code></pre>
                 <ul>
-                    <li>Ignoring errors in recipe lines<ul>
-                            <li>By default, make executes recipe lines one after another. If one of the recipe lines exists with a non zero status code, then make will abort execution of the rest of the rule.</li>
+                    <li><strong>Ignoring errors in recipe lines</strong>
+                        <ul>
+                            <li>By default, make executes recipe lines one after another. If one of the recipe lines exits with a non-zero status code, then make will abort execution of the rest of the rule.</li>
                             <li>If you want to prevent aborting on errors for a particular shell line, prefix the line with <code>-</code>. This will tell make to continue to the next line of the recipe even if this line errors out.</li>
                         </ul>
                     </li>
-                    <li>Escaping $ character in make recipes<ul>
-                            <li>By default, make will read any $ character in a recipe as beginning a reference to a make variable.</li>
-                            <li>If you want to escape the $ character, and have make pass it on to the shell command, you can add a second $ character in front of the $.</li>
+                    <li><strong>Escaping <code>$</code> character in make recipes</strong>
+                        <ul>
+                            <li>By default, make will read any <code>$</code> character in a recipe as beginning a reference to a make variable.</li>
+                            <li>If you want to escape the <code>$</code> character and have make pass it on to the shell command, you can add a second <code>$</code> character in front of the <code>$</code>.</li>
+                        </ul>
+                    </li>
+                    <li>References:<ul>
+                            <li>Make documentation:<ul>
+                                    <li><a href="https://www.gnu.org/software/make/manual/make.html#Execution">5.1 Recipe Execution</a></li>
+                                    <li><a href="https://www.gnu.org/software/make/manual/make.html#Recipe-Syntax">5.2 Recipe Syntax</a></li>
+                                    <li><a href="https://www.gnu.org/software/make/manual/make.html#Errors">5.4 Errors in Recipes</a></li>
+                                    <li><a href="https://www.gnu.org/software/make/manual/make.html#Splitting-Lines">5.5 Splitting Recipe Lines</a></li>
+                                    <li><a href="https://www.gnu.org/software/make/manual/make.html#Echoing">5.7 Recipe Echoing</a></li>
+                                </ul>
+                            </li>
                         </ul>
                     </li>
                 </ul>
-                <h3 id="️different-types-of-variable-assignment">🧟‍♂️ Different types of variable assignment</h3>
+                <h3 id="️different-types-of-variable-assignment">🧟‍♂️ Different Types of Variable Assignment</h3>
                 <ul>
-                    <li>By default, variables in makefiles do not store the evaluated right hand side value from the variable declaration. Instead, they store the right hand side value as it was specified, and then evaluate that when the variable is referenced.</li>
-                    <li>These variables are referred to as recursively expanded variables</li>
+                    <li>By default, variables in <code>makefiles</code> do not store the evaluated right-hand side value from the variable declaration. Instead, they store the right-hand side value as it was specified, and then evaluate that when the variable is referenced.</li>
+                    <li>These variables are referred to as recursively expanded variables.</li>
                 </ul>
                 <pre><code>random=$(shell echo $$RANDOM)
 
@@ -675,13 +728,12 @@ all:
   @echo $(random)
   @echo $(random)
 
-# Running make all against this makefile will output two different
-# random numbers. Because make executes the function from the declaration
+# Running `make all` against this `Makefile` will output two different
+# random numbers because make executes the function from the declaration
 # every time the variable is referenced.
 </code></pre>
                 <ul>
-                    <li>The other type of variable assignment is known as simply expanded variables. These variables right hand sides are evaluated at declaration time and that evaluated value is stored in the variable</li>
-                    <li>This variable style can be more intuitive in certain situations</li>
+                    <li>The other type of variable assignment is known as simply expanded variables. These variables&#39; right-hand sides are evaluated at declaration time, and that evaluated value is stored in the variable.</li>
                 </ul>
                 <pre><code>random:=$(shell echo $$RANDOM)
 
@@ -689,20 +741,30 @@ all:
   @echo $(random)
   @echo $(random)
 
-# Running make all against this makefile will output the same number twice
-# Because make executes the function during the declaration and assigns the
+# Running `make all` against this `Makefile` will output the same number twice
+# because make executes the function during the declaration and assigns the
 # output to the variable.
 </code></pre>
-                <h2 id="other-bips-and-bops">Other Bips and Bops</h2>
-                <h3 id="make-executes-each-recipe-line-in-its-own-sub-shell">🛶 Make executes each recipe line in its own sub shell</h3>
                 <ul>
-                    <li>When make executes a recipe, it executes each line of the recipe in its own sub shell.</li>
-                    <li>⚠️ This means that setting shell variables or changing directory in a make file recipe will not affect following lines.<ul>
-                            <li>This can be confusing to new Makefile authors who expect the entire recipe is executed like a shell script</li>
+                    <li>References:<ul>
+                            <li>Make documentation — <a href="https://www.gnu.org/software/make/manual/make.html#Flavors">6.2 The Two Flavors of Variables</a></li>
                         </ul>
                     </li>
                 </ul>
-                <h3 id="️creating-a-prerequisite-that-is-always-out-of-date">🏚️ Creating a prerequisite that is always out of date</h3>
+                <h2 id="other-bits-and-bobs">Other Bits and Bobs</h2>
+                <h3 id="make-executes-each-recipe-line-in-its-own-subshell">🛶 Make Executes Each Recipe Line in Its Own Subshell</h3>
+                <ul>
+                    <li>When make executes a recipe, it executes each line of the recipe in its own subshell.</li>
+                    <li>⚠️ This means that setting shell variables or changing directory in a <code>Makefile</code> recipe will not affect following lines.<ul>
+                            <li>This can be confusing to new <code>Makefile</code> authors who expect the entire recipe is executed like a shell script.</li>
+                        </ul>
+                    </li>
+                    <li>References:<ul>
+                            <li>Make documentation — <a href="https://www.gnu.org/software/make/manual/make.html#Execution">5.1 Recipe Execution</a></li>
+                        </ul>
+                    </li>
+                </ul>
+                <h3 id="️creating-a-prerequisite-that-is-always-out-of-date">🏚️ Creating a Prerequisite That Is Always Out of Date</h3>
                 <ul>
                     <li>
                         <p>Sometimes it is useful to have a prerequisite on a rule that is always out of date. This will ensure that the rule is always run even when the target is up to date</p>
@@ -712,18 +774,18 @@ all:
                         </ul>
                     </li>
                     <li>
-                        <p>This can be done by creating a dependency that is always out of date, and adding it as a prerequisite on any rules you always want run.</p>
+                        <p>This can be done by creating a dependency that is always out of date and adding it as a prerequisite on any rules you always want run.</p>
                         <ul>
-                            <li>Another alternative is to mark your target file as .PHONY. But that is (1) confusing because phony targets usually don’t have an associated file (2) and also not going to work if your target is a pattern target (you can’t mark a pattern as phony).</li>
+                            <li>Another alternative is to mark your target file as <code>.PHONY</code>. But that is (1) confusing because phony targets usually don’t have an associated file and (2) not going to work if your target is a pattern target (you can’t mark a pattern as phony).</li>
                         </ul>
                     </li>
                 </ul>
-                <pre><code># the force target has no dependencies and no rule,
+                <pre><code># The `FORCE` target has no dependencies and no rule,
 # and thus can never be created and will always be out of date
 FORCE:
 
-# Every time make has log.txt as a goal or a prerequisite of another
-# rule, it will consider log.txt out of date.
+# Every time make has `log.txt` as a goal or a prerequisite of another
+# rule, it will consider `log.txt` out of date.
 log.txt: FORCE
   echo &quot;MAKE BLAMO&quot; &gt; foobar.txt
 
@@ -732,22 +794,36 @@ log.txt: FORCE
 %.txt: FORCE
   echo &quot;MAKE BLAMO&quot; &gt; foobar.txt
 </code></pre>
-                <h3 id="using-multiple-makefiles">👩‍👩‍👧‍👦 using multiple makefiles</h3>
                 <ul>
-                    <li>There are two approaches to using multiple makefiles in a project</li>
-                    <li>Including makefiles<ul>
-                            <li>It is possible to include the rules from another makefile in your project by using the include directive.</li>
-                            <li>Conceptually, you can imagine that calling the include directory expands all of the content of the included make files directly into your makefile where the include directive is.</li>
+                    <li>References:<ul>
+                            <li>Make documentation — <a href="https://www.gnu.org/software/make/manual/make.html#Force-Targets">4.7.3 Force Targets</a></li>
+                        </ul>
+                    </li>
+                </ul>
+                <h3 id="using-multiple-makefiles">👩‍👩‍👧‍👦 Using Multiple Makefiles</h3>
+                <ul>
+                    <li>
+                        <p>There are two approaches to using multiple <code>makefiles</code> in a project</p>
+                    </li>
+                    <li>
+                        <p><strong>Including <code>makefiles</code></strong></p>
+                        <ul>
+                            <li>It is possible to include the rules from another <code>makefile</code> in your project by using the <code>include</code> directive.</li>
+                            <li>Conceptually, you can imagine that calling the <code>include</code> directive expands all of the content of the included <code>makefiles</code> directly into your <code>Makefile</code> where the <code>include</code> directive is.</li>
                         </ul>
                     </li>
                 </ul>
                 <pre><code>include some_makefile.mk some_other_makefile.mk
 </code></pre>
                 <ul>
-                    <li>This can be useful if your project has shared variables that every makefile should use, or if your makefile includes a lot of boiler plate.</li>
-                    <li>Recursively calling makefiles<ul>
-                            <li>You can invoke make in a recipe in your current makefile by calling $(MAKE).</li>
-                            <li>Invoking this command is the same as calling make on the command line:</li>
+                    <li>
+                        <p>This can be useful if your project has shared variables that every <code>makefile</code> should use, or if your <code>makefile</code> includes a lot of boilerplate.</p>
+                    </li>
+                    <li>
+                        <p><strong>Recursively calling <code>makefiles</code></strong></p>
+                        <ul>
+                            <li>You can invoke <code>make</code> in a recipe in your current <code>makefile</code> by calling <code>$(MAKE)</code>.</li>
+                            <li>Invoking this command is the same as calling <code>make</code> on the command line:</li>
                         </ul>
                     </li>
                 </ul>
@@ -755,18 +831,29 @@ log.txt: FORCE
   cd subdir &amp;&amp; $(MAKE)
 </code></pre>
                 <ul>
-                    <li>By default, when you invoke make recursively in this way, no information from your current Makefile is communicated to the recursively run Makefile.</li>
-                    <li>It is possible to share variables from the calling Makefile to the recursive callee makefile by using the export directive</li>
+                    <li>By default, when you invoke <code>make</code> recursively in this way, no information from your current <code>Makefile</code> is communicated to the recursively run <code>Makefile</code>.</li>
+                    <li>It is possible to share variables from the calling <code>Makefile</code> to the recursive callee <code>Makefile</code> by using the <code>export</code> directive</li>
                 </ul>
                 <pre><code>my_exported_var:=foobar
 export my_exported_var
 
 subsystem:
-    cd subdir &amp;&amp; $(MAKE)
+  cd subdir &amp;&amp; $(MAKE)
 
-# Now when make is executed in subdir, the variable my_exported_var will
-# be defined during the execution of the subdir Makefile
+# Now when `make` is executed in `subdir`, the variable `my_exported_var` will
+# be defined during the execution of the `subdir` `Makefile`
 </code></pre>
+                <ul>
+                    <li>References:<ul>
+                            <li>Make documentation:<ul>
+                                    <li><a href="https://www.gnu.org/software/make/manual/make.html#Include">3.4 Including Other Makefiles</a></li>
+                                    <li><a href="https://www.gnu.org/software/make/manual/make.html#Recursion">5.7 Recursive Use of make</a></li>
+                                    <li><a href="https://www.gnu.org/software/make/manual/make.html#Communicating-Variables">6.7 Communicating Variables to a Sub-make</a></li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
             </article>
         </main>
     </body>
