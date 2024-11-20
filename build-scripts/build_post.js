@@ -227,7 +227,7 @@ articleDom.querySelector(
 //
 // Create a table of contents from our subheaders
 //
-const articleSubHeaders = articleDom.querySelectorAll("h2");
+const articleSubHeaders = articleDom.querySelectorAll("h2, h3");
 const isArticleWithSubHeaders = articleSubHeaders.length > 0;
 
 if (isArticleWithSubHeaders) {
@@ -243,9 +243,13 @@ if (isArticleWithSubHeaders) {
 
   articleSubHeaders.forEach((subHeader, index) => {
     const tableOfContentsItem = parse(`
-      <a href="#${subHeader.getAttribute("id")}"}>
+      <div
+        class="${subHeader.tagName === "H2" ? "h2-toc-item" : "h3-toc-item"}"
+      >
+      <a href="#${subHeader.getAttribute("id")}"} >
         ${subHeader.textContent}
       </a>
+      </div>
     `);
     articleDom
       .querySelector("#article-contents")
@@ -253,9 +257,8 @@ if (isArticleWithSubHeaders) {
 
     const isLastItem = index === articleSubHeaders.length - 1;
     if (!isLastItem) {
-      articleDom
-        .querySelector("#article-contents")
-        .appendChild(parse("<br />"));
+      articleDom.querySelector("#article-contents");
+      // .appendChild(parse("<br />"));
     }
   });
 }

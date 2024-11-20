@@ -60,7 +60,7 @@ Now that we’ve given ourselves a little classification framework for signals, 
 
 Hopefully now, it should be clear that something like AM radio signal, which uses the amplitude of electromagnetic waves as an observable quantified value over time is an analog signal while the electronic signal going through a usb wire with high and low voltage values that are interpreted as 1’s and 0’s at specific intervals is a discrete signal.
 
-### Section 3: Analog and Digital Devices
+## Analog and Digital Devices
 
 Now, that we have semi-solid conceptual footing to stand on with our definitions of analog and digital signals, we can talk about analog and digital devices.
 

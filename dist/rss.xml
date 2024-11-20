@@ -6,34 +6,39 @@
     <description>The personal website of Beau Carlborg</description>
     <atom:link href="https://beau-carlborg.com/rss.xml" rel="self" type="application/rss+xml" />
     <item>
+      <title>My GNU Make Study Guide</title>
+      <link>https://www.beau-carlborg.com/blog/my-gnu-make-study-guide.html</link>
+      <guid isPermaLink="true">https://www.beau-carlborg.com/blog/my-gnu-make-study-guide.html</guid>
+    </item>
+     <item>
       <title>Analog and Digital</title>
-      <guid isPermaLink="true">https://www.beau-carlborg.com/blog/analog-and-digital.html</guid>
       <link>https://www.beau-carlborg.com/blog/analog-and-digital.html</link>
+      <guid isPermaLink="true">https://www.beau-carlborg.com/blog/analog-and-digital.html</guid>
     </item>
      <item>
       <title>A Snake-like Game in RISC-V Assembly</title>
-      <guid isPermaLink="true">https://www.beau-carlborg.com/blog/a-snake-like-game-in-risc-v-assembly.html</guid>
       <link>https://www.beau-carlborg.com/blog/a-snake-like-game-in-risc-v-assembly.html</link>
+      <guid isPermaLink="true">https://www.beau-carlborg.com/blog/a-snake-like-game-in-risc-v-assembly.html</guid>
     </item>
      <item>
       <title>Big and Little Endian</title>
-      <guid isPermaLink="true">https://www.beau-carlborg.com/blog/big-and-little-endian.html</guid>
       <link>https://www.beau-carlborg.com/blog/big-and-little-endian.html</link>
+      <guid isPermaLink="true">https://www.beau-carlborg.com/blog/big-and-little-endian.html</guid>
     </item>
      <item>
       <title>Pushdown Automata Variants</title>
-      <guid isPermaLink="true">https://www.beau-carlborg.com/blog/pushdown-automata-variants.html</guid>
       <link>https://www.beau-carlborg.com/blog/pushdown-automata-variants.html</link>
+      <guid isPermaLink="true">https://www.beau-carlborg.com/blog/pushdown-automata-variants.html</guid>
     </item>
      <item>
       <title>Parsers and Encoders Everywhere</title>
-      <guid isPermaLink="true">https://www.beau-carlborg.com/blog/parsers-and-encoders-everywhere.html</guid>
       <link>https://www.beau-carlborg.com/blog/parsers-and-encoders-everywhere.html</link>
+      <guid isPermaLink="true">https://www.beau-carlborg.com/blog/parsers-and-encoders-everywhere.html</guid>
     </item>
      <item>
       <title>Building an 8-bit Computer System</title>
-      <guid isPermaLink="true">https://www.beau-carlborg.com/blog/building-an-8-bit-computer-system.html</guid>
       <link>https://www.beau-carlborg.com/blog/building-an-8-bit-computer-system.html</link>
+      <guid isPermaLink="true">https://www.beau-carlborg.com/blog/building-an-8-bit-computer-system.html</guid>
     </item>
    </channel>
 </rss>
