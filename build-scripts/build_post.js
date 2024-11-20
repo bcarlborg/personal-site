@@ -132,7 +132,7 @@ const postOutputAssetDirectoryPath = resolve(
 //
 // This skeleton html is what we will build our blog post from
 // we will insert the blog content as children nodes in this skeleton
-// and we will add othe meta information
+// and we will add the meta information to the head of the document
 //
 
 const articleSkeletonHtml = `

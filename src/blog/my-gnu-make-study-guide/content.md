@@ -49,12 +49,12 @@ _For someone interested in learning make well, I would recommend (the surprising
 - Makefiles are an example of declarative code, they specify all of the dependencies in your project and how to build each dependency rather than specifying how to execute the build step by step (like you would in an imperative language )
 - Each rule has a targets (the outputs), zero or many prerequisites (the dependencies), and a recipe (the code for the build task). The basic syntax of a rule is as follows:
 
-  ```
-  target: prerequisite1 prerequisite2 ...
-    recipe-line-1
-    recipe-line-2
-    ...
-  ```
+```
+target: prerequisite1 prerequisite2 ...
+  recipe-line-1
+  recipe-line-2
+  ...
+```
 
 - Simple rules describe a single node in the build dependency graph. More general rules can be written to describe many different parts of the dependency graph.
 - Makefiles also support a number of other programming constructs like variables, functions, pattern matching and shell globbing, but it is useful to remember that these constructs only exist to help you write better rules.
@@ -69,12 +69,12 @@ _For someone interested in learning make well, I would recommend (the surprising
 
 - A simple rule specifies a file to build as its target and has one or many files as prerequisites.
 
-  ```
-  target: prerequisite1 prerequisite2 ...
-    recipe-line-1
-    recipe-line-2
-    ...
-  ```
+```
+target: prerequisite1 prerequisite2 ...
+  recipe-line-1
+  recipe-line-2
+  ...
+```
 
 - Make determines that the target needs to be built by consulting the file system for information about the target and the prerequisites.
   - If the target file does not exist, the target must be built.
@@ -84,51 +84,51 @@ _For someone interested in learning make well, I would recommend (the surprising
   - If the target is a file in the file system, then those shell script lines should create the target file using the prerequisite files.
 - An example of a few simple rules that compile c files and link the outputs to make an executable.
 
-  ```
-  main: main.o helper.o
-    ld -o main main.o helper.o
+```
+main: main.o helper.o
+  ld -o main main.o helper.o
 
-  main.o: main.c helper.h
-    gcc -c -o main.o main.c
+main.o: main.c helper.h
+  gcc -c -o main.o main.c
 
-  helper.o: helper.c
-    gcc -c -o helper.o helper.c
-  ```
+helper.o: helper.c
+  gcc -c -o helper.o helper.c
+```
 
 - Example running make against file
 
-  ```
-  # Print out the directory contents before running make
-  > tree ./
-  ./
-  ├── Makefile
-  ├── helper.c
-  ├── helper.h
-  └── main.c
+```
+# Print out the directory contents before running make
+> tree ./
+./
+├── Makefile
+├── helper.c
+├── helper.h
+└── main.c
 
-  # Build main target
-  > make main
-  gcc -c -o main.o main.c
-  gcc -c -o helper.o helper.c
-  ld -o main main.o helper.o
+# Build main target
+> make main
+gcc -c -o main.o main.c
+gcc -c -o helper.o helper.c
+ld -o main main.o helper.o
 
-  # Try to build the main target again, but nothing happens
-  # because everything is up to date
-  > make main
-  make: `main' is up to date.
+# Try to build the main target again, but nothing happens
+# because everything is up to date
+> make main
+make: `main' is up to date.
 
-  # Print the directory content again so we can see the files
-  # make generated.
-  > tree ./
-  ./
-  ├── Makefile
-  ├── helper.c
-  ├── helper.h
-  ├── helper.o
-  ├── main
-  ├── main.c
-  └── main.o
-  ```
+# Print the directory content again so we can see the files
+# make generated.
+> tree ./
+./
+├── Makefile
+├── helper.c
+├── helper.h
+├── helper.o
+├── main
+├── main.c
+└── main.o
+```
 
 - references:
   - Make documentation — [Chapter 2: An introduction to makefiles](https://www.gnu.org/software/make/manual/make.html#Introduction)
@@ -138,15 +138,15 @@ _For someone interested in learning make well, I would recommend (the surprising
 - Make supports variables as a way to make writing rules cleaner, allowing for re-used strings between rules.
 - The basic syntax for variable assignment is as follows
 
-  ```
-  variable_name=variable_value
+```
+variable_name=variable_value
 
-  # whitespace before and after '=' is ignored, so this is equivalent
-  variable_name = variable_value
+# whitespace before and after '=' is ignored, so this is equivalent
+variable_name = variable_value
 
-  # as is this
-  variable_name        =        variable_value
-  ```
+# as is this
+variable_name        =        variable_value
+```
 
 - Variable names can be any sequence of characters not containing the following characters ‘:’, ‘#’, ‘=’ or whitespace.
   - However, variable names with upper and lower case letters, numbers, and underscores are recommended
@@ -155,58 +155,58 @@ _For someone interested in learning make well, I would recommend (the surprising
   - For clarity,
 - Some variable assignment examples
 
-  ```
-  # name gets the string value "beau carlborg"
-  name = beau carlborg
+```
+# name gets the string value "beau carlborg"
+name = beau carlborg
 
-  # location gets the value "oakland" (leading whitespace is is ignored)
-  location =            oakland
+# location gets the value "oakland" (leading whitespace is is ignored)
+location =            oakland
 
-  # occupation gets the string value "software    engineer" (internal whitespace preserved)
+# occupation gets the string value "software    engineer" (internal whitespace preserved)
 
-  location = software    engineer
+location = software    engineer
 
-  # age gets string value "42" (notice it is a string not a number)
-  age = 42
+# age gets string value "42" (notice it is a string not a number)
+age = 42
 
-  # Common practice is to not use spaces around the `=` in an assignment
-  CC=GCC
-  ```
+# Common practice is to not use spaces around the `=` in an assignment
+CC=GCC
+```
 
 **📖 Basic variable reference:**
 
 - The syntax for referencing a variable is as follows:
 
-  ```
-  $(variable_name)
+```
+$(variable_name)
 
-  # or alternatively
-  ${variable_name}
+# or alternatively
+${variable_name}
 
-  # Or, for single character variable names only
-  $v
-  ```
+# Or, for single character variable names only
+$v
+```
 
 - ⚠️ The single character variable reference is a common source of bugs for those new to writing make files
 
-  ```
-  # This may look like a valid variable reference for the variable foo
-  $foo
+```
+# This may look like a valid variable reference for the variable foo
+$foo
 
-  # But, in fact, make treads this reference as if it were
-  $(f)oo
-  ```
+# But, in fact, make treads this reference as if it were
+$(f)oo
+```
 
 - Variable names can be referenced in targets, prerequisites or recipes
 
-  ```
-  TARGET_NAME=main
-  PREREQUISITE_NAMES=main.o helper.h helper.o
-  LINKER=ld
+```
+TARGET_NAME=main
+PREREQUISITE_NAMES=main.o helper.h helper.o
+LINKER=ld
 
-  $(TARGET_NAME): $(PREREQUISITE_NAMES)
-    $(LINKER) -o $(TARGET_NAME) $(PREREQUISITE_NAMES)
-  ```
+$(TARGET_NAME): $(PREREQUISITE_NAMES)
+  $(LINKER) -o $(TARGET_NAME) $(PREREQUISITE_NAMES)
+```
 
 - There are ways to
 - references:
@@ -226,27 +226,27 @@ _For someone interested in learning make well, I would recommend (the surprising
   - (and more! but these are the basics and the ones you see most commonly)
 - Examples
 
-  ```
-  main: main.o helper.o
-    ld -o $@ @^
+```
+main: main.o helper.o
+  ld -o $@ @^
 
-  main.o: main.c helper.h
-    gcc -c -o $@ $<
+main.o: main.c helper.h
+  gcc -c -o $@ $<
 
-  helper.o: helper.c
-    gcc -c -o $@ @^
-  ```
+helper.o: helper.c
+  gcc -c -o $@ @^
+```
 
 ### 🎰 Basic Function Invocation
 
 - Make provides a set of functions that can modify text values. Functions can be invoked anywhere that that a variable can be referenced
 - The basic function invocation syntax is as follows
 
-  ```
-  $(function_name argument1,argument2,argument3)
+```
+$(function_name argument1,argument2,argument3)
 
-  ${function_name argument1,argument2,argument3}
-  ```
+${function_name argument1,argument2,argument3}
+```
 
 - In a function call, the function name and the arguments are separated by one or many whitespace characters and the function arguments are separated by commas
   - ⚠️ this syntax makes passing (1) leading whitespace in your first argument (2) a comma in any of your arguments (3) an unmatched parenthesis in your arguments rather difficult.
@@ -260,63 +260,63 @@ _For someone interested in learning make well, I would recommend (the surprising
   - Pattern will use \*, ? and […] characters for matching — just like the bourne shell
   - ⚠️ Wildcard is matched against your working directory! Not the makefile’s directory. Most of the time, you are invoking make from the directory that the Makefile is in, but if not, you may not get the results you expect.
 
-  ```
-  # If you current directory has these files
-  # ./
-  # ├── Makefile
-  # ├── test1.txt
-  # ├── test2.txt
-  # ├── test3.txt
-  # └── testA.txt
+```
+# If you current directory has these files
+# ./
+# ├── Makefile
+# ├── test1.txt
+# ├── test2.txt
+# ├── test3.txt
+# └── testA.txt
 
-  # Var1 would get value "test1.txt test2.txt test3.txt testA.txt"
-  VAR1=$(wildcard *.text)
+# Var1 would get value "test1.txt test2.txt test3.txt testA.txt"
+VAR1=$(wildcard *.text)
 
-  # Var2 would get value "test1.txt test3.txt"
-  VAR2=$(wildcard test[13].text)
+# Var2 would get value "test1.txt test3.txt"
+VAR2=$(wildcard test[13].text)
 
-  # Var2 would get value "test1.txt test2.txt test3.txt testA.txt"
-  VAR2=$(wildcard test?.text)
-  ```
+# Var2 would get value "test1.txt test2.txt test3.txt testA.txt"
+VAR2=$(wildcard test?.text)
+```
 
 - `$(shell shellscript_command)`:
 - The shell command will perform command expansion of a shell command in the makefile, meaning the function will evaluate to the text that executing the shell command sends to std out
 
-  ```
-  # contents will equal the data in the file foo
-  contents=$(shell cat foo)
-  ```
+```
+# contents will equal the data in the file foo
+contents=$(shell cat foo)
+```
 
 - `$(subst *from*,*to*,*text*)` - replaces every occurrence of the text in argument `from` with the text in argument `to` in the text in argument `text`
 
-  ```
-  # VAR1 would get value "hola world"
-  VAR1=$(subst hello,hola,hello world)
+```
+# VAR1 would get value "hola world"
+VAR1=$(subst hello,hola,hello world)
 
-  # VAR2 would get value "CompA.tsx CompB.tsx CompC.tsx"
-  VAR2=$(subst .jsx,.tsx,CompA.jsx CompB.jsx CompC.jsx)
-  ```
+# VAR2 would get value "CompA.tsx CompB.tsx CompC.tsx"
+VAR2=$(subst .jsx,.tsx,CompA.jsx CompB.jsx CompC.jsx)
+```
 
 - `$(patsubst pattern,replacement,text)` - patsubst is very similar to subst, but it allows for including a `%` wildcard character in the pattern argument that can be used in replacement argument.
 
-  ```
-  # VAR1 would get value "new_test1.txt new_test2.txt test3.pdf"
-  VAR1=$(patsubst %.txt,new_%.txt,test1.txt test2.txt test3.pdf)
-  ```
+```
+# VAR1 would get value "new_test1.txt new_test2.txt test3.pdf"
+VAR1=$(patsubst %.txt,new_%.txt,test1.txt test2.txt test3.pdf)
+```
 
 - `$(dir names…)` - get the dir of multiple paths
 
-  ```
-  # VAR1 would get value "foo/ foo/bar/ ./"
-  VAR1=$(dir foo/ foo/bar/baz.txt ./blamo)
-  ```
+```
+# VAR1 would get value "foo/ foo/bar/ ./"
+VAR1=$(dir foo/ foo/bar/baz.txt ./blamo)
+```
 
 - `$(notdir names…)` - get the filename part of multiple paths
 
-  ```
-  # VAR1 would get value "text baz.txt blamo"
-  VAR1=$(dir foo/text foo/bar/baz.txt blamo)
-  ```
+```
+# VAR1 would get value "text baz.txt blamo"
+VAR1=$(dir foo/text foo/bar/baz.txt blamo)
+```
 
 ## Syntax for More General Rules
 
@@ -329,43 +329,43 @@ _For someone interested in learning make well, I would recommend (the surprising
   - They allow you to create a rule which runs many other rules
 - Some examples of common phony targets
 
-  ```
-  # all is a common phony target that typically has all of the major
-  # artifacts of a project as its dependencies
-  all: executable test-bench documentation
+```
+# all is a common phony target that typically has all of the major
+# artifacts of a project as its dependencies
+all: executable test-bench documentation
 
-  # clean is a common phony target whose recipe will remove all
-  # intermediate files created by other build rules
-  clean:
-    rm -rf ./bin/*
+# clean is a common phony target whose recipe will remove all
+# intermediate files created by other build rules
+clean:
+  rm -rf ./bin/*
 
-  # In previous projects that involved uploading binaries to external
-  # devices like fpga's or eeproms, I've used an upload phony target.
-  upload: executable
-    loadFileToExternalDevice --device=fpga executable
-  ```
+# In previous projects that involved uploading binaries to external
+# devices like fpga's or eeproms, I've used an upload phony target.
+upload: executable
+  loadFileToExternalDevice --device=fpga executable
+```
 
 - ⚠️ If a file is created in the same directory as the make file with a name of a phony target, it is possible for your phony targets to stop executing (because a file with that target name exists and is up to date).
 
   - Make provides a directive that can be used to explicitly mark a target as phony, telling make not to consult the file system for a file with that name.
 
-  ```
-  .PHONY clean
-  clean:
-    rm -rf ./bin/*
-  ```
+```
+.PHONY clean
+clean:
+  rm -rf ./bin/*
+```
 
 ### 🎨 Wildcard rules:
 
 - Often times, you want to create a rule that applies to every target or prerequisite matching some pattern in a directory.
 - You can do this in make using wildcard characters in the target or prerequisite section of a rule.
 
-  ```
-  # using a wildcard rule to make a list of prerequisites that includes
-  # each chapter text file in the current directory
-  book.txt: chapter*.txt
-    cat $^ > $@
-  ```
+```
+# using a wildcard rule to make a list of prerequisites that includes
+# each chapter text file in the current directory
+book.txt: chapter*.txt
+  cat $^ > $@
+```
 
 ### 🏵️ Pattern rules:
 
@@ -374,12 +374,12 @@ _For someone interested in learning make well, I would recommend (the surprising
   - This connection between target and prerequisite using the pattern match is a powerful way to create dependencies that are named based on the target itself
 - Like with wildcard rules, automatic variables are essential so that you can reference the specific target and prerequisites for which the rule is being executed in the recipe.
 
-  ```
-  # This pattern rule tells make that the dependency for any file ending
-  # in .o is a file with the same base name ending in .c
-  %.o: %.c
-    gcc -c -o $@ @^
-  ```
+```
+# This pattern rule tells make that the dependency for any file ending
+# in .o is a file with the same base name ending in .c
+%.o: %.c
+  gcc -c -o $@ @^
+```
 
 ### 🫥 Built-in Rules:
 
@@ -398,20 +398,20 @@ _For someone interested in learning make well, I would recommend (the surprising
   - These are simply a nice syntax affordance for condensing multiple rules that have the same dependencies and recipe
   - When the recipe is run `$@` will be set to one of the the targets
 
-    ```
-    output1 output2 output3: prereq1 prereq2
-      compile -o $@ $^
+```
+output1 output2 output3: prereq1 prereq2
+  compile -o $@ $^
 
-    # The above rule is equivalent to these three rules
-    output1: prereq1 prereq2
-      compile -o $@ $^
+# The above rule is equivalent to these three rules
+output1: prereq1 prereq2
+  compile -o $@ $^
 
-    output2: prereq1 prereq2
-      compile -o $@ $^
+output2: prereq1 prereq2
+  compile -o $@ $^
 
-    output3: prereq1 prereq2
-      compile -o $@ $^
-    ```
+output3: prereq1 prereq2
+  compile -o $@ $^
+```
 
 - Rules with multiple targets can also be grouped target rules
 
@@ -420,12 +420,12 @@ _For someone interested in learning make well, I would recommend (the surprising
   - If any one of the group targets are out of date, then the rule will be run again.
   - $@ will be set to the name of the particular target that triggered the rule to execute.
 
-    ```
-    foo bar biz &: baz boz
-            echo $^ > foo
-            echo $^ > bar
-            echo $^ > biz
-    ```
+```
+foo bar biz &: baz boz
+        echo $^ > foo
+        echo $^ > bar
+        echo $^ > biz
+```
 
 🦏 Order-only prerequisites:
 
@@ -433,18 +433,18 @@ _For someone interested in learning make well, I would recommend (the surprising
 - Order-only prerequisites allow you to specify prerequisites for a target that should only cause an execution of the recipe if the order only prerequisite doesn’t exist. Once the order only prerequisite exists, any subsequent updates to it will not cause make to execute the rule again
 - Order only prerequisites are separated from normal prerequisites with a | character
 
-  ```
-  # the bin/ directory is an order only prerequisite here. As long as it
-  # exists, no updates to it will cause the rule to re-run
-  executable: main.o | bin/
-    ld -o executable main.o
+```
+# the bin/ directory is an order only prerequisite here. As long as it
+# exists, no updates to it will cause the rule to re-run
+executable: main.o | bin/
+  ld -o executable main.o
 
-  main.o: main.c
-    gcc -c -o main.o main.c
+main.o: main.c
+  gcc -c -o main.o main.c
 
-  bin/:
-    mkdir bin
-  ```
+bin/:
+  mkdir bin
+```
 
 ## Other Useful Syntax
 
@@ -456,14 +456,16 @@ _For someone interested in learning make well, I would recommend (the surprising
 - Suppressing recipe echoing
   - By default when make executes a recipe, it echoes every line of shell it executes to the terminal. This behavior is called recipe echoing.
   - If a line in a recipe begins with the @ character, then recipe echoing of that line will be suppressed.
-  ```
-  # In this example, when the rule is run, the echo command will be
-  # executed, causing "building the book!" to be echoed, but make will
-  # not print "echo "building the book!" to stdout
-  book.txt: chapter*.txt
-  	@echo "building the book!"
-  	cat $^ > $@
-  ```
+
+```
+# In this example, when the rule is run, the echo command will be
+# executed, causing "building the book!" to be echoed, but make will
+# not print "echo "building the book!" to stdout
+book.txt: chapter*.txt
+  @echo "building the book!"
+  cat $^ > $@
+```
+
 - Ignoring errors in recipe lines
   - By default, make executes recipe lines one after another. If one of the recipe lines exists with a non zero status code, then make will abort execution of the rest of the rule.
   - If you want to prevent aborting on errors for a particular shell line, prefix the line with `-`. This will tell make to continue to the next line of the recipe even if this line errors out.
@@ -476,32 +478,32 @@ _For someone interested in learning make well, I would recommend (the surprising
 - By default, variables in makefiles do not store the evaluated right hand side value from the variable declaration. Instead, they store the right hand side value as it was specified, and then evaluate that when the variable is referenced.
 - These variables are referred to as recursively expanded variables
 
-  ```
-  random=$(shell echo $$RANDOM)
+```
+random=$(shell echo $$RANDOM)
 
-  all:
-    @echo $(random)
-    @echo $(random)
+all:
+  @echo $(random)
+  @echo $(random)
 
-  # Running make all against this makefile will output two different
-  # random numbers. Because make executes the function from the declaration
-  # every time the variable is referenced.
-  ```
+# Running make all against this makefile will output two different
+# random numbers. Because make executes the function from the declaration
+# every time the variable is referenced.
+```
 
 - The other type of variable assignment is known as simply expanded variables. These variables right hand sides are evaluated at declaration time and that evaluated value is stored in the variable
 - This variable style can be more intuitive in certain situations
 
-  ```
-  random:=$(shell echo $$RANDOM)
+```
+random:=$(shell echo $$RANDOM)
 
-  all:
-    @echo $(random)
-    @echo $(random)
+all:
+  @echo $(random)
+  @echo $(random)
 
-  # Running make all against this makefile will output the same number twice
-  # Because make executes the function during the declaration and assigns the
-  # output to the variable.
-  ```
+# Running make all against this makefile will output the same number twice
+# Because make executes the function during the declaration and assigns the
+# output to the variable.
+```
 
 ## Other Bips and Bops
 
@@ -520,21 +522,21 @@ _For someone interested in learning make well, I would recommend (the surprising
 
   - Another alternative is to mark your target file as .PHONY. But that is (1) confusing because phony targets usually don’t have an associated file (2) and also not going to work if your target is a pattern target (you can’t mark a pattern as phony).
 
-  ```
-  # the force target has no dependencies and no rule,
-  # and thus can never be created and will always be out of date
-  FORCE:
+```
+# the force target has no dependencies and no rule,
+# and thus can never be created and will always be out of date
+FORCE:
 
-  # Every time make has log.txt as a goal or a prerequisite of another
-  # rule, it will consider log.txt out of date.
-  log.txt: FORCE
-    echo "MAKE BLAMO" > foobar.txt
+# Every time make has log.txt as a goal or a prerequisite of another
+# rule, it will consider log.txt out of date.
+log.txt: FORCE
+  echo "MAKE BLAMO" > foobar.txt
 
-  # This is the same as the above, but using a pattern rule instead.
+# This is the same as the above, but using a pattern rule instead.
 
-  %.txt: FORCE
-    echo "MAKE BLAMO" > foobar.txt
-  ```
+%.txt: FORCE
+  echo "MAKE BLAMO" > foobar.txt
+```
 
 ### 👩‍👩‍👧‍👦 using multiple makefiles
 
@@ -542,30 +544,31 @@ _For someone interested in learning make well, I would recommend (the surprising
 - Including makefiles
   - It is possible to include the rules from another makefile in your project by using the include directive.
   - Conceptually, you can imagine that calling the include directory expands all of the content of the included make files directly into your makefile where the include directive is.
-  ```
-  include some_makefile.mk some_other_makefile.mk
-  ```
-  - This can be useful if your project has shared variables that every makefile should use, or if your makefile includes a lot of boiler plate.
-- Recursively calling makefiles
 
+```
+include some_makefile.mk some_other_makefile.mk
+```
+
+- This can be useful if your project has shared variables that every makefile should use, or if your makefile includes a lot of boiler plate.
+- Recursively calling makefiles
   - You can invoke make in a recipe in your current makefile by calling $(MAKE).
   - Invoking this command is the same as calling make on the command line:
 
-  ```
-  subsystem:
-  	cd subdir && $(MAKE)
-  ```
+```
+subsystem:
+  cd subdir && $(MAKE)
+```
 
-  - By default, when you invoke make recursively in this way, no information from your current Makefile is communicated to the recursively run Makefile.
-  - It is possible to share variables from the calling Makefile to the recursive callee makefile by using the export directive
+- By default, when you invoke make recursively in this way, no information from your current Makefile is communicated to the recursively run Makefile.
+- It is possible to share variables from the calling Makefile to the recursive callee makefile by using the export directive
 
-  ```
-  my_exported_var:=foobar
-  export my_exported_var
+```
+my_exported_var:=foobar
+export my_exported_var
 
-  subsystem:
-  	cd subdir && $(MAKE)
+subsystem:
+	cd subdir && $(MAKE)
 
-  # Now when make is executed in subdir, the variable my_exported_var will
-  # be defined during the execution of the subdir Makefile
-  ```
+# Now when make is executed in subdir, the variable my_exported_var will
+# be defined during the execution of the subdir Makefile
+```
