@@ -116,7 +116,7 @@ const articleMetadata = JSON.parse(fs.readFileSync(metaDataFilePath, "utf8"));
 const contentMarkdown = fs.readFileSync(contentMarkdownFilePath, "utf8");
 
 //
-// Construct the path for our outputed html file from the input-directory argument
+// Construct the path for our outputted html file from the input-directory argument
 //
 const outputHtmlFilePath = resolve(
   args["output-html-directory"],
@@ -157,21 +157,21 @@ const articleSkeletonHtml = `
       rel="icon"
       type="image/png"
       sizes="32x32"
-      href="/assets/favicon-32-32.png"
+      href="/assets/favicon-32-32.png?v=2"
     />
     <link
       rel="icon"
       type="image/png"
       sizes="96x96"
-      href="/assets/favicon-96-96.png"
+      href="/assets/favicon-96-96.png?v=2"
     />
     <link
       rel="icon"
       type="image/png"
       sizes="180x180"
-      href="/assets/favicon-180-180.png"
+      href="/assets/favicon-180-180.png?v=2"
     />
-    <link rel="apple-touch-icon" href="/assets/favicon-180-180.png">
+    <link rel="apple-touch-icon" href="/assets/favicon-180-180.png?v=2">
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   </head>

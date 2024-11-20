@@ -89,18 +89,18 @@ const indexSkeletonHtml = `
       rel="icon"
       type="image/png"
       sizes="32x32"
-      href="/assets/favicon-32-32.png" />
+      href="/assets/favicon-32-32.png?v=2" />
     <link
       rel="icon"
       type="image/png"
       sizes="96x96"
-      href="/assets/favicon-96-96.png" />
+      href="/assets/favicon-96-96.png?v=2" />
     <link
       rel="icon"
       type="image/png"
       sizes="180x180"
-      href="/assets/favicon-180-180.png" />
-    <link rel="apple-touch-icon" href="/assets/favicon-180-180.png">
+      href="/assets/favicon-180-180.png?v=2" />
+    <link rel="apple-touch-icon" href="/assets/favicon-180-180.png?v=2">
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="og:title" content="Beau Carlborg" />
@@ -113,7 +113,7 @@ const indexSkeletonHtml = `
     <header>
       <div id="index-title-container">
         <h1 id="index-title-text">Beau Carlborg</h1>
-        <img id="index-title-image" src="assets/favicon-96-96.png"/>
+        <img id="index-title-image" src="assets/favicon-96-96.png?v=2"/>
       </div>
       <p>👋 Hi there, my name is Beau (pronounced like go).</p>
     </header>
