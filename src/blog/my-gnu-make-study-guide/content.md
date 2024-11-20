@@ -1,20 +1,16 @@
 I have a love-hate relationship with `make`.
 
-On one hand, it is one of my favorite tools. I can confidently rely on it because I know the vast majority of distros are likely to have it, meaning wherever I am working, it will probably be accessible to me. When it is set up well, the interface for invoking `make` is just simple.
+On one hand, it is one of my favorite tools. I can confidently rely on it because I know the vast majority of distros are likely to have it, meaning wherever I am working, it will probably be accessible to me. When it is set up well, the interface for invoking `make` to build your project is hard to beat. If your project is small and the build is simple, it's easy to setup and start getting value from it.
 
-On the other hand, writing `makefiles` has been tripping me up since day one. At first, the language and syntax of `makefiles` seem simple and austere, but the more you learn, the more you realize how many dark nooks and sharp edges are in the details. Every time I come back to writing `makefiles`, I feel like I have to relearn all sorts of oddities to get comfortable again.
+On the other hand, writing makefiles for anything other than trivial builds has been tripping me up since day one. At first, the language and syntax of makefiles seem simple and austere, but the more you learn, the more you realize how many sharp edges are buried in the details. Oftentimes, I feel like I have a clear build task I want make to perform, but it can be hard to express that task in a way make is happy with. Every time I come back to writing makefiles, I feel like I have to relearn all sorts of oddities to get comfortable again.
 
-I created this “study guide” in an attempt to really solidify my understanding of the core knowledge you need to write `makefiles`. My hope is that through the process of writing these notes, I will have familiarized myself enough with the tool to avoid being so flustered the next time I come back to using it.
-
-I hope others get some value out of this post... But I mainly created this to help myself solidify some concepts—that is why I am calling this post a study guide.
-
-_For someone interested in learning make well, I would recommend the (surprisingly well-written) make documentation!_
+I created this _study guide_ in an attempt to really solidify my understanding of the core features you can use in makefiles. My hope is that through the process of writing these notes, I will have familiarized myself enough with the tool to avoid being so flustered the next time I need to use it. I hope others get some value out of this post, but this post is more of a collection of notes than a cohesive piece of writing. I added references to each section so that others can dig in deeper if they want.
 
 ## Make as a Build System
 
 ### 🏭 **Make is a _build automation system_ (AKA _build system_).**
 
-- A build system is a program or set of programs that automates your _build process_.
+- A build system is a program or set of programs that automate your _build process_.
 - Your build process is the sequence of all _build tasks_ required to generate the correct output artifacts from your input source files.
 - A build task is the smallest unit of work in your build process; these tasks cannot be broken down into smaller tasks. Build tasks may call one or many _build tools_.
 - Build tools are programs that accept source files as input and generate output files or initiate some side effect based on your input source files.
@@ -22,13 +18,14 @@ _For someone interested in learning make well, I would recommend the (surprising
 - References:
   - [A Model and Framework for Reliable Build Systems](https://arxiv.org/abs/1203.2704): Provides a thorough model that allows us to define what a build system is and how one works. The terms and definitions I use to describe build systems and their component parts come from this paper.
 
-### 🕰️ Build Systems Use a Dependency Graph to Build Your Project
+### 🕰️ Build Systems use a Dependency Graphs to Build Your Project
 
 - Build systems are able to plan and execute a build of your project faster than a naive script by using information about the structure of your project.
-- Build systems use an internal model of your project's build dependency graph.
-  - The build dependency graph is a directed acyclic graph (D.A.G.) that specifies which inputs each build artifact or side effect depends on.
+- Build systems create an internal representation of your project's build dependency graph.
+  - The build dependency graph is a directed acyclic graph (D.A.G.) that specifies the inputs and outputs of each build task in your project.
+  - The build system can then use that graph to figure out the correct sequence of build tasks needed to create some artifact.
 - Build systems have different mechanisms for deriving your project's build dependency graph.
-  - Some build systems (like make) require the programmer to elaborate and specify the project's build dependency graph.
+  - Some build systems, like make, require the programmer to elaborate and specify the project's build dependency graph.
   - Others automatically derive the build dependency graph of your project based on the contents of your source files.
 - Build systems use this dependency graph to implement two features that can make your builds run faster: _Incremental Builds_ and _Parallel Builds_.
   - In an incremental build, results from previous builds are used in the current build.
@@ -45,9 +42,13 @@ _For someone interested in learning make well, I would recommend the (surprising
 
 ### 🧑‍⚖️ Make Creates Its Internal Dependency Graph by Reading the _Rules_ in a Makefile
 
-- The `Makefile` encodes each dependency in the build system with a rule.
-- `Makefiles` are an example of declarative code; they specify all of the dependencies in your project and how to build each dependency rather than specifying how to execute the build step by step (like you would in an imperative language).
-- Each rule has a target (the output), zero or many prerequisites (the dependencies), and a recipe (the code for the build task). The basic syntax of a rule is as follows:
+- In a project using make as a build system, a `Makefile` stores a sequence rules. Each of these rules encodes one of the dependencies in your build process.
+- Makefiles are an example of declarative code; they specify all of the dependencies in your project and how to build each dependency rather than specifying how to execute the build step by step (like you would in an imperative language).
+- Each rule has a target, zero or many prerequisites, and a recipe.
+  - The target can target is file that the rule creates when it is run.
+  - The prerequisites are the files that the target depends on.
+  - The recipe is the set of instructions for creating the target.
+- The syntax for a rule is as follows:
 
 ```
 target: prerequisite1 prerequisite2 ...
@@ -57,14 +58,14 @@ target: prerequisite1 prerequisite2 ...
 ```
 
 - Simple rules describe a single node in the build dependency graph. More general rules can be written to describe many different parts of the dependency graph.
-- `Makefiles` also support a number of other programming constructs like variables, functions, pattern matching, and shell globbing, but it is useful to remember that these constructs only exist to help you write better rules.
+- Makefiles also support a number of other programming constructs like variables, functions, pattern matching, and shell globbing, but it is useful to remember that these constructs only exist to help you write better rules.
 - To run make, you specify the target (or targets) you would like make to build, and make will consult the rules in your `Makefile` to determine which recipes to run.
 - References:
   - Make documentation — [Chapter 2: An Introduction to Makefiles](https://www.gnu.org/software/make/manual/make.html#Introduction)
 
 ## Simple Make Syntax
 
-### 📜 Simple Rules:
+### 📜 Simple Rules
 
 - A simple rule specifies a file to build as its target and has one or many files as prerequisites.
 
@@ -132,7 +133,7 @@ make: `main' is up to date.
 - References:
   - Make documentation — [Chapter 2: An Introduction to Makefiles](https://www.gnu.org/software/make/manual/make.html#Introduction)
 
-### ✏️ Simple Variable Assignment:
+### ✏️ Simple Variable Assignment
 
 - Make supports variables as a way to make writing rules cleaner, allowing for reused strings between rules.
 - The basic syntax for variable assignment is as follows.
@@ -211,7 +212,7 @@ $(TARGET_NAME): $(PREREQUISITE_NAMES)
 - References:
   - Make documentation — [Chapter 6: How to Use Variables](https://www.gnu.org/software/make/manual/make.html#Using-Variables)
 
-### 🤖 Basic Automatic Variables:
+### 🤖 Basic Automatic Variables
 
 - All of our rules have been static so far, meaning that the target file and all of the prerequisite files are explicitly listed.
   - Later on, we will introduce syntax that allows for rules where the targets and prerequisites are determined when `make` is run.
@@ -222,7 +223,7 @@ $(TARGET_NAME): $(PREREQUISITE_NAMES)
   - `$^`: the names of all prerequisites (separated by a space—even if they were separated by other whitespace in the rule declaration).
   - `$<`: the name of the first prerequisite.
   - `$?`: the names of all prerequisites that are newer than the target.
-  - (and more! but these are the basics and the ones you see most commonly.)
+  - And more! But these are the basics and the ones you see most commonly.
 - Examples:
 
 ```
@@ -329,7 +330,7 @@ VAR1=$(notdir foo/text foo/bar/baz.txt blamo)
 
 ## Syntax for More General Rules
 
-### 🤡 Phony Targets:
+### 🤡 Phony Targets
 
 - So far, in each of our rules, our target has been a file that the recipe of the rule creates. Sometimes it is useful to create a rule whose target does not correspond to any file.
 - When a target does not correspond to a file, we call it a phony target.
@@ -366,7 +367,7 @@ clean:
 - References:
   - Make documentation — [4.6 Phony Targets](https://www.gnu.org/software/make/manual/make.html#Phony-Targets)
 
-### 🎨 Wildcard Rules:
+### 🎨 Wildcard Rules
 
 - Often times, you want to create a rule that applies to every target or prerequisite matching some pattern in a directory.
 - You can do this in make using wildcard characters in the target or prerequisite section of a rule.
@@ -381,7 +382,7 @@ book.txt: chapter*.txt
 - References:
   - Make documentation — [4.4 Using Wildcard Characters in File Names](https://www.gnu.org/software/make/manual/make.html#Wildcards)
 
-### 🏵️ Pattern Rules:
+### 🏵️ Pattern Rules
 
 - Similar to wildcard rules, pattern rules allow you to write rules that are more general than basic rules.
 - Pattern rules allow you to create a rule for any target matching a particular pattern. That pattern can also be referenced in the prerequisite list of the rule.
@@ -398,7 +399,7 @@ book.txt: chapter*.txt
 - References:
   - Make documentation — [10.5 Pattern Rules](https://www.gnu.org/software/make/manual/make.html#Pattern-Rules)
 
-### 🫥 Built-in Rules:
+### 🫥 Built-in Rules
 
 - By default, make also references a number of built-in rules beyond those you define in your `Makefile` when you invoke it.
 - There are two built-in rules that you may still come across or shoot yourself in the foot with.
@@ -408,7 +409,7 @@ book.txt: chapter*.txt
 - References:
   - Make documentation — [10.2 Catalogue of Implicit Rules](https://www.gnu.org/software/make/manual/make.html#Catalogue-of-Rules)
 
-### 👬 Multiple Targets per Rule:
+### 👬 Multiple Targets per Rule
 
 - In all of the rules up to this point, we have only had one target per rule. Make also has affordances for specifying multiple targets for a single rule.
 - There are two different variants of multiple target rules.
@@ -444,7 +445,7 @@ foo bar biz &: baz boz
   echo $^ > biz
 ```
 
-### 🦏 Order-only Prerequisites:
+### 🦏 Order-only Prerequisites
 
 - The default interpretation of prerequisites in rules is that make should run the recipe whenever any one of the prerequisites has an update timestamp that is newer than that of the target.
 - Order-only prerequisites allow you to specify prerequisites for a target that should only cause an execution of the recipe if the order-only prerequisite doesn't exist. Once the order-only prerequisite exists, any subsequent updates to it will not cause make to execute the rule again.
