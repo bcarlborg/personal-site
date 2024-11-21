@@ -8,7 +8,7 @@ I created this _study guide_ in an attempt to really solidify my understanding o
 
 ## Make as a Build System
 
-### 🏭 **Make is a _build automation system_ (AKA _build system_).**
+### 🏭 Make is a Build Automation System (a.k.a. a Build System).
 
 - A build system is a program or set of programs that automate your _build process_.
 - Your build process is the sequence of all _build tasks_ required to generate the correct output artifacts from your input source files.
@@ -18,7 +18,7 @@ I created this _study guide_ in an attempt to really solidify my understanding o
 - References:
   - [A Model and Framework for Reliable Build Systems](https://arxiv.org/abs/1203.2704): Provides a thorough model that allows us to define what a build system is and how one works. The terms and definitions I use to describe build systems and their component parts come from this paper.
 
-### 🕰️ Build Systems use a Dependency Graphs to Build Your Project
+### 🕰️ Build Systems use Dependency Graphs to Build Your Project
 
 - Build systems are able to plan and execute a build of your project faster than a naive script by using information about the structure of your project.
 - Build systems create an internal representation of your project's build dependency graph.
@@ -40,7 +40,7 @@ I created this _study guide_ in an attempt to really solidify my understanding o
   - [A Model and Framework for Reliable Build Systems](https://arxiv.org/abs/1203.2704): Provides a specific model of how build systems use dependency graphs and how build systems evaluate whether or not nodes in that graph are out of date.
   - [Forward Build Systems, Formally](https://arxiv.org/abs/2202.05328): Describes a build system that can derive a project's build dependency graph from the source of the project.
 
-### 🧑‍⚖️ Make Creates Its Internal Dependency Graph by Reading the _Rules_ in a Makefile
+### 🧑‍⚖️ Dependency Graphs are Encoded in Rules of Makefiles
 
 - In a project using make as a build system, a `Makefile` stores a sequence rules. Each of these rules encodes one of the dependencies in your build process.
 - Makefiles are an example of declarative code; they specify all of the dependencies in your project and how to build each dependency rather than specifying how to execute the build step by step (like you would in an imperative language).
@@ -535,24 +535,31 @@ all:
 - References:
   - Make documentation — [6.2 The Two Flavors of Variables](https://www.gnu.org/software/make/manual/make.html#Flavors)
 
-## Other Bits and Bobs
+## Other Bits and Bops
 
-### 🛶 Make Executes Each Recipe Line in Its Own Subshell
+### 🛶 Make Executes Each Recipe Line in its Own Subshell
 
 - When make executes a recipe, it executes each line of the recipe in its own subshell.
 - ⚠️ This means that setting shell variables or changing directory in a `Makefile` recipe will not affect following lines.
   - This can be confusing to new `Makefile` authors who expect the entire recipe is executed like a shell script.
+
+```
+target1: prereq1
+  cd subdir
+  pwd          # pwd will not be subdir/ when pwd evaluates, because
+               # the previous line was executed in a separate shell instance
+```
+
 - References:
   - Make documentation — [5.1 Recipe Execution](https://www.gnu.org/software/make/manual/make.html#Execution)
 
 ### 🏚️ Creating a Prerequisite That Is Always Out of Date
 
-- Sometimes it is useful to have a prerequisite on a rule that is always out of date. This will ensure that the rule is always run even when the target is up to date
+- Sometimes it is useful to have a prerequisite on a rule that is always out of date. This will ensure that the rule is always run even when the target is up to date.
   - This can be useful when debugging to see what happens when a rule is run.
   - This can also be useful if you have a rule that updates a file every time the recipe is run
 - This can be done by creating a dependency that is always out of date and adding it as a prerequisite on any rules you always want run.
-
-  - Another alternative is to mark your target file as `.PHONY`. But that is (1) confusing because phony targets usually don’t have an associated file and (2) not going to work if your target is a pattern target (you can’t mark a pattern as phony).
+  - Another alternative is to mark your target file as `.PHONY`. But that is confusing because phony targets usually don’t have an associated file and it is not going to work if your target is a pattern target (you can’t mark a pattern as phony).
 
 ```
 # The `FORCE` target has no dependencies and no rule,
@@ -575,26 +582,36 @@ log.txt: FORCE
 
 ### 👩‍👩‍👧‍👦 Using Multiple Makefiles
 
-- There are two approaches to using multiple `makefiles` in a project
-- **Including `makefiles`**
-
+- Once a project grows sufficiently large, having all of your build process logic included in one `Makefile` is too unwieldy.
+- Make has a few affordances for using multiple `makefiles` in a project, and include mechanism for importing the rules from one makefile and a mechanism for executing other makefiles.
+- Including `makefiles`:
   - It is possible to include the rules from another `makefile` in your project by using the `include` directive.
   - Conceptually, you can imagine that calling the `include` directive expands all of the content of the included `makefiles` directly into your `Makefile` where the `include` directive is.
+  - This can be useful if your project has shared variables that every `makefile` should use, or if your `makefile` includes a lot of boilerplate.
+  - Some tools will process your source files and extract the appropriate make rules from them. The include mechanism allows you to incorporated those generated make rules into your build process dynamically.
+  - The syntax for including other makefiles in your current makefile is as follows:
 
 ```
 include some_makefile.mk some_other_makefile.mk
 ```
 
-- This can be useful if your project has shared variables that every `makefile` should use, or if your `makefile` includes a lot of boilerplate.
-
 - **Recursively calling `makefiles`**
 
   - You can invoke `make` in a recipe in your current `makefile` by calling `$(MAKE)`.
-  - Invoking this command is the same as calling `make` on the command line:
+  - Invoking this command is the same as calling `make` on the command line.
+  - This is a useful pattern when you want to have makefiles in subdirectories of your project that are responsible for executing the build of those files.
+  - Many projects have one simple `Makefile` at the top level of their project directory. This makefile is responsible for recursively executing make in those subdirectories.
+  - That kind of setup might look like this:
 
 ```
-subsystem:
-  cd subdir && $(MAKE)
+executable:
+  cd src/ && $(make)
+
+tests:
+  cd tests && $(make)
+
+docs:
+  cd documentation && $(make)
 ```
 
 - By default, when you invoke `make` recursively in this way, no information from your current `Makefile` is communicated to the recursively run `Makefile`.

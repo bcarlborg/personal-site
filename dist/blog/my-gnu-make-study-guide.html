@@ -34,20 +34,20 @@
                     </div>
 
                     <div class="h3-toc-item">
-                        <a href="#make-is-a-build-automation-system-aka-build-system" }>
-                            🏭 Make is a build automation system (AKA build system).
+                        <a href="#make-is-a-build-automation-system-aka-a-build-system" }>
+                            🏭 Make is a Build Automation System (a.k.a. a Build System).
                         </a>
                     </div>
 
                     <div class="h3-toc-item">
-                        <a href="#️build-systems-use-a-dependency-graphs-to-build-your-project" }>
-                            🕰️ Build Systems use a Dependency Graphs to Build Your Project
+                        <a href="#️build-systems-use-dependency-graphs-to-build-your-project" }>
+                            🕰️ Build Systems use Dependency Graphs to Build Your Project
                         </a>
                     </div>
 
                     <div class="h3-toc-item">
-                        <a href="#️make-creates-its-internal-dependency-graph-by-reading-the-rules-in-a-makefile" }>
-                            🧑‍⚖️ Make Creates Its Internal Dependency Graph by Reading the Rules in a Makefile
+                        <a href="#️dependency-graphs-are-encoded-in-rules-of-makefiles" }>
+                            🧑‍⚖️ Dependency Graphs are Encoded in Rules of Makefiles
                         </a>
                     </div>
 
@@ -148,14 +148,14 @@
                     </div>
 
                     <div class="h2-toc-item">
-                        <a href="#other-bits-and-bobs" }>
-                            Other Bits and Bobs
+                        <a href="#other-bits-and-bops" }>
+                            Other Bits and Bops
                         </a>
                     </div>
 
                     <div class="h3-toc-item">
                         <a href="#make-executes-each-recipe-line-in-its-own-subshell" }>
-                            🛶 Make Executes Each Recipe Line in Its Own Subshell
+                            🛶 Make Executes Each Recipe Line in its Own Subshell
                         </a>
                     </div>
 
@@ -176,7 +176,7 @@
                 <p>On the other hand, writing makefiles for anything other than trivial builds has been tripping me up since day one. At first, the language and syntax of makefiles seem simple and austere, but the more you learn, the more you realize how many sharp edges are buried in the details. Oftentimes, I feel like I have a clear build task I want make to perform, but it can be hard to express that task in a way make is happy with. Every time I come back to writing makefiles, I feel like I have to relearn all sorts of oddities to get comfortable again.</p>
                 <p>I created this <em>study guide</em> in an attempt to really solidify my understanding of the core features you can use in makefiles. My hope is that through the process of writing these notes, I will have familiarized myself enough with the tool to avoid being so flustered the next time I need to use it. I hope others get some value out of this post, but this post is more of a collection of notes than a cohesive piece of writing. I added references to each section so that others can dig in deeper if they want.</p>
                 <h2 id="make-as-a-build-system">Make as a Build System</h2>
-                <h3 id="make-is-a-build-automation-system-aka-build-system">🏭 <strong>Make is a <em>build automation system</em> (AKA <em>build system</em>).</strong></h3>
+                <h3 id="make-is-a-build-automation-system-aka-a-build-system">🏭 Make is a Build Automation System (a.k.a. a Build System).</h3>
                 <ul>
                     <li>A build system is a program or set of programs that automate your <em>build process</em>.</li>
                     <li>Your build process is the sequence of all <em>build tasks</em> required to generate the correct output artifacts from your input source files.</li>
@@ -188,7 +188,7 @@
                         </ul>
                     </li>
                 </ul>
-                <h3 id="️build-systems-use-a-dependency-graphs-to-build-your-project">🕰️ Build Systems use a Dependency Graphs to Build Your Project</h3>
+                <h3 id="️build-systems-use-dependency-graphs-to-build-your-project">🕰️ Build Systems use Dependency Graphs to Build Your Project</h3>
                 <ul>
                     <li>Build systems are able to plan and execute a build of your project faster than a naive script by using information about the structure of your project.</li>
                     <li>Build systems create an internal representation of your project&#39;s build dependency graph.<ul>
@@ -222,7 +222,7 @@
                         </ul>
                     </li>
                 </ul>
-                <h3 id="️make-creates-its-internal-dependency-graph-by-reading-the-rules-in-a-makefile">🧑‍⚖️ Make Creates Its Internal Dependency Graph by Reading the <em>Rules</em> in a Makefile</h3>
+                <h3 id="️dependency-graphs-are-encoded-in-rules-of-makefiles">🧑‍⚖️ Dependency Graphs are Encoded in Rules of Makefiles</h3>
                 <ul>
                     <li>In a project using make as a build system, a <code>Makefile</code> stores a sequence rules. Each of these rules encodes one of the dependencies in your build process.</li>
                     <li>Makefiles are an example of declarative code; they specify all of the dependencies in your project and how to build each dependency rather than specifying how to execute the build step by step (like you would in an imperative language).</li>
@@ -756,14 +756,21 @@ all:
                         </ul>
                     </li>
                 </ul>
-                <h2 id="other-bits-and-bobs">Other Bits and Bobs</h2>
-                <h3 id="make-executes-each-recipe-line-in-its-own-subshell">🛶 Make Executes Each Recipe Line in Its Own Subshell</h3>
+                <h2 id="other-bits-and-bops">Other Bits and Bops</h2>
+                <h3 id="make-executes-each-recipe-line-in-its-own-subshell">🛶 Make Executes Each Recipe Line in its Own Subshell</h3>
                 <ul>
                     <li>When make executes a recipe, it executes each line of the recipe in its own subshell.</li>
                     <li>⚠️ This means that setting shell variables or changing directory in a <code>Makefile</code> recipe will not affect following lines.<ul>
                             <li>This can be confusing to new <code>Makefile</code> authors who expect the entire recipe is executed like a shell script.</li>
                         </ul>
                     </li>
+                </ul>
+                <pre><code>target1: prereq1
+  cd subdir
+  pwd          # pwd will not be subdir/ when pwd evaluates, because
+               # the previous line was executed in a separate shell instance
+</code></pre>
+                <ul>
                     <li>References:<ul>
                             <li>Make documentation — <a href="https://www.gnu.org/software/make/manual/make.html#Execution">5.1 Recipe Execution</a></li>
                         </ul>
@@ -771,17 +778,13 @@ all:
                 </ul>
                 <h3 id="️creating-a-prerequisite-that-is-always-out-of-date">🏚️ Creating a Prerequisite That Is Always Out of Date</h3>
                 <ul>
-                    <li>
-                        <p>Sometimes it is useful to have a prerequisite on a rule that is always out of date. This will ensure that the rule is always run even when the target is up to date</p>
-                        <ul>
+                    <li>Sometimes it is useful to have a prerequisite on a rule that is always out of date. This will ensure that the rule is always run even when the target is up to date.<ul>
                             <li>This can be useful when debugging to see what happens when a rule is run.</li>
                             <li>This can also be useful if you have a rule that updates a file every time the recipe is run</li>
                         </ul>
                     </li>
-                    <li>
-                        <p>This can be done by creating a dependency that is always out of date and adding it as a prerequisite on any rules you always want run.</p>
-                        <ul>
-                            <li>Another alternative is to mark your target file as <code>.PHONY</code>. But that is (1) confusing because phony targets usually don’t have an associated file and (2) not going to work if your target is a pattern target (you can’t mark a pattern as phony).</li>
+                    <li>This can be done by creating a dependency that is always out of date and adding it as a prerequisite on any rules you always want run.<ul>
+                            <li>Another alternative is to mark your target file as <code>.PHONY</code>. But that is confusing because phony targets usually don’t have an associated file and it is not going to work if your target is a pattern target (you can’t mark a pattern as phony).</li>
                         </ul>
                     </li>
                 </ul>
@@ -807,14 +810,14 @@ log.txt: FORCE
                 </ul>
                 <h3 id="using-multiple-makefiles">👩‍👩‍👧‍👦 Using Multiple Makefiles</h3>
                 <ul>
-                    <li>
-                        <p>There are two approaches to using multiple <code>makefiles</code> in a project</p>
-                    </li>
-                    <li>
-                        <p><strong>Including <code>makefiles</code></strong></p>
-                        <ul>
+                    <li>Once a project grows sufficiently large, having all of your build process logic included in one <code>Makefile</code> is too unwieldy.</li>
+                    <li>Make has a few affordances for using multiple <code>makefiles</code> in a project, and include mechanism for importing the rules from one makefile and a mechanism for executing other makefiles.</li>
+                    <li>Including <code>makefiles</code>:<ul>
                             <li>It is possible to include the rules from another <code>makefile</code> in your project by using the <code>include</code> directive.</li>
                             <li>Conceptually, you can imagine that calling the <code>include</code> directive expands all of the content of the included <code>makefiles</code> directly into your <code>Makefile</code> where the <code>include</code> directive is.</li>
+                            <li>This can be useful if your project has shared variables that every <code>makefile</code> should use, or if your <code>makefile</code> includes a lot of boilerplate.</li>
+                            <li>Some tools will process your source files and extract the appropriate make rules from them. The include mechanism allows you to incorporated those generated make rules into your build process dynamically.</li>
+                            <li>The syntax for including other makefiles in your current makefile is as follows:</li>
                         </ul>
                     </li>
                 </ul>
@@ -822,18 +825,24 @@ log.txt: FORCE
 </code></pre>
                 <ul>
                     <li>
-                        <p>This can be useful if your project has shared variables that every <code>makefile</code> should use, or if your <code>makefile</code> includes a lot of boilerplate.</p>
-                    </li>
-                    <li>
                         <p><strong>Recursively calling <code>makefiles</code></strong></p>
                         <ul>
                             <li>You can invoke <code>make</code> in a recipe in your current <code>makefile</code> by calling <code>$(MAKE)</code>.</li>
-                            <li>Invoking this command is the same as calling <code>make</code> on the command line:</li>
+                            <li>Invoking this command is the same as calling <code>make</code> on the command line.</li>
+                            <li>This is a useful pattern when you want to have makefiles in subdirectories of your project that are responsible for executing the build of those files.</li>
+                            <li>Many projects have one simple <code>Makefile</code> at the top level of their project directory. This makefile is responsible for recursively executing make in those subdirectories.</li>
+                            <li>That kind of setup might look like this:</li>
                         </ul>
                     </li>
                 </ul>
-                <pre><code>subsystem:
-  cd subdir &amp;&amp; $(MAKE)
+                <pre><code>executable:
+  cd src/ &amp;&amp; $(make)
+
+tests:
+  cd tests &amp;&amp; $(make)
+
+docs:
+  cd documentation &amp;&amp; $(make)
 </code></pre>
                 <ul>
                     <li>By default, when you invoke <code>make</code> recursively in this way, no information from your current <code>Makefile</code> is communicated to the recursively run <code>Makefile</code>.</li>
