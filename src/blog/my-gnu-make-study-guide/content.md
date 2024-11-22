@@ -2,9 +2,11 @@ I have a love-hate relationship with `make`.
 
 On one hand, it is one of my favorite tools. I can confidently rely on it because I know the vast majority of distros are likely to have it, meaning wherever I am working, it will probably be accessible to me. When it is set up well, the interface for invoking `make` to build your project is hard to beat. If your project is small and the build is simple, it's easy to setup and start getting value from it.
 
-On the other hand, writing makefiles for anything other than trivial builds has been tripping me up since day one. At first, the language and syntax of makefiles seem simple and austere, but the more you learn, the more you realize how many sharp edges are buried in the details. Oftentimes, I feel like I have a clear build task I want make to perform, but it can be hard to express that task in a way make is happy with. Every time I come back to writing makefiles, I feel like I have to relearn all sorts of oddities to get comfortable again.
+On the other hand, writing makefiles for anything other than trivial builds has been tripping me up since day one. At first, the language and syntax of makefiles seem simple and austere, but the more you learn, the more you realize how many sharp edges are buried in the details. Oftentimes, I feel like I have a clear build task I want `make` to perform, but it can be hard to express that task in a way the tool is happy with. Every time I come back to writing non-trivial makefiles, I feel like I have to relearn all sorts of oddities to get comfortable again.
 
-I created this _study guide_ in an attempt to really solidify my understanding of the core features you can use in makefiles. My hope is that through the process of writing these notes, I will have familiarized myself enough with the tool to avoid being so flustered the next time I need to use it. I hope others get some value out of this post, but this post is more of a collection of notes than a cohesive piece of writing. I added references to each section so that others can dig in deeper if they want.
+I created this _study guide_ in an attempt to really solidify my understanding of the core features you can use in makefiles. My hope is that through the process of writing these notes, I will have familiarized myself enough with the tool to avoid being so flustered the next time I need to use it.
+
+Disclaimer: This post is more of a collection of notes than a cohesive piece of writing. I have not taken the time to massage this into writing that flows, and quite frankly, this is not a topic or post that I want to make that investment in. I am posting this in-spite of its rough condition because it might still have some value for others in this form!
 
 ## Make as a Build System
 
@@ -468,6 +470,35 @@ bin/:
   - Make documentation — [4.3.2.2 Order-only Prerequisites](https://www.gnu.org/software/make/manual/make.html#Order_002dOnly)
 
 ## Other Useful Syntax
+
+### 🧞 Variable Substitution References
+
+- Oftentimes in a makefile, you want to create one variable from another with a slight modification. You want to map over the values in one variable and generate your new one by performing some slight translation on the original variable.
+- Variable substitution references are a lightweight piece of syntax has some basic functionality for doing this.
+- The basic syntax of a variable subtitution reference allows you to replace the tail of every value in a variable with a new tail:
+
+```
+VAR_A:=foo.c bar.c baz.c
+
+# VAR_B receives value foo.o bar.o baz.o
+VAR_B:=$(A:.c=.o)
+```
+
+- Substitution references also support the pattern syntax that you can use in a `patsubst` function call. This allows you to perform slightly more complex substitutions.
+
+```
+VAR_A:=foo.c bar.c baz.c
+
+# VAR_B receives value foo_new.c bar_new.c baz_new.c
+VAR_B:=$(A:%.c=%_new.c)
+
+# This code using the patsubst function is equivalent
+VAR_B:=$(patsubst %.c,%_new.c,$(VAR_A))
+```
+
+references:
+
+- Make documentation — [6.3.1 Substitution References](https://www.gnu.org/software/make/manual/html_node/Substitution-Refs.html)
 
 ### 👨‍🍳 Make Syntax for Recipes
 
