@@ -1,12 +1,13 @@
 I have a love-hate relationship with `make`.
 
-On one hand, it is one of my favorite tools. I can confidently rely on it because I know the vast majority of distros are likely to have it, meaning wherever I am working, it will probably be accessible to me. When it is set up well, the interface for invoking `make` to build your project is hard to beat. If your project is small and the build is simple, it's easy to setup and start getting value from it.
+On one hand, it is one of my favorite tools. It is installed almost everywhere. For simple projects it is easy to setup. When setup well, it is easy to run and extends. On the other hand, writing makefiles for anything other than trivial builds can be tough. The language and syntax of makefiles has many sharp edges buried in the details. Every time I want to write a non-trivial makefile, I have to reacquaint myself with a grab bag of make specific stuff to get going again.
 
-On the other hand, writing makefiles for anything other than trivial builds has been tripping me up since day one. At first, the language and syntax of makefiles seem simple and austere, but the more you learn, the more you realize how many sharp edges are buried in the details. Oftentimes, I feel like I have a clear build task I want `make` to perform, but it can be hard to express that task in a way the tool is happy with. Every time I come back to writing non-trivial makefiles, I feel like I have to relearn all sorts of oddities to get comfortable again.
+I created this _study guide_ in an attempt to really solidify my understanding of the core features you can use in makefiles. To make this study guide, I did two things:
 
-I created this _study guide_ in an attempt to really solidify my understanding of the core features you can use in makefiles. My hope is that through the process of writing these notes, I will have familiarized myself enough with the tool to avoid being so flustered the next time I need to use it.
+1. I read a few papers that generally describe build systems. I then tried to describe `make` framed in the terms of those papers. That is what is covered in the [Make as a Build System](#make-as-a-build-system) section
+2. I read through almost every section of the official [make documentation](https://www.gnu.org/software/make/manual/make.html) and tried to note down the features of the tool and the language that'd I'd come across or used before. I then tried to explain each of those features in my own words in a section of this document.
 
-Disclaimer: This post is more of a collection of notes than a cohesive piece of writing. I have not taken the time to massage this into writing that flows, and quite frankly, this is not a topic or post that I want to make that investment in. I am posting this in-spite of its rough condition because it might still have some value for others in this form!
+Disclaimer: This post is more of a collection of notes than a cohesive piece of writing. I have not taken the time to massage this into writing that flows, and frankly, this is neither the topic nor the post that I want to make that investment in. I am publishing this in spite of its rough condition because it might still have some value for others and because not everything needs to be perfect 💎
 
 ## Make as a Build System
 
