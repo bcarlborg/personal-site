@@ -35,16 +35,17 @@ Disclaimer: This post is more of a collection of notes than a cohesive piece of 
 
 ### 🕰️ Build Systems use Dependency Graphs to Build Your Project
 
-- Build systems are able to plan and execute a build of your project faster than a naive script by using information about the structure of your project.
-- Build systems create an internal representation of your project's build dependency graph.
-  - The build dependency graph is a directed acyclic graph (D.A.G.) that specifies the inputs and outputs of each build task in your project.
+- What is it that separates the bone fide build systems from a plain old scripts? If the purpose of a build system is to automate the build process of a project... we could just automate with a simple shell script right?
+  - Yes, you definitely could! And that would be a build system in its own right, but most build system programs are able to plan and execute a build of your project faster than a naive script by using information about the structure of your project.
+- Many build system programs create an internal representation of your project's build dependency graph and use it to execute builds in an efficient way.
+  - The build dependency graph is a directed acyclic graph (D.A.G.) that specifies the inputs and outputs of each build task in your project (see the image below).
   - The build system can then use that graph to figure out the correct sequence of build tasks needed to create some artifact.
-- Build systems have different mechanisms for deriving your project's build dependency graph.
-  - Some build systems, like make, require the programmer to elaborate and specify the project's build dependency graph.
-  - Others automatically derive the build dependency graph of your project based on the contents of your source files.
 
 ![dependency graph example](dependency-graph.png)
 
+- Build systems have different mechanisms for deriving your project's build dependency graph.
+  - Some build systems, like make, require the programmer to elaborate and specify the project's build dependency graph.
+  - Others automatically derive the build dependency graph of your project based on the contents of your source files.
 - Build systems use this dependency graph to implement two features that can make your builds run faster: _Incremental Builds_ and _Parallel Builds_.
   - In an incremental build, results from previous builds are used in the current build.
     - Effectively, intermediate build results are cached for use in future builds.
@@ -60,7 +61,9 @@ Disclaimer: This post is more of a collection of notes than a cohesive piece of 
 
 ### 🧑‍⚖️ Dependency Graphs are Encoded in Rules of Makefiles
 
-- In a project using make as a build system, a `Makefile` stores a sequence rules. Each of these rules encodes one of the dependencies in your build process.
+- Make requires that a user specify the dependency graph for their project in a `Makefile`
+- The programmer configuring the build system writes a `Makefile` that stores a sequence rules.
+- Each of these rules encodes one of the dependencies in your build process.
 - Makefiles are an example of declarative code; they specify all of the dependencies in your project and how to build each dependency rather than specifying how to execute the build step by step (like you would in an imperative language).
 - Each rule has a target, zero or many prerequisites, and a recipe.
   - The target can target is file that the rule creates when it is run.
@@ -85,6 +88,8 @@ target: prerequisite1 prerequisite2 ...
 
 ### 📜 Simple Rules
 
+- Rules are really the core of of what makes make. The way make builds your project is entirely determined by the rules you write.
+- There are many ways to write complex rules, but rules follow the same basic syntax that is exemplified by simple rules.
 - A simple rule specifies a file to build as its target and has one or many files as prerequisites.
 
 ```
@@ -153,8 +158,8 @@ make: `main' is up to date.
 
 ### ✏️ Simple Variable Assignment
 
-- Make supports variables as a way to make writing rules cleaner, allowing for reused strings between rules.
-- The basic syntax for variable assignment is as follows.
+- Make supports an entire little programming language, and what would a programming language be without variables.
+- The basic syntax for variable assignments in make is as follows:
 
 ```
 variable_name=variable_value
@@ -194,6 +199,7 @@ CC=gcc
 
 **📖 Basic Variable Reference:**
 
+- The variables you declare can be used in any part of a makefile. The definitions of other rules, targets, prerequisites, recipes, you name it.
 - The syntax for referencing a variable is as follows:
 
 ```
