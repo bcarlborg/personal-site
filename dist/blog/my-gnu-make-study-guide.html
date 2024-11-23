@@ -178,21 +178,41 @@
                     </div>
                 </div>
                 <p>I have a love-hate relationship with <code>make</code>.</p>
-                <p>On one hand, it is one of my favorite tools. It is installed almost everywhere. For simple projects it is easy to setup. When setup well, it is easy to run and extends. On the other hand, writing makefiles for anything other than trivial builds can be tough. The language and syntax of makefiles has many sharp edges buried in the details. Every time I want to write a non-trivial makefile, I have to reacquaint myself with a grab bag of make specific stuff to get going again.</p>
+                <p>On one hand, it is one of my favorite tools. It is installed almost everywhere. For simple projects it is easy to setup, and when configured well, it is easy to run and extend. On the other hand, writing makefiles for anything other than trivial builds can be tough. The language and syntax of makefiles has many sharp edges buried in the details. Every time I want to write a non-trivial makefile, I have to reacquaint myself with a grab bag of make specific stuff to get going again.</p>
                 <p>I created this <em>study guide</em> in an attempt to really solidify my understanding of the core features you can use in makefiles. To make this study guide, I did two things:</p>
                 <ol>
-                    <li>I read a few papers that generally describe build systems. I then tried to describe <code>make</code> framed in the terms of those papers. That is what is covered in the <a href="#make-as-a-build-system">Make as a Build System</a> section</li>
+                    <li>I read a few papers that generally describe build systems. I then tried to describe <code>make</code> framed in the terms of those papers. That is what is covered in the <a href="#make-as-a-build-system">Make as a Build System</a> section.</li>
                     <li>I read through almost every section of the official <a href="https://www.gnu.org/software/make/manual/make.html">make documentation</a> and tried to note down the features of the tool and the language that&#39;d I&#39;d come across or used before. I then tried to explain each of those features in my own words in a section of this document.</li>
                 </ol>
                 <p>Disclaimer: This post is more of a collection of notes than a cohesive piece of writing. I have not taken the time to massage this into writing that flows, and frankly, this is neither the topic nor the post that I want to make that investment in. I am publishing this in spite of its rough condition because it might still have some value for others and because not everything needs to be perfect 💎</p>
                 <h2 id="make-as-a-build-system">Make as a Build System</h2>
                 <h3 id="make-is-a-build-automation-system-aka-a-build-system">🏭 Make is a Build Automation System (a.k.a. a Build System).</h3>
                 <ul>
-                    <li>A build system is a program or set of programs that automate your <em>build process</em>.</li>
-                    <li>Your build process is the sequence of all <em>build tasks</em> required to generate the correct output artifacts from your input source files.</li>
-                    <li>A build task is the smallest unit of work in your build process; these tasks cannot be broken down into smaller tasks. Build tasks may call one or many <em>build tools</em>.</li>
-                    <li>Build tools are programs that accept source files as input and generate output files or initiate some side effect based on your input source files.</li>
-                    <li>A build is a single execution of your build process.</li>
+                    <li>To get oriented with make, it is useful to nail down some terms that we&#39;ll use to talk about this kind of software.<ul>
+                            <li>build system: a program or set of programs that automate your build process.</li>
+                            <li>build process: the sequence of all build tasks required to generate the correct output artifacts from your input source files.</li>
+                            <li>build task: the smallest unit of work in your build process; these tasks cannot be broken down into smaller tasks. Build tasks may call one or many build tools.</li>
+                            <li>build tools: programs that accept source files as input and generate output files or initiate some side effect based on your input source files.</li>
+                            <li>A build: is a single execution of your build process.</li>
+                        </ul>
+                    </li>
+                    <li>Some examples of these terms in action:<ul>
+                            <li>In a C project where you have many source files that are used to create a single executable.<ul>
+                                    <li>Your <em>build process</em> is all of the steps you need to take to compile the source files and link object files into an executable. If you have test suite, your build process would also include the steps you need to build those tests.</li>
+                                    <li>This project would have many <em>build tasks</em> like compiling each <code>.c</code> file to <code>.o</code> file and linking the <code>.o</code> files together into an executable.</li>
+                                    <li>This project would also have <em>build tools</em> like a compiler and linker.</li>
+                                    <li>A <em>build</em> of this project would be the creation of the output executable from all the source files using the compiler and the linker.</li>
+                                </ul>
+                            </li>
+                            <li>In a React project where you are writing JSX code that will be converted into vanilla js to be run on the browser<ul>
+                                    <li>Your <code>_build process_</code> would be all the steps you need to take to convert your source <code>jsx</code> files into a set of vanilla javascript files that can be hosted on a webserver.</li>
+                                    <li>Your <em>build tasks</em> include running your <code>jsx</code> files through a transpiler like <code>babel</code> to create vanilla js and likely a step of running those files through a bundler like <code>webpack</code> to turn them into a neat minified js file that can be served to clients.</li>
+                                    <li>Your <em>build tools</em> would be those executables like <code>webpack</code> and <code>babel</code>.</li>
+                                    <li>A <em>build</em> of your project would be the creation of the assets that will be hosted on your webserver.</li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </li>
                     <li>References:<ul>
                             <li><a href="https://arxiv.org/abs/1203.2704">A Model and Framework for Reliable Build Systems</a>: Provides a thorough model that allows us to define what a build system is and how one works. The terms and definitions I use to describe build systems and their component parts come from this paper.</li>
                         </ul>
@@ -211,6 +231,9 @@
                             <li>Others automatically derive the build dependency graph of your project based on the contents of your source files.</li>
                         </ul>
                     </li>
+                </ul>
+                <p><img src="/assets/blog/my-gnu-make-study-guide/dependency-graph.png" alt="dependency graph example"></p>
+                <ul>
                     <li>Build systems use this dependency graph to implement two features that can make your builds run faster: <em>Incremental Builds</em> and <em>Parallel Builds</em>.<ul>
                             <li>In an incremental build, results from previous builds are used in the current build.<ul>
                                     <li>Effectively, intermediate build results are cached for use in future builds.</li>

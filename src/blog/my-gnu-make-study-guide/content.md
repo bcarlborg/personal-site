@@ -1,10 +1,10 @@
 I have a love-hate relationship with `make`.
 
-On one hand, it is one of my favorite tools. It is installed almost everywhere. For simple projects it is easy to setup. When setup well, it is easy to run and extends. On the other hand, writing makefiles for anything other than trivial builds can be tough. The language and syntax of makefiles has many sharp edges buried in the details. Every time I want to write a non-trivial makefile, I have to reacquaint myself with a grab bag of make specific stuff to get going again.
+On one hand, it is one of my favorite tools. It is installed almost everywhere. For simple projects it is easy to setup, and when configured well, it is easy to run and extend. On the other hand, writing makefiles for anything other than trivial builds can be tough. The language and syntax of makefiles has many sharp edges buried in the details. Every time I want to write a non-trivial makefile, I have to reacquaint myself with a grab bag of make specific stuff to get going again.
 
 I created this _study guide_ in an attempt to really solidify my understanding of the core features you can use in makefiles. To make this study guide, I did two things:
 
-1. I read a few papers that generally describe build systems. I then tried to describe `make` framed in the terms of those papers. That is what is covered in the [Make as a Build System](#make-as-a-build-system) section
+1. I read a few papers that generally describe build systems. I then tried to describe `make` framed in the terms of those papers. That is what is covered in the [Make as a Build System](#make-as-a-build-system) section.
 2. I read through almost every section of the official [make documentation](https://www.gnu.org/software/make/manual/make.html) and tried to note down the features of the tool and the language that'd I'd come across or used before. I then tried to explain each of those features in my own words in a section of this document.
 
 Disclaimer: This post is more of a collection of notes than a cohesive piece of writing. I have not taken the time to massage this into writing that flows, and frankly, this is neither the topic nor the post that I want to make that investment in. I am publishing this in spite of its rough condition because it might still have some value for others and because not everything needs to be perfect 💎
@@ -13,11 +13,23 @@ Disclaimer: This post is more of a collection of notes than a cohesive piece of 
 
 ### 🏭 Make is a Build Automation System (a.k.a. a Build System).
 
-- A build system is a program or set of programs that automate your _build process_.
-- Your build process is the sequence of all _build tasks_ required to generate the correct output artifacts from your input source files.
-- A build task is the smallest unit of work in your build process; these tasks cannot be broken down into smaller tasks. Build tasks may call one or many _build tools_.
-- Build tools are programs that accept source files as input and generate output files or initiate some side effect based on your input source files.
-- A build is a single execution of your build process.
+- To get oriented with make, it is useful to nail down some terms that we'll use to talk about this kind of software.
+  - build system: a program or set of programs that automate your build process.
+  - build process: the sequence of all build tasks required to generate the correct output artifacts from your input source files.
+  - build task: the smallest unit of work in your build process; these tasks cannot be broken down into smaller tasks. Build tasks may call one or many build tools.
+  - build tools: programs that accept source files as input and generate output files or initiate some side effect based on your input source files.
+  - A build: is a single execution of your build process.
+- Some examples of these terms in action:
+  - In a C project where you have many source files that are used to create a single executable.
+    - Your _build process_ is all of the steps you need to take to compile the source files and link object files into an executable. If you have test suite, your build process would also include the steps you need to build those tests.
+    - This project would have many _build tasks_ like compiling each `.c` file to `.o` file and linking the `.o` files together into an executable.
+    - This project would also have _build tools_ like a compiler and linker.
+    - A _build_ of this project would be the creation of the output executable from all the source files using the compiler and the linker.
+  - In a React project where you are writing JSX code that will be converted into vanilla js to be run on the browser
+    - Your _build process_ would be all the steps you need to take to convert your source `jsx` files into a set of vanilla javascript files that can be hosted on a webserver.
+    - Your _build tasks_ include running your `jsx` files through a transpiler like `babel` to create vanilla js and likely a step of running those files through a bundler like `webpack` to turn them into a neat minified js file that can be served to clients.
+    - Your _build tools_ would be those executables like `webpack` and `babel`.
+    - A _build_ of your project would be the creation of the assets that will be hosted on your webserver.
 - References:
   - [A Model and Framework for Reliable Build Systems](https://arxiv.org/abs/1203.2704): Provides a thorough model that allows us to define what a build system is and how one works. The terms and definitions I use to describe build systems and their component parts come from this paper.
 
@@ -30,6 +42,9 @@ Disclaimer: This post is more of a collection of notes than a cohesive piece of 
 - Build systems have different mechanisms for deriving your project's build dependency graph.
   - Some build systems, like make, require the programmer to elaborate and specify the project's build dependency graph.
   - Others automatically derive the build dependency graph of your project based on the contents of your source files.
+
+![dependency graph example](dependency-graph.png)
+
 - Build systems use this dependency graph to implement two features that can make your builds run faster: _Incremental Builds_ and _Parallel Builds_.
   - In an incremental build, results from previous builds are used in the current build.
     - Effectively, intermediate build results are cached for use in future builds.
