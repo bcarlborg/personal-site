@@ -6,6 +6,11 @@
     <description>The personal website of Beau Carlborg</description>
     <atom:link href="https://beau-carlborg.com/rss.xml" rel="self" type="application/rss+xml" />
     <item>
+      <title>Learning Parsing</title>
+      <link>https://www.beau-carlborg.com/blog/learning-parsing.html</link>
+      <guid isPermaLink="true">https://www.beau-carlborg.com/blog/learning-parsing.html</guid>
+    </item>
+     <item>
       <title>My GNU Make Study Guide</title>
       <link>https://www.beau-carlborg.com/blog/my-gnu-make-study-guide.html</link>
       <guid isPermaLink="true">https://www.beau-carlborg.com/blog/my-gnu-make-study-guide.html</guid>
