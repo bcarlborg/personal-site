@@ -9,16 +9,20 @@ echo "${ABSOLUTE_SCRIPT_DIR}/build_all_posts"
 # build all the posts
 eval "${ABSOLUTE_SCRIPT_DIR}/build_all_posts"
 
+# build all the working notes
+eval "${ABSOLUTE_SCRIPT_DIR}/build_all_working_notes"
+
 # Get the blog source dir and the index output dir
 SRC_BLOG_DIR="${ABSOLUTE_SCRIPT_DIR}/../src/blog"
+SRC_WORKING_NOTES_DIR="${ABSOLUTE_SCRIPT_DIR}/../src/working-notes"
 DST_DIR="${ABSOLUTE_SCRIPT_DIR}/../dist"
 
 # build the site index
 
 echo "building index.html"
-eval "node ${ABSOLUTE_SCRIPT_DIR}/build_index.js -b ${SRC_BLOG_DIR} -o ${DST_DIR} -s ${DST_DIR}/global-styles.css"
+eval "node ${ABSOLUTE_SCRIPT_DIR}/build_index.js -b ${SRC_BLOG_DIR} -w ${SRC_WORKING_NOTES_DIR} -o ${DST_DIR} -s ${DST_DIR}/global-styles.css"
 
 # build the rss
 
 echo "building rss.xml"
-eval "node ${ABSOLUTE_SCRIPT_DIR}/build_rss.js -b ${SRC_BLOG_DIR} -o ${DST_DIR}"
+eval "node ${ABSOLUTE_SCRIPT_DIR}/build_rss.js -b ${SRC_BLOG_DIR} -w ${SRC_WORKING_NOTES_DIR} -o ${DST_DIR}"
