@@ -52,6 +52,11 @@ const commandLineOptions = [
     alias: "s",
     type: (path) => path,
   },
+  {
+    name: "is-note",
+    alias: "p",
+    type: Boolean,
+  },
   { name: "help", alias: "h", type: Boolean },
 ];
 const args = commandLineArgs(commandLineOptions);
@@ -80,6 +85,8 @@ Options:
 -a                          placed
 --stylesheet-path           path to the stylesheet for the page
 -s                          placed
+--is-note                   if this post is a note, gets slightly different rendering
+-p
 --help                      print this help message
 -h
 `;
@@ -192,6 +199,16 @@ const articleSkeletonHtml = `
 `;
 
 const articleSkeletonDom = parse(articleSkeletonHtml);
+
+//
+// Add is note flag to the body
+//
+
+if (args["is-note"]) {
+  articleSkeletonDom.querySelector("article").classList.add("note");
+}
+
+
 
 //
 // Add our article content into the skeleton DOM

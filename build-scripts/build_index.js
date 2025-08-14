@@ -141,7 +141,7 @@ const indexSkeletonHtml = `
       <h2>Contact Me</h2>
       <p>Send me an email (<a href="mailto:bcarlborg@gmail.com?subject=Hi%20Beau">bcarlborg@gmail.com</a>).</p>
 
-      <h2>️Long Form Writing & Projects</h2>
+      <h2>️Long-Form Writing & Projects</h2>
       <ul id="blog-posts-list">
       </ul>
 

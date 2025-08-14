@@ -19,5 +19,6 @@ for WORKING_NOTE_DIR in "$SRC_DIR"/*; do
     -i "${WORKING_NOTE_DIR}" \
     -o dist/working-notes \
     -a dist/assets/working-notes \
-    -s dist/global-styles.css
+    -s dist/global-styles.css \
+    --is-note
 done

@@ -64,6 +64,10 @@ footer {
   height: 50px;
 }
 
+article.note {
+  max-width: 500px;
+}
+
 article img {
   width: 100%;
 }
