@@ -139,13 +139,15 @@ const indexSkeletonHtml = `
       </ul>
 
       <h2>Contact Me</h2>
-      <p>Send me an email (<a href="mailto:bcarlborg@gmail.com?subject=Hi%20Beau">bcarlborg@gmail.com</a>).</p>
+      <p>Send me an email (<a href="mailto:bcarlborg@gmail.com?subject=Hi%20Beau">bcarlborg@gmail.com</a>). Start the subject line with "I read your website: " so I don't miss your email.</p>
 
-      <h2>️Long-Form Writing & Projects</h2>
+      <h2>️Writing & Projects</h2>
+      <em>Longer form writing or personal project write-ups.</em>
       <ul id="blog-posts-list">
       </ul>
 
       <h2>️Notes</h2>
+      <em>Short form writing. Something I've been thinking about or a little tidbit.</em>
       <ul id="working-notes-list">
       </ul>
     </main>
@@ -187,7 +189,9 @@ orderedBlogPostsMetaData.forEach((blogPostMetaData) => {
     blogPostMetaData["post-filename"]
   );
 
-  const titlePrefix = blogPostMetaData["type"] === "writing" ? "✏️ " : "👾 ";
+
+  let titlePrefix = blogPostMetaData['date-originally-authored'] + " - ";
+  titlePrefix += blogPostMetaData["type"] === "writing" ? "writing - " : "project - ";
 
   const relativeBlogPostPath = blogPostPath.split("dist").slice(-1);
 
@@ -236,7 +240,7 @@ orderedWorkingNotesMetaData.forEach((workingNoteMetaData) => {
     workingNoteMetaData["post-filename"]
   );
 
-  const titlePrefix = workingNoteMetaData["type"] === "writing" ? "✏️ " : "👾 ";
+  const titlePrefix = workingNoteMetaData['date-originally-authored'] + " - ";
 
   const relativeBlogPostPath = blogPostPath.split("dist").slice(-1);
 

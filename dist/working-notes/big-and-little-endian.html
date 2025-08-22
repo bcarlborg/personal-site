@@ -17,10 +17,10 @@
             <a href="/index.html">⏎ back home</a>
         </header>
         <main>
-            <article>
+            <article class="note">
                 <h1 id="article-title">Big and Little Endian</h1>
                 <div id="article-contents">
-                    <i id="article-metadata">Published: 2023-12-20</i>
+                    <i id="article-metadata">Published: 2023/12/20</i>
 
                     <br>
                     <br>
@@ -57,7 +57,7 @@
                 <p>Most often, with computers, the base hardware you are dealing with is an <strong>ordered sequence of bits or bytes</strong>. If you are dealing with memory or storage, you have access to a list of memory addresses that each can hold a byte and the order of the bytes corresponds with the memory addresses. If you are dealing with a network interface, you will have some stream of bytes or bits where the order of the bytes is determined by either the order in which the data arrives or by some explicit count associated with each byte.</p>
                 <h2 id="multi-byte-data">Multi-Byte Data</h2>
                 <p>Suppose we have a 32-bit number, and we wish to store that number in memory. There are two ways we could put this number into memory. We could (1) put the most significant byte of our data into our first-byte location or (2) put the least significant byte into the first byte location. Big and little-endian are names to describe these two approaches to laying out your data. Big-endian means you put the most significant byte of your data first in your sequence of bytes, and little-endian means you put your least significant bytes first.</p>
-                <p><img src="/assets/blog/big-and-little-endian/image1.png" alt="An image showing encoding a 32 bit number using bit and little endian ordering"></p>
+                <p><img src="/assets/working-notes/big-and-little-endian/image1.png" alt="An image showing encoding a 32 bit number using bit and little endian ordering"></p>
                 <h2 id="what-does-endian-mean-anyway">What does Endian Mean Anyway</h2>
                 <p>I think the root of my confusion around these two names is the word &quot;endian&quot;. What end does it refer to? Does &quot;endian&quot; refer to teh start or end of the data or the data destination. The definition of &quot;endian&quot; in this context has a somewhat surprising origin.</p>
                 <p>The <a href="https://en.wikipedia.org/wiki/Endianness">wikipedia article</a> for endianness tells us:</p>
@@ -68,7 +68,7 @@
                 <blockquote>
                     <p>Danny Cohen [...] borrowed [the terms] from Jonathan Swift, who in Gulliver&#39;s Travels (1726) used them to describe the opposing positions of two factions in the nation of Lilliput. The Big-Endians, who broke their boiled eggs at the big end, rebelled against the king, who demanded that his subjects break their eggs at the little end.</p>
                 </blockquote>
-                <p><img src="/assets/blog/big-and-little-endian/image2.png" alt="An image showing to endian eggs oriented in the big and little-endian fassion"></p>
+                <p><img src="/assets/working-notes/big-and-little-endian/image2.png" alt="An image showing to endian eggs oriented in the big and little-endian fassion"></p>
                 <p>I can acknowledge that the origin of these terms is funny, but I wonder how much time and energy has been wasted disentangling these two names.</p>
                 <h2 id="how-i-will-keep-these-straight">How I Will Keep These Straight</h2>
                 <p>Moving forward, I will try to avoid using the &quot;big and little-endian&quot; naming and instead use &quot;least and most significand byte first&quot; to describe byte ordering for any data I need to represent. My hope is that this these terms will keep the concepts clearer in my mind and writing moving forward.</p>
