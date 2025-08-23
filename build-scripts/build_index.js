@@ -180,16 +180,19 @@ orderedBlogPostsMetaData.forEach((blogPostMetaData) => {
 
 
   let titlePrefix = blogPostMetaData['date-originally-authored'] + " - ";
-  titlePrefix += blogPostMetaData["type"] === "writing" ? "✏️ writing - " : "👾 project - ";
+  titlePrefix += blogPostMetaData["type"] === "writing" ? "️writing ✏️" : "project 👾";
 
   const relativeBlogPostPath = blogPostPath.split("dist").slice(-1);
 
   const listItemHtml = `
-    <li>
+    <li class="blog-posts-list-item">
       ${titlePrefix}
-      <a href="${relativeBlogPostPath}">
-        ${blogPostMetaData["title"]}
-      </a>
+      <br/>
+      <span class="blog-post-title-url">
+        <a href="${relativeBlogPostPath}">
+          ${blogPostMetaData["title"]}
+        </a>
+      </span>
     </li>
   `;
 
