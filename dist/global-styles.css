@@ -69,8 +69,16 @@ footer {
   margin-bottom: 15px;
 }
 
+.blog-posts-list-item-prefix {
+  opacity: 0.7;
+}
+
 .blog-post-title-url {
   white-space: nowrap;
+  
+  a {
+    text-decoration: none;
+  }
 }
 
 article.note {

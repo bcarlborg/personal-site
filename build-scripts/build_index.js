@@ -132,13 +132,12 @@ const indexSkeletonHtml = `
 
       <h2>Contact Me</h2>
       <p>Have something you want to tell me? Found a mistake or typo on the site? Just looking to chat?</p>
-      <p>Send me an email at <a href="mailto:bcarlborg@gmail.com">bcarlborg@gmail.com</a>. Start the subject line with the 🦎 emoji so I know you came from here.</p>
+      <p>Send me an email at <a href="mailto:bcarlborg@gmail.com">bcarlborg@gmail.com</a>. Start the subject line with the 🦎 emoji so I know you came from this site.</p>
 
       <h2>Posts</h2>
-      <p>Some writing, some projects. Some tall, some short. Some polished, some not.</p>
-      <p>But always handwritten and organically grown 🍒🍓🍑</p>
-      <ul id="blog-posts-list">
-      </ul>
+      <p><em>Some writing, some projects. Some tall, some short. Some polished, some not.  But always handwritten. Alwaysorganically grown 🍒🍓🍑</em></p>
+      <p id="blog-posts-list">
+      </p >
     </main>
     <footer></footer>
   </body>
@@ -179,21 +178,25 @@ orderedBlogPostsMetaData.forEach((blogPostMetaData) => {
   );
 
 
-  let titlePrefix = blogPostMetaData['date-originally-authored'] + " - ";
-  titlePrefix += blogPostMetaData["type"] === "writing" ? "️writing ✏️" : "project 👾";
+  let titlePrefix = blogPostMetaData["type"] === "writing" ? "Writing️" : "Project";
+  titlePrefix += ' - ' + blogPostMetaData['date-originally-authored'];
 
   const relativeBlogPostPath = blogPostPath.split("dist").slice(-1);
 
   const listItemHtml = `
-    <li class="blog-posts-list-item">
-      ${titlePrefix}
+    <p class="blog-posts-list-item">
+      <span class="blog-posts-list-item-prefix">
+        ${titlePrefix}
+      </span>
       <br/>
       <span class="blog-post-title-url">
-        <a href="${relativeBlogPostPath}">
-          ${blogPostMetaData["title"]}
-        </a>
+        <b>
+          <a href="${relativeBlogPostPath}">
+            ${blogPostMetaData["title"]}
+          </a>
+        </b>
       </span>
-    </li>
+    </p>
   `;
 
   indexSkeletonDom
