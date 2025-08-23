@@ -131,10 +131,11 @@ const indexSkeletonHtml = `
       </ul>
 
       <h2>Contact Me</h2>
-      <p>Send me an email (<a href="mailto:bcarlborg@gmail.com?subject=Hi%20Beau">bcarlborg@gmail.com</a>). Start the subject line with the 🦎 emoji so I know you came from my website.</p>
+      <p>Have something you want to tell me? Found a mistake or typo on the site? Just looking to chat?</p>
+      <p>Send me an email at <a href="mailto:bcarlborg@gmail.com">bcarlborg@gmail.com</a>. Start the subject line with the 🦎 emoji so I know you came from my website.</p>
 
       <h2>Posts</h2>
-      <p>Some longer form writing, some short little notes, some project write-ups. Varying degrees of quality and polish. Hopefully entertaining or interesting!</p>
+      <p>Some writing, some projects. Some tall, some short. Some polished, some rough. Sometimes interesting, sometimtes boring. But always handwritten. Always organically grown. Always fresh. 🍒🍓🍑</p>
       <ul id="blog-posts-list">
       </ul>
     </main>
@@ -178,7 +179,7 @@ orderedBlogPostsMetaData.forEach((blogPostMetaData) => {
 
 
   let titlePrefix = blogPostMetaData['date-originally-authored'] + " - ";
-  titlePrefix += blogPostMetaData["type"] === "writing" ? "writing - " : "project - ";
+  titlePrefix += blogPostMetaData["type"] === "writing" ? "✏️ writing - " : "👾 project - ";
 
   const relativeBlogPostPath = blogPostPath.split("dist").slice(-1);
 
