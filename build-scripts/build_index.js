@@ -26,11 +26,6 @@ const commandLineOptions = [
     type: (path) => directoryFromPath(path),
   },
   {
-    name: "working-notes-source",
-    alias: "w",
-    type: (path) => directoryFromPath(path),
-  },
-  {
     name: "output-html-directory",
     alias: "o",
     type: (path) => directoryFromPath(path),
@@ -57,15 +52,12 @@ to all of the written blog posts.
 Usage: 
 node build_index.js
       --blog-posts-source <directory_path>
-      --working-notes-source <directory_path>
       --output-html-directory <directory_path>
 
 
 Options:
 --blog-posts-source         path to a directory containing all the directories for each 
 -b                          blog post
---working-notes-source      path to a directory containing all the directories for each 
--w                          working note
 --output-html-directory     path to a directory where the final html for the site's index
 -o                          will be placed
 --stylesheet-path           path to the stylesheet for the page
@@ -141,14 +133,9 @@ const indexSkeletonHtml = `
       <h2>Contact Me</h2>
       <p>Send me an email (<a href="mailto:bcarlborg@gmail.com?subject=Hi%20Beau">bcarlborg@gmail.com</a>). Start the subject line with the 🦎 emoji so I know you came from my website.</p>
 
-      <h2>️Writing & Projects</h2>
-      <em>Longer form writing or personal project write-ups.</em>
+      <h2>Posts</h2>
+      <p>Some longer form writing, some short little notes, some project write-ups. Varying degrees of quality and polish. Hopefully entertaining or interesting!</p>
       <ul id="blog-posts-list">
-      </ul>
-
-      <h2>️Notes</h2>
-      <em>Short form writing. Something I've been thinking about or a little tidbit.</em>
-      <ul id="working-notes-list">
       </ul>
     </main>
     <footer></footer>
@@ -209,54 +196,6 @@ orderedBlogPostsMetaData.forEach((blogPostMetaData) => {
     .appendChild(parse(listItemHtml));
 });
 
-////////////////////////////////////////////////////////////////
-// Get the metadata for each working note
-////////////////////////////////////////////////////////////////
-
-const workingNoteDirectoryPaths = fs
-  .readdirSync(args["working-notes-source"], { withFileTypes: true })
-  .filter((dirent) => dirent.isDirectory())
-  .map((dirent) => resolve(dirent.path, dirent.name));
-
-const workingNotesMetadata = workingNoteDirectoryPaths.map(
-  (workingNoteDirectoryPath) => {
-    const metadataFilePath = resolve(workingNoteDirectoryPath, "metadata.json");
-    return JSON.parse(fs.readFileSync(metadataFilePath, "utf8"));
-  }
-);
-
-const orderedWorkingNotesMetaData = workingNotesMetadata.sort(
-  (a, b) => b["post-order"] - a["post-order"]
-);
-
-////////////////////////////////////////////////////////////////
-// Add a list item to our index DOM for each working note
-////////////////////////////////////////////////////////////////
-
-orderedWorkingNotesMetaData.forEach((workingNoteMetaData) => {
-  const blogPostPath = resolve(
-    args["output-html-directory"],
-    "working-notes",
-    workingNoteMetaData["post-filename"]
-  );
-
-  const titlePrefix = workingNoteMetaData['date-originally-authored'] + " - ";
-
-  const relativeBlogPostPath = blogPostPath.split("dist").slice(-1);
-
-  const listItemHtml = `
-    <li>
-      ${titlePrefix}
-      <a href="${relativeBlogPostPath}">
-        ${workingNoteMetaData["title"]}
-      </a>
-    </li>
-  `;
-
-  indexSkeletonDom
-    .querySelector("#working-notes-list")
-    .appendChild(parse(listItemHtml));
-});
 
 ////////////////////////////////////////////////////////////////
 // Output our html to the specified location

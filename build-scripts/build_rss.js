@@ -25,11 +25,6 @@ const commandLineOptions = [
     type: (path) => directoryFromPath(path),
   },
   {
-    name: "working-notes-source",
-    alias: "w",
-    type: (path) => directoryFromPath(path),
-  },
-  {
     name: "output-html-directory",
     alias: "o",
     type: (path) => directoryFromPath(path),
@@ -51,15 +46,12 @@ to all of the written blog posts.
 Usage: 
 node build_rss.js
       --blog-posts-source <directory_path>
-      --working-notes-source <directory_path>
       --output-html-directory <directory_path>
 
 
 Options:
 --blog-posts-source         path to a directory containing all the directories for each 
 -b                          blog post
---working-notes-source      path to a directory containing all the directories for each 
--w                          working note
 --output-html-directory     path to a directory where the final html for the site's rss
 -o                          will be placed
 --help                      print this help message
@@ -89,21 +81,8 @@ const blogPostsMetadata = blogPostDirectoryPaths.map(
   }
 );
 
-const workingNoteDirectoryPaths = fs
-  .readdirSync(args["working-notes-source"], { withFileTypes: true })
-  .filter((dirent) => dirent.isDirectory())
-  .map((dirent) => resolve(dirent.path, dirent.name));
-
-const workingNotesMetadata = workingNoteDirectoryPaths.map(
-  (workingNoteDirectoryPath) => {
-    const metadataFilePath = resolve(workingNoteDirectoryPath, "metadata.json");
-    return JSON.parse(fs.readFileSync(metadataFilePath, "utf8"));
-  }
-);
-
 const orderedPostsMetaData = [
   ...blogPostsMetadata,
-  ...workingNotesMetadata,
 ].sort(
   (a, b) => b["post-order"] - a["post-order"]
 );
