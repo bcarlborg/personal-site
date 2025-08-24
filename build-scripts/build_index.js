@@ -131,11 +131,11 @@ const indexSkeletonHtml = `
       </ul>
 
       <h2>Contact Me</h2>
-      <p>Have something you want to tell me? Found a mistake or typo on the site? Just looking to chat?</p>
-      <p>Send me an email at <a href="mailto:bcarlborg@gmail.com">bcarlborg@gmail.com</a>. Start the subject line with the 🦎 emoji so I know you came from this site.</p>
+      <p>Have something you want to tell me? Found a mistake or typo on the site? Just looking to chat?
+      Send me an email at <a href="mailto:bcarlborg@gmail.com">bcarlborg@gmail.com</a>. Start the subject line with the 🦎 emoji so I know you came from this site.</p>
 
       <h2>Posts</h2>
-      <p><em>Some writing, some projects. Some tall, some short. Some polished, some not.  But always handwritten. Alwaysorganically grown 🍒🍓🍑</em></p>
+      <p><em>Some writing, some projects. Some tall, some short. Some polished, some not.<br/>But always handwritten. Always organically grown 🍒🍓🍑</em></p>
       <p id="blog-posts-list">
       </p >
     </main>
