@@ -10,3 +10,10 @@ TODOS:
 - [ ] figure out a place to put the rss feed link
 - [ ] add sub headers below posts and projects section and notes section
 - [ ] a place for photos or music or trips etc?
+
+
+WANTS
+- [ ] global styles in better place?
+- [ ] templating?
+- [ ] date handling better
+- [ ] more consistent build system. either all with scripts or all with npm
