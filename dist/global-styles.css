@@ -74,8 +74,6 @@ footer {
 }
 
 .blog-post-title-url {
-  white-space: nowrap;
-  
   a {
     text-decoration: none;
   }
