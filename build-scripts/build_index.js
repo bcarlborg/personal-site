@@ -26,6 +26,11 @@ const commandLineOptions = [
     type: (path) => directoryFromPath(path),
   },
   {
+    name: "reading-pages-source",
+    alias: "r",
+    type: (path) => directoryFromPath(path),
+  },
+  {
     name: "output-html-directory",
     alias: "o",
     type: (path) => directoryFromPath(path),
@@ -136,8 +141,11 @@ const indexSkeletonHtml = `
 
       <h2>Posts</h2>
       <p><em>Some writing, some projects. Some tall, some short. Some polished, some not.<br/>But always handwritten. Always organically grown 🍒🍓🍑</em></p>
-      <p id="blog-posts-list">
-      </p >
+      <p id="blog-posts-list"></p >
+
+      <h2>What I'm Reading</h2>
+      <p><em>List of books, papers, or article that I'm currently reading and thinking about.</em></p>
+      <p id="reading-list"></p >
     </main>
     <footer></footer>
   </body>
@@ -203,6 +211,64 @@ orderedBlogPostsMetaData.forEach((blogPostMetaData) => {
     .querySelector("#blog-posts-list")
     .appendChild(parse(listItemHtml));
 });
+
+////////////////////////////////////////////////////////////////
+// Get the metadata for each reading page
+////////////////////////////////////////////////////////////////
+
+const readingPageDirectoryPaths = fs
+  .readdirSync(args["reading-pages-source"], { withFileTypes: true })
+  .filter((dirent) => dirent.isDirectory())
+  .map((dirent) => resolve(dirent.path, dirent.name));
+
+const readingPagesMetadata = readingPageDirectoryPaths.map(
+  (readingPageDirectoryPath) => {
+    const metadataFilePath = resolve(readingPageDirectoryPath, "metadata.json");
+    return JSON.parse(fs.readFileSync(metadataFilePath, "utf8"));
+  }
+);
+
+const orderedReadingPagesMetaData = readingPagesMetadata.sort(
+  (a, b) => b["post-order"] - a["post-order"]
+);
+
+////////////////////////////////////////////////////////////////
+// Add a list item to our index DOM for each reading page
+////////////////////////////////////////////////////////////////
+
+orderedReadingPagesMetaData.forEach((readingPageMetaData) => {
+  const readingPagePath = resolve(
+    args["output-html-directory"],
+    "reading",
+    readingPageMetaData["post-filename"]
+  );
+
+  const relativeReadingPagePath = readingPagePath.split("dist").slice(-1);
+
+  let titlePrefix = readingPageMetaData["type"];
+  titlePrefix += ' - ' + readingPageMetaData['date-read-by-me'];
+
+  const listItemHtml = `
+    <p class="reading-list-item">
+      <span class="reading-list-item-prefix">
+        ${titlePrefix}
+      </span>
+      <br/>
+      <span class="reading-list-item-title-url">
+        <b>
+          <a href="${relativeReadingPagePath}">
+            ${readingPageMetaData["reading-title"]}
+          </a>
+        </b>
+      </span>
+    </p>
+  `;
+
+  indexSkeletonDom
+    .querySelector("#reading-list")
+    .appendChild(parse(listItemHtml));
+});
+
 
 
 ////////////////////////////////////////////////////////////////

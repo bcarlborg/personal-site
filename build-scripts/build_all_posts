@@ -11,13 +11,26 @@ ABSOLUTE_SCRIPT_DIR=$(realpath "$SCRIPT_DIR")
 BUILD_POST_SCRIPT="${ABSOLUTE_SCRIPT_DIR}/build_post.js"
 
 # also use that to get the absolute path of our src blogs
-SRC_DIR="${ABSOLUTE_SCRIPT_DIR}/../src/blog"
+BLOG_SRC_DIR="${ABSOLUTE_SCRIPT_DIR}/../src/blog"
 
-for BLOG_POST_DIR in "$SRC_DIR"/*; do
+for BLOG_POST_DIR in "$BLOG_SRC_DIR"/*; do
   echo "building ${BLOG_POST_DIR}"
   node "${BUILD_POST_SCRIPT}" \
     -i "${BLOG_POST_DIR}" \
     -o dist/blog \
     -a dist/assets/blog \
     -s dist/global-styles.css
+done
+
+# also use that to get the absolute path of our src reading pages
+READING_PAGES_SRC_DIR="${ABSOLUTE_SCRIPT_DIR}/../src/reading"
+
+for READING_PAGE_DIR in "$READING_PAGES_SRC_DIR"/*; do
+  echo "building ${READING_PAGE_DIR}"
+  node "${BUILD_POST_SCRIPT}" \
+    -i "${READING_PAGE_DIR}" \
+    -o dist/reading \
+    -a dist/assets/reading \
+    -s dist/global-styles.css \
+    -r
 done

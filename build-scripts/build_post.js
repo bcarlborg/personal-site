@@ -53,8 +53,8 @@ const commandLineOptions = [
     type: (path) => path,
   },
   {
-    name: "is-note",
-    alias: "p",
+    name: "is-reading-page",
+    alias: "r",
     type: Boolean,
   },
   { name: "help", alias: "h", type: Boolean },
@@ -85,8 +85,8 @@ Options:
 -a                          placed
 --stylesheet-path           path to the stylesheet for the page
 -s                          placed
---is-note                   if this post is a note, gets slightly different rendering
--p
+--is-reading-page           if this post is a reading page, gets slightly different rendering
+-r
 --help                      print this help message
 -h
 `;
@@ -204,8 +204,8 @@ const articleSkeletonDom = parse(articleSkeletonHtml);
 // Add is note flag to the body
 //
 
-if (args["is-note"]) {
-  articleSkeletonDom.querySelector("article").classList.add("note");
+if (args["is-reading-page"]) {
+  articleSkeletonDom.querySelector("article").classList.add("reading-page");
 }
 
 
@@ -229,10 +229,12 @@ const articleDom = articleSkeletonDom;
 // the post metadata
 //
 
+const title = args["is-reading-page"] ? `What I am reading: ${articleMetadata["reading-title"]}` : articleMetadata.title;
+
 articleDom
   .querySelector("head")
   .appendChild(
-    parse(`<meta name="og:title" content="${articleMetadata.title}"/>`)
+    parse(`<meta name="og:title" content="${title}"/>`)
   );
 articleDom
   .querySelector("head")
@@ -243,16 +245,33 @@ articleDom
   );
 articleDom
   .querySelector("head")
-  .appendChild(parse(`<title>${articleMetadata.title}</title>`));
+  .appendChild(parse(`<title>${title}</title>`));
 
+articleDom.querySelector("#article-title").textContent = title;
 //
 // Add metadata information article content
 //
 
-articleDom.querySelector("#article-title").textContent = articleMetadata.title;
-articleDom.querySelector(
-  "#article-metadata"
-).textContent = `Published: ${articleMetadata["date-originally-authored"]}`;
+
+if (args["is-reading-page"]) {
+  const link = `<a href="${articleMetadata["reading-url"]}">${articleMetadata["reading-title"]}</a>`;
+  articleDom.querySelector(
+    "#article-metadata"
+  ).textContent += `Link: ${link}`;
+  articleDom.querySelector(
+    "#article-metadata"
+  ).textContent += `<br/>Author: ${articleMetadata["reading-author"]}`;
+  articleDom.querySelector(
+    "#article-metadata"
+  ).textContent += `<br/>Published: ${articleMetadata["reading-published-date"]}`;
+  articleDom.querySelector(
+    "#article-metadata"
+  ).textContent += `<br/>Read on: ${articleMetadata["date-read-by-me"]}`;
+} else {
+  articleDom.querySelector(
+    "#article-metadata"
+  ).textContent = `<br/>Published: ${articleMetadata["date-originally-authored"]}`;
+}
 
 //
 // Create a table of contents from our subheaders
