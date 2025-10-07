@@ -193,16 +193,16 @@ orderedBlogPostsMetaData.forEach((blogPostMetaData) => {
 
   const listItemHtml = `
     <p class="blog-posts-list-item">
-      <span class="blog-posts-list-item-prefix">
-        ${titlePrefix}
-      </span>
-      <br/>
       <span class="blog-post-title-url">
         <b>
           <a href="${relativeBlogPostPath}">
             ${blogPostMetaData["title"]}
           </a>
         </b>
+      </span>
+      <br/>
+      <span class="blog-posts-list-item-prefix">
+        ${titlePrefix}
       </span>
     </p>
   `;
@@ -250,16 +250,16 @@ orderedReadingPagesMetaData.forEach((readingPageMetaData) => {
 
   const listItemHtml = `
     <p class="reading-list-item">
-      <span class="reading-list-item-prefix">
-        ${titlePrefix}
-      </span>
-      <br/>
       <span class="reading-list-item-title-url">
         <b>
           <a href="${relativeReadingPagePath}">
             ${readingPageMetaData["reading-title"]}
           </a>
         </b>
+      </span>
+      <br/>
+      <span class="reading-list-item-prefix">
+        ${titlePrefix}
       </span>
     </p>
   `;

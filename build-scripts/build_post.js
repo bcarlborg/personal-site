@@ -254,23 +254,31 @@ articleDom.querySelector("#article-title").textContent = title;
 
 
 if (args["is-reading-page"]) {
-  const link = `<a href="${articleMetadata["reading-url"]}">${articleMetadata["reading-title"]}</a>`;
-  articleDom.querySelector(
-    "#article-metadata"
-  ).textContent += `Link: ${link}`;
-  articleDom.querySelector(
-    "#article-metadata"
-  ).textContent += `<br/>Author: ${articleMetadata["reading-author"]}`;
-  articleDom.querySelector(
-    "#article-metadata"
-  ).textContent += `<br/>Published: ${articleMetadata["reading-published-date"]}`;
-  articleDom.querySelector(
-    "#article-metadata"
-  ).textContent += `<br/>Read on: ${articleMetadata["date-read-by-me"]}`;
+  if (articleMetadata["reading-url"]) {
+    const link = `<a href="${articleMetadata["reading-url"]}">${articleMetadata["reading-title"]}</a>`;
+    articleDom.querySelector(
+      "#article-metadata"
+    ).textContent += `Link: ${link}<br/>`;
+  }
+  if (articleMetadata["reading-author"]) {
+    articleDom.querySelector(
+      "#article-metadata"
+    ).textContent += `Author: ${articleMetadata["reading-author"]}<br/>`;
+  }
+  if (articleMetadata["reading-published-date"]) {
+    articleDom.querySelector(
+      "#article-metadata"
+    ).textContent += `Published: ${articleMetadata["reading-published-date"]}<br/>`;
+  }
+  if (articleMetadata["date-read-by-me"]) {
+    articleDom.querySelector(
+      "#article-metadata"
+    ).textContent += `Read on: ${articleMetadata["date-read-by-me"]}`;
+  }
 } else {
   articleDom.querySelector(
     "#article-metadata"
-  ).textContent = `<br/>Published: ${articleMetadata["date-originally-authored"]}`;
+  ).textContent = `Published: ${articleMetadata["date-originally-authored"]}<br/>`;
 }
 
 //
@@ -281,7 +289,6 @@ const isArticleWithSubHeaders = articleSubHeaders.length > 0;
 
 if (isArticleWithSubHeaders) {
   const articleContentsTitle = parse(`
-        <br>
         <br />
         <strong>Article Contents:</strong>
         <br />
