@@ -140,7 +140,7 @@ const indexSkeletonHtml = `
       Send me an email at <a href="mailto:bcarlborg@gmail.com">bcarlborg@gmail.com</a>. Start the subject line with the 🦎 emoji so I know you came from this site.</p>
 
       <h2>Posts</h2>
-      <p><em>Some writing, some projects. Some tall, some short. Some polished, some not.<br/>But always handwritten. Always organically grown 🍒🍓🍑</em></p>
+      <p><em>Some writing, some projects. Some polished, some not.</em></p>
       <p id="blog-posts-list"></p >
 
       <h2>What I'm Reading</h2>
