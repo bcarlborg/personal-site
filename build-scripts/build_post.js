@@ -273,7 +273,7 @@ if (args["is-reading-page"]) {
   if (articleMetadata["date-read-by-me"]) {
     articleDom.querySelector(
       "#article-metadata"
-    ).textContent += `Read on: ${articleMetadata["date-read-by-me"]}`;
+    ).textContent += `Read on: ${articleMetadata["date-read-by-me"]}<br />`;
   }
 } else {
   articleDom.querySelector(
