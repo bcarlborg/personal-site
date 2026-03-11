@@ -25,6 +25,11 @@ const commandLineOptions = [
     type: (path) => directoryFromPath(path),
   },
   {
+    name: "reading-pages-source",
+    alias: "r",
+    type: (path) => directoryFromPath(path),
+  },
+  {
     name: "output-html-directory",
     alias: "o",
     type: (path) => directoryFromPath(path),
@@ -81,8 +86,25 @@ const blogPostsMetadata = blogPostDirectoryPaths.map(
   }
 );
 
+////////////////////////////////////////////////////////////////
+// Get the metadata for each reading page
+////////////////////////////////////////////////////////////////
+
+const readingPageDirectoryPaths = fs
+  .readdirSync(args["reading-pages-source"], { withFileTypes: true })
+  .filter((dirent) => dirent.isDirectory())
+  .map((dirent) => resolve(dirent.path, dirent.name));
+
+const readingPagesMetadata = readingPageDirectoryPaths.map(
+  (readingPageDirectoryPath) => {
+    const metadataFilePath = resolve(readingPageDirectoryPath, "metadata.json");
+    return JSON.parse(fs.readFileSync(metadataFilePath, "utf8"));
+  }
+);
+
 const orderedPostsMetaData = [
   ...blogPostsMetadata,
+  ...readingPagesMetadata,
 ].sort(
   (a, b) => b["post-order"] - a["post-order"]
 );
@@ -106,7 +128,8 @@ const rssPostfix = `  </channel>
 
 let rssPosts = "";
 orderedPostsMetaData.forEach((postMetaData) => {
-  const postUrl = `https://www.beau-carlborg.com/blog/${postMetaData["post-filename"]}`;
+  const section = postMetaData["type"] === "Reading" ? "reading" : "blog";
+  const postUrl = `https://www.beau-carlborg.com/${section}/${postMetaData["post-filename"]}`;
   rssPosts += `    <item>
       <title>${postMetaData["title"]}</title>
       <link>${postUrl}</link>

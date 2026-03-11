@@ -26,4 +26,4 @@ eval "node ${ABSOLUTE_SCRIPT_DIR}/build_index.js -b ${SRC_BLOG_DIR} -r ${SRC_REA
 # build the rss
 
 echo "building rss.xml"
-eval "node ${ABSOLUTE_SCRIPT_DIR}/build_rss.js -b ${SRC_BLOG_DIR} -o ${DST_DIR}"
+eval "node ${ABSOLUTE_SCRIPT_DIR}/build_rss.js -b ${SRC_BLOG_DIR} -r ${SRC_READING_PAGES_DIR} -o ${DST_DIR}"

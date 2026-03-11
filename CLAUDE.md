@@ -15,7 +15,7 @@ build-scripts/
   build_all_posts           # Bash: iterates src/blog and src/reading, calls build_post.js
   build_post.js             # Node: markdown -> HTML for a single post
   build_index.js            # Node: generates dist/index.html from all metadata
-  build_rss.js              # Node: generates dist/rss.xml from blog metadata
+  build_rss.js              # Node: generates dist/rss.xml from blog + reading metadata
   helpers/fileHelpers.js    # SHA256 file hashing for CSS cache-busting
 dist/                       # Generated output (committed, deployed by Cloudflare)
   index.html
