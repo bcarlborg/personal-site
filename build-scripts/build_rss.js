@@ -106,7 +106,7 @@ const orderedPostsMetaData = [
   ...blogPostsMetadata,
   ...readingPagesMetadata,
 ].sort(
-  (a, b) => b["post-order"] - a["post-order"]
+  (a, b) => b["date-last-updated"].localeCompare(a["date-last-updated"])
 );
 
 ////////////////////////////////////////////////////////////////
