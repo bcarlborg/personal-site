@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <link rel="stylesheet" type="text/css" href="/global-styles.css?v=bf328e70fb0ebbe2d5bb23321d1200a3cf59b3bac3f326f88133bef40ab72e03">
+        <link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon-32-32.png?v=2">
+        <link rel="icon" type="image/png" sizes="96x96" href="/assets/favicon-96-96.png?v=2">
+        <link rel="icon" type="image/png" sizes="180x180" href="/assets/favicon-180-180.png?v=2">
+        <link rel="apple-touch-icon" href="/assets/favicon-180-180.png?v=2">
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="og:title" content="What I am reading: Propositional and Predicate Calculus: 2.3 Interpretation of Logical Formulas">
+        <meta name="og:description" content="Beau Carlborg's Website">
+        <title>What I am reading: Propositional and Predicate Calculus: 2.3 Interpretation of Logical Formulas</title>
+    </head>
+    <body>
+        <header>
+            <a href="/index.html">⏎ back home</a>
+        </header>
+        <main>
+            <article class="reading-page">
+                <h1 id="article-title">What I am reading: Propositional and Predicate Calculus: 2.3 Interpretation of Logical Formulas</h1>
+                <div id="article-contents">
+                    <i id="article-metadata">Author: Derek Goldrei<br />Published: 2005<br />Read on: March 14, 2026<br /></i>
+                </div>
+                <p><em>Disclaimer: this book in particular is not in my wheelhouse. I am using these notes and reading posts to learn the material better. This post is going to be a bit sloppier and less refined than others I usually like to post.</em></p>
+                <p>In section 2.2 of the book, we establish how to write formulas for propositional statements like (φ ∧ ψ) or ((φ ∧ ψ) → λ).</p>
+                <p>In section 2.3, Goldrei outlines how we interpret and evaluate these propositional formulas.</p>
+                <p>For someone who has done almost any level of math or algebra, the way to evaluate propositional formulas and expressions will be quite obvious. Given the assignment of the propositional variables to true or false, it should be a mechanical process to reduce the entire propositional formula down to a single truth value. We can also use our same intuitions about how variables in algebra work to reason about how different valuations of the propositional variables would result in different evaluations of the final propositional formula.</p>
+                <p>This process of assigning meaning to the symbols in the formula is called semantics.</p>
+                <p>In 2.3, Goldrei describes the semantics of our propositional formula language from 2.2 in a variety of ways. Goldrei tells us the rules for interpreting a formula, and tells us how we can use truth tables to enumerate all the possible values a formula could evaluate to based on the values of the propositional variables that make up that formula. To me, this felt familiar from any other sort of algebra I had done before.</p>
+                <p>But what was more useful, and what allowed the chapter to provide new and interesting methods of proving ideas about the propositional system was defining those same semantics in terms of a mathematical object.</p>
+                <p>Goldrei defines the semantics of the propositional system using a function called a truth assignment which maps every propositional formula into a true or false value.</p>
+                <p>Goldrei writes this as v: FORM(P, S) → {T, F} where FORM(P, S) is the set of all formulas made from a set of propositional variables P and connectives in S.</p>
+                <p>By using a function to describe the evaluation and reasoning we do about propositional formulas, we can now prove ideas that before just seemed like obvious intuition.</p>
+                <p>For instance, in this chapter, we prove that the final value of a formula depends only on the values of the propositional variables within that formula. This is obviously true, what else would the formula depend on after all. But proving that to be true feels challenging without a mathematical object to describe how we think about the valuations of propositional formulas.</p>
+                <p>I think the first time I encountered this concept in a book on formal logic, this whole idea of using a mathematical object to describe our interpretation of a propositional formula felt very suspect to me. It felt strange to me that we would use mathematical objects to describe the objects that we use to build up mathematical reasoning in the first place. But over time, the idea has just started to feel less outlandish and just useful.</p>
+                <p>This is really the beginning of where this book and the subject matter in general really starts to get interesting. Because with a mathematical way to define semantics, we can now start to use mathematical proof techniques to prove results about this formal mathematical logic system! Wild.</p>
+                <p><img src="/assets/reading/interpretation-of-logical-formulas/ouroboros.png" alt="ouroboros"></p>
+            </article>
+        </main>
+    </body>
+</html>

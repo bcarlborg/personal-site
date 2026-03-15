@@ -6,6 +6,11 @@
     <description>The personal website of Beau Carlborg</description>
     <atom:link href="https://beau-carlborg.com/rss.xml" rel="self" type="application/rss+xml" />
     <item>
+      <title>Propositional and Predicate Calculus: 2.3 Interpretation of Logical Formulas</title>
+      <link>https://www.beau-carlborg.com/reading/interpretation-of-logical-formulas.html</link>
+      <guid isPermaLink="true">https://www.beau-carlborg.com/reading/interpretation-of-logical-formulas.html</guid>
+    </item>
+     <item>
       <title>Propositional and Predicate Calculus: 2.2 The Construction of Propositional Formulas</title>
       <link>https://www.beau-carlborg.com/reading/construction-of-propositional-formulas.html</link>
       <guid isPermaLink="true">https://www.beau-carlborg.com/reading/construction-of-propositional-formulas.html</guid>
