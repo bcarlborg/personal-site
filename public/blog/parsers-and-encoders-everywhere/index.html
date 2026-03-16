@@ -2,7 +2,7 @@
 <html lang="en">
   <head>
     
-<link rel="stylesheet" type="text/css" href="/css/global-styles.8f16d2a746345b084fd3b6ea3332a669f38ba83ed6b85a2247a69b96ade4d4f3.css">
+<link rel="stylesheet" type="text/css" href="/css/global-styles.46781845f3064e1f5e5f5d9950336b9f52bffcc81636b1f19a9af2aa692e20c9.css">
 
 <link rel="stylesheet" type="text/css" href="/css/syntax.ffa9cefad36c07bbdc0138b7503df8bdb3c7acca0cc45262bd5e2ef778a88b57.css">
 <link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon-32-32.png?v=2">
@@ -89,10 +89,10 @@ how my thinking changed over time. I&rsquo;ll describe my struggles trying
 to learn parsing, talk about how I came to see parser&rsquo;s broad
 applicability, and give some examples of parsers in software.</p>
 <p>This is a long and casual read. I hope you enjoy it.</p>
-<h2 id="1-encountering-and-attempting-to-learn-parsers">1: Encountering and attempting to learn parsers</h2>
+<h2 id="1-encountering-and-attempting-to-learn-parsers">1: Encountering and attempting to learn parsers <a class="heading-anchor" href="#1-encountering-and-attempting-to-learn-parsers">#</a></h2>
 <p>I encountered parsers as a topic worth studying while learning about
 compilers.</p>
-<h3 id="parsers-a-phase-in-a-compiler">Parsers: a phase in a compiler</h3>
+<h3 id="parsers-a-phase-in-a-compiler">Parsers: a phase in a compiler <a class="heading-anchor" href="#parsers-a-phase-in-a-compiler">#</a></h3>
 <p>Compilers, and their siblings, like interpreters and virtual machines,
 are the family programs that transform software written in high-level
 languages like C, Python, and Java into binary instructions that run
@@ -120,7 +120,7 @@ structure out of a simple one-dimensional list of tokens. Other
 compiler phases may apply transformations to that structure, but it is
 the parser that bootstraps the compiler up from a meager ol&rsquo; list of
 words to a meaningful representation of a program.</p>
-<h3 id="down-the-parsing-rabbit-hole">Down the parsing rabbit hole</h3>
+<h3 id="down-the-parsing-rabbit-hole">Down the parsing rabbit hole <a class="heading-anchor" href="#down-the-parsing-rabbit-hole">#</a></h3>
 <p>Parsing wholly captured my interest. I wanted to deeply understand
 parsers and would spend as much time as needed to develop that
 understanding.</p>
@@ -198,7 +198,7 @@ I am hopeful that one day parsers and the theory that underlies them
 will come into focus for me, that day has yet to come.</p>
 <p>Thankfully though, I did come to an understanding that helped me see
 how broadly applicable parsers are.</p>
-<h2 id="2-coming-to-see-parsers-broad-applicability">2: Coming to see parser&rsquo;s broad applicability</h2>
+<h2 id="2-coming-to-see-parsers-broad-applicability">2: Coming to see parser&rsquo;s broad applicability <a class="heading-anchor" href="#2-coming-to-see-parsers-broad-applicability">#</a></h2>
 <p>At some point in my process of learning about parsing theory, I came
 to a realization about what parsers do. I realized that there is a
 simple definition describing parsers that highlights how they can be
@@ -206,7 +206,7 @@ simple definition describing parsers that highlights how they can be
 <p>Viewing parsers in this new light helped me see that parsers are
 incredibly applicable beyond compilers. I started to notice that
 parsing, on some level, was incorporated into most programs I use.</p>
-<h3 id="a-clarifying-definition-of-parsing">A clarifying definition of parsing</h3>
+<h3 id="a-clarifying-definition-of-parsing">A clarifying definition of parsing <a class="heading-anchor" href="#a-clarifying-definition-of-parsing">#</a></h3>
 <p><strong>Parsers (and their inverse: encoders) allow us to efficiently
 encode and decode complex structured data like graphs, trees, and
 dictionaries using flat data structures like strings and arrays of
@@ -217,7 +217,7 @@ bytes.</strong></p>
 <p>This definition is only a slight rephrasing of other common
 definitions for parsers. Still, something about this particular
 phrasing stuck with me, so I want to develop the ideas behind it.</p>
-<h3 id="the-same-definition-in-two-parts">The same definition, in two parts</h3>
+<h3 id="the-same-definition-in-two-parts">The same definition, in two parts <a class="heading-anchor" href="#the-same-definition-in-two-parts">#</a></h3>
 <p>Let&rsquo;s break down that definition into two parts to really absorb it:</p>
 <p>Parsers (and their inverse: encoders) <strong>allow us to efficiently encode and decode complex structured data
 like graphs, trees, and dictionaries</strong> using flat data structures like strings and arrays of bytes.</p>
@@ -255,7 +255,7 @@ arrays are so relevant.</p>
 they only can send strings and arrays. Parsers and encoders will allow
 our programs to transform their structured data into those strings and
 arrays and back.</p>
-<h3 id="two-programs-communicating-with-strings">Two programs communicating with strings</h3>
+<h3 id="two-programs-communicating-with-strings">Two programs communicating with strings <a class="heading-anchor" href="#two-programs-communicating-with-strings">#</a></h3>
 <p>It may belabor the point for some readers, but I want to linger on the
 idea that parsers and encoders allow programs to communicate
 structured data using string and byte array interfaces. This idea may
@@ -293,7 +293,7 @@ parsers and encoders are necessary.</p>
 parsers and encoders at the edges of our programs&rsquo; functionality.
 These parsers and encoders enable the use of so many string and byte
 array interfaces.</p>
-<h3 id="humans-and-programs-communicating-with-strings">Humans and programs communicating with strings</h3>
+<h3 id="humans-and-programs-communicating-with-strings">Humans and programs communicating with strings <a class="heading-anchor" href="#humans-and-programs-communicating-with-strings">#</a></h3>
 <p>All of the examples thus far have focused on situations in which
 programs need to communicate with other programs. To take things in a
 slightly more abstract direction, we can consider cases where the
@@ -320,7 +320,7 @@ a string in a format that a person can quickly
 <p><img src="image12.png" alt="depiction of a program encoding information into a file that a human then manually parses"></p>
 <p>(Dear reader, as it turns out, you and I were the ones parsing and
 encoding all along 💛)</p>
-<h3 id="seeing-parsers-and-encoders-everywhere">Seeing parsers and encoders everywhere</h3>
+<h3 id="seeing-parsers-and-encoders-everywhere">Seeing parsers and encoders everywhere <a class="heading-anchor" href="#seeing-parsers-and-encoders-everywhere">#</a></h3>
 <p>The critical observation I want to highlight with all of these
 examples is that whenever your program communicates with anything or
 anyone, it is likely that the program is using a string or array of
@@ -337,7 +337,7 @@ realization. Before learning about parsers, I assumed they were just a
 phase in a compiler that may or may not be worth spending time on. But
 after learning a bit about parsers, I&rsquo;m seeing parsers in almost every
 program I use. That is a big turnaround.</p>
-<h2 id="3-parsers-and-encoders-in-the-real-world">3: Parsers and encoders in the real world</h2>
+<h2 id="3-parsers-and-encoders-in-the-real-world">3: Parsers and encoders in the real world <a class="heading-anchor" href="#3-parsers-and-encoders-in-the-real-world">#</a></h2>
 <p>We&rsquo;ve talked a lot about parsers and encoders in the context of two
 abstract programs, A and B. I have boldly claimed that parsers and
 encoders are everywhere, in all the software you use, right under your
@@ -345,7 +345,7 @@ nose! So now, I will back up that claim by looking at real world
 technologies and programs. We&rsquo;ll discuss the formats of strings
 programs use to encode structured data, and we&rsquo;ll discuss the kinds of
 structured data that programs encode.</p>
-<h3 id="data-serialization-formats-json-xml-yaml-oh-my">Data serialization formats: JSON XML YAML, oh my</h3>
+<h3 id="data-serialization-formats-json-xml-yaml-oh-my">Data serialization formats: JSON XML YAML, oh my <a class="heading-anchor" href="#data-serialization-formats-json-xml-yaml-oh-my">#</a></h3>
 <p>In the examples above, we looked at programs communicating with
 strings using many interfaces. However, I was vague about the contents
 of those strings. I didn&rsquo;t describe how we represent structured data
@@ -455,7 +455,7 @@ formats for config files, and you see them as ways to communicate
 between different programs. These formats are really what make so many
 string and binary interfaces between programs usable for complex
 tasks.</p>
-<h3 id="seeing-parsers-and-encoders-in-real-programs">Seeing parsers and encoders in real programs</h3>
+<h3 id="seeing-parsers-and-encoders-in-real-programs">Seeing parsers and encoders in real programs <a class="heading-anchor" href="#seeing-parsers-and-encoders-in-real-programs">#</a></h3>
 <p>If you squint hard enough at most programs, you can eventually find a
 parser or encoder somewhere in its functionality. As we mentioned in
 an earlier section, most programs have a parser or encoder somewhere
@@ -516,7 +516,7 @@ know how to identify parsers and encoders in the software they are
 using.</p>
 <p>Pretty much any time two programs are communicating… you are going to
 find a parser or encoder!</p>
-<h2 id="4-takeaways">4: Takeaways</h2>
+<h2 id="4-takeaways">4: Takeaways <a class="heading-anchor" href="#4-takeaways">#</a></h2>
 <p>There are many valuable takeaways in this post about parsers and
 encoders. You could note that parsers and encoders are fundamental to
 enable communication between programs. You could take away the idea

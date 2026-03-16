@@ -2,7 +2,7 @@
 <html lang="en">
   <head>
     
-<link rel="stylesheet" type="text/css" href="/css/global-styles.8f16d2a746345b084fd3b6ea3332a669f38ba83ed6b85a2247a69b96ade4d4f3.css">
+<link rel="stylesheet" type="text/css" href="/css/global-styles.46781845f3064e1f5e5f5d9950336b9f52bffcc81636b1f19a9af2aa692e20c9.css">
 
 <link rel="stylesheet" type="text/css" href="/css/syntax.ffa9cefad36c07bbdc0138b7503df8bdb3c7acca0cc45262bd5e2ef778a88b57.css">
 <link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon-32-32.png?v=2">
@@ -54,8 +54,8 @@
   
   <p><em>Disclaimer: this book in particular is not in my wheelhouse. I am using these notes and reading posts to learn the material better. This post is going to be a bit sloppier and less refined than others I usually like to post.</em></p>
 <p>I am jumping straight to chapter 2 section 2 of this book, because chapter 1 and chapter 2.1 are just fluff introductions. 2.2 also feels pretty fluffy for that matter, but it is the first part of the book with some meat on it.</p>
-<h2 id="what-is-covered-in-this-section">What is covered in this section</h2>
-<h3 id="the-general-idea-of-the-section">The general idea of the section</h3>
+<h2 id="what-is-covered-in-this-section">What is covered in this section <a class="heading-anchor" href="#what-is-covered-in-this-section">#</a></h2>
+<h3 id="the-general-idea-of-the-section">The general idea of the section <a class="heading-anchor" href="#the-general-idea-of-the-section">#</a></h3>
 <p>Chapter 2 of this book is all about formal propositional logic. In regular language, we may have simple propositions like:</p>
 <ul>
 <li>&ldquo;Beau deployed code to the server&rdquo;</li>
@@ -85,7 +85,7 @@
 <p>But, even though the rules for building these propositional formulas may be intuitively clear, we need to be much more precise about the rules of formula construction if we want to derive any interesting results about a proof system etc.</p>
 <p>That is what this section of the book does, it lays the foundation for the rest of the chapter by defining the formal language we will use to represent propositional statements and it shows us how we can then use that definition of the formal language to derive interesting results about the formulas.</p>
 <p>For instance, the book shows us how to prove that every formula will have an equal number of left and right parentheses. This should be plain to see based on a few formulas, but at least for someone like me who has not done a lot of higher level math, it is not immediately clear how you could write a proof that shows that.</p>
-<h3 id="how-the-book-conveys-the-content">How the book conveys the content</h3>
+<h3 id="how-the-book-conveys-the-content">How the book conveys the content <a class="heading-anchor" href="#how-the-book-conveys-the-content">#</a></h3>
 <p>The section starts by giving a very quick overview of what a formal language is. It notes that it has a finite number of symbols and rules for its construction&hellip; but the book doesn&rsquo;t take pains to nail down what a formal language is — that isn&rsquo;t the topic of this book after all, so it goes straight to giving us a definition for a propositional formula.</p>
 <p>It gives us a recursive structural definition for the language of propositional formulas as follows.</p>
 <blockquote>
@@ -100,7 +100,7 @@
 <p>The book then goes on to do two more interesting things, it briefly provides an algorithm for recognizing strings that are valid formulas and it provides a proof showing how we can use mathematical induction on the length of a formula to prove results about them.</p>
 <p>This section is very brief, and so it skips over a lot of the quagmires related to recognizing and parsing strings according to a grammar. As I mentioned above, this isn&rsquo;t a formal languages book after all! It does briefly mention parse trees, at least indirectly. But the book doesn&rsquo;t belabor the parsing, and it doesn&rsquo;t go out of its way to show that the grammar is not ambiguous or anything like that.</p>
 <p>The example showing how to prove things about sentences in the formal language is also interesting but quick. The book shows how you can use mathematical induction on a formula to prove results about the formula. The interesting part here is that it shows you how you can define some sort of &ldquo;length&rdquo; to do induction over that also indirectly iterates over the parse tree of the sentence.</p>
-<h3 id="thoughts-feelings-and-reflections-on-this-section">Thoughts, feelings and reflections on this section</h3>
+<h3 id="thoughts-feelings-and-reflections-on-this-section">Thoughts, feelings and reflections on this section <a class="heading-anchor" href="#thoughts-feelings-and-reflections-on-this-section">#</a></h3>
 <p>This section was really short and to the point. It establishes a formal language that we can use for the rest of the chapter, but it is very clear that the author doesn&rsquo;t want to get bogged down into formal language details like syntax trees, grammars, well formed formulas, different grammar complexities etc. After all, there are many whole books about those topics.</p>
 <p>Personally, I am completely fine with how the author approached this section. While I find the formal language stuff very interesting, it is often a distraction from the actual system we are trying to understand by creating a formal language in the first place.</p>
 <p>The section is just groundwork that is necessary for the rest of the chapter.</p>

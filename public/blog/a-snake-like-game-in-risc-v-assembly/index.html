@@ -2,7 +2,7 @@
 <html lang="en">
   <head>
     
-<link rel="stylesheet" type="text/css" href="/css/global-styles.8f16d2a746345b084fd3b6ea3332a669f38ba83ed6b85a2247a69b96ade4d4f3.css">
+<link rel="stylesheet" type="text/css" href="/css/global-styles.46781845f3064e1f5e5f5d9950336b9f52bffcc81636b1f19a9af2aa692e20c9.css">
 
 <link rel="stylesheet" type="text/css" href="/css/syntax.ffa9cefad36c07bbdc0138b7503df8bdb3c7acca0cc45262bd5e2ef778a88b57.css">
 <link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon-32-32.png?v=2">
@@ -16,7 +16,7 @@
     <title>A Snake-like Game in RISC-V Assembly - Beau Carlborg</title>
     <meta name="og:title" content="A Snake-like Game in RISC-V Assembly">
     <meta name="og:description" content="The code for this project can be found 👉here👈.
-The project I built a version of the classic snake game in RISC-V assembly! This is a project I have been chipping away at since the beginning of the …">
+The project # I built a version of the classic snake game in RISC-V assembly! This is a project I have been chipping away at since the beginning of the …">
   </head>
   <body>
     
@@ -47,19 +47,19 @@ The project I built a version of the classic snake game in RISC-V assembly! This
   </details>
   
   <p><em>The code for this project can be found <a href="https://github.com/bcarlborg/snake-game-in-riscv-assembly">👉here👈</a>.</em></p>
-<h2 id="the-project">The project</h2>
+<h2 id="the-project">The project <a class="heading-anchor" href="#the-project">#</a></h2>
 <p>I built a version of the classic snake game in RISC-V assembly! This is a project I have been chipping away at since the beginning of the year, and now that it is wrapped up, I am super excited to share it 🤗</p>
 <p>This is a very bare bones implementation of snake. The game begins as soon as the program starts, and the program halts when your snake dies. The snake changes direction when the W A S D keys are pressed and the snake dies when it collides with itself or with a wall. Food appears at random locations across the map and your score increases each time the snake snake &ldquo;consumes&rdquo; food.</p>
 <p>The project runs on Qemu&rsquo;s emulated RISC-V <a href="https://www.qemu.org/docs/master/system/riscv/virt.html">virt computer platform</a> and the game is written at an embedded level. This means that there is no operating system running to support the program. The game software is responsible for knowing the system&rsquo;s memory map, communicating directly with devices, managing interrupts, and more!</p>
 <p>(Some people might reasonably take issue with this definition of &ldquo;embedded&rdquo; considering that the virt platform is a system that can only be run in an emulated environment&hellip; but these are just the terms we are going to roll with.)</p>
 <p><img src="snake-final-demo.gif" alt="snake like game demo"></p>
-<h2 id="why-do-this-project">Why do this project?</h2>
+<h2 id="why-do-this-project">Why do this project? <a class="heading-anchor" href="#why-do-this-project">#</a></h2>
 <p>There were two reasons I was interested in starting this project.</p>
 <p>Firstly, I wanted to become more familiar with a modern assembly language. Before this project, the only assembly language I had worked with in earnest was a much older 8-bit assembly language for the 6502 CPU (see that project <a href="https://github.com/bcarlborg/6502-programming">here</a>). While I learned from working with that language, I felt that I could benefit from seeing what assembly languages being designed today look and feel like.</p>
 <p>After a few false starts with other architectures like x86 and ARM, I decided to implement my game in RISC-V assembly. I chose RISC-V because the entire RISC-V platform is very well documented and because there are an abundance of educational materials available for the architecture.</p>
 <p>The second reason that I was interested in this project is that I wanted to get familiar with writing software that interacts directly with a computer system. Usually in software development, we rely on the operating system to manage and abstract away the hardware that our code is running on. I wanted to peel away some of those layers and learn how to create a program that can directly utilize the underlying system. I was curious about what the interface do devices on the computer system is. I wanted to learn how a program interacts with those devices over the course of a full program&rsquo;s execution.</p>
 <p>Running my program on the emulated RISC-V virt platform in Qemu was the perfect way to get some initial exposure to programming directly for a computer system. The virt platform is a computer platform that is meant to be emulated &ndash; there are no real physical RISC-V virt computer systems. Without going into too much detail about what the virt computer system is, it is enough to say that the virt computer is architected in the same way as a physical computer system, but the devices on the virt system are &lsquo;made-up&rsquo; devices that are designed to be emulated. These &lsquo;made-up&rsquo; have interfaces that are inspired by physical devices, but are made simpler so that they can be more easily run in a simulated environment.</p>
-<h2 id="some-learnings">Some learnings</h2>
+<h2 id="some-learnings">Some learnings <a class="heading-anchor" href="#some-learnings">#</a></h2>
 <p>This project was a great way to dip my toes into this lower level of software development and I learned a lot while developing it. I&rsquo;ll list some of the learnings that have stuck with me most from the project:</p>
 <p><em>Starting with a &ldquo;blank canvas&rdquo; was very difficult.</em></p>
 <p>I wanted to understand how the computer system worked from the ground up. So I didn&rsquo;t want to start with some sort of template or starter code. I wanted to understand how to appropriately configure and start up Qemu to run my program. I wanted to learn how each device worked and what each device&rsquo;s startup sequence was. I wanted to understand every line of code running in the project.</p>
@@ -86,7 +86,7 @@ The project I built a version of the classic snake game in RISC-V assembly! This
 <p>When I started this project, I felt like assembly language was the lowest level of abstraction that a programmer would need to learn to completely understand how software works. I assumed that if you could read and write assembly for your system, you would be in complete control!</p>
 <p>However, as a learned more about assembly language, I found that the CPU is also providing an interface for assembly programs that hides a lot of complexity. The CPU presents itself as a devices that runs your instructions one at a time and allows you to directly interface with the underlying hardware&hellip; but in reality, the CPU may execute your instructions out of order, and when you access memory, the CPU may direct reads and writes to local caches. These are only two of the surprising aspects of how CPUs work that I came across in this project.</p>
 <p>I still don&rsquo;t know what I don&rsquo;t know about CPUs&hellip; But I do now know that the CPU as it presents itself to assembly programs is yet another abstraction, what the actual hardware is doing below is much more complicated.</p>
-<h2 id="in-conclusion">In conclusion</h2>
+<h2 id="in-conclusion">In conclusion <a class="heading-anchor" href="#in-conclusion">#</a></h2>
 <p>This was a fantastic project! I spent many months getting everything working, but ultimately I learned a lot. Getting this program working gave me that special kind of confidence that you only feel when you learn how to write software at a new, lower level of abstraction.</p>
 <p>Learning how to write software at this level feels a lot like leveling your character up in a video game&hellip; you unlock some new skill that allows you to explore all sorts of new dynamics and locations in the game.</p>
 <p>🐍 🐍 🐍 🐍 🐍 🐍 🐍 🐍</p>

@@ -79,9 +79,17 @@ footer {
   font-family: inherit;
 }
 
+.post-filter:hover {
+  background: rgba(140, 38, 38, 0.1);
+}
+
 .post-filter.active {
   background: var(--color-link);
   color: var(--color-bg);
+}
+
+.post-filter.active:hover {
+  background: var(--color-link);
 }
 
 /* Post tags */
@@ -122,6 +130,29 @@ footer {
 }
 
 /* Article layout */
+
+article h2,
+article h3 {
+  position: relative;
+}
+
+article h2 .heading-anchor,
+article h3 .heading-anchor {
+  text-decoration: none;
+  opacity: 0;
+  margin-left: 0.3em;
+  font-weight: normal;
+}
+
+article h2:hover .heading-anchor,
+article h3:hover .heading-anchor {
+  opacity: 0.4;
+}
+
+article h2 .heading-anchor:hover,
+article h3 .heading-anchor:hover {
+  opacity: 1;
+}
 
 article img {
   width: 100%;

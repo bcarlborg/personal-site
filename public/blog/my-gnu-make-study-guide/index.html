@@ -2,7 +2,7 @@
 <html lang="en">
   <head>
     
-<link rel="stylesheet" type="text/css" href="/css/global-styles.8f16d2a746345b084fd3b6ea3332a669f38ba83ed6b85a2247a69b96ade4d4f3.css">
+<link rel="stylesheet" type="text/css" href="/css/global-styles.46781845f3064e1f5e5f5d9950336b9f52bffcc81636b1f19a9af2aa692e20c9.css">
 
 <link rel="stylesheet" type="text/css" href="/css/syntax.ffa9cefad36c07bbdc0138b7503df8bdb3c7acca0cc45262bd5e2ef778a88b57.css">
 <link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon-32-32.png?v=2">
@@ -90,8 +90,8 @@ On one hand, it is one of my favorite tools. It is installed almost everywhere. 
 <li>I read through almost every section of the official <a href="https://www.gnu.org/software/make/manual/make.html">make documentation</a> and tried to note down the features of the tool and the language that&rsquo;d I&rsquo;d come across or used before. I then tried to explain each of those features in my own words in a section of this document.</li>
 </ol>
 <p>Disclaimer: This post is more of a collection of notes than a cohesive piece of writing. I have not taken the time to massage this into writing that flows, and frankly, this is neither the topic nor the post that I want to make that investment in. I am publishing this in spite of its rough condition because it might still have some value for others and because not everything needs to be perfect 💎</p>
-<h2 id="make-as-a-build-system">Make as a Build System</h2>
-<h3 id="make-is-a-build-automation-system-aka-a-build-system">🏭 Make is a Build Automation System (a.k.a. a Build System).</h3>
+<h2 id="make-as-a-build-system">Make as a Build System <a class="heading-anchor" href="#make-as-a-build-system">#</a></h2>
+<h3 id="make-is-a-build-automation-system-aka-a-build-system">🏭 Make is a Build Automation System (a.k.a. a Build System). <a class="heading-anchor" href="#make-is-a-build-automation-system-aka-a-build-system">#</a></h3>
 <ul>
 <li>To get oriented with make, it is useful to nail down some terms that we&rsquo;ll use to talk about this kind of software.
 <ul>
@@ -128,7 +128,7 @@ On one hand, it is one of my favorite tools. It is installed almost everywhere. 
 </ul>
 </li>
 </ul>
-<h3 id="build-systems-use-dependency-graphs-to-build-your-project">🕰️ Build Systems use Dependency Graphs to Build Your Project</h3>
+<h3 id="build-systems-use-dependency-graphs-to-build-your-project">🕰️ Build Systems use Dependency Graphs to Build Your Project <a class="heading-anchor" href="#build-systems-use-dependency-graphs-to-build-your-project">#</a></h3>
 <ul>
 <li>What is it that separates the bone fide build systems from a plain old scripts? If the purpose of a build system is to automate the build process of a project&hellip; we could just automate with a simple shell script right?
 <ul>
@@ -175,7 +175,7 @@ On one hand, it is one of my favorite tools. It is installed almost everywhere. 
 </ul>
 </li>
 </ul>
-<h3 id="dependency-graphs-are-encoded-in-rules-of-makefiles">🧑‍⚖️ Dependency Graphs are Encoded in Rules of Makefiles</h3>
+<h3 id="dependency-graphs-are-encoded-in-rules-of-makefiles">🧑‍⚖️ Dependency Graphs are Encoded in Rules of Makefiles <a class="heading-anchor" href="#dependency-graphs-are-encoded-in-rules-of-makefiles">#</a></h3>
 <ul>
 <li>Make requires that a user specify the dependency graph for their project in a <code>Makefile</code></li>
 <li>The programmer configuring the build system writes a <code>Makefile</code> that stores a sequence rules.</li>
@@ -204,8 +204,8 @@ On one hand, it is one of my favorite tools. It is installed almost everywhere. 
 </ul>
 </li>
 </ul>
-<h2 id="simple-make-syntax">Simple Make Syntax</h2>
-<h3 id="simple-rules">📜 Simple Rules</h3>
+<h2 id="simple-make-syntax">Simple Make Syntax <a class="heading-anchor" href="#simple-make-syntax">#</a></h2>
+<h3 id="simple-rules">📜 Simple Rules <a class="heading-anchor" href="#simple-rules">#</a></h3>
 <ul>
 <li>Rules are really the core of of what makes make. The way make builds your project is entirely determined by the rules you write.</li>
 <li>There are many ways to write complex rules, but rules follow the same basic syntax that is exemplified by simple rules.</li>
@@ -278,7 +278,7 @@ make: `main&#39; is up to date.
 </ul>
 </li>
 </ul>
-<h3 id="simple-variable-assignment">✏️ Simple Variable Assignment</h3>
+<h3 id="simple-variable-assignment">✏️ Simple Variable Assignment <a class="heading-anchor" href="#simple-variable-assignment">#</a></h3>
 <ul>
 <li>Make supports an entire little programming language, and what would a programming language be without variables.</li>
 <li>The basic syntax for variable assignments in make is as follows:</li>
@@ -360,7 +360,7 @@ $(f)oo
 </ul>
 </li>
 </ul>
-<h3 id="basic-automatic-variables">🤖 Basic Automatic Variables</h3>
+<h3 id="basic-automatic-variables">🤖 Basic Automatic Variables <a class="heading-anchor" href="#basic-automatic-variables">#</a></h3>
 <ul>
 <li>All of our rules have been static so far, meaning that the target file and all of the prerequisite files are explicitly listed.
 <ul>
@@ -395,7 +395,7 @@ $(f)oo
 </ul>
 </li>
 </ul>
-<h3 id="basic-function-invocation">🎰 Basic Function Invocation</h3>
+<h3 id="basic-function-invocation">🎰 Basic Function Invocation <a class="heading-anchor" href="#basic-function-invocation">#</a></h3>
 <ul>
 <li>Make provides a set of functions that can modify text values. Functions can be invoked anywhere that a variable can be referenced.</li>
 <li>The basic function invocation syntax is as follows:</li>
@@ -416,7 +416,7 @@ ${function_name argument1,argument2,argument3}
 </ul>
 </li>
 </ul>
-<h3 id="common-functions">💹 Common Functions</h3>
+<h3 id="common-functions">💹 Common Functions <a class="heading-anchor" href="#common-functions">#</a></h3>
 <ul>
 <li>Some of the more common and generally illustrative basic functions</li>
 <li><code>$(wildcard pattern)</code>: The <code>wildcard</code> function will match a pattern against your current working directory, and expand into a list of the files that match the wildcard pattern.
@@ -484,8 +484,8 @@ ${function_name argument1,argument2,argument3}
 </ul>
 </li>
 </ul>
-<h2 id="syntax-for-more-general-rules">Syntax for More General Rules</h2>
-<h3 id="phony-targets">🤡 Phony Targets</h3>
+<h2 id="syntax-for-more-general-rules">Syntax for More General Rules <a class="heading-anchor" href="#syntax-for-more-general-rules">#</a></h2>
+<h3 id="phony-targets">🤡 Phony Targets <a class="heading-anchor" href="#phony-targets">#</a></h3>
 <ul>
 <li>So far, in each of our rules, our target has been a file that the recipe of the rule creates. Sometimes it is useful to create a rule whose target does not correspond to any file.</li>
 <li>When a target does not correspond to a file, we call it a phony target.</li>
@@ -527,7 +527,7 @@ ${function_name argument1,argument2,argument3}
 </ul>
 </li>
 </ul>
-<h3 id="wildcard-rules">🎨 Wildcard Rules</h3>
+<h3 id="wildcard-rules">🎨 Wildcard Rules <a class="heading-anchor" href="#wildcard-rules">#</a></h3>
 <ul>
 <li>Often times, you want to create a rule that applies to every target or prerequisite matching some pattern in a directory.</li>
 <li>You can do this in make using wildcard characters in the target or prerequisite section of a rule.</li>
@@ -543,7 +543,7 @@ ${function_name argument1,argument2,argument3}
 </ul>
 </li>
 </ul>
-<h3 id="pattern-rules">🏵️ Pattern Rules</h3>
+<h3 id="pattern-rules">🏵️ Pattern Rules <a class="heading-anchor" href="#pattern-rules">#</a></h3>
 <ul>
 <li>Similar to wildcard rules, pattern rules allow you to write rules that are more general than basic rules.</li>
 <li>Pattern rules allow you to create a rule for any target matching a particular pattern. That pattern can also be referenced in the prerequisite list of the rule.
@@ -564,7 +564,7 @@ ${function_name argument1,argument2,argument3}
 </ul>
 </li>
 </ul>
-<h3 id="-built-in-rules">🫥 Built-in Rules</h3>
+<h3 id="-built-in-rules">🫥 Built-in Rules <a class="heading-anchor" href="#-built-in-rules">#</a></h3>
 <ul>
 <li>By default, make also references a number of built-in rules beyond those you define in your <code>Makefile</code> when you invoke it.</li>
 <li>There are two built-in rules that you may still come across or shoot yourself in the foot with.</li>
@@ -577,7 +577,7 @@ ${function_name argument1,argument2,argument3}
 </ul>
 </li>
 </ul>
-<h3 id="multiple-targets-per-rule">👬 Multiple Targets per Rule</h3>
+<h3 id="multiple-targets-per-rule">👬 Multiple Targets per Rule <a class="heading-anchor" href="#multiple-targets-per-rule">#</a></h3>
 <ul>
 <li>In all of the rules up to this point, we have only had one target per rule. Make also has affordances for specifying multiple targets for a single rule.</li>
 <li>There are two different variants of multiple target rules.</li>
@@ -614,7 +614,7 @@ ${function_name argument1,argument2,argument3}
 </span></span><span class="line"><span class="cl">  <span class="nb">echo</span> $^ &gt; foo
 </span></span><span class="line"><span class="cl">  <span class="nb">echo</span> $^ &gt; bar
 </span></span><span class="line"><span class="cl">  <span class="nb">echo</span> $^ &gt; biz
-</span></span></code></pre></div><h3 id="order-only-prerequisites">🦏 Order-only Prerequisites</h3>
+</span></span></code></pre></div><h3 id="order-only-prerequisites">🦏 Order-only Prerequisites <a class="heading-anchor" href="#order-only-prerequisites">#</a></h3>
 <ul>
 <li>The default interpretation of prerequisites in rules is that make should run the recipe whenever any one of the prerequisites has an update timestamp that is newer than that of the target.</li>
 <li>Order-only prerequisites allow you to specify prerequisites for a target that should only cause an execution of the recipe if the order-only prerequisite doesn&rsquo;t exist. Once the order-only prerequisite exists, any subsequent updates to it will not cause make to execute the rule again.</li>
@@ -637,8 +637,8 @@ ${function_name argument1,argument2,argument3}
 </ul>
 </li>
 </ul>
-<h2 id="other-useful-syntax">Other Useful Syntax</h2>
-<h3 id="-variable-substitution-references">🧞 Variable Substitution References</h3>
+<h2 id="other-useful-syntax">Other Useful Syntax <a class="heading-anchor" href="#other-useful-syntax">#</a></h2>
+<h3 id="-variable-substitution-references">🧞 Variable Substitution References <a class="heading-anchor" href="#-variable-substitution-references">#</a></h3>
 <ul>
 <li>Oftentimes in a makefile, you want to create one variable from another with a slight modification. You want to map over the values in one variable and generate your new one by performing some slight translation on the original variable.</li>
 <li>Variable substitution references are a lightweight piece of syntax has some basic functionality for doing this.</li>
@@ -662,7 +662,7 @@ ${function_name argument1,argument2,argument3}
 <ul>
 <li>Make documentation — <a href="https://www.gnu.org/software/make/manual/html_node/Substitution-Refs.html">6.3.1 Substitution References</a></li>
 </ul>
-<h3 id="make-syntax-for-recipes">👨‍🍳 Make Syntax for Recipes</h3>
+<h3 id="make-syntax-for-recipes">👨‍🍳 Make Syntax for Recipes <a class="heading-anchor" href="#make-syntax-for-recipes">#</a></h3>
 <ul>
 <li>Make executes each line of code in the recipe in its own subshell. However, it does do some processing on the recipe lines first.</li>
 <li>Breaking up recipe lines
@@ -710,7 +710,7 @@ ${function_name argument1,argument2,argument3}
 </ul>
 </li>
 </ul>
-<h3 id="different-types-of-variable-assignment">🧟‍♂️ Different Types of Variable Assignment</h3>
+<h3 id="different-types-of-variable-assignment">🧟‍♂️ Different Types of Variable Assignment <a class="heading-anchor" href="#different-types-of-variable-assignment">#</a></h3>
 <ul>
 <li>By default, variables in <code>makefiles</code> do not store the evaluated right-hand side value from the variable declaration. Instead, they store the right-hand side value as it was specified, and then evaluate that when the variable is referenced.</li>
 <li>These variables are referred to as recursively expanded variables.</li>
@@ -743,8 +743,8 @@ ${function_name argument1,argument2,argument3}
 </ul>
 </li>
 </ul>
-<h2 id="other-bits-and-bops">Other Bits and Bops</h2>
-<h3 id="make-executes-each-recipe-line-in-its-own-subshell">🛶 Make Executes Each Recipe Line in its Own Subshell</h3>
+<h2 id="other-bits-and-bops">Other Bits and Bops <a class="heading-anchor" href="#other-bits-and-bops">#</a></h2>
+<h3 id="make-executes-each-recipe-line-in-its-own-subshell">🛶 Make Executes Each Recipe Line in its Own Subshell <a class="heading-anchor" href="#make-executes-each-recipe-line-in-its-own-subshell">#</a></h3>
 <ul>
 <li>When make executes a recipe, it executes each line of the recipe in its own subshell.</li>
 <li>⚠️ This means that setting shell variables or changing directory in a <code>Makefile</code> recipe will not affect following lines.
@@ -764,7 +764,7 @@ ${function_name argument1,argument2,argument3}
 </ul>
 </li>
 </ul>
-<h3 id="creating-a-prerequisite-that-is-always-out-of-date">🏚️ Creating a Prerequisite That Is Always Out of Date</h3>
+<h3 id="creating-a-prerequisite-that-is-always-out-of-date">🏚️ Creating a Prerequisite That Is Always Out of Date <a class="heading-anchor" href="#creating-a-prerequisite-that-is-always-out-of-date">#</a></h3>
 <ul>
 <li>Sometimes it is useful to have a prerequisite on a rule that is always out of date. This will ensure that the rule is always run even when the target is up to date.
 <ul>
@@ -798,7 +798,7 @@ ${function_name argument1,argument2,argument3}
 </ul>
 </li>
 </ul>
-<h3 id="using-multiple-makefiles">👩‍👩‍👧‍👦 Using Multiple Makefiles</h3>
+<h3 id="using-multiple-makefiles">👩‍👩‍👧‍👦 Using Multiple Makefiles <a class="heading-anchor" href="#using-multiple-makefiles">#</a></h3>
 <ul>
 <li>Once a project grows sufficiently large, having all of your build process logic included in one <code>Makefile</code> is too unwieldy.</li>
 <li>Make has a few affordances for using multiple <code>makefiles</code> in a project, and include mechanism for importing the rules from one makefile and a mechanism for executing other makefiles.</li>

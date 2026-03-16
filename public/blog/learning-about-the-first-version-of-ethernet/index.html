@@ -2,7 +2,7 @@
 <html lang="en">
   <head>
     
-<link rel="stylesheet" type="text/css" href="/css/global-styles.8f16d2a746345b084fd3b6ea3332a669f38ba83ed6b85a2247a69b96ade4d4f3.css">
+<link rel="stylesheet" type="text/css" href="/css/global-styles.46781845f3064e1f5e5f5d9950336b9f52bffcc81636b1f19a9af2aa692e20c9.css">
 
 <link rel="stylesheet" type="text/css" href="/css/syntax.ffa9cefad36c07bbdc0138b7503df8bdb3c7acca0cc45262bd5e2ef778a88b57.css">
 <link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon-32-32.png?v=2">
@@ -52,12 +52,12 @@ The first technology I decided to dig into was …">
   <p>I recently realized that <a href="/blog/i-dont-get-networking/">I don’t really get networking</a>, but I decided I would try to fix that by learning about some concrete networking technologies.</p>
 <p>The first technology I decided to dig into was Ethernet. I chose ethernet because it is one of the most used networking technologies, and because it has been around for quite some time. I decided to learn about the first version of Ethernet (called 10BASE5). My original intent was to learn about all of the technical and implementation details, but I ended up learning more about the history and narrative behind the invention.</p>
 <p>One note I want to mention before diving in. One source in particular for this piece was fanstastic, and deserves being mentioned up at the top. <a href="https://ieeemilestones.ethw.org/w/images/6/6e/Ref2_IEEE_Annals_1994.pdf">How Ethernet was Invented</a> is a piece written by the inventor himself and published in one of the IEEE Annals. It was an absolute joy to read and added so much personality to my understanding of this technology.</p>
-<h2 id="when-and-why-was-ethernet-created">When and Why was Ethernet Created</h2>
+<h2 id="when-and-why-was-ethernet-created">When and Why was Ethernet Created <a class="heading-anchor" href="#when-and-why-was-ethernet-created">#</a></h2>
 <p>Like many things in computer technology, ethernet was invented at Xerox PARC.</p>
 <p>Robert Metcalfe was the primary driver of the invention, but many others were involved in the process as well. Metfcalfe first came up with the idea around 1973 at the same time that xerox was developing the Alto Computer. The Alto was one of many very important evolutions in computers around the late 60’s and early 70s. This was really the period of time in which computers were transitioning from being  giant machines that needed an entire basement and many operators to work to smaller devices that a single person might use. The Alto wasn’t the first personal or mini computer, but it very innovative in its form and functionality.</p>
 <p>One of the key innovations of the Alto was that it came with networking capability. It was designed to connect to other Altos that were in reasonably close vicinity.  Before the Alto, networking was though of more as a means to connect the very large mainframe computers across large distances. These networking needs were handled by the ARPA-NET and other related networking technologies. Broadly, this type of networking was called Wide Area Networking or WAN.</p>
 <p>But the vision for networking in Altos was different. It was imagined that you could have multiple Altos in the same business or university, all connected together, able to share data and messages over a network. Ethernet was created to serve this purpose. This scale of networking, connecting multiple machines all in close vicinity is became known as Local Area Networking or LAN.</p>
-<h2 id="the-main-innovation-behind-ethernet">The Main Innovation Behind Ethernet</h2>
+<h2 id="the-main-innovation-behind-ethernet">The Main Innovation Behind Ethernet <a class="heading-anchor" href="#the-main-innovation-behind-ethernet">#</a></h2>
 <p>I think the easiest way to understand what made Ethernet new and interesting at the time is to compare it to what came before. Take this next part with a grain of salt! I haven’t gone deep enough into networking history to be 100% sure about these next statements, but I think directionally, I have things right.</p>
 <p>Before the ethernet, most networking technologies were essentially a direct connection between two devices.</p>
 <ul>
@@ -69,7 +69,7 @@ The first technology I decided to dig into was …">
 <p>Metcalfe’s idea for ethernet was that you could have multiple computers all using a single connection, and at any point in time, any one of those computers could talk to another. He threw away the assumption that a network link had to establish a direct link between two devices, and instead designed a network in which many devices would all share the same medium.</p>
 <p>Metcalfe compared this shared medium that all the hosts would be connected to with the outdated but charming concept of Luminiferous Ether. This was a word from the 19th century idea the ether was an omnipresent medium all around us through which light travels. In Metcalfe’s new network, all the hosts would be connected to each other directly, and when one host wanted to talk to another, they would essentially broadcast their message into the “ether” and eventually wait for a response targeted to them to come back through this “ether”.</p>
 <p>Metcalfe didn’t pull this idea out of thin are though, his design for ethernet was heavily inspired by an earlier network created for use in the Hawaiian islands called ALOHA. The ALOHA system was designed to allow many computers to communicate using radio over the same radio spectrum. It had important differences from Ethernet, but Ethernet is very clearly and explicitly inspired by ALOHA, so it bears mention.</p>
-<h2 id="managing-the-shared-medium">Managing the Shared Medium</h2>
+<h2 id="managing-the-shared-medium">Managing the Shared Medium <a class="heading-anchor" href="#managing-the-shared-medium">#</a></h2>
 <p>To get into more specifics about how ethernet worked, we need to get a bit more precise about the topology of the network.</p>
 <p>In the first versions of ethernet, you had many computer connected directly to a single shared coax cable.</p>
 <pre tabindex="0"><code>│              shared coax cable            │
@@ -94,7 +94,7 @@ The first technology I decided to dig into was …">
 <p>Ethernet deals with this problem by imposing both a minimum frame size for the messages sent out onto the network as well as a maximum physical size of the network. By constraining the physical network size and ensuring that each transmission must have some minimum size, you can guarantee that any two messages sent at the same time will have a collision detected.</p>
 <p><strong>Carrier Sense, Multi-Access with Collision Detection aka CSMA/CD</strong></p>
 <p>When people talk about how ethernet solved the shared medium problem, they will say it did so with CSMA/CD. This is one of the core innovations of the early ethernet system.</p>
-<h2 id="was-early-ethernet-successful">Was Early Ethernet Successful?</h2>
+<h2 id="was-early-ethernet-successful">Was Early Ethernet Successful? <a class="heading-anchor" href="#was-early-ethernet-successful">#</a></h2>
 <p>At first, ethernet had a very mixed reception. Metcalfe describes many people being unsure about the system from its inception and early development onto its release and announcement outside of xerox.</p>
 <p>Many people worried about the unwieldy nature of ethernet.</p>
 <p>Unlike networking protocols that came before, a lot could go wrong in the process of transmitting a frame out to the network. There could be a collision, some bits could be corrupted and lost. I didn’t really go into in this post, but even when there weren’t collisions, the protocol didn’t provide strong guarantees that the received data matched the transmitted data.</p>
@@ -103,7 +103,7 @@ The first technology I decided to dig into was …">
 <p>But! Ethernet was fast and it scaled.</p>
 <p>Ethernet was way faster than the networking technologies that came before. Metcalfe describes that systems being used before ethernet had a bandwidth of ~50 Mbps while the very first version of ethernet had a bandwidth of ~2.8 Mbps.</p>
 <p>Furthermore, ethernet allowed new hosts to be added to the network. If you wanted to add a new host to the network, you could just create a new connection to the shared bus and attach your host. By today’s standards, this was actually quite difficult. You would need to create a “vampire tap” into the coax cable to add the new host. My understanding is that was actually somewhat difficult to do. But it was possible!</p>
-<h2 id="what-happened-with-ethernet-next">What Happened with Ethernet Next?</h2>
+<h2 id="what-happened-with-ethernet-next">What Happened with Ethernet Next? <a class="heading-anchor" href="#what-happened-with-ethernet-next">#</a></h2>
 <p>This post only really describes the initial version of ethernet that Metcalfe invented.</p>
 <p>The first document describing ethernet was a 1973 memo the Metcalfe wrote within xerox. By 1976, xerox had put in a patent application for the technology and Metcalfe published a paper describing the system. By 1980, the technology was out in the open, and Metcalfe created a spec of the technology that others could use to develop networks, this was called the DIX standard of etherent. And finally, by 1983, IEEE created the 802.3 standard for ethernet.</p>
 <p>By the time the IEEE standard of ethernet was created, the system had a bandwidth of around 10Mbps and the thick coax cables became the standard. Each ethernet link could be around 500meters large, and so this version of ethernet became known as 10BASE5.</p>
@@ -111,12 +111,12 @@ The first technology I decided to dig into was …">
 <p>After that, ethernet took a somewhat dramatic turn with 10BASE-T. the thick coax cables were replaced with standard twisted copper pair wires (the same general style we use today), and the shared bus topology was replaced with a star topology.</p>
 <p>As time went on, the shared medium of ethernet went away altogether. By the 90s, hosts all connected directly to a network switch. The switch would buffer messages and send them to the correct host. The switches removed the shared medium and the need for CSMA/CD.</p>
 <p>Spiritually, the original ideas behind ethernet really lived on in the wifi standard. Instead of the shared medium for hosts being a copper wire, the share medium became radio waves.</p>
-<h2 id="and-thats-it">And that’s it!</h2>
+<h2 id="and-thats-it">And that’s it! <a class="heading-anchor" href="#and-thats-it">#</a></h2>
 <p>I really enjoyed learning a bit about the original version of ethernet. It is always fun to dive into these inventions from the Xerox Parc days, at a time when computers were rapidly changing from giant mainframes to smaller personal and mini computers.</p>
 <p>I really find it fascinating that the first version of ethernet had this quality of being a shared medium with all of the hosts needing to be aware of the potential for collisions and garbling their data.</p>
 <p>I also can’t overstate how fun it was to read How Ethernet was Invented article by Metcalfe himself and the original Ethernet Xerox memo. Both of those accounts give a very personal touch to the whole technology. Those kind of narratives always help the ideas behind a technology stick in my head.</p>
 <p>At some point, I would like to write a post about how ethernet evolved over time and get into all of the details about how switches work! It really is ironic that the core innovation of ethernet (the CSMA/CD) is not needed in contemporary ethernet because of switches. I’d love to explore that more fully at some point in the future</p>
-<h2 id="sources">Sources</h2>
+<h2 id="sources">Sources <a class="heading-anchor" href="#sources">#</a></h2>
 <p>Sorry I didn&rsquo;t tag all the facts I refence in this article with annotations! But here are the sources I referenced when researching this topic. For whatever reason, I felt like I was able to find some really high quality resources when learning about this piece! I highly recommend at least poking throught these.</p>
 <p>References</p>
 <ul>
