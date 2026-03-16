@@ -132,24 +132,26 @@ article img {
 article .article-title {
   background: var(--color-title);
   padding: 5px;
+  margin-bottom: 0.3em;
 }
 
 article .article-metadata {
-  padding: 1em;
-  background-color: var(--color-metadata);
-  font-style: italic;
-  margin-bottom: 2em;
+  margin-bottom: 1.5em;
+  opacity: 0.7;
+}
+
+article .article-date {
+  vertical-align: middle;
+}
+
+article .article-source {
+  margin-top: 0.3em;
 }
 
 article .article-toc {
   padding: 1em;
   background-color: var(--color-metadata);
   margin-bottom: 2em;
-}
-
-article .article-metadata + .article-toc {
-  padding-top: 0;
-  margin-top: -2em;
 }
 
 article .article-toc nav {

@@ -5,30 +5,26 @@
 {{ end }}
 
 {{ define "main" }}
-<article{{ if eq .Params.postType "reading" }} class="reading-page"{{ end }}>
-  {{ if eq .Params.postType "reading" }}
-  <h1 class="article-title">{{ .Params.readingTitle }}</h1>
+<article>
+  <h1 class="article-title">{{ if eq .Params.postType "reading" }}{{ .Params.readingTitle }}{{ else }}{{ .Title }}{{ end }}</h1>
   <div class="article-metadata">
-    <span class="post-tag post-tag-reading">Reading</span>
-    Reading notes on
-    {{- if .Params.readingUrl }} <a href="{{ .Params.readingUrl }}">{{ .Params.readingTitle }}</a>
-    {{- else }} {{ .Params.readingTitle }}
-    {{- end -}}
-    {{- if .Params.readingAuthor }} by {{ .Params.readingAuthor }}{{ end -}}
-    {{- if .Params.readingPublishedDate }} ({{ .Params.readingPublishedDate }}){{ end }}<br>
-    Read on: {{ .Params.dateDisplay }}
-  </div>
-  {{ else }}
-  <h1 class="article-title">{{ .Title }}</h1>
-  <div class="article-metadata">
-    <span class="post-tag post-tag-{{ .Params.postType }}">{{ if eq .Params.postType "project" }}Project{{ else }}Writing{{ end }}</span>
-    Published: {{ .Params.dateDisplay }}
+    <span class="post-tag post-tag-{{ .Params.postType }}">{{ if eq .Params.postType "project" }}Project{{ else if eq .Params.postType "reading" }}Reading{{ else }}Writing{{ end }}</span>
+    <span class="article-date">{{ .Params.dateDisplay }}</span>
+    {{ if eq .Params.postType "reading" }}
+    <div class="article-source">
+      Notes on
+      {{- if .Params.readingUrl }} <a href="{{ .Params.readingUrl }}">{{ .Params.readingTitle }}</a>
+      {{- else }} {{ .Params.readingTitle }}
+      {{- end -}}
+      {{- if .Params.readingAuthor }} by {{ .Params.readingAuthor }}{{ end -}}
+      {{- if .Params.readingPublishedDate }} ({{ .Params.readingPublishedDate }}){{ end }}
+    </div>
+    {{ end }}
   </div>
   {{ if .TableOfContents | findRE "<li>" }}
   <div class="article-toc">
     {{ .TableOfContents }}
   </div>
-  {{ end }}
   {{ end }}
   {{ .Content }}
 </article>
