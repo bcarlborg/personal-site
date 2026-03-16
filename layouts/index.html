@@ -38,7 +38,8 @@ Send me an email at <a href="mailto:bcarlborg@gmail.com">bcarlborg@gmail.com</a>
   </span>
   <br>
   <span class="post-list-item-subtitle">
-    {{ if eq .Params.postType "project" }}Project{{ else if eq .Params.postType "reading" }}Reading{{ else }}Writing️{{ end }} - {{ .Params.dateDisplay }}
+    <span class="post-tag post-tag-{{ .Params.postType }}">{{ if eq .Params.postType "project" }}Project{{ else if eq .Params.postType "reading" }}Reading{{ else }}Writing{{ end }}</span>
+    {{ .Params.dateDisplay }}
   </span>
 </div>
 {{ end }}

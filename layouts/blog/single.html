@@ -9,6 +9,7 @@
   {{ if eq .Params.postType "reading" }}
   <h1 class="article-title">{{ .Params.readingTitle }}</h1>
   <div class="article-metadata">
+    <span class="post-tag post-tag-reading">Reading</span>
     Reading notes on
     {{- if .Params.readingUrl }} <a href="{{ .Params.readingUrl }}">{{ .Params.readingTitle }}</a>
     {{- else }} {{ .Params.readingTitle }}
@@ -19,7 +20,10 @@
   </div>
   {{ else }}
   <h1 class="article-title">{{ .Title }}</h1>
-  <div class="article-metadata">Published: {{ .Params.dateDisplay }}</div>
+  <div class="article-metadata">
+    <span class="post-tag post-tag-{{ .Params.postType }}">{{ if eq .Params.postType "project" }}Project{{ else }}Writing{{ end }}</span>
+    Published: {{ .Params.dateDisplay }}
+  </div>
   {{ if .TableOfContents | findRE "<li>" }}
   <div class="article-toc">
     {{ .TableOfContents }}
