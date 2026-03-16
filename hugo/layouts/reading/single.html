@@ -1,0 +1,22 @@
+{{ define "header" }}
+<header>
+  <a href="/">⏎ back home</a>
+</header>
+{{ end }}
+
+{{ define "main" }}
+<article class="reading-page">
+  <h1 id="article-title">What I am reading: {{ .Params.readingTitle }}</h1>
+  <div id="article-contents">
+    <i id="article-metadata">
+      {{- if .Params.readingUrl -}}
+        Link: <a href="{{ .Params.readingUrl }}">{{ .Params.readingTitle }}</a><br>
+      {{- end -}}
+      Author: {{ .Params.readingAuthor }}<br>
+      Published: {{ .Params.readingPublishedDate }}<br>
+      Read on: {{ .Params.dateReadByMe }}<br>
+    </i>
+  </div>
+  {{ .Content }}
+</article>
+{{ end }}

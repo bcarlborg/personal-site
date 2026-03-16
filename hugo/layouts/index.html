@@ -1,0 +1,57 @@
+{{ define "header" }}
+<header>
+  <div id="index-title-container">
+    <h1 id="index-title-text">Beau Carlborg</h1>
+    <img id="index-title-image" src="/assets/favicon-96-96.png?v=2">
+  </div>
+  <p>👋 Hi there, my name is Beau (pronounced like go).</p>
+</header>
+{{ end }}
+
+{{ define "main" }}
+<h2>About me</h2>
+<ul>
+  <li>🌳 I live in Oakland, California.</li>
+  <li>🕴 Currently, I am a full-stack developer at Notion.</li>
+  <li>🌎 I enjoy learning about all levels of the tech-stack, from assembly up to web technologies.</li>
+  <li>️🏔️ I like to spend my spare time in the outdoors.</li>
+</ul>
+
+<h2>Contact Me</h2>
+<p>Have something you want to tell me? Found a mistake or typo on the site? Just looking to chat?
+Send me an email at <a href="mailto:bcarlborg@gmail.com">bcarlborg@gmail.com</a>. Start the subject line with the 🦎 emoji so I know you came from this site.</p>
+
+<h2>Posts</h2>
+<p><em>Some writing, some projects. Some polished, some not.</em></p>
+
+{{ $blogPosts := where site.RegularPages "Section" "blog" }}
+{{ $blogPosts = sort $blogPosts ".Params.postOrder" "desc" }}
+{{ range $blogPosts }}
+<p class="blog-posts-list-item">
+  <span class="blog-post-title-url">
+    <b><a href="{{ .RelPermalink }}">{{ .Title }}</a></b>
+  </span>
+  <br>
+  <span class="blog-posts-list-item-prefix">
+    {{ if eq .Params.postType "project" }}Project{{ else }}Writing️{{ end }} - {{ .Params.dateAuthored }}
+  </span>
+</p>
+{{ end }}
+
+<h2>What I'm Reading</h2>
+<p><em>List of books, papers, or article that I'm currently reading and thinking about.</em></p>
+
+{{ $readingPages := where site.RegularPages "Section" "reading" }}
+{{ $readingPages = sort $readingPages ".Params.postOrder" "desc" }}
+{{ range $readingPages }}
+<p class="reading-list-item">
+  <span class="reading-list-item-title-url">
+    <b><a href="{{ .RelPermalink }}">{{ .Params.readingTitle }}</a></b>
+  </span>
+  <br>
+  <span class="reading-list-item-prefix">
+    Reading - {{ .Params.dateReadByMe }}
+  </span>
+</p>
+{{ end }}
+{{ end }}

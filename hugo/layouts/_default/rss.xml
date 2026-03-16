@@ -1,0 +1,18 @@
+{{- printf "<?xml version=\"1.0\" encoding=\"UTF-8\"?>" | safeHTML }}
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Beau's Blog</title>
+    <link>{{ .Permalink }}</link>
+    <description>The personal website of Beau Carlborg</description>
+    <atom:link href="{{ "rss.xml" | absURL }}" rel="self" type="application/rss+xml" />
+    {{- $allPages := where site.RegularPages "Section" "in" (slice "blog" "reading") }}
+    {{- $allPages = sort $allPages ".Params.dateLastUpdated" "desc" }}
+    {{- range $allPages }}
+    <item>
+      <title>{{ .Title }}</title>
+      <link>{{ .Permalink }}</link>
+      <guid isPermaLink="true">{{ .Permalink }}</guid>
+    </item>
+    {{- end }}
+  </channel>
+</rss>

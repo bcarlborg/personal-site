@@ -1,0 +1,29 @@
+baseURL = "https://www.beau-carlborg.com/"
+languageCode = "en-us"
+title = "Beau Carlborg"
+disableKinds = ["taxonomy", "term"]
+disableHugoGeneratorInject = true
+
+[markup]
+  [markup.goldmark]
+    [markup.goldmark.renderer]
+      unsafe = true
+  [markup.tableOfContents]
+    startLevel = 2
+    endLevel = 3
+    ordered = false
+
+[outputs]
+  home = ["HTML", "RSS"]
+
+[outputFormats]
+  [outputFormats.RSS]
+    mediaType = "application/rss+xml"
+    baseName = "rss"
+
+[permalinks]
+  blog = "/blog/:slug"
+  reading = "/reading/:slug"
+
+[params]
+  description = "The personal website of Beau Carlborg"

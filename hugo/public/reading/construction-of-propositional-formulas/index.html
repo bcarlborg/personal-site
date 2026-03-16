@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    
+<link rel="stylesheet" type="text/css" href="/css/global-styles.532ca2e9ccb8d3f52ce03249991e2331edaee56f83855a044dd394706ae357c6.css">
+<link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon-32-32.png?v=2">
+<link rel="icon" type="image/png" sizes="96x96" href="/assets/favicon-96-96.png?v=2">
+<link rel="icon" type="image/png" sizes="180x180" href="/assets/favicon-180-180.png?v=2">
+<link rel="apple-touch-icon" href="/assets/favicon-180-180.png?v=2">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Propositional and Predicate Calculus: 2.2 The Construction of Propositional Formulas - Beau Carlborg</title>
+    <meta name="og:title" content="Propositional and Predicate Calculus: 2.2 The Construction of Propositional Formulas">
+    <meta name="og:description" content="The personal website of Beau Carlborg">
+  </head>
+  <body>
+    
+<header>
+  <a href="/">⏎ back home</a>
+</header>
+
+    <main>
+      
+<article class="reading-page">
+  <h1 id="article-title">What I am reading: Propositional and Predicate Calculus: 2.2 The Construction of Propositional Formulas</h1>
+  <div id="article-contents">
+    <i id="article-metadata">Author: Derek Goldrei<br>
+      Published: 2005<br>
+      Read on: March 10, 2026<br>
+    </i>
+  </div>
+  <p><em>Disclaimer: this book in particular is not in my wheelhouse. I am using these notes and reading posts to learn the material better. This post is going to be a bit sloppier and less refined than others I usually like to post.</em></p>
+<p>I am jumping straight to chapter 2 section 2 of this book, because chapter 1 and chapter 2.1 are just fluff introductions. 2.2 also feels pretty fluffy for that matter, but it is the first part of the book with some meat on it.</p>
+<h2 id="what-is-covered-in-this-section">What is covered in this section</h2>
+<h3 id="the-general-idea-of-the-section">The general idea of the section</h3>
+<p>Chapter 2 of this book is all about formal propositional logic. In regular language, we may have simple propositions like:</p>
+<ul>
+<li>&ldquo;Beau deployed code to the server&rdquo;</li>
+<li>&ldquo;The server is in a crash loop&rdquo;</li>
+<li>&ldquo;Users cannot reach the server&rdquo;</li>
+</ul>
+<p>We can also use logical connectives like AND, IF/THEN, OR, etc. to create other propositional statements from these like:</p>
+<ul>
+<li>IF &ldquo;Beau deployed code to the server&rdquo; THEN &ldquo;the server is in a crash loop&rdquo;</li>
+<li>IF &ldquo;the server is in a crash loop&rdquo; THEN &ldquo;users cannot reach the server&rdquo;</li>
+</ul>
+<p>Formal propositional logic allows us to take these ideas we might communicate in language and gives us a set of rules for constructing propositional formulas that represent those propositional statements.</p>
+<p>The general idea is that we will</p>
+<ul>
+<li>assign every proposition to be a variable like p, q, r</li>
+<li>we will have symbols for our connectives: ∧ (and), ∨ (or), ¬ (not), → (implies), ↔ (equivalence)</li>
+<li>we will use parentheses to organize our propositional statements with evaluation precedence</li>
+</ul>
+<p>So now we can have propositional formulas like</p>
+<ul>
+<li>(p → r)</li>
+<li>(¬r → q)</li>
+<li>(q ∧ ¬p)</li>
+<li>((p → r) ∧ (¬r → q) → (q ∧ ¬p))</li>
+</ul>
+<p>Casually, any reader who has done high school algebra is going to intuitively understand how these formulas might work. If we know the truth value of each propositional variable, then we can evaluate the propositional formula to figure out whether the whole thing is true. Just like with PEMDAS!</p>
+<p>But, even though the rules for building these propositional formulas may be intuitively clear, we need to be much more precise about the rules of formula construction if we want to derive any interesting results about a proof system etc.</p>
+<p>That is what this section of the book does, it lays the foundation for the rest of the chapter by defining the formal language we will use to represent propositional statements and it shows us how we can then use that definition of the formal language to derive interesting results about the formulas.</p>
+<p>For instance, the book shows us how to prove that every formula will have an equal number of left and right parentheses. This should be plain to see based on a few formulas, but at least for someone like me who has not done a lot of higher level math, it is not immediately clear how you could write a proof that shows that.</p>
+<h3 id="how-the-book-conveys-the-content">How the book conveys the content</h3>
+<p>The section starts by giving a very quick overview of what a formal language is. It notes that it has a finite number of symbols and rules for its construction&hellip; but the book doesn&rsquo;t take pains to nail down what a formal language is — that isn&rsquo;t the topic of this book after all, so it goes straight to giving us a definition for a propositional formula.</p>
+<p>It gives us a recursive structural definition for the language of propositional formulas as follows.</p>
+<blockquote>
+<p>Let P be a set of propositional variables, and let S be the set of connectives {∧, ∨, ¬, →, ↔}. A formula is a member of the set FORM(P, S) of strings of symbols involving elements of P, S and brackets ( and ) formed according to the following rules.</p>
+<ol>
+<li>Each propositional variable is a formula.</li>
+<li>If φ and ψ are formulas, then so are ¬φ, (φ ∧ ψ), (φ ∨ ψ), (φ → ψ), (φ ↔ ψ).</li>
+<li>All formulas arise from finitely many applications of 1 and 2.</li>
+</ol>
+</blockquote>
+<p>The book covers this definition in some more depth and provides some examples of propositional formulas and highlights that these formulas are precise where English can be ambiguous etc.</p>
+<p>The book then goes on to do two more interesting things, it briefly provides an algorithm for recognizing strings that are valid formulas and it provides a proof showing how we can use mathematical induction on the length of a formula to prove results about them.</p>
+<p>This section is very brief, and so it skips over a lot of the quagmires related to recognizing and parsing strings according to a grammar. As I mentioned above, this isn&rsquo;t a formal languages book after all! It does briefly mention parse trees, at least indirectly. But the book doesn&rsquo;t belabor the parsing, and it doesn&rsquo;t go out of its way to show that the grammar is not ambiguous or anything like that.</p>
+<p>The example showing how to prove things about sentences in the formal language is also interesting but quick. The book shows how you can use mathematical induction on a formula to prove results about the formula. The interesting part here is that it shows you how you can define some sort of &ldquo;length&rdquo; to do induction over that also indirectly iterates over the parse tree of the sentence.</p>
+<h3 id="thoughts-feelings-and-reflections-on-this-section">Thoughts, feelings and reflections on this section</h3>
+<p>This section was really short and to the point. It establishes a formal language that we can use for the rest of the chapter, but it is very clear that the author doesn&rsquo;t want to get bogged down into formal language details like syntax trees, grammars, well formed formulas, different grammar complexities etc. After all, there are many whole books about those topics.</p>
+<p>Personally, I am completely fine with how the author approached this section. While I find the formal language stuff very interesting, it is often a distraction from the actual system we are trying to understand by creating a formal language in the first place.</p>
+<p>The section is just groundwork that is necessary for the rest of the chapter.</p>
+
+</article>
+
+    </main>
+    <footer></footer>
+  </body>
+</html>

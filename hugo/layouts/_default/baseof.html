@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    {{ partial "head.html" . }}
+    <title>{{ if .IsHome }}Beau Carlborg{{ else }}{{ .Title }} - Beau Carlborg{{ end }}</title>
+    <meta name="og:title" content="{{ if .IsHome }}Beau Carlborg{{ else }}{{ .Title }}{{ end }}">
+    <meta name="og:description" content="{{ site.Params.description }}">
+  </head>
+  <body>
+    {{ block "header" . }}{{ end }}
+    <main>
+      {{ block "main" . }}{{ end }}
+    </main>
+    <footer></footer>
+  </body>
+</html>

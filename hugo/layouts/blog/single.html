@@ -1,0 +1,18 @@
+{{ define "header" }}
+<header>
+  <a href="/">⏎ back home</a>
+</header>
+{{ end }}
+
+{{ define "main" }}
+<article>
+  <h1 id="article-title">{{ .Title }}</h1>
+  <div id="article-contents">
+    <i id="article-metadata">Published: {{ .Params.dateAuthored }}<br></i>
+    {{ if .TableOfContents }}
+    {{ .TableOfContents }}
+    {{ end }}
+  </div>
+  {{ .Content }}
+</article>
+{{ end }}

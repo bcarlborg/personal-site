@@ -1,0 +1,12 @@
+{{ define "header" }}
+<header>
+  <a href="/">⏎ back home</a>
+</header>
+{{ end }}
+
+{{ define "main" }}
+<h1>{{ .Title }}</h1>
+{{ range .Pages }}
+<p><a href="{{ .RelPermalink }}">{{ .Title }}</a></p>
+{{ end }}
+{{ end }}
