@@ -4,7 +4,7 @@
     {{ partial "head.html" . }}
     <title>{{ if .IsHome }}Beau Carlborg{{ else }}{{ .Title }} - Beau Carlborg{{ end }}</title>
     <meta name="og:title" content="{{ if .IsHome }}Beau Carlborg{{ else }}{{ .Title }}{{ end }}">
-    <meta name="og:description" content="{{ site.Params.description }}">
+    <meta name="og:description" content="{{ if .IsPage }}{{ .Summary | plainify | truncate 200 }}{{ else }}{{ site.Params.description }}{{ end }}">
   </head>
   <body>
     {{ block "header" . }}{{ end }}
