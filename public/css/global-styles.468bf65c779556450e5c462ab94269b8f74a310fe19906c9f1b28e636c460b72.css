@@ -3,8 +3,6 @@
   --color-bg: mistyrose;
   --color-metadata: #ffd4d4;
   --color-link: #8c2626;
-  --color-code-bg: #ffdbdb;
-  --color-code-text: brown;
 }
 
 a {
@@ -181,16 +179,21 @@ article .article-toc nav > ul > li > ul {
 }
 
 article code {
-  background-color: var(--color-code-bg);
-  color: var(--color-code-text);
+  background-color: #f6f8fa;
+  padding: 0.2em 0.4em;
+  font-size: 0.9em;
+}
+
+article pre {
+  background-color: #f6f8fa;
+  overflow-x: auto;
+  padding: 1em;
 }
 
 article pre code {
   display: block;
   white-space: pre;
-  -webkit-overflow-scrolling: touch;
-  overflow-x: scroll;
-  max-width: 100%;
-  min-width: 100px;
-  padding: 2em;
+  padding: 0;
+  background: none;
+  font-size: inherit;
 }

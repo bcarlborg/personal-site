@@ -2,7 +2,9 @@
 <html lang="en">
   <head>
     
-<link rel="stylesheet" type="text/css" href="/css/global-styles.ac90510886aaada8e8a5a20859e2f784e5e88caad497d15cffbb8e7bb561e77c.css">
+<link rel="stylesheet" type="text/css" href="/css/global-styles.468bf65c779556450e5c462ab94269b8f74a310fe19906c9f1b28e636c460b72.css">
+
+<link rel="stylesheet" type="text/css" href="/css/syntax.3ab818f2bbace5b8c2bf108187a56c186b8e2f38bd95b2b4efea6fec878e77df.css">
 <link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon-32-32.png?v=2">
 <link rel="icon" type="image/png" sizes="96x96" href="/assets/favicon-96-96.png?v=2">
 <link rel="icon" type="image/png" sizes="180x180" href="/assets/favicon-180-180.png?v=2">
@@ -187,11 +189,11 @@ On one hand, it is one of my favorite tools. It is installed almost everywhere. 
 </li>
 <li>The syntax for a rule is as follows:</li>
 </ul>
-<pre tabindex="0"><code>target: prerequisite1 prerequisite2 ...
-  recipe-line-1
-  recipe-line-2
-  ...
-</code></pre><ul>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-makefile" data-lang="makefile"><span class="line"><span class="cl"><span class="nf">target</span><span class="o">:</span> <span class="n">prerequisite</span>1 <span class="n">prerequisite</span>2 ...
+</span></span><span class="line"><span class="cl">  recipe-line-1
+</span></span><span class="line"><span class="cl">  recipe-line-2
+</span></span><span class="line"><span class="cl">  ...
+</span></span></code></pre></div><ul>
 <li>Simple rules describe a single node in the build dependency graph. More general rules can be written to describe many different parts of the dependency graph.</li>
 <li>Makefiles also support a number of other programming constructs like variables, functions, pattern matching, and shell globbing, but it is useful to remember that these constructs only exist to help you write better rules.</li>
 <li>To run make, you specify the target (or targets) you would like make to build, and make will consult the rules in your <code>Makefile</code> to determine which recipes to run.</li>
@@ -208,11 +210,11 @@ On one hand, it is one of my favorite tools. It is installed almost everywhere. 
 <li>There are many ways to write complex rules, but rules follow the same basic syntax that is exemplified by simple rules.</li>
 <li>A simple rule specifies a file to build as its target and has one or many files as prerequisites.</li>
 </ul>
-<pre tabindex="0"><code>target: prerequisite1 prerequisite2 ...
-  recipe-line-1
-  recipe-line-2
-  ...
-</code></pre><ul>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-makefile" data-lang="makefile"><span class="line"><span class="cl"><span class="nf">target</span><span class="o">:</span> <span class="n">prerequisite</span>1 <span class="n">prerequisite</span>2 ...
+</span></span><span class="line"><span class="cl">  recipe-line-1
+</span></span><span class="line"><span class="cl">  recipe-line-2
+</span></span><span class="line"><span class="cl">  ...
+</span></span></code></pre></div><ul>
 <li>Make determines that the target needs to be built by consulting the file system for information about the target and the prerequisites.
 <ul>
 <li>If the target file does not exist, the target must be built.</li>
@@ -227,48 +229,48 @@ On one hand, it is one of my favorite tools. It is installed almost everywhere. 
 </li>
 <li>An example of a few simple rules that compile C files and link the outputs to make an executable.</li>
 </ul>
-<pre tabindex="0"><code>main: main.o helper.o
-  ld -o main main.o helper.o
-
-main.o: main.c helper.h
-  gcc -c -o main.o main.c
-
-helper.o: helper.c
-  gcc -c -o helper.o helper.c
-</code></pre><ul>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-makefile" data-lang="makefile"><span class="line"><span class="cl"><span class="nf">main</span><span class="o">:</span> <span class="n">main</span>.<span class="n">o</span> <span class="n">helper</span>.<span class="n">o</span>
+</span></span><span class="line"><span class="cl">  ld -o main main.o helper.o
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nf">main.o</span><span class="o">:</span> <span class="n">main</span>.<span class="n">c</span> <span class="n">helper</span>.<span class="n">h</span>
+</span></span><span class="line"><span class="cl">  gcc -c -o main.o main.c
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nf">helper.o</span><span class="o">:</span> <span class="n">helper</span>.<span class="n">c</span>
+</span></span><span class="line"><span class="cl">  gcc -c -o helper.o helper.c
+</span></span></code></pre></div><ul>
 <li>Example running <code>make</code> against file</li>
 </ul>
-<pre tabindex="0"><code># Print out the directory contents before running make
-&gt; tree ./
-./
-├── Makefile
-├── helper.c
-├── helper.h
-└── main.c
-
-# Build main target
-&gt; make main
-gcc -c -o main.o main.c
-gcc -c -o helper.o helper.c
-ld -o main main.o helper.o
-
-# Try to build the main target again, but nothing happens
-# because everything is up to date
-&gt; make main
-make: `main&#39; is up to date.
-
-# Print the directory content again so we can see the files
-# make generated.
-&gt; tree ./
-./
-├── Makefile
-├── helper.c
-├── helper.h
-├── helper.o
-├── main
-├── main.c
-└── main.o
-</code></pre><ul>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-makefile" data-lang="makefile"><span class="line"><span class="cl"><span class="c"># Print out the directory contents before running make
+</span></span></span><span class="line"><span class="cl"><span class="err">&gt;</span> <span class="err">tree</span> <span class="err">./</span>
+</span></span><span class="line"><span class="cl"><span class="err">./</span>
+</span></span><span class="line"><span class="cl"><span class="err">├──</span> <span class="err">Makefile</span>
+</span></span><span class="line"><span class="cl"><span class="err">├──</span> <span class="err">helper.c</span>
+</span></span><span class="line"><span class="cl"><span class="err">├──</span> <span class="err">helper.h</span>
+</span></span><span class="line"><span class="cl"><span class="err">└──</span> <span class="err">main.c</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c"># Build main target
+</span></span></span><span class="line"><span class="cl"><span class="err">&gt;</span> <span class="err">make</span> <span class="err">main</span>
+</span></span><span class="line"><span class="cl"><span class="err">gcc</span> <span class="err">-c</span> <span class="err">-o</span> <span class="err">main.o</span> <span class="err">main.c</span>
+</span></span><span class="line"><span class="cl"><span class="err">gcc</span> <span class="err">-c</span> <span class="err">-o</span> <span class="err">helper.o</span> <span class="err">helper.c</span>
+</span></span><span class="line"><span class="cl"><span class="err">ld</span> <span class="err">-o</span> <span class="err">main</span> <span class="err">main.o</span> <span class="err">helper.o</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c"># Try to build the main target again, but nothing happens
+</span></span></span><span class="line"><span class="cl"><span class="c"># because everything is up to date
+</span></span></span><span class="line"><span class="cl"><span class="err">&gt;</span> <span class="err">make</span> <span class="err">main</span>
+</span></span><span class="line"><span class="cl"><span class="nf">make</span><span class="o">:</span> `<span class="n">main</span>&#39; <span class="n">is</span> <span class="n">up</span> <span class="n">to</span> <span class="n">date</span>.
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c"># Print the directory content again so we can see the files
+</span></span></span><span class="line"><span class="cl"><span class="c"># make generated.
+</span></span></span><span class="line"><span class="cl"><span class="err">&gt;</span> <span class="err">tree</span> <span class="err">./</span>
+</span></span><span class="line"><span class="cl"><span class="err">./</span>
+</span></span><span class="line"><span class="cl"><span class="err">├──</span> <span class="err">Makefile</span>
+</span></span><span class="line"><span class="cl"><span class="err">├──</span> <span class="err">helper.c</span>
+</span></span><span class="line"><span class="cl"><span class="err">├──</span> <span class="err">helper.h</span>
+</span></span><span class="line"><span class="cl"><span class="err">├──</span> <span class="err">helper.o</span>
+</span></span><span class="line"><span class="cl"><span class="err">├──</span> <span class="err">main</span>
+</span></span><span class="line"><span class="cl"><span class="err">├──</span> <span class="err">main.c</span>
+</span></span><span class="line"><span class="cl"><span class="err">└──</span> <span class="err">main.o</span>
+</span></span></code></pre></div><ul>
 <li>References:
 <ul>
 <li>Make documentation — <a href="https://www.gnu.org/software/make/manual/make.html#Introduction">Chapter 2: An Introduction to Makefiles</a></li>
@@ -280,14 +282,14 @@ make: `main&#39; is up to date.
 <li>Make supports an entire little programming language, and what would a programming language be without variables.</li>
 <li>The basic syntax for variable assignments in make is as follows:</li>
 </ul>
-<pre tabindex="0"><code>variable_name=variable_value
-
-# Whitespace before and after &#39;=&#39; is ignored, so this is equivalent
-variable_name = variable_value
-
-# As is this
-variable_name        =        variable_value
-</code></pre><ul>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-makefile" data-lang="makefile"><span class="line"><span class="cl"><span class="nv">variable_name</span><span class="o">=</span>variable_value
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c"># Whitespace before and after &#39;=&#39; is ignored, so this is equivalent
+</span></span></span><span class="line"><span class="cl"><span class="nv">variable_name</span> <span class="o">=</span> variable_value
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c"># As is this
+</span></span></span><span class="line"><span class="cl"><span class="nv">variable_name</span>        <span class="o">=</span>        variable_value
+</span></span></code></pre></div><ul>
 <li>Variable names can be any sequence of characters not containing the following characters: <code>:</code>, <code>#</code>, <code>=</code>, or whitespace.
 <ul>
 <li>However, variable names with upper and lower case letters, numbers, and underscores are recommended.</li>
@@ -300,21 +302,21 @@ variable_name        =        variable_value
 </li>
 <li>Some variable assignment examples:</li>
 </ul>
-<pre tabindex="0"><code># `name` gets the string value &#34;beau carlborg&#34;
-name = beau carlborg
-
-# `location` gets the value &#34;oakland&#34; (leading whitespace is ignored)
-location =            oakland
-
-# `occupation` gets the string value &#34;software    engineer&#34; (internal whitespace preserved)
-occupation = software    engineer
-
-# `age` gets string value &#34;42&#34; (notice it is a string, not a number)
-age = 42
-
-# Common practice is to not use spaces around the `=` in an assignment
-CC=gcc
-</code></pre><ul>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-makefile" data-lang="makefile"><span class="line"><span class="cl"><span class="c"># `name` gets the string value &#34;beau carlborg&#34;
+</span></span></span><span class="line"><span class="cl"><span class="nv">name</span> <span class="o">=</span> beau carlborg
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c"># `location` gets the value &#34;oakland&#34; (leading whitespace is ignored)
+</span></span></span><span class="line"><span class="cl"><span class="nv">location</span> <span class="o">=</span>            oakland
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c"># `occupation` gets the string value &#34;software    engineer&#34; (internal whitespace preserved)
+</span></span></span><span class="line"><span class="cl"><span class="nv">occupation</span> <span class="o">=</span> software    engineer
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c"># `age` gets string value &#34;42&#34; (notice it is a string, not a number)
+</span></span></span><span class="line"><span class="cl"><span class="nv">age</span> <span class="o">=</span> <span class="m">42</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c"># Common practice is to not use spaces around the `=` in an assignment
+</span></span></span><span class="line"><span class="cl"><span class="nv">CC</span><span class="o">=</span>gcc
+</span></span></code></pre></div><ul>
 <li>References:
 <ul>
 <li>Make documentation — <a href="https://www.gnu.org/software/make/manual/make.html#Basics">Chapter 6.1: Basics of Variable Definitions</a></li>
@@ -326,31 +328,31 @@ CC=gcc
 <li>The variables you declare can be used in any part of a makefile. The definitions of other rules, targets, prerequisites, recipes, you name it.</li>
 <li>The syntax for referencing a variable is as follows:</li>
 </ul>
-<pre tabindex="0"><code>$(variable_name)
-
-# or alternatively
-${variable_name}
-
-# Or, for single character variable names only
-$v
-</code></pre><ul>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-makefile" data-lang="makefile"><span class="line"><span class="cl"><span class="k">$(</span><span class="nv">variable_name</span><span class="k">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c"># or alternatively
+</span></span></span><span class="line"><span class="cl"><span class="err">${variable_name}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c"># Or, for single character variable names only
+</span></span></span><span class="line"><span class="cl"><span class="err">$v</span>
+</span></span></code></pre></div><ul>
 <li>⚠️ The single character variable reference is a common source of bugs for those new to writing <code>makefiles</code>.</li>
 </ul>
-<pre tabindex="0"><code># This may look like a valid variable reference for the variable `foo`
-$foo
-
-# But, in fact, make treats this reference as if it were
-$(f)oo
-</code></pre><ul>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-makefile" data-lang="makefile"><span class="line"><span class="cl"><span class="c"># This may look like a valid variable reference for the variable `foo`
+</span></span></span><span class="line"><span class="cl"><span class="err">$foo</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c"># But, in fact, make treats this reference as if it were
+</span></span></span><span class="line"><span class="cl"><span class="k">$(</span><span class="nv">f</span><span class="k">)</span><span class="err">oo</span>
+</span></span></code></pre></div><ul>
 <li>Variable names can be referenced in targets, prerequisites, or recipes.</li>
 </ul>
-<pre tabindex="0"><code>TARGET_NAME=main
-PREREQUISITE_NAMES=main.o helper.h helper.o
-LINKER=ld
-
-$(TARGET_NAME): $(PREREQUISITE_NAMES)
-  $(LINKER) -o $(TARGET_NAME) $(PREREQUISITE_NAMES)
-</code></pre><ul>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-makefile" data-lang="makefile"><span class="line"><span class="cl"><span class="nv">TARGET_NAME</span><span class="o">=</span>main
+</span></span><span class="line"><span class="cl"><span class="nv">PREREQUISITE_NAMES</span><span class="o">=</span>main.o helper.h helper.o
+</span></span><span class="line"><span class="cl"><span class="nv">LINKER</span><span class="o">=</span>ld
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nf">$(TARGET_NAME)</span><span class="o">:</span> <span class="k">$(</span><span class="nv">PREREQUISITE_NAMES</span><span class="k">)</span>
+</span></span><span class="line"><span class="cl">  <span class="k">$(</span>LINKER<span class="k">)</span> -o <span class="k">$(</span>TARGET_NAME<span class="k">)</span> <span class="k">$(</span>PREREQUISITE_NAMES<span class="k">)</span>
+</span></span></code></pre></div><ul>
 <li>References:
 <ul>
 <li>Make documentation — <a href="https://www.gnu.org/software/make/manual/make.html#Using-Variables">Chapter 6: How to Use Variables</a></li>
@@ -377,15 +379,15 @@ $(TARGET_NAME): $(PREREQUISITE_NAMES)
 </li>
 <li>Examples:</li>
 </ul>
-<pre tabindex="0"><code>main: main.o helper.o
-  ld -o $@ $^
-
-main.o: main.c helper.h
-  gcc -c -o $@ $&lt;
-
-helper.o: helper.c
-  gcc -c -o $@ $^
-</code></pre><ul>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-makefile" data-lang="makefile"><span class="line"><span class="cl"><span class="nf">main</span><span class="o">:</span> <span class="n">main</span>.<span class="n">o</span> <span class="n">helper</span>.<span class="n">o</span>
+</span></span><span class="line"><span class="cl">  ld -o <span class="nv">$@</span> $^
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nf">main.o</span><span class="o">:</span> <span class="n">main</span>.<span class="n">c</span> <span class="n">helper</span>.<span class="n">h</span>
+</span></span><span class="line"><span class="cl">  gcc -c -o <span class="nv">$@</span> $&lt;
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nf">helper.o</span><span class="o">:</span> <span class="n">helper</span>.<span class="n">c</span>
+</span></span><span class="line"><span class="cl">  gcc -c -o <span class="nv">$@</span> $^
+</span></span></code></pre></div><ul>
 <li>References:
 <ul>
 <li>Make documentation — <a href="https://www.gnu.org/software/make/manual/make.html#Automatic-Variables">Chapter 10.5: Automatic Variables</a></li>
@@ -397,10 +399,10 @@ helper.o: helper.c
 <li>Make provides a set of functions that can modify text values. Functions can be invoked anywhere that a variable can be referenced.</li>
 <li>The basic function invocation syntax is as follows:</li>
 </ul>
-<pre tabindex="0"><code>$(function_name argument1,argument2,argument3)
-
-${function_name argument1,argument2,argument3}
-</code></pre><ul>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-makefile" data-lang="makefile"><span class="line"><span class="cl"><span class="k">$(</span><span class="nv">function_name</span> <span class="nv">argument</span>1,<span class="nv">argument</span>2,<span class="nv">argument</span>3<span class="k">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="err">${function_name</span> <span class="err">argument1,argument2,argument3}</span>
+</span></span></code></pre></div><ul>
 <li>In a function call, the function name and the arguments are separated by one or many whitespace characters and the function arguments are separated by commas.
 <ul>
 <li>⚠️ This syntax makes passing (1) leading whitespace in your first argument (2) a comma in any of your arguments (3) an unmatched parenthesis in your arguments rather difficult.</li>
@@ -423,51 +425,51 @@ ${function_name argument1,argument2,argument3}
 </ul>
 </li>
 </ul>
-<pre tabindex="0"><code># If your current directory has these files
-# ./
-# ├── Makefile
-# ├── test1.txt
-# ├── test2.txt
-# ├── test3.txt
-# └── testA.txt
-
-# `VAR1` would get value &#34;test1.txt test2.txt test3.txt testA.txt&#34;
-VAR1=$(wildcard *.txt)
-
-# `VAR2` would get value &#34;test1.txt test3.txt&#34;
-VAR2=$(wildcard test[13].txt)
-
-# `VAR3` would get value &#34;test1.txt test2.txt test3.txt testA.txt&#34;
-VAR3=$(wildcard test?.txt)
-</code></pre><ul>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-makefile" data-lang="makefile"><span class="line"><span class="cl"><span class="c"># If your current directory has these files
+</span></span></span><span class="line"><span class="cl"><span class="c"># ./
+</span></span></span><span class="line"><span class="cl"><span class="c"># ├── Makefile
+</span></span></span><span class="line"><span class="cl"><span class="c"># ├── test1.txt
+</span></span></span><span class="line"><span class="cl"><span class="c"># ├── test2.txt
+</span></span></span><span class="line"><span class="cl"><span class="c"># ├── test3.txt
+</span></span></span><span class="line"><span class="cl"><span class="c"># └── testA.txt
+</span></span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c"># `VAR1` would get value &#34;test1.txt test2.txt test3.txt testA.txt&#34;
+</span></span></span><span class="line"><span class="cl"><span class="nv">VAR1</span><span class="o">=</span><span class="k">$(</span>wildcard *.txt<span class="k">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c"># `VAR2` would get value &#34;test1.txt test3.txt&#34;
+</span></span></span><span class="line"><span class="cl"><span class="nv">VAR2</span><span class="o">=</span><span class="k">$(</span>wildcard test<span class="o">[</span>13<span class="o">]</span>.txt<span class="k">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c"># `VAR3` would get value &#34;test1.txt test2.txt test3.txt testA.txt&#34;
+</span></span></span><span class="line"><span class="cl"><span class="nv">VAR3</span><span class="o">=</span><span class="k">$(</span>wildcard test?.txt<span class="k">)</span>
+</span></span></code></pre></div><ul>
 <li><code>$(shell shellscript_command)</code>: The <code>shell</code> function will perform command expansion of a shell command in the <code>Makefile</code>, meaning the function will evaluate to the text that executing the shell command sends to stdout.</li>
 </ul>
-<pre tabindex="0"><code># `contents` will equal the data in the file `foo`
-contents=$(shell cat foo)
-</code></pre><ul>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-makefile" data-lang="makefile"><span class="line"><span class="cl"><span class="c"># `contents` will equal the data in the file `foo`
+</span></span></span><span class="line"><span class="cl"><span class="nv">contents</span><span class="o">=</span><span class="k">$(</span>shell cat foo<span class="k">)</span>
+</span></span></code></pre></div><ul>
 <li><code>$(subst from,to,text)</code>: Replaces every occurrence of the text in argument <code>from</code> with the text in argument <code>to</code> in the text in argument <code>text</code>.</li>
 </ul>
-<pre tabindex="0"><code># `VAR1` would get value &#34;hola world&#34;
-VAR1=$(subst hello,hola,hello world)
-
-# `VAR2` would get value &#34;CompA.tsx CompB.tsx CompC.tsx&#34;
-VAR2=$(subst .jsx,.tsx,CompA.jsx CompB.jsx CompC.jsx)
-</code></pre><ul>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-makefile" data-lang="makefile"><span class="line"><span class="cl"><span class="c"># `VAR1` would get value &#34;hola world&#34;
+</span></span></span><span class="line"><span class="cl"><span class="nv">VAR1</span><span class="o">=</span><span class="k">$(</span>subst hello,hola,hello world<span class="k">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c"># `VAR2` would get value &#34;CompA.tsx CompB.tsx CompC.tsx&#34;
+</span></span></span><span class="line"><span class="cl"><span class="nv">VAR2</span><span class="o">=</span><span class="k">$(</span>subst .jsx,.tsx,CompA.jsx CompB.jsx CompC.jsx<span class="k">)</span>
+</span></span></code></pre></div><ul>
 <li><code>$(patsubst pattern,replacement,text)</code>: <code>patsubst</code> is very similar to <code>subst</code>, but it allows for including a <code>%</code> wildcard character in the <code>pattern</code> argument that can be used in the <code>replacement</code> argument.</li>
 </ul>
-<pre tabindex="0"><code># `VAR1` would get value &#34;new_test1.txt new_test2.txt test3.pdf&#34;
-VAR1=$(patsubst %.txt,new_%.txt,test1.txt test2.txt test3.pdf)
-</code></pre><ul>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-makefile" data-lang="makefile"><span class="line"><span class="cl"><span class="c"># `VAR1` would get value &#34;new_test1.txt new_test2.txt test3.pdf&#34;
+</span></span></span><span class="line"><span class="cl"><span class="nv">VAR1</span><span class="o">=</span><span class="k">$(</span>patsubst %.txt,new_%.txt,test1.txt test2.txt test3.pdf<span class="k">)</span>
+</span></span></code></pre></div><ul>
 <li><code>$(dir names…)</code>: Get the directory part of multiple paths.</li>
 </ul>
-<pre tabindex="0"><code># `VAR1` would get value &#34;foo/ foo/bar/ ./&#34;
-VAR1=$(dir foo/ foo/bar/baz.txt ./blamo)
-</code></pre><ul>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-makefile" data-lang="makefile"><span class="line"><span class="cl"><span class="c"># `VAR1` would get value &#34;foo/ foo/bar/ ./&#34;
+</span></span></span><span class="line"><span class="cl"><span class="nv">VAR1</span><span class="o">=</span><span class="k">$(</span>dir foo/ foo/bar/baz.txt ./blamo<span class="k">)</span>
+</span></span></code></pre></div><ul>
 <li><code>$(notdir names…)</code>: Get the filename part of multiple paths.</li>
 </ul>
-<pre tabindex="0"><code># `VAR1` would get value &#34;text baz.txt blamo&#34;
-VAR1=$(notdir foo/text foo/bar/baz.txt blamo)
-</code></pre><ul>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-makefile" data-lang="makefile"><span class="line"><span class="cl"><span class="c"># `VAR1` would get value &#34;text baz.txt blamo&#34;
+</span></span></span><span class="line"><span class="cl"><span class="nv">VAR1</span><span class="o">=</span><span class="k">$(</span>notdir foo/text foo/bar/baz.txt blamo<span class="k">)</span>
+</span></span></code></pre></div><ul>
 <li>References:
 <ul>
 <li>Make documentation:
@@ -494,30 +496,30 @@ VAR1=$(notdir foo/text foo/bar/baz.txt blamo)
 </li>
 <li>Some examples of common phony targets:</li>
 </ul>
-<pre tabindex="0"><code># `all` is a common phony target that typically has all of the major
-# artifacts of a project as its dependencies
-all: executable test-bench documentation
-
-# `clean` is a common phony target whose recipe will remove all
-# intermediate files created by other build rules
-clean:
-  rm -rf ./bin/*
-
-# In previous projects that involved uploading binaries to external
-# devices like FPGAs or EEPROMs, I&#39;ve used an `upload` phony target.
-upload: executable
-  loadFileToExternalDevice --device=fpga executable
-</code></pre><ul>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-makefile" data-lang="makefile"><span class="line"><span class="cl"><span class="c"># `all` is a common phony target that typically has all of the major
+</span></span></span><span class="line"><span class="cl"><span class="c"># artifacts of a project as its dependencies
+</span></span></span><span class="line"><span class="cl"><span class="nf">all</span><span class="o">:</span> <span class="n">executable</span> <span class="n">test</span>-<span class="n">bench</span> <span class="n">documentation</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c"># `clean` is a common phony target whose recipe will remove all
+</span></span></span><span class="line"><span class="cl"><span class="c"># intermediate files created by other build rules
+</span></span></span><span class="line"><span class="cl"><span class="nf">clean</span><span class="o">:</span>
+</span></span><span class="line"><span class="cl">  rm -rf ./bin/*
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c"># In previous projects that involved uploading binaries to external
+</span></span></span><span class="line"><span class="cl"><span class="c"># devices like FPGAs or EEPROMs, I&#39;ve used an `upload` phony target.
+</span></span></span><span class="line"><span class="cl"><span class="nf">upload</span><span class="o">:</span> <span class="n">executable</span>
+</span></span><span class="line"><span class="cl">  loadFileToExternalDevice --device<span class="o">=</span>fpga executable
+</span></span></code></pre></div><ul>
 <li>⚠️ If a file is created in the same directory as the <code>Makefile</code> with a name of a phony target, it is possible for your phony targets to stop executing (because a file with that target name exists and is up to date).
 <ul>
 <li>Make provides a directive that can be used to explicitly mark a target as phony, telling make not to consult the file system for a file with that name.</li>
 </ul>
 </li>
 </ul>
-<pre tabindex="0"><code>.PHONY: clean
-clean:
-  rm -rf ./bin/*
-</code></pre><ul>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-makefile" data-lang="makefile"><span class="line"><span class="cl"><span class="nf">.PHONY</span><span class="o">:</span> <span class="n">clean</span>
+</span></span><span class="line"><span class="cl"><span class="nf">clean</span><span class="o">:</span>
+</span></span><span class="line"><span class="cl">  rm -rf ./bin/*
+</span></span></code></pre></div><ul>
 <li>References:
 <ul>
 <li>Make documentation — <a href="https://www.gnu.org/software/make/manual/make.html#Phony-Targets">4.6 Phony Targets</a></li>
@@ -529,11 +531,11 @@ clean:
 <li>Often times, you want to create a rule that applies to every target or prerequisite matching some pattern in a directory.</li>
 <li>You can do this in make using wildcard characters in the target or prerequisite section of a rule.</li>
 </ul>
-<pre tabindex="0"><code># Using a wildcard rule to make a list of prerequisites that includes
-# each chapter text file in the current directory
-book.txt: chapter*.txt
-  cat $^ &gt; $@
-</code></pre><ul>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-makefile" data-lang="makefile"><span class="line"><span class="cl"><span class="c"># Using a wildcard rule to make a list of prerequisites that includes
+</span></span></span><span class="line"><span class="cl"><span class="c"># each chapter text file in the current directory
+</span></span></span><span class="line"><span class="cl"><span class="nf">book.txt</span><span class="o">:</span> <span class="n">chapter</span>*.<span class="n">txt</span>
+</span></span><span class="line"><span class="cl">  cat $^ &gt; <span class="nv">$@</span>
+</span></span></code></pre></div><ul>
 <li>References:
 <ul>
 <li>Make documentation — <a href="https://www.gnu.org/software/make/manual/make.html#Wildcards">4.4 Using Wildcard Characters in File Names</a></li>
@@ -550,11 +552,11 @@ book.txt: chapter*.txt
 </li>
 <li>Like with wildcard rules, automatic variables are essential so that you can reference the specific target and prerequisites for which the rule is being executed in the recipe.</li>
 </ul>
-<pre tabindex="0"><code># This pattern rule tells make that the dependency for any file ending
-# in `.o` is a file with the same base name ending in `.c`
-%.o: %.c
-  gcc -c -o $@ $^
-</code></pre><ul>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-makefile" data-lang="makefile"><span class="line"><span class="cl"><span class="c"># This pattern rule tells make that the dependency for any file ending
+</span></span></span><span class="line"><span class="cl"><span class="c"># in `.o` is a file with the same base name ending in `.c`
+</span></span></span><span class="line"><span class="cl"><span class="nf">%.o</span><span class="o">:</span> %.<span class="n">c</span>
+</span></span><span class="line"><span class="cl">  gcc -c -o <span class="nv">$@</span> $^
+</span></span></code></pre></div><ul>
 <li>References:
 <ul>
 <li>Make documentation — <a href="https://www.gnu.org/software/make/manual/make.html#Pattern-Rules">10.5 Pattern Rules</a></li>
@@ -585,19 +587,19 @@ book.txt: chapter*.txt
 </ul>
 </li>
 </ul>
-<pre tabindex="0"><code>output1 output2 output3: prereq1 prereq2
-  compile -o $@ $^
-
-# The above rule is equivalent to these three rules
-output1: prereq1 prereq2
-  compile -o $@ $^
-
-output2: prereq1 prereq2
-  compile -o $@ $^
-
-output3: prereq1 prereq2
-  compile -o $@ $^
-</code></pre><ul>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-makefile" data-lang="makefile"><span class="line"><span class="cl"><span class="nf">output1 output2 output3</span><span class="o">:</span> <span class="n">prereq</span>1 <span class="n">prereq</span>2
+</span></span><span class="line"><span class="cl">  compile -o <span class="nv">$@</span> $^
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c"># The above rule is equivalent to these three rules
+</span></span></span><span class="line"><span class="cl"><span class="nf">output1</span><span class="o">:</span> <span class="n">prereq</span>1 <span class="n">prereq</span>2
+</span></span><span class="line"><span class="cl">  compile -o <span class="nv">$@</span> $^
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nf">output2</span><span class="o">:</span> <span class="n">prereq</span>1 <span class="n">prereq</span>2
+</span></span><span class="line"><span class="cl">  compile -o <span class="nv">$@</span> $^
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nf">output3</span><span class="o">:</span> <span class="n">prereq</span>1 <span class="n">prereq</span>2
+</span></span><span class="line"><span class="cl">  compile -o <span class="nv">$@</span> $^
+</span></span></code></pre></div><ul>
 <li>Rules with multiple targets can also be grouped target rules.
 <ul>
 <li>The <code>&amp;:</code> separator between targets and prerequisites indicates that the targets should be treated as grouped targets.</li>
@@ -607,27 +609,27 @@ output3: prereq1 prereq2
 </ul>
 </li>
 </ul>
-<pre tabindex="0"><code>foo bar biz &amp;: baz boz
-  echo $^ &gt; foo
-  echo $^ &gt; bar
-  echo $^ &gt; biz
-</code></pre><h3 id="order-only-prerequisites">🦏 Order-only Prerequisites</h3>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-makefile" data-lang="makefile"><span class="line"><span class="cl"><span class="nf">foo bar biz &amp;</span><span class="o">:</span> <span class="n">baz</span> <span class="n">boz</span>
+</span></span><span class="line"><span class="cl">  <span class="nb">echo</span> $^ &gt; foo
+</span></span><span class="line"><span class="cl">  <span class="nb">echo</span> $^ &gt; bar
+</span></span><span class="line"><span class="cl">  <span class="nb">echo</span> $^ &gt; biz
+</span></span></code></pre></div><h3 id="order-only-prerequisites">🦏 Order-only Prerequisites</h3>
 <ul>
 <li>The default interpretation of prerequisites in rules is that make should run the recipe whenever any one of the prerequisites has an update timestamp that is newer than that of the target.</li>
 <li>Order-only prerequisites allow you to specify prerequisites for a target that should only cause an execution of the recipe if the order-only prerequisite doesn&rsquo;t exist. Once the order-only prerequisite exists, any subsequent updates to it will not cause make to execute the rule again.</li>
 <li>Order-only prerequisites are separated from normal prerequisites with a <code>|</code> character.</li>
 </ul>
-<pre tabindex="0"><code># The `bin/` directory is an order-only prerequisite here. As long as it
-# exists, no updates to it will cause the rule to re-run
-executable: main.o | bin/
-  ld -o executable main.o
-
-main.o: main.c
-  gcc -c -o main.o main.c
-
-bin/:
-  mkdir bin
-</code></pre><ul>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-makefile" data-lang="makefile"><span class="line"><span class="cl"><span class="c"># The `bin/` directory is an order-only prerequisite here. As long as it
+</span></span></span><span class="line"><span class="cl"><span class="c"># exists, no updates to it will cause the rule to re-run
+</span></span></span><span class="line"><span class="cl"><span class="nf">executable</span><span class="o">:</span> <span class="n">main</span>.<span class="n">o</span> <span class="p">|</span> <span class="n">bin</span>/
+</span></span><span class="line"><span class="cl">  ld -o executable main.o
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nf">main.o</span><span class="o">:</span> <span class="n">main</span>.<span class="n">c</span>
+</span></span><span class="line"><span class="cl">  gcc -c -o main.o main.c
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nf">bin/</span><span class="o">:</span>
+</span></span><span class="line"><span class="cl">  mkdir bin
+</span></span></code></pre></div><ul>
 <li>References:
 <ul>
 <li>Make documentation — <a href="https://www.gnu.org/software/make/manual/make.html#Order_002dOnly">4.3.2.2 Order-only Prerequisites</a></li>
@@ -641,21 +643,21 @@ bin/:
 <li>Variable substitution references are a lightweight piece of syntax has some basic functionality for doing this.</li>
 <li>The basic syntax of a variable subtitution reference allows you to replace the tail of every value in a variable with a new tail:</li>
 </ul>
-<pre tabindex="0"><code>VAR_A:=foo.c bar.c baz.c
-
-# VAR_B receives value foo.o bar.o baz.o
-VAR_B:=$(A:.c=.o)
-</code></pre><ul>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-makefile" data-lang="makefile"><span class="line"><span class="cl"><span class="nv">VAR_A</span><span class="o">:=</span>foo.c bar.c baz.c
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c"># VAR_B receives value foo.o bar.o baz.o
+</span></span></span><span class="line"><span class="cl"><span class="nv">VAR_B</span><span class="o">:=</span><span class="k">$(</span>A:.c<span class="o">=</span>.o<span class="k">)</span>
+</span></span></code></pre></div><ul>
 <li>Substitution references also support the pattern syntax that you can use in a <code>patsubst</code> function call. This allows you to perform slightly more complex substitutions.</li>
 </ul>
-<pre tabindex="0"><code>VAR_A:=foo.c bar.c baz.c
-
-# VAR_B receives value foo_new.c bar_new.c baz_new.c
-VAR_B:=$(A:%.c=%_new.c)
-
-# This code using the patsubst function is equivalent
-VAR_B:=$(patsubst %.c,%_new.c,$(VAR_A))
-</code></pre><p>references:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-makefile" data-lang="makefile"><span class="line"><span class="cl"><span class="nv">VAR_A</span><span class="o">:=</span>foo.c bar.c baz.c
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c"># VAR_B receives value foo_new.c bar_new.c baz_new.c
+</span></span></span><span class="line"><span class="cl"><span class="nv">VAR_B</span><span class="o">:=</span><span class="k">$(</span>A:%.c<span class="o">=</span>%_new.c<span class="k">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c"># This code using the patsubst function is equivalent
+</span></span></span><span class="line"><span class="cl"><span class="nv">VAR_B</span><span class="o">:=</span><span class="k">$(</span>patsubst %.c,%_new.c,<span class="k">$(</span>VAR_A<span class="k">))</span>
+</span></span></code></pre></div><p>references:</p>
 <ul>
 <li>Make documentation — <a href="https://www.gnu.org/software/make/manual/html_node/Substitution-Refs.html">6.3.1 Substitution References</a></li>
 </ul>
@@ -674,13 +676,13 @@ VAR_B:=$(patsubst %.c,%_new.c,$(VAR_A))
 </ul>
 </li>
 </ul>
-<pre tabindex="0"><code># In this example, when the rule is run, the echo command will be
-# executed, causing &#34;building the book!&#34; to be echoed, but make will
-# not print `echo &#34;building the book!&#34;` to stdout
-book.txt: chapter*.txt
-  @echo &#34;building the book!&#34;
-  cat $^ &gt; $@
-</code></pre><ul>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-makefile" data-lang="makefile"><span class="line"><span class="cl"><span class="c"># In this example, when the rule is run, the echo command will be
+</span></span></span><span class="line"><span class="cl"><span class="c"># executed, causing &#34;building the book!&#34; to be echoed, but make will
+</span></span></span><span class="line"><span class="cl"><span class="c"># not print `echo &#34;building the book!&#34;` to stdout
+</span></span></span><span class="line"><span class="cl"><span class="nf">book.txt</span><span class="o">:</span> <span class="n">chapter</span>*.<span class="n">txt</span>
+</span></span><span class="line"><span class="cl">  @echo <span class="s2">&#34;building the book!&#34;</span>
+</span></span><span class="line"><span class="cl">  cat $^ &gt; <span class="nv">$@</span>
+</span></span></code></pre></div><ul>
 <li><strong>Ignoring errors in recipe lines</strong>
 <ul>
 <li>By default, make executes recipe lines one after another. If one of the recipe lines exits with a non-zero status code, then make will abort execution of the rest of the rule.</li>
@@ -712,28 +714,28 @@ book.txt: chapter*.txt
 <li>By default, variables in <code>makefiles</code> do not store the evaluated right-hand side value from the variable declaration. Instead, they store the right-hand side value as it was specified, and then evaluate that when the variable is referenced.</li>
 <li>These variables are referred to as recursively expanded variables.</li>
 </ul>
-<pre tabindex="0"><code>random=$(shell echo $$RANDOM)
-
-all:
-  @echo $(random)
-  @echo $(random)
-
-# Running `make all` against this `Makefile` will output two different
-# random numbers because make executes the function from the declaration
-# every time the variable is referenced.
-</code></pre><ul>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-makefile" data-lang="makefile"><span class="line"><span class="cl"><span class="nv">random</span><span class="o">=</span><span class="k">$(</span>shell <span class="nb">echo</span> <span class="nv">$$</span>RANDOM<span class="k">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nf">all</span><span class="o">:</span>
+</span></span><span class="line"><span class="cl">  @echo <span class="k">$(</span>random<span class="k">)</span>
+</span></span><span class="line"><span class="cl">  @echo <span class="k">$(</span>random<span class="k">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c"># Running `make all` against this `Makefile` will output two different
+</span></span></span><span class="line"><span class="cl"><span class="c"># random numbers because make executes the function from the declaration
+</span></span></span><span class="line"><span class="cl"><span class="c"># every time the variable is referenced.
+</span></span></span></code></pre></div><ul>
 <li>The other type of variable assignment is known as simply expanded variables. These variables&rsquo; right-hand sides are evaluated at declaration time, and that evaluated value is stored in the variable.</li>
 </ul>
-<pre tabindex="0"><code>random:=$(shell echo $$RANDOM)
-
-all:
-  @echo $(random)
-  @echo $(random)
-
-# Running `make all` against this `Makefile` will output the same number twice
-# because make executes the function during the declaration and assigns the
-# output to the variable.
-</code></pre><ul>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-makefile" data-lang="makefile"><span class="line"><span class="cl"><span class="nv">random</span><span class="o">:=</span><span class="k">$(</span>shell <span class="nb">echo</span> <span class="nv">$$</span>RANDOM<span class="k">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nf">all</span><span class="o">:</span>
+</span></span><span class="line"><span class="cl">  @echo <span class="k">$(</span>random<span class="k">)</span>
+</span></span><span class="line"><span class="cl">  @echo <span class="k">$(</span>random<span class="k">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c"># Running `make all` against this `Makefile` will output the same number twice
+</span></span></span><span class="line"><span class="cl"><span class="c"># because make executes the function during the declaration and assigns the
+</span></span></span><span class="line"><span class="cl"><span class="c"># output to the variable.
+</span></span></span></code></pre></div><ul>
 <li>References:
 <ul>
 <li>Make documentation — <a href="https://www.gnu.org/software/make/manual/make.html#Flavors">6.2 The Two Flavors of Variables</a></li>
@@ -750,11 +752,11 @@ all:
 </ul>
 </li>
 </ul>
-<pre tabindex="0"><code>target1: prereq1
-  cd subdir
-  pwd          # pwd will not be subdir/ when pwd evaluates, because
-               # the previous line was executed in a separate shell instance
-</code></pre><ul>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-makefile" data-lang="makefile"><span class="line"><span class="cl"><span class="nf">target1</span><span class="o">:</span> <span class="n">prereq</span>1
+</span></span><span class="line"><span class="cl">  <span class="nb">cd</span> subdir
+</span></span><span class="line"><span class="cl">  <span class="nb">pwd</span>          <span class="c1"># pwd will not be subdir/ when pwd evaluates, because</span>
+</span></span><span class="line"><span class="cl">               <span class="c1"># the previous line was executed in a separate shell instance</span>
+</span></span></code></pre></div><ul>
 <li>References:
 <ul>
 <li>Make documentation — <a href="https://www.gnu.org/software/make/manual/make.html#Execution">5.1 Recipe Execution</a></li>
@@ -775,20 +777,20 @@ all:
 </ul>
 </li>
 </ul>
-<pre tabindex="0"><code># The `FORCE` target has no dependencies and no rule,
-# and thus can never be created and will always be out of date
-FORCE:
-
-# Every time make has `log.txt` as a goal or a prerequisite of another
-# rule, it will consider `log.txt` out of date.
-log.txt: FORCE
-  echo &#34;MAKE BLAMO&#34; &gt; foobar.txt
-
-# This is the same as the above, but using a pattern rule instead.
-
-%.txt: FORCE
-  echo &#34;MAKE BLAMO&#34; &gt; foobar.txt
-</code></pre><ul>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-makefile" data-lang="makefile"><span class="line"><span class="cl"><span class="c"># The `FORCE` target has no dependencies and no rule,
+</span></span></span><span class="line"><span class="cl"><span class="c"># and thus can never be created and will always be out of date
+</span></span></span><span class="line"><span class="cl"><span class="nf">FORCE</span><span class="o">:</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c"># Every time make has `log.txt` as a goal or a prerequisite of another
+</span></span></span><span class="line"><span class="cl"><span class="c"># rule, it will consider `log.txt` out of date.
+</span></span></span><span class="line"><span class="cl"><span class="nf">log.txt</span><span class="o">:</span> <span class="n">FORCE</span>
+</span></span><span class="line"><span class="cl">  <span class="nb">echo</span> <span class="s2">&#34;MAKE BLAMO&#34;</span> &gt; foobar.txt
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c"># This is the same as the above, but using a pattern rule instead.
+</span></span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nf">%.txt</span><span class="o">:</span> <span class="n">FORCE</span>
+</span></span><span class="line"><span class="cl">  <span class="nb">echo</span> <span class="s2">&#34;MAKE BLAMO&#34;</span> &gt; foobar.txt
+</span></span></code></pre></div><ul>
 <li>References:
 <ul>
 <li>Make documentation — <a href="https://www.gnu.org/software/make/manual/make.html#Force-Targets">4.7.3 Force Targets</a></li>
@@ -809,8 +811,8 @@ log.txt: FORCE
 </ul>
 </li>
 </ul>
-<pre tabindex="0"><code>include some_makefile.mk some_other_makefile.mk
-</code></pre><ul>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-makefile" data-lang="makefile"><span class="line"><span class="cl"><span class="err">include</span> <span class="err">some_makefile.mk</span> <span class="err">some_other_makefile.mk</span>
+</span></span></code></pre></div><ul>
 <li>
 <p><strong>Recursively calling <code>makefiles</code></strong></p>
 <ul>
@@ -822,27 +824,27 @@ log.txt: FORCE
 </ul>
 </li>
 </ul>
-<pre tabindex="0"><code>executable:
-  cd src/ &amp;&amp; $(make)
-
-tests:
-  cd tests &amp;&amp; $(make)
-
-docs:
-  cd documentation &amp;&amp; $(make)
-</code></pre><ul>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-makefile" data-lang="makefile"><span class="line"><span class="cl"><span class="nf">executable</span><span class="o">:</span>
+</span></span><span class="line"><span class="cl">  <span class="nb">cd</span> src/ <span class="o">&amp;&amp;</span> <span class="k">$(</span>make<span class="k">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nf">tests</span><span class="o">:</span>
+</span></span><span class="line"><span class="cl">  <span class="nb">cd</span> tests <span class="o">&amp;&amp;</span> <span class="k">$(</span>make<span class="k">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nf">docs</span><span class="o">:</span>
+</span></span><span class="line"><span class="cl">  <span class="nb">cd</span> documentation <span class="o">&amp;&amp;</span> <span class="k">$(</span>make<span class="k">)</span>
+</span></span></code></pre></div><ul>
 <li>By default, when you invoke <code>make</code> recursively in this way, no information from your current <code>Makefile</code> is communicated to the recursively run <code>Makefile</code>.</li>
 <li>It is possible to share variables from the calling <code>Makefile</code> to the recursive callee <code>Makefile</code> by using the <code>export</code> directive</li>
 </ul>
-<pre tabindex="0"><code>my_exported_var:=foobar
-export my_exported_var
-
-subsystem:
-  cd subdir &amp;&amp; $(MAKE)
-
-# Now when `make` is executed in `subdir`, the variable `my_exported_var` will
-# be defined during the execution of the `subdir` `Makefile`
-</code></pre><ul>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-makefile" data-lang="makefile"><span class="line"><span class="cl"><span class="nv">my_exported_var</span><span class="o">:=</span>foobar
+</span></span><span class="line"><span class="cl"><span class="k">export</span> <span class="nv">my_exported_var</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nf">subsystem</span><span class="o">:</span>
+</span></span><span class="line"><span class="cl">  <span class="nb">cd</span> subdir <span class="o">&amp;&amp;</span> <span class="k">$(</span>MAKE<span class="k">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c"># Now when `make` is executed in `subdir`, the variable `my_exported_var` will
+</span></span></span><span class="line"><span class="cl"><span class="c"># be defined during the execution of the `subdir` `Makefile`
+</span></span></span></code></pre></div><ul>
 <li>References:
 <ul>
 <li>Make documentation:

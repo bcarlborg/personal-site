@@ -79,7 +79,7 @@ Disclaimer: This post is more of a collection of notes than a cohesive piece of 
   - The recipe is the set of instructions for creating the target.
 - The syntax for a rule is as follows:
 
-```
+```makefile
 target: prerequisite1 prerequisite2 ...
   recipe-line-1
   recipe-line-2
@@ -100,7 +100,7 @@ target: prerequisite1 prerequisite2 ...
 - There are many ways to write complex rules, but rules follow the same basic syntax that is exemplified by simple rules.
 - A simple rule specifies a file to build as its target and has one or many files as prerequisites.
 
-```
+```makefile
 target: prerequisite1 prerequisite2 ...
   recipe-line-1
   recipe-line-2
@@ -115,7 +115,7 @@ target: prerequisite1 prerequisite2 ...
   - If the target is a file in the file system, then those shell script lines should create the target file using the prerequisite files.
 - An example of a few simple rules that compile C files and link the outputs to make an executable.
 
-```
+```makefile
 main: main.o helper.o
   ld -o main main.o helper.o
 
@@ -128,7 +128,7 @@ helper.o: helper.c
 
 - Example running `make` against file
 
-```
+```makefile
 # Print out the directory contents before running make
 > tree ./
 ./
@@ -169,7 +169,7 @@ make: `main' is up to date.
 - Make supports an entire little programming language, and what would a programming language be without variables.
 - The basic syntax for variable assignments in make is as follows:
 
-```
+```makefile
 variable_name=variable_value
 
 # Whitespace before and after '=' is ignored, so this is equivalent
@@ -185,7 +185,7 @@ variable_name        =        variable_value
   - The beginning of the string value starts after the `=` character and any whitespace that follows it.
 - Some variable assignment examples:
 
-```
+```makefile
 # `name` gets the string value "beau carlborg"
 name = beau carlborg
 
@@ -210,7 +210,7 @@ CC=gcc
 - The variables you declare can be used in any part of a makefile. The definitions of other rules, targets, prerequisites, recipes, you name it.
 - The syntax for referencing a variable is as follows:
 
-```
+```makefile
 $(variable_name)
 
 # or alternatively
@@ -222,7 +222,7 @@ $v
 
 - ⚠️ The single character variable reference is a common source of bugs for those new to writing `makefiles`.
 
-```
+```makefile
 # This may look like a valid variable reference for the variable `foo`
 $foo
 
@@ -232,7 +232,7 @@ $(f)oo
 
 - Variable names can be referenced in targets, prerequisites, or recipes.
 
-```
+```makefile
 TARGET_NAME=main
 PREREQUISITE_NAMES=main.o helper.h helper.o
 LINKER=ld
@@ -258,7 +258,7 @@ $(TARGET_NAME): $(PREREQUISITE_NAMES)
   - And more! But these are the basics and the ones you see most commonly.
 - Examples:
 
-```
+```makefile
 main: main.o helper.o
   ld -o $@ $^
 
@@ -277,7 +277,7 @@ helper.o: helper.c
 - Make provides a set of functions that can modify text values. Functions can be invoked anywhere that a variable can be referenced.
 - The basic function invocation syntax is as follows:
 
-```
+```makefile
 $(function_name argument1,argument2,argument3)
 
 ${function_name argument1,argument2,argument3}
@@ -296,7 +296,7 @@ ${function_name argument1,argument2,argument3}
   - Pattern will use `*`, `?`, and `[...]` characters for matching—just like the Bourne shell.
   - ⚠️ `Wildcard` is matched against your working directory! Not the `Makefile`'s directory. Most of the time, you are invoking `make` from the directory that the `Makefile` is in, but if not, you may not get the results you expect.
 
-```
+```makefile
 # If your current directory has these files
 # ./
 # ├── Makefile
@@ -317,14 +317,14 @@ VAR3=$(wildcard test?.txt)
 
 - `$(shell shellscript_command)`: The `shell` function will perform command expansion of a shell command in the `Makefile`, meaning the function will evaluate to the text that executing the shell command sends to stdout.
 
-```
+```makefile
 # `contents` will equal the data in the file `foo`
 contents=$(shell cat foo)
 ```
 
 - `$(subst from,to,text)`: Replaces every occurrence of the text in argument `from` with the text in argument `to` in the text in argument `text`.
 
-```
+```makefile
 # `VAR1` would get value "hola world"
 VAR1=$(subst hello,hola,hello world)
 
@@ -334,21 +334,21 @@ VAR2=$(subst .jsx,.tsx,CompA.jsx CompB.jsx CompC.jsx)
 
 - `$(patsubst pattern,replacement,text)`: `patsubst` is very similar to `subst`, but it allows for including a `%` wildcard character in the `pattern` argument that can be used in the `replacement` argument.
 
-```
+```makefile
 # `VAR1` would get value "new_test1.txt new_test2.txt test3.pdf"
 VAR1=$(patsubst %.txt,new_%.txt,test1.txt test2.txt test3.pdf)
 ```
 
 - `$(dir names…)`: Get the directory part of multiple paths.
 
-```
+```makefile
 # `VAR1` would get value "foo/ foo/bar/ ./"
 VAR1=$(dir foo/ foo/bar/baz.txt ./blamo)
 ```
 
 - `$(notdir names…)`: Get the filename part of multiple paths.
 
-```
+```makefile
 # `VAR1` would get value "text baz.txt blamo"
 VAR1=$(notdir foo/text foo/bar/baz.txt blamo)
 ```
@@ -371,7 +371,7 @@ VAR1=$(notdir foo/text foo/bar/baz.txt blamo)
   - They allow you to create a rule which runs many other rules.
 - Some examples of common phony targets:
 
-```
+```makefile
 # `all` is a common phony target that typically has all of the major
 # artifacts of a project as its dependencies
 all: executable test-bench documentation
@@ -390,7 +390,7 @@ upload: executable
 - ⚠️ If a file is created in the same directory as the `Makefile` with a name of a phony target, it is possible for your phony targets to stop executing (because a file with that target name exists and is up to date).
   - Make provides a directive that can be used to explicitly mark a target as phony, telling make not to consult the file system for a file with that name.
 
-```
+```makefile
 .PHONY: clean
 clean:
   rm -rf ./bin/*
@@ -404,7 +404,7 @@ clean:
 - Often times, you want to create a rule that applies to every target or prerequisite matching some pattern in a directory.
 - You can do this in make using wildcard characters in the target or prerequisite section of a rule.
 
-```
+```makefile
 # Using a wildcard rule to make a list of prerequisites that includes
 # each chapter text file in the current directory
 book.txt: chapter*.txt
@@ -421,7 +421,7 @@ book.txt: chapter*.txt
   - This connection between target and prerequisite using the pattern match is a powerful way to create dependencies that are named based on the target itself.
 - Like with wildcard rules, automatic variables are essential so that you can reference the specific target and prerequisites for which the rule is being executed in the recipe.
 
-```
+```makefile
 # This pattern rule tells make that the dependency for any file ending
 # in `.o` is a file with the same base name ending in `.c`
 %.o: %.c
@@ -449,7 +449,7 @@ book.txt: chapter*.txt
   - These are simply a nice syntax affordance for condensing multiple rules that have the same dependencies and recipe.
   - When the recipe is run, `$@` will be set to one of the targets.
 
-```
+```makefile
 output1 output2 output3: prereq1 prereq2
   compile -o $@ $^
 
@@ -470,7 +470,7 @@ output3: prereq1 prereq2
   - If any one of the group targets is out of date, then the rule will be run again.
   - `$@` will be set to the name of the particular target that triggered the rule to execute.
 
-```
+```makefile
 foo bar biz &: baz boz
   echo $^ > foo
   echo $^ > bar
@@ -483,7 +483,7 @@ foo bar biz &: baz boz
 - Order-only prerequisites allow you to specify prerequisites for a target that should only cause an execution of the recipe if the order-only prerequisite doesn't exist. Once the order-only prerequisite exists, any subsequent updates to it will not cause make to execute the rule again.
 - Order-only prerequisites are separated from normal prerequisites with a `|` character.
 
-```
+```makefile
 # The `bin/` directory is an order-only prerequisite here. As long as it
 # exists, no updates to it will cause the rule to re-run
 executable: main.o | bin/
@@ -507,7 +507,7 @@ bin/:
 - Variable substitution references are a lightweight piece of syntax has some basic functionality for doing this.
 - The basic syntax of a variable subtitution reference allows you to replace the tail of every value in a variable with a new tail:
 
-```
+```makefile
 VAR_A:=foo.c bar.c baz.c
 
 # VAR_B receives value foo.o bar.o baz.o
@@ -516,7 +516,7 @@ VAR_B:=$(A:.c=.o)
 
 - Substitution references also support the pattern syntax that you can use in a `patsubst` function call. This allows you to perform slightly more complex substitutions.
 
-```
+```makefile
 VAR_A:=foo.c bar.c baz.c
 
 # VAR_B receives value foo_new.c bar_new.c baz_new.c
@@ -539,7 +539,7 @@ references:
   - By default, when make executes a recipe, it echoes every line of shell it executes to the terminal. This behavior is called recipe echoing.
   - If a line in a recipe begins with the `@` character, then recipe echoing of that line will be suppressed.
 
-```
+```makefile
 # In this example, when the rule is run, the echo command will be
 # executed, causing "building the book!" to be echoed, but make will
 # not print `echo "building the book!"` to stdout
@@ -567,7 +567,7 @@ book.txt: chapter*.txt
 - By default, variables in `makefiles` do not store the evaluated right-hand side value from the variable declaration. Instead, they store the right-hand side value as it was specified, and then evaluate that when the variable is referenced.
 - These variables are referred to as recursively expanded variables.
 
-```
+```makefile
 random=$(shell echo $$RANDOM)
 
 all:
@@ -581,7 +581,7 @@ all:
 
 - The other type of variable assignment is known as simply expanded variables. These variables' right-hand sides are evaluated at declaration time, and that evaluated value is stored in the variable.
 
-```
+```makefile
 random:=$(shell echo $$RANDOM)
 
 all:
@@ -604,7 +604,7 @@ all:
 - ⚠️ This means that setting shell variables or changing directory in a `Makefile` recipe will not affect following lines.
   - This can be confusing to new `Makefile` authors who expect the entire recipe is executed like a shell script.
 
-```
+```makefile
 target1: prereq1
   cd subdir
   pwd          # pwd will not be subdir/ when pwd evaluates, because
@@ -622,7 +622,7 @@ target1: prereq1
 - This can be done by creating a dependency that is always out of date and adding it as a prerequisite on any rules you always want run.
   - Another alternative is to mark your target file as `.PHONY`. But that is confusing because phony targets usually don’t have an associated file and it is not going to work if your target is a pattern target (you can’t mark a pattern as phony).
 
-```
+```makefile
 # The `FORCE` target has no dependencies and no rule,
 # and thus can never be created and will always be out of date
 FORCE:
@@ -652,7 +652,7 @@ log.txt: FORCE
   - Some tools will process your source files and extract the appropriate make rules from them. The include mechanism allows you to incorporated those generated make rules into your build process dynamically.
   - The syntax for including other makefiles in your current makefile is as follows:
 
-```
+```makefile
 include some_makefile.mk some_other_makefile.mk
 ```
 
@@ -664,7 +664,7 @@ include some_makefile.mk some_other_makefile.mk
   - Many projects have one simple `Makefile` at the top level of their project directory. This makefile is responsible for recursively executing make in those subdirectories.
   - That kind of setup might look like this:
 
-```
+```makefile
 executable:
   cd src/ && $(make)
 
@@ -678,7 +678,7 @@ docs:
 - By default, when you invoke `make` recursively in this way, no information from your current `Makefile` is communicated to the recursively run `Makefile`.
 - It is possible to share variables from the calling `Makefile` to the recursive callee `Makefile` by using the `export` directive
 
-```
+```makefile
 my_exported_var:=foobar
 export my_exported_var
 
