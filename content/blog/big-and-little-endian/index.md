@@ -1,10 +1,9 @@
 ---
 title: "Big and Little Endian"
 slug: "big-and-little-endian"
-dateAuthored: "December 20, 2023"
-dateLastUpdated: "2023/12/20"
-postOrder: 3
+date: 2023-12-20
 postType: "writing"
+dateDisplay: "December 20, 2023"
 ---
 
 Big-endian and little-endian are phrases used to describe two approaches for laying out data in an ordered list of bytes. You may not come accross these terms working at a high level of abstration like web development, but if you do any work with a low level language (like C, Rust or Nim), attempt implementing a network protocol or interfacing directly with computer hardware then you might have come across these terms. Despite the fact that I have looked up the meaning of these terms over and over for years, I still manage to get these two confused.

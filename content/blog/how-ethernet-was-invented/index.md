@@ -1,13 +1,13 @@
 ---
 title: "How Ethernet Was Invented"
 slug: "how-ethernet-was-invented"
+date: 2025-08-20
+postType: "reading"
+dateDisplay: "August 20, 2025"
 readingTitle: "How Ethernet Was Invented"
 readingAuthor: "Bob Metcalfe"
 readingPublishedDate: "1994"
 readingUrl: "https://web.archive.org/web/20250626070203/https://ieeemilestones.ethw.org/w/images/6/6e/Ref2_IEEE_Annals_1994.pdf"
-dateReadByMe: "August 20, 2025"
-dateLastUpdated: "2025/08/20"
-postOrder: 1
 ---
 
 Recently, I've been trying to learn more about networking. For the past few days, I've been specifically interested in learning about ethernet. In the process of researching I came across [How Ethernet Was Inveted](https://ieeemilestones.ethw.org/w/images/6/6e/Ref2_IEEE_Annals_1994.pdf) written by the inventor of ethernet himeself: Bob Metcalfe.

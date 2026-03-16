@@ -7,33 +7,33 @@
     <atom:link href="https://www.beau-carlborg.com/rss.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Propositional and Predicate Calculus: 2.4 Logical Equivalence</title>
-      <link>https://www.beau-carlborg.com/reading/logical-equivalence/</link>
-      <guid isPermaLink="true">https://www.beau-carlborg.com/reading/logical-equivalence/</guid>
+      <link>https://www.beau-carlborg.com/blog/logical-equivalence/</link>
+      <guid isPermaLink="true">https://www.beau-carlborg.com/blog/logical-equivalence/</guid>
     </item>
     <item>
       <title>Propositional and Predicate Calculus: 2.3 Interpretation of Logical Formulas</title>
-      <link>https://www.beau-carlborg.com/reading/interpretation-of-logical-formulas/</link>
-      <guid isPermaLink="true">https://www.beau-carlborg.com/reading/interpretation-of-logical-formulas/</guid>
-    </item>
-    <item>
-      <title>Propositional and Predicate Calculus</title>
-      <link>https://www.beau-carlborg.com/reading/propositional-and-predicate-calculus-introduction/</link>
-      <guid isPermaLink="true">https://www.beau-carlborg.com/reading/propositional-and-predicate-calculus-introduction/</guid>
+      <link>https://www.beau-carlborg.com/blog/interpretation-of-logical-formulas/</link>
+      <guid isPermaLink="true">https://www.beau-carlborg.com/blog/interpretation-of-logical-formulas/</guid>
     </item>
     <item>
       <title>Propositional and Predicate Calculus: 2.2 The Construction of Propositional Formulas</title>
-      <link>https://www.beau-carlborg.com/reading/construction-of-propositional-formulas/</link>
-      <guid isPermaLink="true">https://www.beau-carlborg.com/reading/construction-of-propositional-formulas/</guid>
+      <link>https://www.beau-carlborg.com/blog/construction-of-propositional-formulas/</link>
+      <guid isPermaLink="true">https://www.beau-carlborg.com/blog/construction-of-propositional-formulas/</guid>
+    </item>
+    <item>
+      <title>Propositional and Predicate Calculus</title>
+      <link>https://www.beau-carlborg.com/blog/propositional-and-predicate-calculus-introduction/</link>
+      <guid isPermaLink="true">https://www.beau-carlborg.com/blog/propositional-and-predicate-calculus-introduction/</guid>
     </item>
     <item>
       <title>Various ARPANET Papers</title>
-      <link>https://www.beau-carlborg.com/reading/various-arpanet-papers/</link>
-      <guid isPermaLink="true">https://www.beau-carlborg.com/reading/various-arpanet-papers/</guid>
+      <link>https://www.beau-carlborg.com/blog/various-arpanet-papers/</link>
+      <guid isPermaLink="true">https://www.beau-carlborg.com/blog/various-arpanet-papers/</guid>
     </item>
     <item>
       <title>The ARPANET and Computer Networks</title>
-      <link>https://www.beau-carlborg.com/reading/the-arpanet-and-computer-networks/</link>
-      <guid isPermaLink="true">https://www.beau-carlborg.com/reading/the-arpanet-and-computer-networks/</guid>
+      <link>https://www.beau-carlborg.com/blog/the-arpanet-and-computer-networks/</link>
+      <guid isPermaLink="true">https://www.beau-carlborg.com/blog/the-arpanet-and-computer-networks/</guid>
     </item>
     <item>
       <title>Learning 10BASE5: The First Version of Ethernet</title>
@@ -47,8 +47,8 @@
     </item>
     <item>
       <title>How Ethernet Was Invented</title>
-      <link>https://www.beau-carlborg.com/reading/how-ethernet-was-invented/</link>
-      <guid isPermaLink="true">https://www.beau-carlborg.com/reading/how-ethernet-was-invented/</guid>
+      <link>https://www.beau-carlborg.com/blog/how-ethernet-was-invented/</link>
+      <guid isPermaLink="true">https://www.beau-carlborg.com/blog/how-ethernet-was-invented/</guid>
     </item>
     <item>
       <title>Analog and Digital</title>

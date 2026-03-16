@@ -1,10 +1,9 @@
 ---
 title: "Parsers and Encoders Everywhere"
 slug: "parsers-and-encoders-everywhere"
-dateAuthored: "May 8, 2023"
-dateLastUpdated: "2023/05/08"
-postOrder: 1
+date: 2023-05-08
 postType: "writing"
+dateDisplay: "May 8, 2023"
 ---
 
 In this article, I'd like to describe my experience learning about

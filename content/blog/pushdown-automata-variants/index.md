@@ -1,10 +1,9 @@
 ---
 title: "Pushdown Automata Variants"
 slug: "pushdown-automata-variants"
-dateAuthored: "July 23, 2023"
-dateLastUpdated: "2023/07/23"
-postOrder: 2
+date: 2023-07-23
 postType: "writing"
+dateDisplay: "July 23, 2023"
 ---
 
 ## 1: Pushdown Automata and their Variants

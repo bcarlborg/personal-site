@@ -1,13 +1,13 @@
 ---
 title: "The ARPANET and Computer Networks"
 slug: "the-arpanet-and-computer-networks"
+date: 2025-08-24
+postType: "reading"
+dateDisplay: "August 24, 2025"
 readingTitle: "The ARPANET and Computer Networks"
 readingAuthor: "Lawrence G Roberts"
 readingPublishedDate: "1988"
 readingUrl: "https://web.archive.org/web/20250111001632/https://dl.acm.org/doi/pdf/10.1145/61975.66916"
-dateReadByMe: "August 24, 2025"
-dateLastUpdated: "2025/08/24"
-postOrder: 2
 ---
 
 This is a speech by Lawrence G Roberts, given in the year 1988 in which he describes the development and evolution of the ARPANET. Before Roberts begins his speech, Frank Kuo gives him a short introduction, describing him as the father, but not the inventor of the internet. Given what I know about the ARPANET, I think that description is apt.

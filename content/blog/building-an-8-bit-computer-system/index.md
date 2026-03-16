@@ -1,10 +1,9 @@
 ---
 title: "Building an 8-bit Computer System"
 slug: "building-an-8-bit-computer-system"
-dateAuthored: "October 10, 2022"
-dateLastUpdated: "2022/10/15"
-postOrder: 0
+date: 2022-10-15
 postType: "project"
+dateDisplay: "October 10, 2022"
 ---
 
 

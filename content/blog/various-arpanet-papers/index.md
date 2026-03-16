@@ -1,13 +1,13 @@
 ---
 title: "Various ARPANET Papers"
 slug: "various-arpanet-papers"
+date: 2025-09-21
+postType: "reading"
+dateDisplay: "September 21, 2025"
 readingTitle: "Various ARPANET Papers"
 readingAuthor: "Various"
 readingPublishedDate: "Various"
 readingUrl: ""
-dateReadByMe: "September 21, 2025"
-dateLastUpdated: "2025/09/21"
-postOrder: 3
 ---
 
 For the past month or so, I've continued reading more and more papers about the ARPANET. At first, I started by reading a few overview or historical pieces like [The ARPANET and Computer Networks](https://beau-carlborg.com/reading/the-arpanet-and-computer-networks), but quickly realized I wanted to get more details from primary sources.

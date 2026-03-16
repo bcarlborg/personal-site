@@ -5,9 +5,8 @@
     <link>{{ .Permalink }}</link>
     <description>The personal website of Beau Carlborg</description>
     <atom:link href="{{ "rss.xml" | absURL }}" rel="self" type="application/rss+xml" />
-    {{- $allPages := where site.RegularPages "Section" "in" (slice "blog" "reading") }}
-    {{- $allPages = sort $allPages ".Params.dateLastUpdated" "desc" }}
-    {{- range $allPages }}
+    {{- $allPages := where site.RegularPages "Section" "blog" }}
+    {{- range $allPages.ByDate.Reverse }}
     <item>
       <title>{{ .Title }}</title>
       <link>{{ .Permalink }}</link>

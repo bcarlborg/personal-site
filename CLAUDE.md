@@ -8,19 +8,17 @@ A personal website at [beau-carlborg.com](https://www.beau-carlborg.com), built 
 
 ```
 content/
-  blog/[slug]/index.md       # Blog posts (Hugo page bundles)
-  reading/[slug]/index.md    # Reading notes (Hugo page bundles)
+  blog/[slug]/index.md        # All posts: writing, projects, and reading notes (Hugo page bundles)
 layouts/
-  _default/baseof.html       # Base template (head, body wrapper)
-  _default/list.html          # Section list pages
-  _default/rss.xml            # RSS feed template
-  index.html                  # Homepage template
-  blog/single.html            # Blog post template
-  reading/single.html         # Reading page template
-  partials/head.html           # Shared <head> partial (CSS, favicons, meta)
-assets/css/global-styles.css  # Site-wide styles (processed by Hugo Pipes)
-static/assets/                # Favicons
-hugo.toml                     # Hugo configuration
+  _default/baseof.html        # Base template (head, body wrapper)
+  _default/list.html           # Section list page
+  _default/rss.xml             # RSS feed template
+  index.html                   # Homepage template
+  blog/single.html             # Single post template (handles all post types)
+  partials/head.html            # Shared <head> partial (CSS, favicons, meta)
+assets/css/global-styles.css   # Site-wide styles (processed by Hugo Pipes)
+static/assets/                 # Favicons
+hugo.toml                      # Hugo configuration
 ```
 
 ## How to write a blog post
@@ -32,10 +30,9 @@ hugo.toml                     # Hugo configuration
 ---
 title: "Post Title"
 slug: "my-new-post"
-dateAuthored: "March 10, 2026"
-dateLastUpdated: "2026/03/10"
-postOrder: 13
+date: 2026-03-10
 postType: "writing"
+dateDisplay: "March 10, 2026"
 ---
 
 Post body in markdown. Do NOT include an h1 (the title comes from front matter).
@@ -44,26 +41,29 @@ Images go in the same directory and are referenced with relative paths like `![a
 
 Key fields:
 - `slug`: determines the URL (`/blog/my-new-post/`)
-- `postOrder`: controls sort order on the homepage (higher = listed first). Check existing posts to pick the next number.
-- `postType`: `"writing"` or `"project"` (affects homepage label)
+- `date`: ISO date (YYYY-MM-DD), used for sorting. Newest posts appear first on the homepage.
+- `postType`: `"writing"`, `"project"`, or `"reading"` (affects homepage grouping and layout)
+- `dateDisplay`: human-readable date string shown on the page
 
 ## How to write a reading page
 
-Same structure but in `content/reading/`. The front matter has additional fields:
+Same structure, same directory (`content/blog/`). Set `postType: "reading"` and add reading-specific fields:
 
 ```markdown
 ---
 title: "Book or Paper Title"
 slug: "slug"
+date: 2025-09-21
+postType: "reading"
+dateDisplay: "September 21, 2025"
 readingTitle: "Book or Paper Title"
 readingAuthor: "Author Name"
 readingPublishedDate: "1988"
 readingUrl: "https://link-to-source"
-dateReadByMe: "September 21, 2025"
-dateLastUpdated: "2025/09/21"
-postOrder: 3
 ---
 ```
+
+Reading pages are displayed in a separate "What I'm Reading" section on the homepage, with a different single-page layout showing author/source metadata.
 
 ## Building
 
@@ -72,7 +72,7 @@ hugo          # Build the site (output goes to public/)
 hugo server   # Live-reloading dev server at http://localhost:1313
 ```
 
-Cloudflare Pages builds automatically on push to main.
+The `public/` directory is committed to the repo. Cloudflare serves it on push to main.
 
 ## Content conventions
 

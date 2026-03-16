@@ -1,10 +1,9 @@
 ---
 title: "I Don't Really Get Networking"
 slug: "i-dont-get-networking"
-dateAuthored: "August 22nd, 2025"
-dateLastUpdated: "2025/08/22"
-postOrder: 11
+date: 2025-08-22
 postType: "writing"
+dateDisplay: "August 22nd, 2025"
 ---
 
 I don’t feel confident in my understanding of networking.

@@ -1,13 +1,13 @@
 ---
 title: "Propositional and Predicate Calculus"
 slug: "propositional-and-predicate-calculus-introduction"
+date: 2026-03-10
+postType: "reading"
+dateDisplay: "March 10, 2026"
 readingTitle: "Propositional and Predicate Calculus"
 readingAuthor: "Derek Goldrei"
 readingPublishedDate: "2005"
 readingUrl: ""
-dateReadByMe: "March 10, 2026"
-dateLastUpdated: "2026/03/10"
-postOrder: 4
 ---
 
 I am reading the book Propositional and Predicate Calculus by Derek Goldrei.

@@ -1,13 +1,13 @@
 ---
 title: "Propositional and Predicate Calculus: 2.2 The Construction of Propositional Formulas"
 slug: "construction-of-propositional-formulas"
+date: 2026-03-10
+postType: "reading"
+dateDisplay: "March 10, 2026"
 readingTitle: "Propositional and Predicate Calculus: 2.2 The Construction of Propositional Formulas"
 readingAuthor: "Derek Goldrei"
 readingPublishedDate: "2005"
 readingUrl: ""
-dateReadByMe: "March 10, 2026"
-dateLastUpdated: "2026/03/10"
-postOrder: 5
 ---
 
 *Disclaimer: this book in particular is not in my wheelhouse. I am using these notes and reading posts to learn the material better. This post is going to be a bit sloppier and less refined than others I usually like to post.*

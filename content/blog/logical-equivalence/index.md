@@ -1,13 +1,13 @@
 ---
 title: "Propositional and Predicate Calculus: 2.4 Logical Equivalence"
 slug: "logical-equivalence"
+date: 2026-03-15
+postType: "reading"
+dateDisplay: "March 15, 2026"
 readingTitle: "Propositional and Predicate Calculus: 2.4 Logical Equivalence"
 readingAuthor: "Derek Goldrei"
 readingPublishedDate: "2005"
 readingUrl: ""
-dateReadByMe: "March 15, 2026"
-dateLastUpdated: "2026/03/15"
-postOrder: 7
 ---
 
 *Disclaimer: this book in particular is not in my wheelhouse. I am using these notes and reading posts to learn the material better. This post is going to be a bit sloppier and less refined than others I usually like to post.*

@@ -1,10 +1,9 @@
 ---
 title: "Learning 10BASE5: The First Version of Ethernet"
 slug: "learning-about-the-first-version-of-ethernet"
-dateAuthored: "August 23rd, 2025"
-dateLastUpdated: "2025/08/23"
-postOrder: 12
+date: 2025-08-23
 postType: "writing"
+dateDisplay: "August 23rd, 2025"
 ---
 
 I recently realized that [I don’t really get networking](www.beau-carlborg.com/blog/i-dont-get-networking.html), but I decided I would try to fix that by learning about some concrete networking technologies.

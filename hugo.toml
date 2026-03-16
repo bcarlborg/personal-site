@@ -23,7 +23,6 @@ disableHugoGeneratorInject = true
 
 [permalinks]
   blog = "/blog/:slug"
-  reading = "/reading/:slug"
 
 [params]
   description = "The personal website of Beau Carlborg"

@@ -1,10 +1,9 @@
 ---
 title: "My GNU Make Study Guide"
 slug: "my-gnu-make-study-guide"
-dateAuthored: "November 20, 2024"
-dateLastUpdated: "2024/11/20"
-postOrder: 6
+date: 2024-11-20
 postType: "writing"
+dateDisplay: "November 20, 2024"
 ---
 
 I have a love-hate relationship with `make`.

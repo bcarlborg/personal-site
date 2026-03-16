@@ -1,10 +1,9 @@
 ---
 title: "A Snake-like Game in RISC-V Assembly"
 slug: "a-snake-like-game-in-risc-v-assembly"
-dateAuthored: "August 21, 2024"
-dateLastUpdated: "2024/08/21"
-postOrder: 4
+date: 2024-08-21
 postType: "project"
+dateDisplay: "August 21, 2024"
 ---
 
 _The code for this project can be found [👉here👈](https://github.com/bcarlborg/snake-game-in-riscv-assembly)._

@@ -1,10 +1,9 @@
 ---
 title: "Analog and Digital"
 slug: "analog-and-digital"
-dateAuthored: "December 2, 2024"
-dateLastUpdated: "2024/12/02"
-postOrder: 5
+date: 2024-12-02
 postType: "writing"
+dateDisplay: "December 2, 2024"
 ---
 
 We recently got a record player! I am not an audiophile, and our specific record player certainly produces lower quality audio than a speaker playing an MP4, but there is something exciting about seeing your music in a physical form. Seeing your song physically etched in vinyl. Since we got this record player, I’ve been thinking a lot about the difference between these vinyls and this record player and the digital songs I stream. Often times they are the same song, but in such different formats. One is analog and one is digital.
