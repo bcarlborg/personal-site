@@ -22,9 +22,10 @@
     {{ end }}
   </div>
   {{ if .TableOfContents | findRE "<li>" }}
-  <div class="article-toc">
+  <details class="article-toc">
+    <summary>Table of contents</summary>
     {{ .TableOfContents }}
-  </div>
+  </details>
   {{ end }}
   {{ .Content }}
 </article>
