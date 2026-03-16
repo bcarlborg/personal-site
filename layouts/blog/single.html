@@ -7,7 +7,7 @@
 {{ define "main" }}
 <article{{ if eq .Params.postType "reading" }} class="reading-page"{{ end }}>
   {{ if eq .Params.postType "reading" }}
-  <h1 class="article-title">What I am reading: {{ .Params.readingTitle }}</h1>
+  <h1 class="article-title">{{ .Params.readingTitle }}</h1>
   <div class="article-metadata">
     {{- if .Params.readingUrl -}}
       Link: <a href="{{ .Params.readingUrl }}">{{ .Params.readingTitle }}</a><br>
