@@ -9,81 +9,149 @@
       <title>Propositional and Predicate Calculus: 2.4 Logical Equivalence</title>
       <link>https://www.beau-carlborg.com/blog/logical-equivalence/</link>
       <guid isPermaLink="true">https://www.beau-carlborg.com/blog/logical-equivalence/</guid>
+      <description>Disclaimer: this book in particular is not in my wheelhouse. I am using these notes and reading posts to learn the material better. This post is going to be a bit sloppier and less refined than others I usually like to post.
+In section 2.2 of the book, we establish how to write formulas for propositional statements like (φ ∧ ψ) or ((φ ∧ ψ) → λ).
+In section 2.3, Goldrei outlines how we interpret and evaluate these propositional formulas using truth assignments.
+</description>
+      <pubDate>Sun, 15 Mar 2026 00:00:00 &#43;0000</pubDate>
     </item>
     <item>
       <title>Propositional and Predicate Calculus: 2.3 Interpretation of Logical Formulas</title>
       <link>https://www.beau-carlborg.com/blog/interpretation-of-logical-formulas/</link>
       <guid isPermaLink="true">https://www.beau-carlborg.com/blog/interpretation-of-logical-formulas/</guid>
+      <description>Disclaimer: this book in particular is not in my wheelhouse. I am using these notes and reading posts to learn the material better. This post is going to be a bit sloppier and less refined than others I usually like to post.
+In section 2.2 of the book, we establish how to write formulas for propositional statements like (φ ∧ ψ) or ((φ ∧ ψ) → λ).
+In section 2.3, Goldrei outlines how we interpret and evaluate these propositional formulas.
+</description>
+      <pubDate>Sat, 14 Mar 2026 00:00:00 &#43;0000</pubDate>
     </item>
     <item>
       <title>Propositional and Predicate Calculus: 2.2 The Construction of Propositional Formulas</title>
       <link>https://www.beau-carlborg.com/blog/construction-of-propositional-formulas/</link>
       <guid isPermaLink="true">https://www.beau-carlborg.com/blog/construction-of-propositional-formulas/</guid>
+      <description>Disclaimer: this book in particular is not in my wheelhouse. I am using these notes and reading posts to learn the material better. This post is going to be a bit sloppier and less refined than others I usually like to post.
+I am jumping straight to chapter 2 section 2 of this book, because chapter 1 and chapter 2.1 are just fluff introductions. 2.2 also feels pretty fluffy for that matter, but it is the first part of the book with some meat on it.
+</description>
+      <pubDate>Tue, 10 Mar 2026 00:00:00 &#43;0000</pubDate>
     </item>
     <item>
       <title>Propositional and Predicate Calculus</title>
       <link>https://www.beau-carlborg.com/blog/propositional-and-predicate-calculus-introduction/</link>
       <guid isPermaLink="true">https://www.beau-carlborg.com/blog/propositional-and-predicate-calculus-introduction/</guid>
+      <description>I am reading the book Propositional and Predicate Calculus by Derek Goldrei.
+I am a person who loves to shave the yak. And not only do I love to shave the yak, I love to shave yaks in order to shave yaks. I like going all the way to the bottom.
+If you suffer from this tendency as I do, you are continually asking&amp;amp;hellip; but why? Why does this work that way? How do we know that? What makes us sure? And if you do that enough, regardless of where you started, you are inevitably going to get down to logic and formal language&amp;amp;hellip; or at least that has been my experience at any rate.
+</description>
+      <pubDate>Tue, 10 Mar 2026 00:00:00 &#43;0000</pubDate>
     </item>
     <item>
       <title>Various ARPANET Papers</title>
       <link>https://www.beau-carlborg.com/blog/various-arpanet-papers/</link>
       <guid isPermaLink="true">https://www.beau-carlborg.com/blog/various-arpanet-papers/</guid>
+      <description>For the past month or so, I&amp;amp;rsquo;ve continued reading more and more papers about the ARPANET. At first, I started by reading a few overview or historical pieces like The ARPANET and Computer Networks, but quickly realized I wanted to get more details from primary sources.
+As I researched, I ended up building quite the archive of reports, specifications, speaker notes, and papers related to the project from over the years. These are only a small subset of the total amount of documentation related to this project, but I feel like understanding how these papers and their authors fit into the project helped me understand the story of the ARPANET, and by virtue of that, the foundations of the modern internet.
+</description>
+      <pubDate>Sun, 21 Sep 2025 00:00:00 &#43;0000</pubDate>
     </item>
     <item>
       <title>The ARPANET and Computer Networks</title>
       <link>https://www.beau-carlborg.com/blog/the-arpanet-and-computer-networks/</link>
       <guid isPermaLink="true">https://www.beau-carlborg.com/blog/the-arpanet-and-computer-networks/</guid>
+      <description>This is a speech by Lawrence G Roberts, given in the year 1988 in which he describes the development and evolution of the ARPANET. Before Roberts begins his speech, Frank Kuo gives him a short introduction, describing him as the father, but not the inventor of the internet. Given what I know about the ARPANET, I think that description is apt.
+Robert G Lawrence # There are many people who were involved in the creation of the ARPANET. There were visionaries like J. C. R. Licklider who were communicating the possibilities of a world wide system of connected computers while the technologies were in their infancy. There were academics like Leonard Kleinrock who laid the mathematical theoretical groundwork that would be needed to model and analyze networks of the future, and there were inventors like Donald Davies who sketched designs for protocols and systems that closely resemble the ones that we use today.
+</description>
+      <pubDate>Sun, 24 Aug 2025 00:00:00 &#43;0000</pubDate>
     </item>
     <item>
       <title>Learning 10BASE5: The First Version of Ethernet</title>
       <link>https://www.beau-carlborg.com/blog/learning-about-the-first-version-of-ethernet/</link>
       <guid isPermaLink="true">https://www.beau-carlborg.com/blog/learning-about-the-first-version-of-ethernet/</guid>
+      <description>I recently realized that I don’t really get networking, but I decided I would try to fix that by learning about some concrete networking technologies.
+The first technology I decided to dig into was Ethernet. I chose ethernet because it is one of the most used networking technologies, and because it has been around for quite some time. I decided to learn about the first version of Ethernet (called 10BASE5). My original intent was to learn about all of the technical and implementation details, but I ended up learning more about the history and narrative behind the invention.
+</description>
+      <pubDate>Sat, 23 Aug 2025 00:00:00 &#43;0000</pubDate>
     </item>
     <item>
       <title>I Don&#39;t Really Get Networking</title>
       <link>https://www.beau-carlborg.com/blog/i-dont-get-networking/</link>
       <guid isPermaLink="true">https://www.beau-carlborg.com/blog/i-dont-get-networking/</guid>
+      <description>I don’t feel confident in my understanding of networking.
+I Don’t Know the Things I Know About Networking # When I reflect on it, the things I know about networking are all pretty squishy. The things I know aren’t based on factual knowledge, they are things I’ve heard in passing or absorbed through the ether.
+Some examples of this:
+Networking is often the slowest link in your system. TCP and HTTPs connections are costly to create. Networking within the datacenter is reasonably fast. DNS is a pain. Most of these aren’t things I have any real experience or concrete knowledge to back up, they are just tidbits that wormed their way into my brain somehow. I believe that there is truth to these ideas, but none of these ideas are concrete or specific enough for me to actually apply them or interogate them in any meaningul way. They are just catchy little sayings.
+</description>
+      <pubDate>Fri, 22 Aug 2025 00:00:00 &#43;0000</pubDate>
     </item>
     <item>
       <title>How Ethernet Was Invented</title>
       <link>https://www.beau-carlborg.com/blog/how-ethernet-was-invented/</link>
       <guid isPermaLink="true">https://www.beau-carlborg.com/blog/how-ethernet-was-invented/</guid>
+      <description>Recently, I&amp;amp;rsquo;ve been trying to learn more about networking. For the past few days, I&amp;amp;rsquo;ve been specifically interested in learning about ethernet. In the process of researching I came across How Ethernet Was Inveted written by the inventor of ethernet himeself: Bob Metcalfe.
+This artilce was published by IEEE in there Annals series. I suppose these are a series of articles whose content is retellings of various important points in computing history.
+</description>
+      <pubDate>Wed, 20 Aug 2025 00:00:00 &#43;0000</pubDate>
     </item>
     <item>
       <title>Analog and Digital</title>
       <link>https://www.beau-carlborg.com/blog/analog-and-digital/</link>
       <guid isPermaLink="true">https://www.beau-carlborg.com/blog/analog-and-digital/</guid>
+      <description>We recently got a record player! I am not an audiophile, and our specific record player certainly produces lower quality audio than a speaker playing an MP4, but there is something exciting about seeing your music in a physical form. Seeing your song physically etched in vinyl. Since we got this record player, I’ve been thinking a lot about the difference between these vinyls and this record player and the digital songs I stream. Often times they are the same song, but in such different formats. One is analog and one is digital.
+</description>
+      <pubDate>Mon, 02 Dec 2024 00:00:00 &#43;0000</pubDate>
     </item>
     <item>
       <title>My GNU Make Study Guide</title>
       <link>https://www.beau-carlborg.com/blog/my-gnu-make-study-guide/</link>
       <guid isPermaLink="true">https://www.beau-carlborg.com/blog/my-gnu-make-study-guide/</guid>
+      <description>I have a love-hate relationship with make.
+On one hand, it is one of my favorite tools. It is installed almost everywhere. For simple projects it is easy to setup, and when configured well, it is easy to run and extend. On the other hand, writing makefiles for anything other than trivial builds can be tough. The language and syntax of makefiles has many sharp edges buried in the details. Every time I want to write a non-trivial makefile, I have to reacquaint myself with a grab bag of make specific stuff to get going again.
+</description>
+      <pubDate>Wed, 20 Nov 2024 00:00:00 &#43;0000</pubDate>
     </item>
     <item>
       <title>A Snake-like Game in RISC-V Assembly</title>
       <link>https://www.beau-carlborg.com/blog/a-snake-like-game-in-risc-v-assembly/</link>
       <guid isPermaLink="true">https://www.beau-carlborg.com/blog/a-snake-like-game-in-risc-v-assembly/</guid>
+      <description>The code for this project can be found 👉here👈.
+The project # I built a version of the classic snake game in RISC-V assembly! This is a project I have been chipping away at since the beginning of the year, and now that it is wrapped up, I am super excited to share it 🤗
+This is a very bare bones implementation of snake. The game begins as soon as the program starts, and the program halts when your snake dies. The snake changes direction when the W A S D keys are pressed and the snake dies when it collides with itself or with a wall. Food appears at random locations across the map and your score increases each time the snake snake &amp;amp;ldquo;consumes&amp;amp;rdquo; food.
+</description>
+      <pubDate>Wed, 21 Aug 2024 00:00:00 &#43;0000</pubDate>
     </item>
     <item>
       <title>Big and Little Endian</title>
       <link>https://www.beau-carlborg.com/blog/big-and-little-endian/</link>
       <guid isPermaLink="true">https://www.beau-carlborg.com/blog/big-and-little-endian/</guid>
+      <description>Big-endian and little-endian are phrases used to describe two approaches for laying out data in an ordered list of bytes. You may not come accross these terms working at a high level of abstration like web development, but if you do any work with a low level language (like C, Rust or Nim), attempt implementing a network protocol or interfacing directly with computer hardware then you might have come across these terms. Despite the fact that I have looked up the meaning of these terms over and over for years, I still manage to get these two confused.
+</description>
+      <pubDate>Wed, 20 Dec 2023 00:00:00 &#43;0000</pubDate>
     </item>
     <item>
       <title>Pushdown Automata Variants</title>
       <link>https://www.beau-carlborg.com/blog/pushdown-automata-variants/</link>
       <guid isPermaLink="true">https://www.beau-carlborg.com/blog/pushdown-automata-variants/</guid>
+      <description>1: Pushdown Automata and their Variants # Pushdown automata (PDAs for short) are a specific model of automata.
+Automata are abstract models of computers; they are theoretical machines defined using mathematical concepts. Automata can help us model programs and software in the same way that calculus can help us model a ball&amp;amp;rsquo;s path through the air. Studying automata can help us conceptualize the programs and algorithms we work with on a regular basis.
+</description>
+      <pubDate>Sun, 23 Jul 2023 00:00:00 &#43;0000</pubDate>
     </item>
     <item>
       <title>Parsers and Encoders Everywhere</title>
       <link>https://www.beau-carlborg.com/blog/parsers-and-encoders-everywhere/</link>
       <guid isPermaLink="true">https://www.beau-carlborg.com/blog/parsers-and-encoders-everywhere/</guid>
+      <description>In this article, I&amp;amp;rsquo;d like to describe my experience learning about parsers.
+I first came across parsers while learning about compilers. Parsers are components in software that allow programs to extract structured data encoded in a string or byte array (if any part of that doesn&amp;amp;rsquo;t make sense yet, don&amp;amp;rsquo;t worry, we will discuss all of this at length in this post).
+After being introduced to parsers, I wanted to learn everything about them. I wanted to know the best approaches for building parsers. I wanted to understand how different parsing algorithms stack up against each other. I wanted to develop an intuition for the mechanism that makes a parser tick.
+</description>
+      <pubDate>Mon, 08 May 2023 00:00:00 &#43;0000</pubDate>
     </item>
     <item>
       <title>Building an 8-bit Computer System</title>
       <link>https://www.beau-carlborg.com/blog/building-an-8-bit-computer-system/</link>
       <guid isPermaLink="true">https://www.beau-carlborg.com/blog/building-an-8-bit-computer-system/</guid>
+      <description>All information about this project can be found on my github 👉here👈 ! I also created a video that explains the project and shows some demos of running software I wrote for the system 📹 here 📹 !
+</description>
+      <pubDate>Sat, 15 Oct 2022 00:00:00 &#43;0000</pubDate>
     </item>
   </channel>
 </rss>
