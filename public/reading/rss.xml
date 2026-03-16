@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Beau's Blog</title>
+    <link>https://www.beau-carlborg.com/reading/</link>
+    <description>The personal website of Beau Carlborg</description>
+    <atom:link href="https://www.beau-carlborg.com/rss.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Propositional and Predicate Calculus: 2.4 Logical Equivalence</title>
+      <link>https://www.beau-carlborg.com/reading/logical-equivalence/</link>
+      <guid isPermaLink="true">https://www.beau-carlborg.com/reading/logical-equivalence/</guid>
+    </item>
+    <item>
+      <title>Propositional and Predicate Calculus: 2.3 Interpretation of Logical Formulas</title>
+      <link>https://www.beau-carlborg.com/reading/interpretation-of-logical-formulas/</link>
+      <guid isPermaLink="true">https://www.beau-carlborg.com/reading/interpretation-of-logical-formulas/</guid>
+    </item>
+    <item>
+      <title>Propositional and Predicate Calculus</title>
+      <link>https://www.beau-carlborg.com/reading/propositional-and-predicate-calculus-introduction/</link>
+      <guid isPermaLink="true">https://www.beau-carlborg.com/reading/propositional-and-predicate-calculus-introduction/</guid>
+    </item>
+    <item>
+      <title>Propositional and Predicate Calculus: 2.2 The Construction of Propositional Formulas</title>
+      <link>https://www.beau-carlborg.com/reading/construction-of-propositional-formulas/</link>
+      <guid isPermaLink="true">https://www.beau-carlborg.com/reading/construction-of-propositional-formulas/</guid>
+    </item>
+    <item>
+      <title>Various ARPANET Papers</title>
+      <link>https://www.beau-carlborg.com/reading/various-arpanet-papers/</link>
+      <guid isPermaLink="true">https://www.beau-carlborg.com/reading/various-arpanet-papers/</guid>
+    </item>
+    <item>
+      <title>The ARPANET and Computer Networks</title>
+      <link>https://www.beau-carlborg.com/reading/the-arpanet-and-computer-networks/</link>
+      <guid isPermaLink="true">https://www.beau-carlborg.com/reading/the-arpanet-and-computer-networks/</guid>
+    </item>
+    <item>
+      <title>Learning 10BASE5: The First Version of Ethernet</title>
+      <link>https://www.beau-carlborg.com/blog/learning-about-the-first-version-of-ethernet/</link>
+      <guid isPermaLink="true">https://www.beau-carlborg.com/blog/learning-about-the-first-version-of-ethernet/</guid>
+    </item>
+    <item>
+      <title>I Don&#39;t Really Get Networking</title>
+      <link>https://www.beau-carlborg.com/blog/i-dont-get-networking/</link>
+      <guid isPermaLink="true">https://www.beau-carlborg.com/blog/i-dont-get-networking/</guid>
+    </item>
+    <item>
+      <title>How Ethernet Was Invented</title>
+      <link>https://www.beau-carlborg.com/reading/how-ethernet-was-invented/</link>
+      <guid isPermaLink="true">https://www.beau-carlborg.com/reading/how-ethernet-was-invented/</guid>
+    </item>
+    <item>
+      <title>Analog and Digital</title>
+      <link>https://www.beau-carlborg.com/blog/analog-and-digital/</link>
+      <guid isPermaLink="true">https://www.beau-carlborg.com/blog/analog-and-digital/</guid>
+    </item>
+    <item>
+      <title>My GNU Make Study Guide</title>
+      <link>https://www.beau-carlborg.com/blog/my-gnu-make-study-guide/</link>
+      <guid isPermaLink="true">https://www.beau-carlborg.com/blog/my-gnu-make-study-guide/</guid>
+    </item>
+    <item>
+      <title>A Snake-like Game in RISC-V Assembly</title>
+      <link>https://www.beau-carlborg.com/blog/a-snake-like-game-in-risc-v-assembly/</link>
+      <guid isPermaLink="true">https://www.beau-carlborg.com/blog/a-snake-like-game-in-risc-v-assembly/</guid>
+    </item>
+    <item>
+      <title>Big and Little Endian</title>
+      <link>https://www.beau-carlborg.com/blog/big-and-little-endian/</link>
+      <guid isPermaLink="true">https://www.beau-carlborg.com/blog/big-and-little-endian/</guid>
+    </item>
+    <item>
+      <title>Pushdown Automata Variants</title>
+      <link>https://www.beau-carlborg.com/blog/pushdown-automata-variants/</link>
+      <guid isPermaLink="true">https://www.beau-carlborg.com/blog/pushdown-automata-variants/</guid>
+    </item>
+    <item>
+      <title>Parsers and Encoders Everywhere</title>
+      <link>https://www.beau-carlborg.com/blog/parsers-and-encoders-everywhere/</link>
+      <guid isPermaLink="true">https://www.beau-carlborg.com/blog/parsers-and-encoders-everywhere/</guid>
+    </item>
+    <item>
+      <title>Building an 8-bit Computer System</title>
+      <link>https://www.beau-carlborg.com/blog/building-an-8-bit-computer-system/</link>
+      <guid isPermaLink="true">https://www.beau-carlborg.com/blog/building-an-8-bit-computer-system/</guid>
+    </item>
+  </channel>
+</rss>
