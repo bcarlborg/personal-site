@@ -179,13 +179,13 @@ article .article-toc nav > ul > li > ul {
 }
 
 article code {
-  background-color: #f2d9d9;
+  background-color: #fecbcb;
   padding: 0.2em 0.4em;
   font-size: 0.9em;
 }
 
 article pre {
-  background-color: #f2d9d9;
+  background-color: #fecbcb;
   overflow-x: auto;
   padding: 1em;
 }
