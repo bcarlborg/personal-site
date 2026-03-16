@@ -154,6 +154,13 @@ article h3 .heading-anchor:hover {
   opacity: 1;
 }
 
+@media (hover: none) {
+  article h2 .heading-anchor,
+  article h3 .heading-anchor {
+    opacity: 0.4;
+  }
+}
+
 article img {
   width: 100%;
 }
