@@ -9,12 +9,11 @@
   {{ if eq .Params.postType "reading" }}
   <h1 class="article-title">{{ .Params.readingTitle }}</h1>
   <div class="article-metadata">
-    {{- if .Params.readingUrl -}}
-      Link: <a href="{{ .Params.readingUrl }}">{{ .Params.readingTitle }}</a><br>
-    {{- end -}}
-    Author: {{ .Params.readingAuthor }}<br>
-    Published: {{ .Params.readingPublishedDate }}<br>
-    Read on: {{ .Params.dateDisplay }}<br>
+    Reading notes on
+    {{- if .Params.readingUrl }} <a href="{{ .Params.readingUrl }}">{{ .Params.readingTitle }}</a>
+    {{- else }} {{ .Params.readingTitle }}
+    {{- end }} by {{ .Params.readingAuthor }} ({{ .Params.readingPublishedDate }})<br>
+    Read on: {{ .Params.dateDisplay }}
   </div>
   {{ else }}
   <h1 class="article-title">{{ .Title }}</h1>
