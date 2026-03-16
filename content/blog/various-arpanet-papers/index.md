@@ -10,7 +10,7 @@ readingPublishedDate: "Various"
 readingUrl: ""
 ---
 
-For the past month or so, I've continued reading more and more papers about the ARPANET. At first, I started by reading a few overview or historical pieces like [The ARPANET and Computer Networks](https://beau-carlborg.com/reading/the-arpanet-and-computer-networks), but quickly realized I wanted to get more details from primary sources.
+For the past month or so, I've continued reading more and more papers about the ARPANET. At first, I started by reading a few overview or historical pieces like [The ARPANET and Computer Networks](/blog/the-arpanet-and-computer-networks/), but quickly realized I wanted to get more details from primary sources.
 
 As I researched, I ended up building quite the archive of reports, specifications, speaker notes, and papers related to the project from over the years. These are only a small subset of the total amount of documentation related to this project, but I feel like understanding how these papers and their authors fit into the project helped me understand the story of the ARPANET, and by virtue of that, the foundations of the modern internet.
 

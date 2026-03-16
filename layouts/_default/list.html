@@ -6,7 +6,16 @@
 
 {{ define "main" }}
 <h1>{{ .Title }}</h1>
-{{ range .Pages }}
-<p><a href="{{ .RelPermalink }}">{{ .Title }}</a></p>
+{{ with .Content }}<p>{{ . }}</p>{{ end }}
+{{ range .Pages.ByDate.Reverse }}
+<p class="blog-posts-list-item">
+  <span class="blog-post-title-url">
+    <b><a href="{{ .RelPermalink }}">{{ .Title }}</a></b>
+  </span>
+  <br>
+  <span class="blog-posts-list-item-prefix">
+    {{ if eq .Params.postType "reading" }}Reading{{ else if eq .Params.postType "project" }}Project{{ else }}Writing️{{ end }} - {{ .Params.dateDisplay }}
+  </span>
+</p>
 {{ end }}
 {{ end }}

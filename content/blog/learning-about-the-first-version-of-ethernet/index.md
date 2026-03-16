@@ -6,7 +6,7 @@ postType: "writing"
 dateDisplay: "August 23rd, 2025"
 ---
 
-I recently realized that [I don’t really get networking](www.beau-carlborg.com/blog/i-dont-get-networking.html), but I decided I would try to fix that by learning about some concrete networking technologies.
+I recently realized that [I don’t really get networking](/blog/i-dont-get-networking/), but I decided I would try to fix that by learning about some concrete networking technologies.
 
 The first technology I decided to dig into was Ethernet. I chose ethernet because it is one of the most used networking technologies, and because it has been around for quite some time. I decided to learn about the first version of Ethernet (called 10BASE5). My original intent was to learn about all of the technical and implementation details, but I ended up learning more about the history and narrative behind the invention.
 
