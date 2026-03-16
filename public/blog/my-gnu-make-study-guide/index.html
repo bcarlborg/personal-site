@@ -2,7 +2,7 @@
 <html lang="en">
   <head>
     
-<link rel="stylesheet" type="text/css" href="/css/global-styles.468bf65c779556450e5c462ab94269b8f74a310fe19906c9f1b28e636c460b72.css">
+<link rel="stylesheet" type="text/css" href="/css/global-styles.c437c89ded3e0106281ab2b41633a2f422d03d777646be0d7fd0c6ae3c2d532f.css">
 
 <link rel="stylesheet" type="text/css" href="/css/syntax.3ab818f2bbace5b8c2bf108187a56c186b8e2f38bd95b2b4efea6fec878e77df.css">
 <link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon-32-32.png?v=2">
@@ -189,11 +189,11 @@ On one hand, it is one of my favorite tools. It is installed almost everywhere. 
 </li>
 <li>The syntax for a rule is as follows:</li>
 </ul>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-makefile" data-lang="makefile"><span class="line"><span class="cl"><span class="nf">target</span><span class="o">:</span> <span class="n">prerequisite</span>1 <span class="n">prerequisite</span>2 ...
-</span></span><span class="line"><span class="cl">  recipe-line-1
-</span></span><span class="line"><span class="cl">  recipe-line-2
-</span></span><span class="line"><span class="cl">  ...
-</span></span></code></pre></div><ul>
+<pre tabindex="0"><code>target: prerequisite1 prerequisite2 ...
+  recipe-line-1
+  recipe-line-2
+  ...
+</code></pre><ul>
 <li>Simple rules describe a single node in the build dependency graph. More general rules can be written to describe many different parts of the dependency graph.</li>
 <li>Makefiles also support a number of other programming constructs like variables, functions, pattern matching, and shell globbing, but it is useful to remember that these constructs only exist to help you write better rules.</li>
 <li>To run make, you specify the target (or targets) you would like make to build, and make will consult the rules in your <code>Makefile</code> to determine which recipes to run.</li>
@@ -210,11 +210,11 @@ On one hand, it is one of my favorite tools. It is installed almost everywhere. 
 <li>There are many ways to write complex rules, but rules follow the same basic syntax that is exemplified by simple rules.</li>
 <li>A simple rule specifies a file to build as its target and has one or many files as prerequisites.</li>
 </ul>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-makefile" data-lang="makefile"><span class="line"><span class="cl"><span class="nf">target</span><span class="o">:</span> <span class="n">prerequisite</span>1 <span class="n">prerequisite</span>2 ...
-</span></span><span class="line"><span class="cl">  recipe-line-1
-</span></span><span class="line"><span class="cl">  recipe-line-2
-</span></span><span class="line"><span class="cl">  ...
-</span></span></code></pre></div><ul>
+<pre tabindex="0"><code>target: prerequisite1 prerequisite2 ...
+  recipe-line-1
+  recipe-line-2
+  ...
+</code></pre><ul>
 <li>Make determines that the target needs to be built by consulting the file system for information about the target and the prerequisites.
 <ul>
 <li>If the target file does not exist, the target must be built.</li>
@@ -240,37 +240,37 @@ On one hand, it is one of my favorite tools. It is installed almost everywhere. 
 </span></span></code></pre></div><ul>
 <li>Example running <code>make</code> against file</li>
 </ul>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-makefile" data-lang="makefile"><span class="line"><span class="cl"><span class="c"># Print out the directory contents before running make
-</span></span></span><span class="line"><span class="cl"><span class="err">&gt;</span> <span class="err">tree</span> <span class="err">./</span>
-</span></span><span class="line"><span class="cl"><span class="err">./</span>
-</span></span><span class="line"><span class="cl"><span class="err">├──</span> <span class="err">Makefile</span>
-</span></span><span class="line"><span class="cl"><span class="err">├──</span> <span class="err">helper.c</span>
-</span></span><span class="line"><span class="cl"><span class="err">├──</span> <span class="err">helper.h</span>
-</span></span><span class="line"><span class="cl"><span class="err">└──</span> <span class="err">main.c</span>
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="c"># Build main target
-</span></span></span><span class="line"><span class="cl"><span class="err">&gt;</span> <span class="err">make</span> <span class="err">main</span>
-</span></span><span class="line"><span class="cl"><span class="err">gcc</span> <span class="err">-c</span> <span class="err">-o</span> <span class="err">main.o</span> <span class="err">main.c</span>
-</span></span><span class="line"><span class="cl"><span class="err">gcc</span> <span class="err">-c</span> <span class="err">-o</span> <span class="err">helper.o</span> <span class="err">helper.c</span>
-</span></span><span class="line"><span class="cl"><span class="err">ld</span> <span class="err">-o</span> <span class="err">main</span> <span class="err">main.o</span> <span class="err">helper.o</span>
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="c"># Try to build the main target again, but nothing happens
-</span></span></span><span class="line"><span class="cl"><span class="c"># because everything is up to date
-</span></span></span><span class="line"><span class="cl"><span class="err">&gt;</span> <span class="err">make</span> <span class="err">main</span>
-</span></span><span class="line"><span class="cl"><span class="nf">make</span><span class="o">:</span> `<span class="n">main</span>&#39; <span class="n">is</span> <span class="n">up</span> <span class="n">to</span> <span class="n">date</span>.
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="c"># Print the directory content again so we can see the files
-</span></span></span><span class="line"><span class="cl"><span class="c"># make generated.
-</span></span></span><span class="line"><span class="cl"><span class="err">&gt;</span> <span class="err">tree</span> <span class="err">./</span>
-</span></span><span class="line"><span class="cl"><span class="err">./</span>
-</span></span><span class="line"><span class="cl"><span class="err">├──</span> <span class="err">Makefile</span>
-</span></span><span class="line"><span class="cl"><span class="err">├──</span> <span class="err">helper.c</span>
-</span></span><span class="line"><span class="cl"><span class="err">├──</span> <span class="err">helper.h</span>
-</span></span><span class="line"><span class="cl"><span class="err">├──</span> <span class="err">helper.o</span>
-</span></span><span class="line"><span class="cl"><span class="err">├──</span> <span class="err">main</span>
-</span></span><span class="line"><span class="cl"><span class="err">├──</span> <span class="err">main.c</span>
-</span></span><span class="line"><span class="cl"><span class="err">└──</span> <span class="err">main.o</span>
-</span></span></code></pre></div><ul>
+<pre tabindex="0"><code># Print out the directory contents before running make
+&gt; tree ./
+./
+├── Makefile
+├── helper.c
+├── helper.h
+└── main.c
+
+# Build main target
+&gt; make main
+gcc -c -o main.o main.c
+gcc -c -o helper.o helper.c
+ld -o main main.o helper.o
+
+# Try to build the main target again, but nothing happens
+# because everything is up to date
+&gt; make main
+make: `main&#39; is up to date.
+
+# Print the directory content again so we can see the files
+# make generated.
+&gt; tree ./
+./
+├── Makefile
+├── helper.c
+├── helper.h
+├── helper.o
+├── main
+├── main.c
+└── main.o
+</code></pre><ul>
 <li>References:
 <ul>
 <li>Make documentation — <a href="https://www.gnu.org/software/make/manual/make.html#Introduction">Chapter 2: An Introduction to Makefiles</a></li>
@@ -282,14 +282,14 @@ On one hand, it is one of my favorite tools. It is installed almost everywhere. 
 <li>Make supports an entire little programming language, and what would a programming language be without variables.</li>
 <li>The basic syntax for variable assignments in make is as follows:</li>
 </ul>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-makefile" data-lang="makefile"><span class="line"><span class="cl"><span class="nv">variable_name</span><span class="o">=</span>variable_value
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="c"># Whitespace before and after &#39;=&#39; is ignored, so this is equivalent
-</span></span></span><span class="line"><span class="cl"><span class="nv">variable_name</span> <span class="o">=</span> variable_value
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="c"># As is this
-</span></span></span><span class="line"><span class="cl"><span class="nv">variable_name</span>        <span class="o">=</span>        variable_value
-</span></span></code></pre></div><ul>
+<pre tabindex="0"><code>variable_name=variable_value
+
+# Whitespace before and after &#39;=&#39; is ignored, so this is equivalent
+variable_name = variable_value
+
+# As is this
+variable_name        =        variable_value
+</code></pre><ul>
 <li>Variable names can be any sequence of characters not containing the following characters: <code>:</code>, <code>#</code>, <code>=</code>, or whitespace.
 <ul>
 <li>However, variable names with upper and lower case letters, numbers, and underscores are recommended.</li>
@@ -302,21 +302,21 @@ On one hand, it is one of my favorite tools. It is installed almost everywhere. 
 </li>
 <li>Some variable assignment examples:</li>
 </ul>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-makefile" data-lang="makefile"><span class="line"><span class="cl"><span class="c"># `name` gets the string value &#34;beau carlborg&#34;
-</span></span></span><span class="line"><span class="cl"><span class="nv">name</span> <span class="o">=</span> beau carlborg
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="c"># `location` gets the value &#34;oakland&#34; (leading whitespace is ignored)
-</span></span></span><span class="line"><span class="cl"><span class="nv">location</span> <span class="o">=</span>            oakland
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="c"># `occupation` gets the string value &#34;software    engineer&#34; (internal whitespace preserved)
-</span></span></span><span class="line"><span class="cl"><span class="nv">occupation</span> <span class="o">=</span> software    engineer
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="c"># `age` gets string value &#34;42&#34; (notice it is a string, not a number)
-</span></span></span><span class="line"><span class="cl"><span class="nv">age</span> <span class="o">=</span> <span class="m">42</span>
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="c"># Common practice is to not use spaces around the `=` in an assignment
-</span></span></span><span class="line"><span class="cl"><span class="nv">CC</span><span class="o">=</span>gcc
-</span></span></code></pre></div><ul>
+<pre tabindex="0"><code># `name` gets the string value &#34;beau carlborg&#34;
+name = beau carlborg
+
+# `location` gets the value &#34;oakland&#34; (leading whitespace is ignored)
+location =            oakland
+
+# `occupation` gets the string value &#34;software    engineer&#34; (internal whitespace preserved)
+occupation = software    engineer
+
+# `age` gets string value &#34;42&#34; (notice it is a string, not a number)
+age = 42
+
+# Common practice is to not use spaces around the `=` in an assignment
+CC=gcc
+</code></pre><ul>
 <li>References:
 <ul>
 <li>Make documentation — <a href="https://www.gnu.org/software/make/manual/make.html#Basics">Chapter 6.1: Basics of Variable Definitions</a></li>
@@ -328,22 +328,22 @@ On one hand, it is one of my favorite tools. It is installed almost everywhere. 
 <li>The variables you declare can be used in any part of a makefile. The definitions of other rules, targets, prerequisites, recipes, you name it.</li>
 <li>The syntax for referencing a variable is as follows:</li>
 </ul>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-makefile" data-lang="makefile"><span class="line"><span class="cl"><span class="k">$(</span><span class="nv">variable_name</span><span class="k">)</span>
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="c"># or alternatively
-</span></span></span><span class="line"><span class="cl"><span class="err">${variable_name}</span>
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="c"># Or, for single character variable names only
-</span></span></span><span class="line"><span class="cl"><span class="err">$v</span>
-</span></span></code></pre></div><ul>
+<pre tabindex="0"><code>$(variable_name)
+
+# or alternatively
+${variable_name}
+
+# Or, for single character variable names only
+$v
+</code></pre><ul>
 <li>⚠️ The single character variable reference is a common source of bugs for those new to writing <code>makefiles</code>.</li>
 </ul>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-makefile" data-lang="makefile"><span class="line"><span class="cl"><span class="c"># This may look like a valid variable reference for the variable `foo`
-</span></span></span><span class="line"><span class="cl"><span class="err">$foo</span>
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="c"># But, in fact, make treats this reference as if it were
-</span></span></span><span class="line"><span class="cl"><span class="k">$(</span><span class="nv">f</span><span class="k">)</span><span class="err">oo</span>
-</span></span></code></pre></div><ul>
+<pre tabindex="0"><code># This may look like a valid variable reference for the variable `foo`
+$foo
+
+# But, in fact, make treats this reference as if it were
+$(f)oo
+</code></pre><ul>
 <li>Variable names can be referenced in targets, prerequisites, or recipes.</li>
 </ul>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-makefile" data-lang="makefile"><span class="line"><span class="cl"><span class="nv">TARGET_NAME</span><span class="o">=</span>main
@@ -399,10 +399,10 @@ On one hand, it is one of my favorite tools. It is installed almost everywhere. 
 <li>Make provides a set of functions that can modify text values. Functions can be invoked anywhere that a variable can be referenced.</li>
 <li>The basic function invocation syntax is as follows:</li>
 </ul>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-makefile" data-lang="makefile"><span class="line"><span class="cl"><span class="k">$(</span><span class="nv">function_name</span> <span class="nv">argument</span>1,<span class="nv">argument</span>2,<span class="nv">argument</span>3<span class="k">)</span>
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="err">${function_name</span> <span class="err">argument1,argument2,argument3}</span>
-</span></span></code></pre></div><ul>
+<pre tabindex="0"><code>$(function_name argument1,argument2,argument3)
+
+${function_name argument1,argument2,argument3}
+</code></pre><ul>
 <li>In a function call, the function name and the arguments are separated by one or many whitespace characters and the function arguments are separated by commas.
 <ul>
 <li>⚠️ This syntax makes passing (1) leading whitespace in your first argument (2) a comma in any of your arguments (3) an unmatched parenthesis in your arguments rather difficult.</li>
