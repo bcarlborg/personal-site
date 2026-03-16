@@ -22,35 +22,38 @@
 Send me an email at <a href="mailto:bcarlborg@gmail.com">bcarlborg@gmail.com</a>. Start the subject line with "From beau-carlborg.com" so I know how you found me.</p>
 
 <h2>Posts</h2>
-<p><em>Some writing, some projects. Some polished, some not.</em></p>
+<div class="post-filters">
+  <button class="post-filter active" data-filter="all">All</button>
+  <button class="post-filter" data-filter="writing">Writing</button>
+  <button class="post-filter" data-filter="project">Projects</button>
+  <button class="post-filter" data-filter="reading">Reading</button>
+</div>
 
 {{ $allPages := where site.RegularPages "Section" "blog" }}
-{{ $blogPosts := where $allPages ".Params.postType" "ne" "reading" }}
-{{ range $blogPosts.ByDate.Reverse }}
-<div class="post-list-item">
+<div id="post-list">
+{{ range $allPages.ByDate.Reverse }}
+<div class="post-list-item" data-type="{{ .Params.postType }}">
   <span class="post-list-item-title">
-    <b><a href="{{ .RelPermalink }}">{{ .Title }}</a></b>
+    <b><a href="{{ .RelPermalink }}">{{ if eq .Params.postType "reading" }}{{ .Params.readingTitle }}{{ else }}{{ .Title }}{{ end }}</a></b>
   </span>
   <br>
   <span class="post-list-item-subtitle">
-    {{ if eq .Params.postType "project" }}Project{{ else }}Writing️{{ end }} - {{ .Params.dateDisplay }}
+    {{ if eq .Params.postType "project" }}Project{{ else if eq .Params.postType "reading" }}Reading{{ else }}Writing️{{ end }} - {{ .Params.dateDisplay }}
   </span>
 </div>
 {{ end }}
-
-<h2>What I'm Reading</h2>
-<p><em>List of books, papers, or article that I'm currently reading and thinking about.</em></p>
-
-{{ $readingPages := where $allPages ".Params.postType" "reading" }}
-{{ range $readingPages.ByDate.Reverse }}
-<div class="post-list-item">
-  <span class="post-list-item-title">
-    <b><a href="{{ .RelPermalink }}">{{ .Params.readingTitle }}</a></b>
-  </span>
-  <br>
-  <span class="post-list-item-subtitle">
-    Reading - {{ .Params.dateDisplay }}
-  </span>
 </div>
-{{ end }}
+
+<script>
+document.querySelectorAll('.post-filter').forEach(function(btn) {
+  btn.addEventListener('click', function() {
+    document.querySelector('.post-filter.active').classList.remove('active');
+    btn.classList.add('active');
+    var filter = btn.getAttribute('data-filter');
+    document.querySelectorAll('.post-list-item').forEach(function(item) {
+      item.style.display = (filter === 'all' || item.getAttribute('data-type') === filter) ? '' : 'none';
+    });
+  });
+});
+</script>
 {{ end }}
