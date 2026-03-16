@@ -5,8 +5,8 @@ date: 2025-09-21
 postType: "reading"
 dateDisplay: "September 21, 2025"
 readingTitle: "Various ARPANET Papers"
-readingAuthor: "Various"
-readingPublishedDate: "Various"
+readingAuthor: ""
+readingPublishedDate: ""
 readingUrl: ""
 ---
 

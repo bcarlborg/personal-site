@@ -12,7 +12,9 @@
     Reading notes on
     {{- if .Params.readingUrl }} <a href="{{ .Params.readingUrl }}">{{ .Params.readingTitle }}</a>
     {{- else }} {{ .Params.readingTitle }}
-    {{- end }} by {{ .Params.readingAuthor }} ({{ .Params.readingPublishedDate }})<br>
+    {{- end -}}
+    {{- if .Params.readingAuthor }} by {{ .Params.readingAuthor }}{{ end -}}
+    {{- if .Params.readingPublishedDate }} ({{ .Params.readingPublishedDate }}){{ end }}<br>
     Read on: {{ .Params.dateDisplay }}
   </div>
   {{ else }}
