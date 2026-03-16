@@ -8,14 +8,14 @@
 <h1>{{ .Title }}</h1>
 {{ with .Content }}<p>{{ . }}</p>{{ end }}
 {{ range .Pages.ByDate.Reverse }}
-<p class="blog-posts-list-item">
-  <span class="blog-post-title-url">
+<div class="post-list-item">
+  <span class="post-list-item-title">
     <b><a href="{{ .RelPermalink }}">{{ .Title }}</a></b>
   </span>
   <br>
-  <span class="blog-posts-list-item-prefix">
+  <span class="post-list-item-subtitle">
     {{ if eq .Params.postType "reading" }}Reading{{ else if eq .Params.postType "project" }}Project{{ else }}Writing️{{ end }} - {{ .Params.dateDisplay }}
   </span>
-</p>
+</div>
 {{ end }}
 {{ end }}

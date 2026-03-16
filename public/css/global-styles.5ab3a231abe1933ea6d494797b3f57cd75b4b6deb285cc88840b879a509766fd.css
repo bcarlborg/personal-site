@@ -1,15 +1,14 @@
 :root {
-  --color-title-container: #d2c4ff;
-  --color-main-bg: mistyrose;
-  --color-article-contents: #ffd4d4;
-  --article-title-bg: #f1c4ff;
-  --color-anchors-default: #8c2626;
+  --color-title: #d2c4ff;
+  --color-bg: mistyrose;
+  --color-metadata: #ffd4d4;
+  --color-link: #8c2626;
   --color-code-bg: #ffdbdb;
   --color-code-text: brown;
 }
 
 a {
-  color: var(--color-anchors-default);
+  color: var(--color-link);
   text-decoration: underline;
 }
 
@@ -30,7 +29,7 @@ body {
   display: flex;
   flex-direction: column;
   align-items: center;
-  background: var(--color-main-bg);
+  background: var(--color-bg);
 }
 
 header {
@@ -46,8 +45,10 @@ footer {
   width: 100%;
 }
 
+/* Homepage title bar */
+
 #index-title-container {
-  background: var(--color-title-container);
+  background: var(--color-title);
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -62,66 +63,70 @@ footer {
   height: 50px;
 }
 
-.blog-posts-list-item {
+/* Post lists (shared between blog and reading lists) */
+
+.post-list-item {
   margin-bottom: 15px;
 }
 
-.blog-posts-list-item-prefix {
+.post-list-item-title a {
+  text-decoration: none;
+}
+
+.post-list-item-subtitle {
   opacity: 0.6;
 }
 
-.blog-post-title-url a {
-  text-decoration: none;
-}
-
-.reading-list-item {
-  margin-bottom: 15px;
-}
-
-.reading-list-item-prefix {
-  opacity: 0.7;
-}
-
-.reading-list-item-title-url a {
-  text-decoration: none;
-}
+/* Article layout */
 
 article img {
   width: 100%;
 }
 
-article #article-title {
-  background: var(--color-title-container);
+article .article-title {
+  background: var(--color-title);
   padding: 5px;
 }
 
-article #article-contents {
+article .article-metadata {
   padding: 1em;
-  background-color: var(--color-article-contents);
+  background-color: var(--color-metadata);
+  font-style: italic;
   margin-bottom: 2em;
 }
 
-article #article-contents #TableOfContents {
+article .article-toc {
+  padding: 1em;
+  background-color: var(--color-metadata);
+  margin-bottom: 2em;
+}
+
+article .article-metadata + .article-toc {
+  padding-top: 0;
+  margin-top: -2em;
+}
+
+article .article-toc nav {
   margin: 0;
   padding: 0;
 }
 
-article #article-contents #TableOfContents ul {
+article .article-toc nav ul {
   list-style: none;
   padding-left: 1em;
   margin: 0;
 }
 
-article #article-contents #TableOfContents > ul {
+article .article-toc nav > ul {
   padding-left: 0;
 }
 
-article #article-contents #TableOfContents li {
+article .article-toc nav li {
   margin-top: 0.3em;
   margin-bottom: 0;
 }
 
-article #article-contents #TableOfContents > ul > li > ul {
+article .article-toc nav > ul > li > ul {
   padding-left: 2em;
 }
 

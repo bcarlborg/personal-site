@@ -7,25 +7,23 @@
 {{ define "main" }}
 <article{{ if eq .Params.postType "reading" }} class="reading-page"{{ end }}>
   {{ if eq .Params.postType "reading" }}
-  <h1 id="article-title">What I am reading: {{ .Params.readingTitle }}</h1>
-  <div id="article-contents">
-    <i id="article-metadata">
-      {{- if .Params.readingUrl -}}
-        Link: <a href="{{ .Params.readingUrl }}">{{ .Params.readingTitle }}</a><br>
-      {{- end -}}
-      Author: {{ .Params.readingAuthor }}<br>
-      Published: {{ .Params.readingPublishedDate }}<br>
-      Read on: {{ .Params.dateDisplay }}<br>
-    </i>
+  <h1 class="article-title">What I am reading: {{ .Params.readingTitle }}</h1>
+  <div class="article-metadata">
+    {{- if .Params.readingUrl -}}
+      Link: <a href="{{ .Params.readingUrl }}">{{ .Params.readingTitle }}</a><br>
+    {{- end -}}
+    Author: {{ .Params.readingAuthor }}<br>
+    Published: {{ .Params.readingPublishedDate }}<br>
+    Read on: {{ .Params.dateDisplay }}<br>
   </div>
   {{ else }}
-  <h1 id="article-title">{{ .Title }}</h1>
-  <div id="article-contents">
-    <i id="article-metadata">Published: {{ .Params.dateDisplay }}<br></i>
-    {{ if .TableOfContents }}
+  <h1 class="article-title">{{ .Title }}</h1>
+  <div class="article-metadata">Published: {{ .Params.dateDisplay }}</div>
+  {{ if .TableOfContents | findRE "<li>" }}
+  <div class="article-toc">
     {{ .TableOfContents }}
-    {{ end }}
   </div>
+  {{ end }}
   {{ end }}
   {{ .Content }}
 </article>

@@ -27,15 +27,15 @@ Send me an email at <a href="mailto:bcarlborg@gmail.com">bcarlborg@gmail.com</a>
 {{ $allPages := where site.RegularPages "Section" "blog" }}
 {{ $blogPosts := where $allPages ".Params.postType" "ne" "reading" }}
 {{ range $blogPosts.ByDate.Reverse }}
-<p class="blog-posts-list-item">
-  <span class="blog-post-title-url">
+<div class="post-list-item">
+  <span class="post-list-item-title">
     <b><a href="{{ .RelPermalink }}">{{ .Title }}</a></b>
   </span>
   <br>
-  <span class="blog-posts-list-item-prefix">
+  <span class="post-list-item-subtitle">
     {{ if eq .Params.postType "project" }}Project{{ else }}Writing️{{ end }} - {{ .Params.dateDisplay }}
   </span>
-</p>
+</div>
 {{ end }}
 
 <h2>What I'm Reading</h2>
@@ -43,14 +43,14 @@ Send me an email at <a href="mailto:bcarlborg@gmail.com">bcarlborg@gmail.com</a>
 
 {{ $readingPages := where $allPages ".Params.postType" "reading" }}
 {{ range $readingPages.ByDate.Reverse }}
-<p class="reading-list-item">
-  <span class="reading-list-item-title-url">
+<div class="post-list-item">
+  <span class="post-list-item-title">
     <b><a href="{{ .RelPermalink }}">{{ .Params.readingTitle }}</a></b>
   </span>
   <br>
-  <span class="reading-list-item-prefix">
+  <span class="post-list-item-subtitle">
     Reading - {{ .Params.dateDisplay }}
   </span>
-</p>
+</div>
 {{ end }}
 {{ end }}
