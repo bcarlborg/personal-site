@@ -277,7 +277,7 @@ helper.o: helper.c
 - Make provides a set of functions that can modify text values. Functions can be invoked anywhere that a variable can be referenced.
 - The basic function invocation syntax is as follows:
 
-```makefile
+```
 $(function_name argument1,argument2,argument3)
 
 ${function_name argument1,argument2,argument3}
@@ -652,7 +652,7 @@ log.txt: FORCE
   - Some tools will process your source files and extract the appropriate make rules from them. The include mechanism allows you to incorporated those generated make rules into your build process dynamically.
   - The syntax for including other makefiles in your current makefile is as follows:
 
-```makefile
+```
 include some_makefile.mk some_other_makefile.mk
 ```
 
