@@ -8,7 +8,42 @@
 <article>
   <h1 class="article-title">{{ .Title }}</h1>
 
-  <p>This page demonstrates all the visual components used on this site.</p>
+  <p>This page demonstrates all the visual components used on this site. Use the color pickers to try different themes — changes are live but not saved.</p>
+
+  <h2 id="theme-picker">Theme Picker <a class="heading-anchor" href="#theme-picker">#</a></h2>
+  <div class="theme-picker">
+    <div class="theme-picker-row">
+      <label><input type="color" data-var="--color-bg" value="#ffe4e1"> Background</label>
+      <label><input type="color" data-var="--color-title" value="#d2c4ff"> Title bar</label>
+      <label><input type="color" data-var="--color-metadata" value="#ffd4d4"> TOC</label>
+      <label><input type="color" data-var="--color-link" value="#8c2626"> Links</label>
+    </div>
+    <div class="theme-picker-row">
+      <label><input type="color" data-var="--color-code-bg" value="#fecbcb"> Code blocks</label>
+      <label><input type="color" data-var="--color-tag-writing" value="#d2c4ff"> Writing tag</label>
+      <label><input type="color" data-var="--color-tag-project" value="#c4e0d2"> Project tag</label>
+      <label><input type="color" data-var="--color-tag-reading" value="#c4d4e8"> Reading tag</label>
+    </div>
+    <button id="theme-reset">Reset to defaults</button>
+  </div>
+
+  <script>
+  (function() {
+    var defaults = {};
+    document.querySelectorAll('.theme-picker input[type="color"]').forEach(function(input) {
+      defaults[input.dataset.var] = input.value;
+      input.addEventListener('input', function() {
+        document.documentElement.style.setProperty(input.dataset.var, input.value);
+      });
+    });
+    document.getElementById('theme-reset').addEventListener('click', function() {
+      Object.keys(defaults).forEach(function(v) {
+        document.documentElement.style.setProperty(v, defaults[v]);
+        document.querySelector('input[data-var="' + v + '"]').value = defaults[v];
+      });
+    });
+  })();
+  </script>
 
   <h2 id="homepage-header">Homepage Header <a class="heading-anchor" href="#homepage-header">#</a></h2>
   {{ partial "index-header.html" . }}
