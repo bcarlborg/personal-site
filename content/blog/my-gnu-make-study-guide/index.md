@@ -169,7 +169,7 @@ make: `main' is up to date.
 - Make supports an entire little programming language, and what would a programming language be without variables.
 - The basic syntax for variable assignments in make is as follows:
 
-```
+```makefile
 variable_name=variable_value
 
 # Whitespace before and after '=' is ignored, so this is equivalent
@@ -185,7 +185,7 @@ variable_name        =        variable_value
   - The beginning of the string value starts after the `=` character and any whitespace that follows it.
 - Some variable assignment examples:
 
-```
+```makefile
 # `name` gets the string value "beau carlborg"
 name = beau carlborg
 
@@ -210,7 +210,7 @@ CC=gcc
 - The variables you declare can be used in any part of a makefile. The definitions of other rules, targets, prerequisites, recipes, you name it.
 - The syntax for referencing a variable is as follows:
 
-```
+```makefile
 $(variable_name)
 
 # or alternatively
@@ -222,7 +222,7 @@ $v
 
 - ⚠️ The single character variable reference is a common source of bugs for those new to writing `makefiles`.
 
-```
+```makefile
 # This may look like a valid variable reference for the variable `foo`
 $foo
 
@@ -277,7 +277,7 @@ helper.o: helper.c
 - Make provides a set of functions that can modify text values. Functions can be invoked anywhere that a variable can be referenced.
 - The basic function invocation syntax is as follows:
 
-```
+```makefile
 $(function_name argument1,argument2,argument3)
 
 ${function_name argument1,argument2,argument3}

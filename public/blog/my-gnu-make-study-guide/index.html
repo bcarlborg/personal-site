@@ -283,14 +283,14 @@ make: `main&#39; is up to date.
 <li>Make supports an entire little programming language, and what would a programming language be without variables.</li>
 <li>The basic syntax for variable assignments in make is as follows:</li>
 </ul>
-<pre tabindex="0"><code>variable_name=variable_value
-
-# Whitespace before and after &#39;=&#39; is ignored, so this is equivalent
-variable_name = variable_value
-
-# As is this
-variable_name        =        variable_value
-</code></pre><ul>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-makefile" data-lang="makefile"><span class="line"><span class="cl"><span class="nv">variable_name</span><span class="o">=</span>variable_value
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c"># Whitespace before and after &#39;=&#39; is ignored, so this is equivalent
+</span></span></span><span class="line"><span class="cl"><span class="nv">variable_name</span> <span class="o">=</span> variable_value
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c"># As is this
+</span></span></span><span class="line"><span class="cl"><span class="nv">variable_name</span>        <span class="o">=</span>        variable_value
+</span></span></code></pre></div><ul>
 <li>Variable names can be any sequence of characters not containing the following characters: <code>:</code>, <code>#</code>, <code>=</code>, or whitespace.
 <ul>
 <li>However, variable names with upper and lower case letters, numbers, and underscores are recommended.</li>
@@ -303,21 +303,21 @@ variable_name        =        variable_value
 </li>
 <li>Some variable assignment examples:</li>
 </ul>
-<pre tabindex="0"><code># `name` gets the string value &#34;beau carlborg&#34;
-name = beau carlborg
-
-# `location` gets the value &#34;oakland&#34; (leading whitespace is ignored)
-location =            oakland
-
-# `occupation` gets the string value &#34;software    engineer&#34; (internal whitespace preserved)
-occupation = software    engineer
-
-# `age` gets string value &#34;42&#34; (notice it is a string, not a number)
-age = 42
-
-# Common practice is to not use spaces around the `=` in an assignment
-CC=gcc
-</code></pre><ul>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-makefile" data-lang="makefile"><span class="line"><span class="cl"><span class="c"># `name` gets the string value &#34;beau carlborg&#34;
+</span></span></span><span class="line"><span class="cl"><span class="nv">name</span> <span class="o">=</span> beau carlborg
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c"># `location` gets the value &#34;oakland&#34; (leading whitespace is ignored)
+</span></span></span><span class="line"><span class="cl"><span class="nv">location</span> <span class="o">=</span>            oakland
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c"># `occupation` gets the string value &#34;software    engineer&#34; (internal whitespace preserved)
+</span></span></span><span class="line"><span class="cl"><span class="nv">occupation</span> <span class="o">=</span> software    engineer
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c"># `age` gets string value &#34;42&#34; (notice it is a string, not a number)
+</span></span></span><span class="line"><span class="cl"><span class="nv">age</span> <span class="o">=</span> <span class="m">42</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c"># Common practice is to not use spaces around the `=` in an assignment
+</span></span></span><span class="line"><span class="cl"><span class="nv">CC</span><span class="o">=</span>gcc
+</span></span></code></pre></div><ul>
 <li>References:
 <ul>
 <li>Make documentation — <a href="https://www.gnu.org/software/make/manual/make.html#Basics">Chapter 6.1: Basics of Variable Definitions</a></li>
@@ -329,22 +329,22 @@ CC=gcc
 <li>The variables you declare can be used in any part of a makefile. The definitions of other rules, targets, prerequisites, recipes, you name it.</li>
 <li>The syntax for referencing a variable is as follows:</li>
 </ul>
-<pre tabindex="0"><code>$(variable_name)
-
-# or alternatively
-${variable_name}
-
-# Or, for single character variable names only
-$v
-</code></pre><ul>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-makefile" data-lang="makefile"><span class="line"><span class="cl"><span class="k">$(</span><span class="nv">variable_name</span><span class="k">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c"># or alternatively
+</span></span></span><span class="line"><span class="cl"><span class="err">${variable_name}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c"># Or, for single character variable names only
+</span></span></span><span class="line"><span class="cl"><span class="err">$v</span>
+</span></span></code></pre></div><ul>
 <li>⚠️ The single character variable reference is a common source of bugs for those new to writing <code>makefiles</code>.</li>
 </ul>
-<pre tabindex="0"><code># This may look like a valid variable reference for the variable `foo`
-$foo
-
-# But, in fact, make treats this reference as if it were
-$(f)oo
-</code></pre><ul>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-makefile" data-lang="makefile"><span class="line"><span class="cl"><span class="c"># This may look like a valid variable reference for the variable `foo`
+</span></span></span><span class="line"><span class="cl"><span class="err">$foo</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c"># But, in fact, make treats this reference as if it were
+</span></span></span><span class="line"><span class="cl"><span class="k">$(</span><span class="nv">f</span><span class="k">)</span><span class="err">oo</span>
+</span></span></code></pre></div><ul>
 <li>Variable names can be referenced in targets, prerequisites, or recipes.</li>
 </ul>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-makefile" data-lang="makefile"><span class="line"><span class="cl"><span class="nv">TARGET_NAME</span><span class="o">=</span>main
@@ -400,10 +400,10 @@ $(f)oo
 <li>Make provides a set of functions that can modify text values. Functions can be invoked anywhere that a variable can be referenced.</li>
 <li>The basic function invocation syntax is as follows:</li>
 </ul>
-<pre tabindex="0"><code>$(function_name argument1,argument2,argument3)
-
-${function_name argument1,argument2,argument3}
-</code></pre><ul>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-makefile" data-lang="makefile"><span class="line"><span class="cl"><span class="k">$(</span><span class="nv">function_name</span> <span class="nv">argument</span>1,<span class="nv">argument</span>2,<span class="nv">argument</span>3<span class="k">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="err">${function_name</span> <span class="err">argument1,argument2,argument3}</span>
+</span></span></code></pre></div><ul>
 <li>In a function call, the function name and the arguments are separated by one or many whitespace characters and the function arguments are separated by commas.
 <ul>
 <li>⚠️ This syntax makes passing (1) leading whitespace in your first argument (2) a comma in any of your arguments (3) an unmatched parenthesis in your arguments rather difficult.</li>
