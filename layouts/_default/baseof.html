@@ -7,6 +7,7 @@
     <meta name="og:description" content="{{ if .IsPage }}{{ .Summary | plainify | truncate 200 }}{{ else }}{{ site.Params.description }}{{ end }}">
   </head>
   <body>
+    {{ partial "theme-switcher.html" . }}
     {{ block "header" . }}{{ end }}
     <main>
       {{ block "main" . }}{{ end }}

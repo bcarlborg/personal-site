@@ -2,7 +2,7 @@
 <html lang="en">
   <head>
     
-<link rel="stylesheet" type="text/css" href="/css/global-styles.7621dc072f5060a3f100fd589e2b5fc4d88c11fc98c5079d73e318b7cce632f5.css">
+<link rel="stylesheet" type="text/css" href="/css/global-styles.03fc16c0c45032bb05d928cde3b2314996793dacbb31752260a4cc8b4b3da83e.css">
 
 <link rel="stylesheet" type="text/css" href="/css/syntax.101376d97781d76d3721a0187f3d2c69e4915ec48a124d0882a700a6271ee77f.css">
 <link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon-32-32.png?v=2">
@@ -21,6 +21,67 @@ This is an h3 # Headings at h2 and h3 levels appear in the table of contents.
 Text # Regular paragraph …">
   </head>
   <body>
+    <div class="theme-switcher">
+  <label class="theme-switcher-label">Theme:</label>
+  <select id="theme-select">
+    <option value="mistyrose">Mistyrose</option>
+    <option value="midnight-flora">Midnight Flora</option>
+  </select>
+</div>
+
+<script>
+(function() {
+  var themes = {
+    'mistyrose': {
+      '--color-text': '#1a1a1a',
+      '--color-title': '#d2c4ff',
+      '--color-bg': '#ffe4e1',
+      '--color-metadata': '#ffd4d4',
+      '--color-link': '#8c2626',
+      '--color-code-bg': '#fecbcb',
+      '--color-tag-writing': '#d2c4ff',
+      '--color-tag-project': '#c4e0d2',
+      '--color-tag-reading': '#c4d4e8'
+    },
+    'midnight-flora': {
+      '--color-text': '#e8dcc8',
+      '--color-title': '#4a3666',
+      '--color-bg': '#1e1528',
+      '--color-metadata': '#2a1f38',
+      '--color-link': '#d4a0d0',
+      '--color-code-bg': '#2a1f38',
+      '--color-tag-writing': '#4a3666',
+      '--color-tag-project': '#1e3a2a',
+      '--color-tag-reading': '#1e2a3a'
+    }
+  };
+
+  function applyTheme(name) {
+    var vars = themes[name];
+    if (!vars) return;
+    Object.keys(vars).forEach(function(v) {
+      document.documentElement.style.setProperty(v, vars[v]);
+    });
+    
+    document.querySelectorAll('.theme-picker input[type="color"]').forEach(function(input) {
+      if (vars[input.dataset.var]) input.value = vars[input.dataset.var];
+    });
+  }
+
+  var select = document.getElementById('theme-select');
+  var saved = localStorage.getItem('theme');
+  if (saved && themes[saved]) {
+    select.value = saved;
+    applyTheme(saved);
+  }
+
+  select.addEventListener('change', function() {
+    localStorage.setItem('theme', select.value);
+    applyTheme(select.value);
+  });
+})();
+</script>
+
     
 <header>
   <a href="/">⏎ back home</a>
@@ -31,38 +92,33 @@ Text # Regular paragraph …">
 <article>
   <h1 class="article-title">Theme Demo</h1>
 
-  <p>This page demonstrates all the visual components used on this site. Use the color pickers to try different themes — changes are live but not saved.</p>
+  <p>This page demonstrates all the visual components used on this site. Use the theme dropdown above to switch presets, or fine-tune individual colors below.</p>
 
-  <h2 id="theme-picker">Theme Picker <a class="heading-anchor" href="#theme-picker">#</a></h2>
+  <h2 id="color-picker">Color Picker <a class="heading-anchor" href="#color-picker">#</a></h2>
   <div class="theme-picker">
     <div class="theme-picker-row">
+      <label><input type="color" data-var="--color-text" value="#1a1a1a"> Text</label>
       <label><input type="color" data-var="--color-bg" value="#ffe4e1"> Background</label>
       <label><input type="color" data-var="--color-title" value="#d2c4ff"> Title bar</label>
-      <label><input type="color" data-var="--color-metadata" value="#ffd4d4"> TOC</label>
       <label><input type="color" data-var="--color-link" value="#8c2626"> Links</label>
     </div>
     <div class="theme-picker-row">
+      <label><input type="color" data-var="--color-metadata" value="#ffd4d4"> TOC</label>
       <label><input type="color" data-var="--color-code-bg" value="#fecbcb"> Code blocks</label>
       <label><input type="color" data-var="--color-tag-writing" value="#d2c4ff"> Writing tag</label>
       <label><input type="color" data-var="--color-tag-project" value="#c4e0d2"> Project tag</label>
       <label><input type="color" data-var="--color-tag-reading" value="#c4d4e8"> Reading tag</label>
     </div>
-    <button id="theme-reset">Reset to defaults</button>
   </div>
 
   <script>
   (function() {
-    var defaults = {};
     document.querySelectorAll('.theme-picker input[type="color"]').forEach(function(input) {
-      defaults[input.dataset.var] = input.value;
+      
+      var current = getComputedStyle(document.documentElement).getPropertyValue(input.dataset.var).trim();
+      if (current && current.startsWith('#')) input.value = current;
       input.addEventListener('input', function() {
         document.documentElement.style.setProperty(input.dataset.var, input.value);
-      });
-    });
-    document.getElementById('theme-reset').addEventListener('click', function() {
-      Object.keys(defaults).forEach(function(v) {
-        document.documentElement.style.setProperty(v, defaults[v]);
-        document.querySelector('input[data-var="' + v + '"]').value = defaults[v];
       });
     });
   })();

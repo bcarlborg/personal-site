@@ -1,4 +1,5 @@
 :root {
+  --color-text: #1a1a1a;
   --color-title: #d2c4ff;
   --color-bg: #ffe4e1;
   --color-metadata: #ffd4d4;
@@ -32,6 +33,7 @@ body {
   flex-direction: column;
   align-items: center;
   background: var(--color-bg);
+  color: var(--color-text);
 }
 
 header {
@@ -45,6 +47,25 @@ main {
 
 footer {
   width: 100%;
+}
+
+/* Theme switcher */
+
+.theme-switcher {
+  width: 100%;
+  text-align: right;
+  margin-bottom: 0.5em;
+  font-size: 0.85em;
+  opacity: 0.6;
+}
+
+.theme-switcher select {
+  font-family: inherit;
+  font-size: inherit;
+  background: var(--color-bg);
+  color: var(--color-text);
+  border: 1px solid rgba(128, 128, 128, 0.3);
+  padding: 0.2em 0.4em;
 }
 
 /* Homepage title bar */
