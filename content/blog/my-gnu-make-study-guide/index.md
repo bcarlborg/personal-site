@@ -210,7 +210,7 @@ CC=gcc
 - The variables you declare can be used in any part of a makefile. The definitions of other rules, targets, prerequisites, recipes, you name it.
 - The syntax for referencing a variable is as follows:
 
-```
+```makefile
 $(variable_name)
 
 # or alternatively
@@ -222,7 +222,7 @@ $v
 
 - ⚠️ The single character variable reference is a common source of bugs for those new to writing `makefiles`.
 
-```
+```makefile
 # This may look like a valid variable reference for the variable `foo`
 $foo
 
@@ -277,7 +277,7 @@ helper.o: helper.c
 - Make provides a set of functions that can modify text values. Functions can be invoked anywhere that a variable can be referenced.
 - The basic function invocation syntax is as follows:
 
-```
+```makefile
 $(function_name argument1,argument2,argument3)
 
 ${function_name argument1,argument2,argument3}
@@ -652,7 +652,7 @@ log.txt: FORCE
   - Some tools will process your source files and extract the appropriate make rules from them. The include mechanism allows you to incorporated those generated make rules into your build process dynamically.
   - The syntax for including other makefiles in your current makefile is as follows:
 
-```
+```makefile
 include some_makefile.mk some_other_makefile.mk
 ```
 

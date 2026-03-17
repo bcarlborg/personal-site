@@ -4,7 +4,7 @@
     
 <link rel="stylesheet" type="text/css" href="/css/global-styles.fa69bf432034b2b1284c7542f68e9654e61ffc308c1ac1add1bcb58b7ec23de1.css">
 
-<link rel="stylesheet" type="text/css" href="/css/syntax.ffa9cefad36c07bbdc0138b7503df8bdb3c7acca0cc45262bd5e2ef778a88b57.css">
+<link rel="stylesheet" type="text/css" href="/css/syntax.0510a70d156420c484fed4ff03403b78160863116d4adc3c5bce242e172eb42c.css">
 <link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon-32-32.png?v=2">
 <link rel="icon" type="image/png" sizes="96x96" href="/assets/favicon-96-96.png?v=2">
 <link rel="icon" type="image/png" sizes="180x180" href="/assets/favicon-180-180.png?v=2">
@@ -329,22 +329,22 @@ make: `main&#39; is up to date.
 <li>The variables you declare can be used in any part of a makefile. The definitions of other rules, targets, prerequisites, recipes, you name it.</li>
 <li>The syntax for referencing a variable is as follows:</li>
 </ul>
-<pre tabindex="0"><code>$(variable_name)
-
-# or alternatively
-${variable_name}
-
-# Or, for single character variable names only
-$v
-</code></pre><ul>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-makefile" data-lang="makefile"><span class="line"><span class="cl"><span class="k">$(</span><span class="nv">variable_name</span><span class="k">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c"># or alternatively
+</span></span></span><span class="line"><span class="cl"><span class="err">${variable_name}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c"># Or, for single character variable names only
+</span></span></span><span class="line"><span class="cl"><span class="err">$v</span>
+</span></span></code></pre></div><ul>
 <li>⚠️ The single character variable reference is a common source of bugs for those new to writing <code>makefiles</code>.</li>
 </ul>
-<pre tabindex="0"><code># This may look like a valid variable reference for the variable `foo`
-$foo
-
-# But, in fact, make treats this reference as if it were
-$(f)oo
-</code></pre><ul>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-makefile" data-lang="makefile"><span class="line"><span class="cl"><span class="c"># This may look like a valid variable reference for the variable `foo`
+</span></span></span><span class="line"><span class="cl"><span class="err">$foo</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c"># But, in fact, make treats this reference as if it were
+</span></span></span><span class="line"><span class="cl"><span class="k">$(</span><span class="nv">f</span><span class="k">)</span><span class="err">oo</span>
+</span></span></code></pre></div><ul>
 <li>Variable names can be referenced in targets, prerequisites, or recipes.</li>
 </ul>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-makefile" data-lang="makefile"><span class="line"><span class="cl"><span class="nv">TARGET_NAME</span><span class="o">=</span>main
@@ -400,10 +400,10 @@ $(f)oo
 <li>Make provides a set of functions that can modify text values. Functions can be invoked anywhere that a variable can be referenced.</li>
 <li>The basic function invocation syntax is as follows:</li>
 </ul>
-<pre tabindex="0"><code>$(function_name argument1,argument2,argument3)
-
-${function_name argument1,argument2,argument3}
-</code></pre><ul>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-makefile" data-lang="makefile"><span class="line"><span class="cl"><span class="k">$(</span><span class="nv">function_name</span> <span class="nv">argument</span>1,<span class="nv">argument</span>2,<span class="nv">argument</span>3<span class="k">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="err">${function_name</span> <span class="err">argument1,argument2,argument3}</span>
+</span></span></code></pre></div><ul>
 <li>In a function call, the function name and the arguments are separated by one or many whitespace characters and the function arguments are separated by commas.
 <ul>
 <li>⚠️ This syntax makes passing (1) leading whitespace in your first argument (2) a comma in any of your arguments (3) an unmatched parenthesis in your arguments rather difficult.</li>
@@ -812,8 +812,8 @@ ${function_name argument1,argument2,argument3}
 </ul>
 </li>
 </ul>
-<pre tabindex="0"><code>include some_makefile.mk some_other_makefile.mk
-</code></pre><ul>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-makefile" data-lang="makefile"><span class="line"><span class="cl"><span class="err">include</span> <span class="err">some_makefile.mk</span> <span class="err">some_other_makefile.mk</span>
+</span></span></code></pre></div><ul>
 <li>
 <p><strong>Recursively calling <code>makefiles</code></strong></p>
 <ul>
