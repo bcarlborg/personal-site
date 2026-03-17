@@ -161,7 +161,8 @@ article h3 .heading-anchor:hover {
   }
 }
 
-article img {
+article > img,
+article > p > img {
   width: 100%;
 }
 
