@@ -89,7 +89,7 @@ footer {
 }
 
 .post-filter.active:hover {
-  background: var(--color-link);
+  background: rgba(140, 38, 38, 0.8);
 }
 
 /* Post tags */
