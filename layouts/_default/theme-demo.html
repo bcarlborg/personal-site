@@ -1,0 +1,21 @@
+{{ define "header" }}
+<header>
+  <a href="/">⏎ back home</a>
+</header>
+{{ end }}
+
+{{ define "main" }}
+<article>
+  <h1 class="article-title">{{ .Title }}</h1>
+
+  <p>This page demonstrates all the visual components used on this site.</p>
+
+  <h2 id="homepage-header">Homepage Header <a class="heading-anchor" href="#homepage-header">#</a></h2>
+  {{ partial "index-header.html" . }}
+
+  <h2 id="filter-buttons">Filter Buttons <a class="heading-anchor" href="#filter-buttons">#</a></h2>
+  {{ partial "filter-buttons.html" . }}
+
+  {{ .Content }}
+</article>
+{{ end }}

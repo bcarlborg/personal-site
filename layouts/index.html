@@ -1,11 +1,5 @@
 {{ define "header" }}
-<header>
-  <div id="index-title-container">
-    <h1 id="index-title-text">Beau Carlborg</h1>
-    <img id="index-title-image" src="/assets/favicon-96-96.png?v=2">
-  </div>
-  <p>👋 Hi there, my name is Beau (pronounced like go).</p>
-</header>
+{{ partial "index-header.html" . }}
 {{ end }}
 
 {{ define "main" }}
@@ -22,12 +16,7 @@
 Send me an email at <a href="mailto:bcarlborg@gmail.com">bcarlborg@gmail.com</a>. Start the subject line with "From beau-carlborg.com" so I know how you found me.</p>
 
 <h2>Posts</h2>
-<div class="post-filters">
-  <button class="post-filter active" data-filter="all">All</button>
-  <button class="post-filter" data-filter="reading">Reading</button>
-  <button class="post-filter" data-filter="writing">Writing</button>
-  <button class="post-filter" data-filter="project">Projects</button>
-</div>
+{{ partial "filter-buttons.html" . }}
 
 {{ $allPages := where site.RegularPages "Section" "blog" }}
 <div id="post-list">

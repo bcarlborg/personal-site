@@ -15,9 +15,10 @@
 
     <title>Theme Demo - Beau Carlborg</title>
     <meta name="og:title" content="Theme Demo">
-    <meta name="og:description" content="This page demonstrates all the visual components used on this site. It is not linked from the homepage.
+    <meta name="og:description" content="Post Tags # Writing Project Reading
 Headings # Headings get anchor links on hover. This is an h2.
-This is an h3 # Headings at h2 and …">
+This is an h3 # Headings at h2 and h3 levels appear in the table of contents.
+Text # Regular paragraph …">
   </head>
   <body>
     
@@ -29,41 +30,38 @@ This is an h3 # Headings at h2 and …">
       
 <article>
   <h1 class="article-title">Theme Demo</h1>
-  <div class="article-metadata">
-    <span class="post-tag post-tag-writing">Writing</span>
-    <span class="article-date">January 1, 2000</span>
-    
+
+  <p>This page demonstrates all the visual components used on this site.</p>
+
+  <h2 id="homepage-header">Homepage Header <a class="heading-anchor" href="#homepage-header">#</a></h2>
+  <header>
+  <div id="index-title-container">
+    <h1 id="index-title-text">Beau Carlborg</h1>
+    <img id="index-title-image" src="/assets/favicon-96-96.png?v=2">
   </div>
-  
-  <details class="article-toc">
-    <summary>Table of contents</summary>
-    <nav id="TableOfContents">
-  <ul>
-    <li><a href="#headings">Headings</a>
-      <ul>
-        <li><a href="#this-is-an-h3">This is an h3</a></li>
-      </ul>
-    </li>
-    <li><a href="#text">Text</a></li>
-    <li><a href="#lists">Lists</a></li>
-    <li><a href="#code-blocks">Code Blocks</a></li>
-    <li><a href="#blockquotes">Blockquotes</a></li>
-    <li><a href="#images">Images</a></li>
-    <li><a href="#metadata-styles">Metadata Styles</a></li>
-    <li><a href="#table-of-contents">Table of Contents</a></li>
-    <li><a href="#post-tags">Post Tags</a></li>
-    <li><a href="#filter-buttons">Filter Buttons</a></li>
-  </ul>
-</nav>
-  </details>
-  
-  <p>This page demonstrates all the visual components used on this site. It is not linked from the homepage.</p>
+  <p>👋 Hi there, my name is Beau (pronounced like go).</p>
+</header>
+
+
+  <h2 id="filter-buttons">Filter Buttons <a class="heading-anchor" href="#filter-buttons">#</a></h2>
+  <div class="post-filters">
+  <button class="post-filter active" data-filter="all">All</button>
+  <button class="post-filter" data-filter="reading">Reading</button>
+  <button class="post-filter" data-filter="writing">Writing</button>
+  <button class="post-filter" data-filter="project">Projects</button>
+</div>
+
+
+  <h2 id="post-tags">Post Tags <a class="heading-anchor" href="#post-tags">#</a></h2>
+<p><span class="post-tag post-tag-writing">Writing</span>
+<span class="post-tag post-tag-project">Project</span>
+<span class="post-tag post-tag-reading">Reading</span></p>
 <h2 id="headings">Headings <a class="heading-anchor" href="#headings">#</a></h2>
 <p>Headings get anchor links on hover. This is an h2.</p>
 <h3 id="this-is-an-h3">This is an h3 <a class="heading-anchor" href="#this-is-an-h3">#</a></h3>
 <p>Headings at h2 and h3 levels appear in the table of contents.</p>
 <h2 id="text">Text <a class="heading-anchor" href="#text">#</a></h2>
-<p>Regular paragraph text. The site uses browser default fonts on a mistyrose background. Links look <a href="/blog/theme-demo/">like this</a> and are styled in dark red with underlines.</p>
+<p>Regular paragraph text. The site uses browser default fonts on a mistyrose background. Links look <a href="/theme-demo/">like this</a> and are styled in dark red with underlines.</p>
 <p>Here is some <strong>bold text</strong>, some <em>italic text</em>, and some <code>inline code</code> which gets a pink background.</p>
 <h2 id="lists">Lists <a class="heading-anchor" href="#lists">#</a></h2>
 <p>Unordered list:</p>
@@ -101,21 +99,10 @@ It uses the same pink background but no color tokens.
 <p>This is a blockquote. It could be used for quoting other sources or calling out important information.</p>
 </blockquote>
 <h2 id="images">Images <a class="heading-anchor" href="#images">#</a></h2>
-<p>Images render at full width within the article. Here&rsquo;s how they look (using an existing image from another post):</p>
+<p>Images render at full width within the article:</p>
 <p><img src="/blog/my-gnu-make-study-guide/dependency-graph.png" alt="dependency graph example"></p>
-<h2 id="metadata-styles">Metadata Styles <a class="heading-anchor" href="#metadata-styles">#</a></h2>
-<p>The metadata bar below the title shows the post type tag and date. On reading posts, it also shows source attribution. The metadata has a subtle border with no background.</p>
-<h2 id="table-of-contents">Table of Contents <a class="heading-anchor" href="#table-of-contents">#</a></h2>
-<p>The table of contents (visible above if this page has enough headings) uses a collapsible <code>&lt;details&gt;</code> element. Click &ldquo;Table of contents&rdquo; to expand it.</p>
-<h2 id="post-tags">Post Tags <a class="heading-anchor" href="#post-tags">#</a></h2>
-<p>Tags are colored badges used in the homepage list and in post metadata:</p>
-<ul>
-<li>Writing: purple (<code>#d2c4ff</code>)</li>
-<li>Project: green (<code>#c4e0d2</code>)</li>
-<li>Reading: blue (<code>#c4d4e8</code>)</li>
-</ul>
-<h2 id="filter-buttons">Filter Buttons <a class="heading-anchor" href="#filter-buttons">#</a></h2>
-<p>The homepage has filter buttons (All, Reading, Writing, Projects) that toggle post visibility. They use a dimmed version of the link color with a subtle hover state.</p>
+<h2 id="metadata-bar">Metadata Bar <a class="heading-anchor" href="#metadata-bar">#</a></h2>
+<p>The metadata bar below post titles shows the post type tag and date, with a subtle border and no background. On reading posts, it also includes source attribution.</p>
 
 </article>
 
