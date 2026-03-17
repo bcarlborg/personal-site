@@ -71,8 +71,8 @@ footer {
 
 .post-filter {
   background: none;
-  border: 1px solid rgba(140, 38, 38, 0.4);
-  color: rgba(140, 38, 38, 0.6);
+  border: 1px solid rgba(140, 38, 38, 0.5);
+  color: rgba(140, 38, 38, 0.7);
   padding: 0.3em 0.8em;
   cursor: pointer;
   font-size: inherit;
@@ -84,7 +84,7 @@ footer {
 }
 
 .post-filter.active {
-  background: rgba(140, 38, 38, 0.6);
+  background: rgba(140, 38, 38, 0.7);
   color: var(--color-bg);
 }
 
