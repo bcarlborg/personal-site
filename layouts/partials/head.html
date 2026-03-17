@@ -2,6 +2,8 @@
 <link rel="stylesheet" type="text/css" href="{{ $styles.RelPermalink }}">
 {{ $syntax := resources.Get "css/syntax.css" | fingerprint }}
 <link rel="stylesheet" type="text/css" href="{{ $syntax.RelPermalink }}">
+{{ $syntaxDark := resources.Get "css/syntax-dark.css" | fingerprint }}
+<link rel="stylesheet" type="text/css" href="{{ $syntaxDark.RelPermalink }}">
 <link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon-32-32.png?v=2">
 <link rel="icon" type="image/png" sizes="96x96" href="/assets/favicon-96-96.png?v=2">
 <link rel="icon" type="image/png" sizes="180x180" href="/assets/favicon-180-180.png?v=2">

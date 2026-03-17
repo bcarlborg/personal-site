@@ -11,57 +11,72 @@
 (function() {
   var themes = {
     'mistyrose': {
-      '--color-text': '#1a1a1a',
-      '--color-title': '#d2c4ff',
-      '--color-bg': '#ffe4e1',
-      '--color-metadata': '#ffd4d4',
-      '--color-link': '#8c2626',
-      '--color-code-bg': '#fecbcb',
-      '--color-tag-writing': '#d2c4ff',
-      '--color-tag-project': '#c4e0d2',
-      '--color-tag-reading': '#c4d4e8',
-      '--color-filter-btn': '#b35a5a',
-      '--color-filter-btn-active': '#9c3a3a'
+      syntax: 'light',
+      vars: {
+        '--color-text': '#1a1a1a',
+        '--color-title': '#d2c4ff',
+        '--color-bg': '#ffe4e1',
+        '--color-metadata': '#ffd4d4',
+        '--color-link': '#8c2626',
+        '--color-code-bg': '#fecbcb',
+        '--color-tag-writing': '#d2c4ff',
+        '--color-tag-project': '#c4e0d2',
+        '--color-tag-reading': '#c4d4e8',
+        '--color-filter-btn': '#b35a5a',
+        '--color-filter-btn-active': '#9c3a3a'
+      }
     },
     'tequila-sunrise': {
-      '--color-text': '#3b2014',
-      '--color-title': '#e8814a',
-      '--color-bg': '#fae5c8',
-      '--color-metadata': '#f5d6a8',
-      '--color-link': '#b5451b',
-      '--color-code-bg': '#f2d0a0',
-      '--color-tag-writing': '#e8a44a',
-      '--color-tag-project': '#9ec4a0',
-      '--color-tag-reading': '#a8c4d4',
-      '--color-filter-btn': '#c06030',
-      '--color-filter-btn-active': '#a04820'
+      syntax: 'light',
+      vars: {
+        '--color-text': '#3b2014',
+        '--color-title': '#e8814a',
+        '--color-bg': '#fae5c8',
+        '--color-metadata': '#f5d6a8',
+        '--color-link': '#b5451b',
+        '--color-code-bg': '#f2d0a0',
+        '--color-tag-writing': '#e8a44a',
+        '--color-tag-project': '#9ec4a0',
+        '--color-tag-reading': '#a8c4d4',
+        '--color-filter-btn': '#c06030',
+        '--color-filter-btn-active': '#a04820'
+      }
     },
     'midnight-flora': {
-      '--color-text': '#e8dcc8',
-      '--color-title': '#4a3666',
-      '--color-bg': '#1e1528',
-      '--color-metadata': '#2a1f38',
-      '--color-link': '#d4a0d0',
-      '--color-code-bg': '#2a1f38',
-      '--color-tag-writing': '#4a3666',
-      '--color-tag-project': '#1e3a2a',
-      '--color-tag-reading': '#1e2a3a',
-      '--color-filter-btn': '#c090bc',
-      '--color-filter-btn-active': '#a870a4'
+      syntax: 'dark',
+      vars: {
+        '--color-text': '#e8dcc8',
+        '--color-title': '#4a3666',
+        '--color-bg': '#1e1528',
+        '--color-metadata': '#2a1f38',
+        '--color-link': '#d4a0d0',
+        '--color-code-bg': '#2a1f38',
+        '--color-tag-writing': '#4a3666',
+        '--color-tag-project': '#1e3a2a',
+        '--color-tag-reading': '#1e2a3a',
+        '--color-filter-btn': '#c090bc',
+        '--color-filter-btn-active': '#a870a4'
+      }
     }
   };
 
   function applyTheme(name) {
-    var vars = themes[name];
-    if (!vars) return;
-    Object.keys(vars).forEach(function(v) {
-      document.documentElement.style.setProperty(v, vars[v]);
+    var theme = themes[name];
+    if (!theme) return;
+    var root = document.documentElement;
+    Object.keys(theme.vars).forEach(function(v) {
+      root.style.setProperty(v, theme.vars[v]);
     });
+    root.classList.remove('syntax-light', 'syntax-dark');
+    root.classList.add('syntax-' + theme.syntax);
     // Update color pickers on theme demo page if present
     document.querySelectorAll('.theme-picker input[type="color"]').forEach(function(input) {
-      if (vars[input.dataset.var]) input.value = vars[input.dataset.var];
+      if (theme.vars[input.dataset.var]) input.value = theme.vars[input.dataset.var];
     });
   }
+
+  // Apply default syntax class immediately
+  document.documentElement.classList.add('syntax-light');
 
   var select = document.getElementById('theme-select');
   var saved = localStorage.getItem('theme');

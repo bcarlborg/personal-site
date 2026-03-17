@@ -4,7 +4,9 @@
     
 <link rel="stylesheet" type="text/css" href="/css/global-styles.26e0e4d4ad12b4022e89a0391fe575e95642de70b997b95b923bf59047a0f23c.css">
 
-<link rel="stylesheet" type="text/css" href="/css/syntax.101376d97781d76d3721a0187f3d2c69e4915ec48a124d0882a700a6271ee77f.css">
+<link rel="stylesheet" type="text/css" href="/css/syntax.545cfc853c06988dac1539f764fddc9925438f7e21524fd7439b900c0fc3adef.css">
+
+<link rel="stylesheet" type="text/css" href="/css/syntax-dark.412403ef92fd4c0127e8bc5f8e0e0d408b138bc6568b7da63cfd596265cfd017.css">
 <link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon-32-32.png?v=2">
 <link rel="icon" type="image/png" sizes="96x96" href="/assets/favicon-96-96.png?v=2">
 <link rel="icon" type="image/png" sizes="180x180" href="/assets/favicon-180-180.png?v=2">
@@ -31,57 +33,72 @@
 (function() {
   var themes = {
     'mistyrose': {
-      '--color-text': '#1a1a1a',
-      '--color-title': '#d2c4ff',
-      '--color-bg': '#ffe4e1',
-      '--color-metadata': '#ffd4d4',
-      '--color-link': '#8c2626',
-      '--color-code-bg': '#fecbcb',
-      '--color-tag-writing': '#d2c4ff',
-      '--color-tag-project': '#c4e0d2',
-      '--color-tag-reading': '#c4d4e8',
-      '--color-filter-btn': '#b35a5a',
-      '--color-filter-btn-active': '#9c3a3a'
+      syntax: 'light',
+      vars: {
+        '--color-text': '#1a1a1a',
+        '--color-title': '#d2c4ff',
+        '--color-bg': '#ffe4e1',
+        '--color-metadata': '#ffd4d4',
+        '--color-link': '#8c2626',
+        '--color-code-bg': '#fecbcb',
+        '--color-tag-writing': '#d2c4ff',
+        '--color-tag-project': '#c4e0d2',
+        '--color-tag-reading': '#c4d4e8',
+        '--color-filter-btn': '#b35a5a',
+        '--color-filter-btn-active': '#9c3a3a'
+      }
     },
     'tequila-sunrise': {
-      '--color-text': '#3b2014',
-      '--color-title': '#e8814a',
-      '--color-bg': '#fae5c8',
-      '--color-metadata': '#f5d6a8',
-      '--color-link': '#b5451b',
-      '--color-code-bg': '#f2d0a0',
-      '--color-tag-writing': '#e8a44a',
-      '--color-tag-project': '#9ec4a0',
-      '--color-tag-reading': '#a8c4d4',
-      '--color-filter-btn': '#c06030',
-      '--color-filter-btn-active': '#a04820'
+      syntax: 'light',
+      vars: {
+        '--color-text': '#3b2014',
+        '--color-title': '#e8814a',
+        '--color-bg': '#fae5c8',
+        '--color-metadata': '#f5d6a8',
+        '--color-link': '#b5451b',
+        '--color-code-bg': '#f2d0a0',
+        '--color-tag-writing': '#e8a44a',
+        '--color-tag-project': '#9ec4a0',
+        '--color-tag-reading': '#a8c4d4',
+        '--color-filter-btn': '#c06030',
+        '--color-filter-btn-active': '#a04820'
+      }
     },
     'midnight-flora': {
-      '--color-text': '#e8dcc8',
-      '--color-title': '#4a3666',
-      '--color-bg': '#1e1528',
-      '--color-metadata': '#2a1f38',
-      '--color-link': '#d4a0d0',
-      '--color-code-bg': '#2a1f38',
-      '--color-tag-writing': '#4a3666',
-      '--color-tag-project': '#1e3a2a',
-      '--color-tag-reading': '#1e2a3a',
-      '--color-filter-btn': '#c090bc',
-      '--color-filter-btn-active': '#a870a4'
+      syntax: 'dark',
+      vars: {
+        '--color-text': '#e8dcc8',
+        '--color-title': '#4a3666',
+        '--color-bg': '#1e1528',
+        '--color-metadata': '#2a1f38',
+        '--color-link': '#d4a0d0',
+        '--color-code-bg': '#2a1f38',
+        '--color-tag-writing': '#4a3666',
+        '--color-tag-project': '#1e3a2a',
+        '--color-tag-reading': '#1e2a3a',
+        '--color-filter-btn': '#c090bc',
+        '--color-filter-btn-active': '#a870a4'
+      }
     }
   };
 
   function applyTheme(name) {
-    var vars = themes[name];
-    if (!vars) return;
-    Object.keys(vars).forEach(function(v) {
-      document.documentElement.style.setProperty(v, vars[v]);
+    var theme = themes[name];
+    if (!theme) return;
+    var root = document.documentElement;
+    Object.keys(theme.vars).forEach(function(v) {
+      root.style.setProperty(v, theme.vars[v]);
     });
+    root.classList.remove('syntax-light', 'syntax-dark');
+    root.classList.add('syntax-' + theme.syntax);
     
     document.querySelectorAll('.theme-picker input[type="color"]').forEach(function(input) {
-      if (vars[input.dataset.var]) input.value = vars[input.dataset.var];
+      if (theme.vars[input.dataset.var]) input.value = theme.vars[input.dataset.var];
     });
   }
+
+  
+  document.documentElement.classList.add('syntax-light');
 
   var select = document.getElementById('theme-select');
   var saved = localStorage.getItem('theme');
