@@ -8,6 +8,8 @@
   --color-tag-writing: #d2c4ff;
   --color-tag-project: #c4e0d2;
   --color-tag-reading: #c4d4e8;
+  --color-filter-btn: #b35a5a;
+  --color-filter-btn-active: #9c3a3a;
 }
 
 a {
@@ -96,25 +98,27 @@ footer {
 
 .post-filter {
   background: none;
-  border: 1px solid rgba(140, 38, 38, 0.5);
-  color: rgba(140, 38, 38, 0.7);
+  border: 1px solid var(--color-filter-btn);
+  color: var(--color-filter-btn);
   padding: 0.3em 0.8em;
   cursor: pointer;
   font-size: inherit;
   font-family: inherit;
+  opacity: 0.7;
 }
 
 .post-filter:hover {
-  background: rgba(140, 38, 38, 0.1);
+  opacity: 1;
 }
 
 .post-filter.active {
-  background: rgba(140, 38, 38, 0.7);
+  background: var(--color-filter-btn-active);
   color: var(--color-bg);
+  opacity: 1;
 }
 
 .post-filter.active:hover {
-  background: rgba(140, 38, 38, 0.8);
+  background: var(--color-filter-btn);
 }
 
 /* Post tags */
