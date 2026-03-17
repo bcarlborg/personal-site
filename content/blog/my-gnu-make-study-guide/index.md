@@ -210,7 +210,7 @@ CC=gcc
 - The variables you declare can be used in any part of a makefile. The definitions of other rules, targets, prerequisites, recipes, you name it.
 - The syntax for referencing a variable is as follows:
 
-```makefile
+```
 $(variable_name)
 
 # or alternatively
@@ -222,7 +222,7 @@ $v
 
 - ⚠️ The single character variable reference is a common source of bugs for those new to writing `makefiles`.
 
-```makefile
+```
 # This may look like a valid variable reference for the variable `foo`
 $foo
 

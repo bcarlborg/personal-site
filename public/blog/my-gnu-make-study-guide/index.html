@@ -329,22 +329,22 @@ make: `main&#39; is up to date.
 <li>The variables you declare can be used in any part of a makefile. The definitions of other rules, targets, prerequisites, recipes, you name it.</li>
 <li>The syntax for referencing a variable is as follows:</li>
 </ul>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-makefile" data-lang="makefile"><span class="line"><span class="cl"><span class="k">$(</span><span class="nv">variable_name</span><span class="k">)</span>
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="c"># or alternatively
-</span></span></span><span class="line"><span class="cl"><span class="err">${variable_name}</span>
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="c"># Or, for single character variable names only
-</span></span></span><span class="line"><span class="cl"><span class="err">$v</span>
-</span></span></code></pre></div><ul>
+<pre tabindex="0"><code>$(variable_name)
+
+# or alternatively
+${variable_name}
+
+# Or, for single character variable names only
+$v
+</code></pre><ul>
 <li>⚠️ The single character variable reference is a common source of bugs for those new to writing <code>makefiles</code>.</li>
 </ul>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-makefile" data-lang="makefile"><span class="line"><span class="cl"><span class="c"># This may look like a valid variable reference for the variable `foo`
-</span></span></span><span class="line"><span class="cl"><span class="err">$foo</span>
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="c"># But, in fact, make treats this reference as if it were
-</span></span></span><span class="line"><span class="cl"><span class="k">$(</span><span class="nv">f</span><span class="k">)</span><span class="err">oo</span>
-</span></span></code></pre></div><ul>
+<pre tabindex="0"><code># This may look like a valid variable reference for the variable `foo`
+$foo
+
+# But, in fact, make treats this reference as if it were
+$(f)oo
+</code></pre><ul>
 <li>Variable names can be referenced in targets, prerequisites, or recipes.</li>
 </ul>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-makefile" data-lang="makefile"><span class="line"><span class="cl"><span class="nv">TARGET_NAME</span><span class="o">=</span>main
