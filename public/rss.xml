@@ -6,6 +6,15 @@
     <description>The personal website of Beau Carlborg</description>
     <atom:link href="https://www.beau-carlborg.com/rss.xml" rel="self" type="application/rss+xml" />
     <item>
+      <title>Propositional and Predicate Calculus: 2.5 The expressive power of connectives</title>
+      <link>https://www.beau-carlborg.com/blog/expressive-power-connectives/</link>
+      <guid isPermaLink="true">https://www.beau-carlborg.com/blog/expressive-power-connectives/</guid>
+      <description>Disclaimer: this book in particular is not in my wheelhouse. I am using these notes and reading posts to learn the material better. This post is going to be a bit sloppier and less refined than others I usually like to post.
+With the foundations we&amp;amp;rsquo;ve established about propositional formulas and their equivalence in the previous parts of the chapter, this section shows us how we can think more generally about logical connectives beyond ¬, ∧, ∨.
+</description>
+      <pubDate>Sun, 22 Mar 2026 00:00:00 &#43;0000</pubDate>
+    </item>
+    <item>
       <title>Propositional and Predicate Calculus: 2.4 Logical Equivalence</title>
       <link>https://www.beau-carlborg.com/blog/logical-equivalence/</link>
       <guid isPermaLink="true">https://www.beau-carlborg.com/blog/logical-equivalence/</guid>
