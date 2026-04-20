@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
+    
+<link rel="stylesheet" type="text/css" href="/css/global-styles.cd9eabe0a9396a220733b25b107d594cde65f94c5aeec87a49856940a86d9529.css">
+
+<link rel="stylesheet" type="text/css" href="/css/syntax.545cfc853c06988dac1539f764fddc9925438f7e21524fd7439b900c0fc3adef.css">
+
+<link rel="stylesheet" type="text/css" href="/css/syntax-dark.412403ef92fd4c0127e8bc5f8e0e0d408b138bc6568b7da63cfd596265cfd017.css">
+<link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon-32-32.png?v=2">
+<link rel="icon" type="image/png" sizes="96x96" href="/assets/favicon-96-96.png?v=2">
+<link rel="icon" type="image/png" sizes="180x180" href="/assets/favicon-180-180.png?v=2">
+<link rel="apple-touch-icon" href="/assets/favicon-180-180.png?v=2">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="alternate" type="application/rss+xml" title="Beau's Blog" href="/rss.xml">
+
+    <title>A model forward overview of propositional logic - Beau Carlborg</title>
+    <meta name="og:title" content="A model forward overview of propositional logic">
+    <meta name="og:description" content="">
+  </head>
+  <body>
+    <div class="theme-switcher">
+  <label class="theme-switcher-label">Theme:</label>
+  <select id="theme-select">
+    <option value="mistyrose">Mistyrose</option>
+    <option value="tequila-sunrise">Tequila Sunrise</option>
+    <option value="midnight-flora">Midnight Flora</option>
+    <option value="fern-hollow">Fern Hollow</option>
+    <option value="granite-creek">Granite Creek</option>
+  </select>
+</div>
+
+<script>
+(function() {
+  var themes = {
+    'mistyrose': {
+      syntax: 'light',
+      vars: {
+        '--color-text': '#1a1a1a',
+        '--color-title': '#d2c4ff',
+        '--color-bg': '#ffe4e1',
+        '--color-metadata': '#ffd4d4',
+        '--color-link': '#8c2626',
+        '--color-code-bg': '#fecbcb',
+        '--color-tag-writing': '#d2c4ff',
+        '--color-tag-project': '#c4e0d2',
+        '--color-tag-reading': '#c4d4e8',
+        '--color-filter-btn': '#b35a5a',
+        '--color-filter-btn-active': '#9c3a3a',
+        '--color-border': '#d4c4c0'
+      }
+    },
+    'tequila-sunrise': {
+      syntax: 'light',
+      vars: {
+        '--color-text': '#3b2014',
+        '--color-title': '#e8814a',
+        '--color-bg': '#fae5c8',
+        '--color-metadata': '#f5d6a8',
+        '--color-link': '#b5451b',
+        '--color-code-bg': '#f2d0a0',
+        '--color-tag-writing': '#e8a44a',
+        '--color-tag-project': '#9ec4a0',
+        '--color-tag-reading': '#a8c4d4',
+        '--color-filter-btn': '#c06030',
+        '--color-filter-btn-active': '#a04820',
+        '--color-border': '#d4b898'
+      }
+    },
+    'midnight-flora': {
+      syntax: 'dark',
+      vars: {
+        '--color-text': '#e8dcc8',
+        '--color-title': '#4a3666',
+        '--color-bg': '#1e1528',
+        '--color-metadata': '#2a1f38',
+        '--color-link': '#d4a0d0',
+        '--color-code-bg': '#2a1f38',
+        '--color-tag-writing': '#4a3666',
+        '--color-tag-project': '#1e3a2a',
+        '--color-tag-reading': '#1e2a3a',
+        '--color-filter-btn': '#c090bc',
+        '--color-filter-btn-active': '#a870a4',
+        '--color-border': '#4a3860'
+      }
+    },
+    'fern-hollow': {
+      syntax: 'dark',
+      vars: {
+        '--color-text': '#b8c8b4',
+        '--color-title': '#1e3820',
+        '--color-bg': '#111c10',
+        '--color-metadata': '#182418',
+        '--color-link': '#7ab06c',
+        '--color-code-bg': '#152014',
+        '--color-tag-writing': '#1e3820',
+        '--color-tag-project': '#2a3820',
+        '--color-tag-reading': '#162a2a',
+        '--color-filter-btn': '#5a9a4e',
+        '--color-filter-btn-active': '#448038',
+        '--color-border': '#2a3e28'
+      }
+    },
+    'granite-creek': {
+      syntax: 'light',
+      vars: {
+        '--color-text': '#2a3040',
+        '--color-title': '#7ec0e0',
+        '--color-bg': '#e4f0f8',
+        '--color-metadata': '#c8e0f0',
+        '--color-link': '#2870a0',
+        '--color-code-bg': '#c4daea',
+        '--color-tag-writing': '#7ec0e0',
+        '--color-tag-project': '#8cc8a8',
+        '--color-tag-reading': '#b0b8d8',
+        '--color-filter-btn': '#3080a8',
+        '--color-filter-btn-active': '#206890',
+        '--color-border': '#98c4dc'
+      }
+    }
+  };
+
+  function applyTheme(name) {
+    var theme = themes[name];
+    if (!theme) return;
+    var root = document.documentElement;
+    Object.keys(theme.vars).forEach(function(v) {
+      root.style.setProperty(v, theme.vars[v]);
+    });
+    root.classList.remove('syntax-light', 'syntax-dark');
+    root.classList.add('syntax-' + theme.syntax);
+    
+    document.querySelectorAll('.theme-picker input[type="color"]').forEach(function(input) {
+      if (theme.vars[input.dataset.var]) input.value = theme.vars[input.dataset.var];
+    });
+  }
+
+  
+  document.documentElement.classList.add('syntax-light');
+
+  var select = document.getElementById('theme-select');
+  var saved = localStorage.getItem('theme');
+  if (saved && themes[saved]) {
+    select.value = saved;
+    applyTheme(saved);
+  }
+
+  select.addEventListener('change', function() {
+    localStorage.setItem('theme', select.value);
+    applyTheme(select.value);
+  });
+})();
+</script>
+
+    
+<header>
+  <a href="/">⏎ back home</a>
+</header>
+
+    <main>
+      
+<article>
+  <h1 class="article-title">A model forward overview of propositional logic</h1>
+  <div class="article-metadata">
+    <span class="post-tag post-tag-writing">Writing</span>
+    <span class="article-date">April 20, 2026</span>
+    
+  </div>
+  
+  
+</article>
+
+    </main>
+    <footer></footer>
+  </body>
+</html>

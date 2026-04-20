@@ -7,10 +7,12 @@ The site is built with [Hugo](https://gohugo.io/) and deployed via Cloudflare Pa
 ## Building
 
 ```bash
-hugo          # Build the site (output goes to public/)
-hugo server   # Live-reloading dev server at http://localhost:1313
+hugo             # Build the site (output goes to public/)
+hugo -D          # also builds drafts
+hugo server      # Live-reloading local server (will rebuild site in memory and serve from there)
+hugo server -D   # also builds drafts
 ```
 
 ## Deployment
 
-Cloudflare Pages is configured to build with Hugo on every push to main. The build command is `hugo` and the publish directory is `public/`.
+Run `hugo` locally to re-generate site then push.
