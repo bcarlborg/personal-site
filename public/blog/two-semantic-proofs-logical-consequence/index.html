@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    
+<link rel="stylesheet" type="text/css" href="/css/global-styles.cd9eabe0a9396a220733b25b107d594cde65f94c5aeec87a49856940a86d9529.css">
+
+<link rel="stylesheet" type="text/css" href="/css/syntax.545cfc853c06988dac1539f764fddc9925438f7e21524fd7439b900c0fc3adef.css">
+
+<link rel="stylesheet" type="text/css" href="/css/syntax-dark.412403ef92fd4c0127e8bc5f8e0e0d408b138bc6568b7da63cfd596265cfd017.css">
+<link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon-32-32.png?v=2">
+<link rel="icon" type="image/png" sizes="96x96" href="/assets/favicon-96-96.png?v=2">
+<link rel="icon" type="image/png" sizes="180x180" href="/assets/favicon-180-180.png?v=2">
+<link rel="apple-touch-icon" href="/assets/favicon-180-180.png?v=2">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="alternate" type="application/rss+xml" title="Beau's Blog" href="/rss.xml">
+
+    <title>Two Semantic Proofs of a Logical Consequence Exercise - Beau Carlborg</title>
+    <meta name="og:title" content="Two Semantic Proofs of a Logical Consequence Exercise">
+    <meta name="og:description" content="In this post I give 2 variants of a solution to a single exercise in Goldrei&rsquo;s Propositional and Predicate Calculus. The problem is not the most interesting problem in the book, and the …">
+  </head>
+  <body>
+    <div class="theme-switcher">
+  <label class="theme-switcher-label">Theme:</label>
+  <select id="theme-select">
+    <option value="mistyrose">Mistyrose</option>
+    <option value="tequila-sunrise">Tequila Sunrise</option>
+    <option value="midnight-flora">Midnight Flora</option>
+    <option value="fern-hollow">Fern Hollow</option>
+    <option value="granite-creek">Granite Creek</option>
+  </select>
+</div>
+
+<script>
+(function() {
+  var themes = {
+    'mistyrose': {
+      syntax: 'light',
+      vars: {
+        '--color-text': '#1a1a1a',
+        '--color-title': '#d2c4ff',
+        '--color-bg': '#ffe4e1',
+        '--color-metadata': '#ffd4d4',
+        '--color-link': '#8c2626',
+        '--color-code-bg': '#fecbcb',
+        '--color-tag-writing': '#d2c4ff',
+        '--color-tag-project': '#c4e0d2',
+        '--color-tag-reading': '#c4d4e8',
+        '--color-filter-btn': '#b35a5a',
+        '--color-filter-btn-active': '#9c3a3a',
+        '--color-border': '#d4c4c0'
+      }
+    },
+    'tequila-sunrise': {
+      syntax: 'light',
+      vars: {
+        '--color-text': '#3b2014',
+        '--color-title': '#e8814a',
+        '--color-bg': '#fae5c8',
+        '--color-metadata': '#f5d6a8',
+        '--color-link': '#b5451b',
+        '--color-code-bg': '#f2d0a0',
+        '--color-tag-writing': '#e8a44a',
+        '--color-tag-project': '#9ec4a0',
+        '--color-tag-reading': '#a8c4d4',
+        '--color-filter-btn': '#c06030',
+        '--color-filter-btn-active': '#a04820',
+        '--color-border': '#d4b898'
+      }
+    },
+    'midnight-flora': {
+      syntax: 'dark',
+      vars: {
+        '--color-text': '#e8dcc8',
+        '--color-title': '#4a3666',
+        '--color-bg': '#1e1528',
+        '--color-metadata': '#2a1f38',
+        '--color-link': '#d4a0d0',
+        '--color-code-bg': '#2a1f38',
+        '--color-tag-writing': '#4a3666',
+        '--color-tag-project': '#1e3a2a',
+        '--color-tag-reading': '#1e2a3a',
+        '--color-filter-btn': '#c090bc',
+        '--color-filter-btn-active': '#a870a4',
+        '--color-border': '#4a3860'
+      }
+    },
+    'fern-hollow': {
+      syntax: 'dark',
+      vars: {
+        '--color-text': '#b8c8b4',
+        '--color-title': '#1e3820',
+        '--color-bg': '#111c10',
+        '--color-metadata': '#182418',
+        '--color-link': '#7ab06c',
+        '--color-code-bg': '#152014',
+        '--color-tag-writing': '#1e3820',
+        '--color-tag-project': '#2a3820',
+        '--color-tag-reading': '#162a2a',
+        '--color-filter-btn': '#5a9a4e',
+        '--color-filter-btn-active': '#448038',
+        '--color-border': '#2a3e28'
+      }
+    },
+    'granite-creek': {
+      syntax: 'light',
+      vars: {
+        '--color-text': '#2a3040',
+        '--color-title': '#7ec0e0',
+        '--color-bg': '#e4f0f8',
+        '--color-metadata': '#c8e0f0',
+        '--color-link': '#2870a0',
+        '--color-code-bg': '#c4daea',
+        '--color-tag-writing': '#7ec0e0',
+        '--color-tag-project': '#8cc8a8',
+        '--color-tag-reading': '#b0b8d8',
+        '--color-filter-btn': '#3080a8',
+        '--color-filter-btn-active': '#206890',
+        '--color-border': '#98c4dc'
+      }
+    }
+  };
+
+  function applyTheme(name) {
+    var theme = themes[name];
+    if (!theme) return;
+    var root = document.documentElement;
+    Object.keys(theme.vars).forEach(function(v) {
+      root.style.setProperty(v, theme.vars[v]);
+    });
+    root.classList.remove('syntax-light', 'syntax-dark');
+    root.classList.add('syntax-' + theme.syntax);
+    
+    document.querySelectorAll('.theme-picker input[type="color"]').forEach(function(input) {
+      if (theme.vars[input.dataset.var]) input.value = theme.vars[input.dataset.var];
+    });
+  }
+
+  
+  document.documentElement.classList.add('syntax-light');
+
+  var select = document.getElementById('theme-select');
+  var saved = localStorage.getItem('theme');
+  if (saved && themes[saved]) {
+    select.value = saved;
+    applyTheme(saved);
+  }
+
+  select.addEventListener('change', function() {
+    localStorage.setItem('theme', select.value);
+    applyTheme(select.value);
+  });
+})();
+</script>
+
+    
+<header>
+  <a href="/">⏎ back home</a>
+</header>
+
+    <main>
+      
+<article>
+  <h1 class="article-title">Propositional and Predicate Calculus: Section 2.6 Exercises</h1>
+  <div class="article-metadata">
+    <span class="post-tag post-tag-reading">Reading</span>
+    <span class="article-date">June 14, 2026</span>
+    
+    <div class="article-source">
+      Notes on Propositional and Predicate Calculus: Section 2.6 Exercises by Derek Goldrei (2005)
+    </div>
+    
+  </div>
+  
+  <details class="article-toc">
+    <summary>Table of contents</summary>
+    <nav id="TableOfContents">
+  <ul>
+    <li><a href="#the-problem">The problem</a></li>
+    <li><a href="#proof-1-universal-generalization-semantic-proof">Proof 1: Universal Generalization Semantic Proof</a></li>
+    <li><a href="#proof-2-set-theoretic-semantic-proof">Proof 2: Set Theoretic Semantic Proof</a></li>
+    <li><a href="#what-makes-these-proofs-semantic">What makes these proofs semantic</a></li>
+    <li><a href="#in-conclusion">In Conclusion</a></li>
+  </ul>
+</nav>
+  </details>
+  
+  <p>In this post I give 2 variants of a solution to a single exercise in Goldrei&rsquo;s <em>Propositional and Predicate Calculus</em>. The problem is not the most interesting problem in the book, and the solutions are not particularly novel… but I spent maybe 2 months working on these 😅</p>
+<p>I had a few motivations for zoning in on one one single problem for so long.</p>
+<p>The first motivation was to develop a deeper understanding of the content. After finishing chapter 2, I realized that I only had a superficial understanding of the concepts that were outlined in the chapter. I wanted to go deeper, and I felt that really working through some exercises would get me there. While reading the book, I had been working through the exercises in my head, but of course you never end up doing that as well as you think (as my dad told me thousands of times growing up!). So I adhered to the age old advice that the exercises are where all the learning happens!</p>
+<p>The second motivation was to improve my proof writing ability. I truly do not have strong proof writing abilities and I&rsquo;ve never really learned how to write proofs well. I&rsquo;ve always felt very uncertain about my proofs and my approach towards them thus far has been to throw a bunch of rambling logical sounding statements at the proof until some &ldquo;confidence bar&rdquo; feels like it&rsquo;s been met. I think the reason for this is that I&rsquo;ve only ever written proofs during exams. I&rsquo;ve never taken the time to go from a correct proof to a good proof. So in going through this exercise, I was hoping to develop and cultivate that taste in writing proofs.</p>
+<p>And finally, I wanted to get experience applying the theory of this book. Ultimately, this whole book is about sound and justified reasoning. Of course the book is about formal reasoning not about writing general proofs in prose… but building up some experience writing robust and sound non-formal proofs is closely related to the project of this book. In working on these proofs, I wanted to start building out my mental model for what proof writing really is. I want to start creating a taxonomy for different kinds of proofs, their structures, and their techniques.</p>
+<p>So, with that backstory and explanation out the way, let me give you an overview of how I&rsquo;ve structured this post. I have two sections to this post, the first section has the problem and the two proofs I wrote. The second section has my thoughts about the proofs: my attempt to categorize them, contextualize them, and frame them more generally. I assume most readers are going to be more interested in the latter half than the first, and should feel encouraged to skip there directly.</p>
+<h2 id="the-problem">The problem <a class="heading-anchor" href="#the-problem">#</a></h2>
+<pre tabindex="0"><code>Given the following premises:
+
+1. Τ ⊨ (φ ∨ ψ)
+2. Δ,φ ⊨ θ
+3. ψ ⊨ θ
+
+Show the following conclusion: Τ,Δ ⊨ θ
+</code></pre><h2 id="proof-1-universal-generalization-semantic-proof">Proof 1: Universal Generalization Semantic Proof <a class="heading-anchor" href="#proof-1-universal-generalization-semantic-proof">#</a></h2>
+<p>One approach is to reason about an arbitrary truth assignments which satisfies <code>Τ</code> and <code>Δ</code>. If we can show that this arbitrary truth assignment, with the premises being true, also must satisfy <code>θ</code>. After doing that, we can generalize the result to show it is the case for all truth assignments satisfying <code>Τ,Δ</code> and thus show <code>Τ,Δ ⊨ θ</code> holds.</p>
+<p>Suppose we have an arbitrary truth assignment <code>υ</code> that satisfies <code>Τ</code> and <code>Δ</code>. We will show that, given our premises, this truth assignment must satisfy <code>θ</code>.</p>
+<p>First, because <code>υ</code> satisfies <code>Τ</code> and <code>Δ</code>, we know by premise 1 that this <code>υ</code> must satisfy either <code>φ</code> or <code>ψ</code>. We can show that in either of these cases, <code>υ</code> will satisfy <code>θ</code>.</p>
+<p>Case 1: If <code>υ</code> satisfies <code>φ</code>, then premise 2 tells us that <code>υ</code> satisfies <code>θ</code> as well. This is the case because we know from how <code>υ</code> was defined that satisfies <code>Δ</code>, and so premise 2 tells us that <code>υ</code> will satisfy <code>θ</code>.</p>
+<p>Case 2: <code>υ</code> satisfies <code>ψ</code>, then premise 3 directly tells us that <code>υ</code> will satisfy <code>θ</code>.</p>
+<p>Thus, we have shown that this arbitrary <code>υ</code> which satisfies <code>Τ</code> and <code>Δ</code> also satisfies <code>θ</code>. Universal generalization allows us to say from this that all truth assignments which satisfy <code>Τ</code> and <code>Δ</code> satisfy <code>θ</code>, which is equivalent to <code>Τ,Δ ⊨ θ</code>.</p>
+<h2 id="proof-2-set-theoretic-semantic-proof">Proof 2: Set Theoretic Semantic Proof <a class="heading-anchor" href="#proof-2-set-theoretic-semantic-proof">#</a></h2>
+<p>We are reasoning about these logical consequence statements by thinking about their underlying semantics. By that, we mean that we are considering the truth assignments which satisfy the propositional formulas and sets of propositional formulas.</p>
+<p>A logical consequence statement essentially says that, the set of truth assignments that satisfy the formulas on the left hand side of the turnstile must be a subset of those that satisfy the formulas on the right hand side of the turnstile.</p>
+<p>For some reason, I find that this subset style reasoning about the logical consequence statements is more intuitive to me.</p>
+<p>What we can do for a proof approach is to convert our language of logical consequence on these propositional formulas into set theoretic statements.</p>
+<p>To do that, we will need to establish a bit of machinery.</p>
+<p>First, we will define a function <code>M</code> which takes as input a formula or set of formulas, and returns the truth assignments that satisfy them.</p>
+<p>Second, for a logical consequence statement, <code>A ⊨ B</code>, we declare that as being equal to <code>M(A) ⊆ M(B)</code>.</p>
+<p>We can also expand formulas inside of <code>M</code> inputs into their component parts such as <code>M(a ∨ b) = M(a) ∪ M(b)</code> <code>M(a ∧ b) = M(a) ∩ M(b)</code></p>
+<p>With all of that set out, we can now re-write our premises and our conclusion</p>
+<p>(1) <code>M(Τ) ⊆ M(φ ∨ ψ)</code> (2) <code>M(Δ,φ) ⊆ M(θ)</code> (3) <code>M(ψ) ⊆ M(θ)</code></p>
+<p>And our conclusion: <code>M(Τ,Δ) ⊆ M(θ)</code></p>
+<p>For the proof, we will essentially apply a list of algebraic transformations to the left hand side of the conclusion to turn it into the right hand side.</p>
+<ol>
+<li><code>M(Τ,Δ) = M(Τ) ∩ M(Δ)</code> — definition of <code>M</code></li>
+<li><code>M(Τ) ∩ M(Δ) ⊆ M(φ ∨ ψ) ∩ M(Δ)</code> — premise 1 and monotonicity of <code>⊆</code></li>
+<li><code>M(φ ∨ ψ) ∩ M(Δ) = (M(φ) ∪ M(ψ)) ∩ M(Δ)</code> — definition of <code>M</code></li>
+<li><code>(M(φ) ∪ M(ψ)) ∩ M(Δ) = (M(φ) ∩ M(Δ)) ∪ (M(ψ) ∩ M(Δ))</code> — distributivity of <code>∪</code> over <code>∩</code></li>
+<li><code>(M(φ) ∩ M(Δ)) ∪ (M(ψ) ∩ M(Δ)) ⊆ M(θ) ∪ (M(ψ) ∩ M(Δ))</code> — premise 2 and monotonicity of <code>⊆</code></li>
+<li><code>M(θ) ∪ (M(ψ) ∩ M(Δ)) ⊆ M(θ) ∪ (M(θ) ∩ M(Δ))</code> — premise 3 and monotonicity of <code>⊆</code></li>
+<li><code>M(θ) ∪ (M(θ) ∩ M(Δ)) = M(θ)</code> — absorption</li>
+</ol>
+<p>which, if expanded out with an application of the transitive property gives us <code>M(Τ,Δ) ⊆ M(θ)</code> — which is exactly our conclusion.</p>
+<h2 id="what-makes-these-proofs-semantic">What makes these proofs semantic <a class="heading-anchor" href="#what-makes-these-proofs-semantic">#</a></h2>
+<p>If you had to identify the common thread between these proofs, you might say that both are <em>semantic proofs about logical consequence</em>.</p>
+<p><strong>What does semantic mean anyways?</strong></p>
+<p>When you look up the definitions of semantics, I find that you end up in one of two places. You might end up with an extremely vague definition: semantics means meaning. Or you may end up with a very specific or narrow definition in which semantics is about models and structures that satisfy something or other.</p>
+<p>When trying to understand these proofs, I spent a lot of time trying to build and understanding of semantics that I felt could help me describe what precisely makes these two proofs semantic in nature.</p>
+<p><strong>My understanding of the semantics of formal languages</strong></p>
+<p>Let&rsquo;s start with that vague definition of semantics: semantics means meaning. If you are discussing the definition of a word or trying to figure out what was conveyed by a sentence, then you are discussing the semantics of that thing. If we take that definition over to our formal language of propositional logic, or any formal language for that matter, what we get is that semantics refers to how you evaluate a sentence from the language.</p>
+<p>If you are discussing the formal language of arithmetic that we all learn in school, semantics tells you how <code>6 ÷ 2 + 1 × 4</code> evaluates to <code>7</code>. The semantics of that formal language encodes the meanings of the number symbols, the meanings of each of the operators, the rules for ordering of operations and precedence of operators etc.</p>
+<p>Similarly, when we are discussing the formal language of propositional logic. The formal language tells us how to write valid sentences like <code>φ ∨ ψ</code> or <code>(α ∧ β) -&gt; (α ∨ β)</code>. The semantics tell us how we can evaluate those sentences into a true or false value. Just like with the arithmetic sentences, the semantics for this propositional logic will tell us how to reduce these sentences down to one value.</p>
+<p>However, there is one subtle difference in the semantics of the arithmetic language we learn in school and this propositional language. In the language of arithmetic in the paragraph above where every number symbol has a commonly agreed upon meaning (we all know what <code>1</code> and <code>2</code> and <code>99</code> mean), these propositional logic sentences use symbols for the atomic propositions like <code>φ</code>, <code>ψ</code>, <code>α</code>, and <code>β</code> which can refer to any proposition. So the semantics of any propositional sentence requires that we have a truth assignment: A mapping of the propositional atoms to their true or false values.</p>
+<p>But, once you have this truth assignment for the propositional values, the semantics for this propositional language are just the same. We need rules for evaluating the sentences. Rules for parsing the sentence into operations with a particular order and precedence, and descriptions of the operators like <code>∧</code> and <code>-&gt;</code>.</p>
+<p>So, this gives us two components to the semantics of this propositional language. The rules for combining propositions according to the connectives, and the truth assignment: mapping of propositional atoms to true and false values.</p>
+<p><strong>Teasing out a definition of semantics</strong></p>
+<p>If I wanted to make this definition of semantics a bit more concrete, I might define it like this. (FYI, this is just my sketchy thinking about how we can define semantics… I don&rsquo;t want to give the impression)</p>
+<p>We start by establishing that we are defining the semantics for a particular formal language <code>𝐿</code>. I won&rsquo;t go into the details about how we define a formal language. But essentially, it gives us the rules for creating valid sentences in the language. It will involve sets of valid symbols and rules for creating valid sentences (a grammar) etc.</p>
+<p>Once we have that formal language <code>𝐿</code>, we can discuss the semantics, or meaning, of any particular sentence <code>α</code> from that language.</p>
+<p>For a propositional formula <code>α</code>, the meaning of the formula is determined by a function <code>𝑓</code> which accepts the formula as well as a truth assignment <code>𝑚</code> which maps each atomic proposition in the language to a true or false value. So <code>α</code>&rsquo;s value is determined by <code>𝑓(α,𝑚)</code>.</p>
+<p>Some observations about this. The function <code>𝑓</code> is effectively an interpreter. It takes in a program (the formula) and some essential runtime inputs (the truth assignment) and evaluates the program returning a final result. Here the logic of the connectives and how they work is all hand waved away into the definition of the function <code>𝑓</code>.</p>
+<p><strong>Why these proofs are semantic</strong></p>
+<p>And so, with all of that defining out of the way, we can now discuss why our proofs are semantic. The proofs reason about logical consequence in terms of the truth assignments that might satisfy the formulas or sets of formulas on either side of the logical consequence operator. We then use mathematical reasoning or we use the algebra of sets to make assertions about the information regarding truth assignments from our premises, and we derive the conclusion from those.</p>
+<p>So, put simply, truth assignments are one of the essential elements involved in the semantics of the formal language of propositional logic we are working with. Our proofs both reason about logical consequence through truth assignments that satisfy formulas and sets of formulas. It is that reasoning about truth assignments, a semantic concept, that makes these proofs… semantic!</p>
+<h2 id="in-conclusion">In Conclusion <a class="heading-anchor" href="#in-conclusion">#</a></h2>
+<p>I learned a lot from creating these two proofs, but creating them and understanding them took so much longer than I expected.</p>
+<p>I figured that it would take me maybe a week or two to go through all of the exercises in this section of the book that I was working on. And I did have shallow solutions to each of them in about that amount of time. But really creating and understanding these two proofs took so much longer. Specifically, contextualizing them and convincing myself that they were truly complete and valid is what burned the most time.</p>
+<p>I think this whole project was worth it though. I suspect that getting comfortable writing proofs that feel correct is challenging and time-consuming no matter how you approach it. And I do think that working on these proofs and really reasoning through what is meant by &ldquo;semantic&rdquo; was incredibly valuable.</p>
+<p>I think I will try to do a few more write-ups of solutions to different proofs in this section and chapter 2 of the Goldrei book before I go further.</p>
+
+</article>
+
+    </main>
+    <footer></footer>
+  </body>
+</html>
