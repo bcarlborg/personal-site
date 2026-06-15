@@ -1,10 +1,10 @@
 ---
-title: "Propositional and Predicate Calculus: 2.5 The expressive power of connectives"
+title: "Propositional and Predicate Calculus: 2.5 The Expressive Power of Connectives"
 slug: "expressive-power-connectives"
 date: 2026-03-22
 postType: "reading"
 dateDisplay: "March 22, 2026"
-readingTitle: "Propositional and Predicate Calculus: 2.5 The expressive power of connectives"
+readingTitle: "Propositional and Predicate Calculus: 2.5 The Expressive Power of Connectives"
 readingAuthor: "Derek Goldrei"
 readingPublishedDate: "2005"
 readingUrl: ""
