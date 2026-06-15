@@ -2,64 +2,64 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
-    <loc>https://www.beau-carlborg.com/blog/</loc>
+    <loc>http://localhost:1313/blog/</loc>
     <lastmod>2026-06-14T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://www.beau-carlborg.com/</loc>
+    <loc>http://localhost:1313/</loc>
     <lastmod>2026-06-14T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://www.beau-carlborg.com/blog/two-semantic-proofs-logical-consequence/</loc>
+    <loc>http://localhost:1313/blog/two-semantic-proofs-logical-consequence/</loc>
     <lastmod>2026-06-14T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://www.beau-carlborg.com/blog/expressive-power-connectives/</loc>
+    <loc>http://localhost:1313/blog/expressive-power-connectives/</loc>
     <lastmod>2026-03-22T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://www.beau-carlborg.com/blog/logical-equivalence/</loc>
+    <loc>http://localhost:1313/blog/logical-equivalence/</loc>
     <lastmod>2026-03-15T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://www.beau-carlborg.com/blog/interpretation-of-logical-formulas/</loc>
+    <loc>http://localhost:1313/blog/interpretation-of-logical-formulas/</loc>
     <lastmod>2026-03-14T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://www.beau-carlborg.com/blog/propositional-and-predicate-calculus-introduction/</loc>
+    <loc>http://localhost:1313/blog/propositional-and-predicate-calculus-introduction/</loc>
     <lastmod>2026-03-10T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://www.beau-carlborg.com/blog/construction-of-propositional-formulas/</loc>
+    <loc>http://localhost:1313/blog/construction-of-propositional-formulas/</loc>
     <lastmod>2026-03-10T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://www.beau-carlborg.com/blog/various-arpanet-papers/</loc>
+    <loc>http://localhost:1313/blog/various-arpanet-papers/</loc>
     <lastmod>2025-09-21T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://www.beau-carlborg.com/blog/the-arpanet-and-computer-networks/</loc>
+    <loc>http://localhost:1313/blog/the-arpanet-and-computer-networks/</loc>
     <lastmod>2025-08-24T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://www.beau-carlborg.com/blog/learning-about-the-first-version-of-ethernet/</loc>
+    <loc>http://localhost:1313/blog/learning-about-the-first-version-of-ethernet/</loc>
     <lastmod>2025-08-23T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://www.beau-carlborg.com/blog/i-dont-get-networking/</loc>
+    <loc>http://localhost:1313/blog/i-dont-get-networking/</loc>
     <lastmod>2025-08-22T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://www.beau-carlborg.com/blog/how-ethernet-was-invented/</loc>
+    <loc>http://localhost:1313/blog/how-ethernet-was-invented/</loc>
     <lastmod>2025-08-20T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://www.beau-carlborg.com/blog/analog-and-digital/</loc>
+    <loc>http://localhost:1313/blog/analog-and-digital/</loc>
     <lastmod>2024-12-02T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://www.beau-carlborg.com/blog/my-gnu-make-study-guide/</loc>
+    <loc>http://localhost:1313/blog/my-gnu-make-study-guide/</loc>
     <lastmod>2024-11-20T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://www.beau-carlborg.com/blog/a-snake-like-game-in-risc-v-assembly/</loc>
+    <loc>http://localhost:1313/blog/a-snake-like-game-in-risc-v-assembly/</loc>
     <lastmod>2024-08-21T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://www.beau-carlborg.com/blog/big-and-little-endian/</loc>
+    <loc>http://localhost:1313/blog/big-and-little-endian/</loc>
     <lastmod>2023-12-20T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://www.beau-carlborg.com/blog/pushdown-automata-variants/</loc>
+    <loc>http://localhost:1313/blog/pushdown-automata-variants/</loc>
     <lastmod>2023-07-23T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://www.beau-carlborg.com/blog/parsers-and-encoders-everywhere/</loc>
+    <loc>http://localhost:1313/blog/parsers-and-encoders-everywhere/</loc>
     <lastmod>2023-05-08T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://www.beau-carlborg.com/blog/building-an-8-bit-computer-system/</loc>
+    <loc>http://localhost:1313/blog/building-an-8-bit-computer-system/</loc>
     <lastmod>2022-10-15T00:00:00+00:00</lastmod>
   </url>
 </urlset>

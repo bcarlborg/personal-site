@@ -10,9 +10,7 @@ readingPublishedDate: "2005"
 readingUrl: ""
 ---
 
-In this post I give 2 variants of a solution to a single exercise in Goldrei's *Propositional and Predicate Calculus*. The problem is not the most interesting problem in the book, and the solutions are not particularly novel… but I spent maybe 2 months working on these 😅
-
-I had a few motivations for zoning in on one one single problem for so long.
+In this post I give 2 variants of a solution to a single exercise in Goldrei's *Propositional and Predicate Calculus*. The problem is not the most interesting problem in the book, and the solutions are not particularly novel… but I spent maybe 2 months working on these 😅. I had a few motivations for zoning in on one one single problem for so long.
 
 The first motivation was to develop a deeper understanding of the content. After finishing chapter 2, I realized that I only had a superficial understanding of the concepts that were outlined in the chapter. I wanted to go deeper, and I felt that really working through some exercises would get me there. While reading the book, I had been working through the exercises in my head, but of course you never end up doing that as well as you think (as my dad told me thousands of times growing up!). So I adhered to the age old advice that the exercises are where all the learning happens!
 

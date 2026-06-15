@@ -1,16 +1,16 @@
 :root {
-  --color-text: #1a1a1a;
-  --color-title: #d2c4ff;
-  --color-bg: #ffe4e1;
-  --color-metadata: #ffd4d4;
-  --color-link: #8c2626;
-  --color-code-bg: #fecbcb;
-  --color-tag-writing: #d2c4ff;
-  --color-tag-project: #c4e0d2;
-  --color-tag-reading: #c4d4e8;
-  --color-filter-btn: #b35a5a;
-  --color-filter-btn-active: #9c3a3a;
-  --color-border: #d4c4c0;
+  --color-text: #3b2014;
+  --color-title: #f29969;
+  --color-bg: #fae5c8;
+  --color-metadata: #f5d6a8;
+  --color-link: #b5451b;
+  --color-code-bg: #f2d0a0;
+  --color-tag-writing: #e8a44a;
+  --color-tag-project: #9ec4a0;
+  --color-tag-reading: #a8c4d4;
+  --color-filter-btn: #c06030;
+  --color-filter-btn-active: #a04820;
+  --color-border: #d4b898;
 }
 
 a {
