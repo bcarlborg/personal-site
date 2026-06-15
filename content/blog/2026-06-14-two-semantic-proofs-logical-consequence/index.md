@@ -1,10 +1,10 @@
 ---
-title: "Two Semantic Proofs of a Logical Consequence Exercise"
+title: "Propositional and Predicate Calculus: Section 2.6, Exercise 2.72"
 slug: "two-semantic-proofs-logical-consequence"
 date: 2026-06-14
 postType: "reading"
 dateDisplay: "June 14, 2026"
-readingTitle: "Propositional and Predicate Calculus: Section 2.6 Exercises"
+readingTitle: "Propositional and Predicate Calculus: Section 2.6, Exercise 2.72"
 readingAuthor: "Derek Goldrei"
 readingPublishedDate: "2005"
 readingUrl: ""

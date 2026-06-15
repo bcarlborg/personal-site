@@ -6,7 +6,7 @@
     <description>The personal website of Beau Carlborg</description>
     <atom:link href="https://www.beau-carlborg.com/rss.xml" rel="self" type="application/rss+xml" />
     <item>
-      <title>Two Semantic Proofs of a Logical Consequence Exercise</title>
+      <title>Propositional and Predicate Calculus: Section 2.6, Exercise 2.72</title>
       <link>https://www.beau-carlborg.com/blog/two-semantic-proofs-logical-consequence/</link>
       <guid isPermaLink="true">https://www.beau-carlborg.com/blog/two-semantic-proofs-logical-consequence/</guid>
       <description>In this post I give 2 variants of a solution to a single exercise in Goldrei&amp;amp;rsquo;s Propositional and Predicate Calculus. The problem is not the most interesting problem in the book, and the solutions are not particularly novel… but I spent maybe 2 months working on these 😅
